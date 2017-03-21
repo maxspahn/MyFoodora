@@ -11,6 +11,7 @@ public class Restaurant {
 		System.out.println("hello jeremy");
 		System.out.println("ca marche");
 		System.out.println("ca marche!!!");
+		System.out.println("ca marche MAX!!!");
 	}
 
 }
