@@ -40,5 +40,7 @@ public class FullMeal extends Meal{
 		else {price *= 0.95;}
 		return price;
 	}
+	
+	
 
 }

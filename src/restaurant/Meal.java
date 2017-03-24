@@ -14,7 +14,6 @@ public abstract class Meal {
 	private boolean mealOfTheWeek;
 	private double discount;
 
-
 	public Meal(String name) {
 		this.setGlutenFree(true);
 		this.setName(name);
@@ -110,6 +109,7 @@ public abstract class Meal {
 		this.mealOfTheWeek = mealOfTheWeek;
 	}
 
+	
 	public double getDiscount() {
 		return discount;
 	}
@@ -117,7 +117,7 @@ public abstract class Meal {
 	public void setDiscount(double discount) {
 		this.discount = discount;
 	}
-	
+
 	public String toString(){
 		String s = new String();
 		s = this.getName() + " consists of: ";
