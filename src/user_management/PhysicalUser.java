@@ -10,7 +10,7 @@ public class PhysicalUser extends User {
 			String email, int[] adress){
 		super(name, userName, passWord, phone, email, adress);
 		this.surname = "";
-		this.birthdayDate = new Date(0,0,0);
+		this.setBirthdayDate(0,0,0);
 	}
 
 	//getters
@@ -22,8 +22,9 @@ public class PhysicalUser extends User {
 	}
 
 	//setters
-	public void setBirthdayDate(Date birthdayDate) {
-		this.birthdayDate = birthdayDate;
+	public void setBirthdayDate(int day, int month, int year) {
+		Date birthDate = new Date(year - 1900, month -1 , day);
+		this.birthdayDate = birthDate;
 	}	
 	public void setSurname(String surname) {
 		this.surname = surname;

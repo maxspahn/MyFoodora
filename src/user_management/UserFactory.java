@@ -1,7 +1,6 @@
 package user_management;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public abstract class UserFactory {
 	//Static list of all the managers of MyFoodora, static->it is the same for each subclass of UserFactory
@@ -9,7 +8,7 @@ public abstract class UserFactory {
 	
 	//getters
 	public ArrayList<Manager> getManagerList(){
-		return this.managerList;
+		return UserFactory.managerList;
 	}
 	
 
@@ -23,9 +22,9 @@ public abstract class UserFactory {
 	
 	//method to login to an existing account
 	public void login(String userName, String password){
-		User loggedUser;
+		User loggedUser = null;
 		boolean found = false;  //Boolean: to know if the user has been found in the user list
-		for (User loopUser : this.managerList.get(0).getMyFoodora().listUsers){
+		for (User loopUser : this.getManagerList().get(0).getMyFoodora().listUsers){
 			if (loopUser.getUserName()==userName){
 				if (loopUser.getPassWord()==password){
 					loggedUser = loopUser;
@@ -40,6 +39,11 @@ public abstract class UserFactory {
 	
 	//abstract method to load the users who are already inserted in the system, to be overriden
 	public abstract void load();
+
+
+	public static void setManagerList(ArrayList<Manager> managerList) {
+		UserFactory.managerList = managerList;
+	}
 	
 	
 }

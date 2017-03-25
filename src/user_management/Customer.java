@@ -1,15 +1,12 @@
 package user_management;
 
 
-import java.util.*;
-
-
 public class Customer extends PhysicalUser{
 	private boolean spamAgreement;
 	private FidelityCard fidelityCard;
 	
 	/*
-	* constructor: ithe fidelity card by default is the basic one
+	* constructor: it he fidelity card by default is the basic one
 	* the spamAgreement is false by default
 	* 
 	*/

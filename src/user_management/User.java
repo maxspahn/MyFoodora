@@ -68,4 +68,5 @@ public abstract class User {
 		this.activated = activated;
 	}
 	
+	
 }

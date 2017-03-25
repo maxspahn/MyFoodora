@@ -1,7 +1,5 @@
 package user_management;
 
-import java.util.*;
-
 public class Courier extends PhysicalUser{
 	private boolean availability; //False if he/she is already delivering a product
 	private int countDeliveredOrder;	
