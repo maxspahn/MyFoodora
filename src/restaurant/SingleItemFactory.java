@@ -7,12 +7,12 @@ public class SingleItemFactory extends ItemFactory{
 	}
 
 	@Override
-	Meal getMeal(String mealType, String name) {
+	Meal createMeal(String mealType, String name) {
 		return null;
 	}
 
 	@Override
-	SingleItem getSingleItem(String singleItemType, String name) {
+	SingleItem createSingleItem(String singleItemType, String name) {
 		if(singleItemType.equalsIgnoreCase("Starter")){
 			return new Starter(name);
 		}

@@ -17,7 +17,7 @@ public class HalfMeal extends Meal{
 			this.checkVegieGluten(item);
 		}
 		else if(item instanceof Desert && this.getStarter() == null && this.getDesert() == null) {
-			this.setStarter((Starter) item);
+			this.setDesert((Desert) item);
 			this.checkVegieGluten(item);
 		}
 		else{
@@ -31,7 +31,7 @@ public class HalfMeal extends Meal{
 		double price = 0;
 		if(this.getStarter() != null) {price += this.getStarter().getPrice();}
 		if(this.getDesert() != null) {price += this.getDesert().getPrice();}
-		price += this.getMainDish().getPrice();
+		if (this.getMainDish() != null){price += this.getMainDish().getPrice();}
 		if(this.isMealOfTheWeek()) {price *= (1-this.getDiscount());}
 		else {price *= 0.95;}
 		return price;

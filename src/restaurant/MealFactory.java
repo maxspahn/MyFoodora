@@ -7,7 +7,7 @@ public class MealFactory extends ItemFactory{
 	}
 
 	@Override
-	Meal getMeal(String mealType,String name) {
+	Meal createMeal(String mealType,String name) {
 		if(mealType.equalsIgnoreCase("FullMeal")){
 			return new FullMeal(name);
 		}
@@ -18,7 +18,7 @@ public class MealFactory extends ItemFactory{
 	}
 
 	@Override
-	SingleItem getSingleItem(String singleItemType, String name) {
+	SingleItem createSingleItem(String singleItemType, String name) {
 		return null;
 	}
 

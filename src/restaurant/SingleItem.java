@@ -18,16 +18,6 @@ public abstract class SingleItem {
 		this.setId(SingleItem.getCounter());
 		counter++;
 	}
-	
-	public SingleItem(String name, double price, boolean vegetarian, boolean glutenFree) {
-		this.setGlutenFree(glutenFree);
-		this.setName(name);
-		this.setVegetarian(vegetarian);
-		this.setId(SingleItem.getCounter());
-		counter++;
-		this.setPrice(price);
-	}
-	
 
 	public double getPrice() {
 		return price;
