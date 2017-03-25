@@ -33,9 +33,12 @@ public class FullMeal extends Meal{
 	@Override
 	public double getPrice() {
 		double price = 0;
-		price += this.getStarter().getPrice();
-		price += this.getMainDish().getPrice();
-		price += this.getDesert().getPrice();
+		if (this.getStarter()!=null){
+		price += this.getStarter().getPrice();}
+		if (this.getMainDish()!=null){
+		price += this.getMainDish().getPrice();}
+		if (this.getDesert()!=null){
+		price += this.getDesert().getPrice();}
 		if(this.isMealOfTheWeek()) {price *= (1-this.getDiscount());}
 		else {price *= 0.95;}
 		return price;

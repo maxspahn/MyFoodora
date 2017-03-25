@@ -18,8 +18,8 @@ public abstract class Meal {
 		this.setGlutenFree(true);
 		this.setName(name);
 		this.setVegetarian(true);
-		this.setId(SingleItem.getCounter());
-		counter++;
+		this.setId(Meal.getCounter());
+		Meal.counter++;
 		this.setMealOfTheWeek(false);
 		this.setDiscount(0.1);
 	}

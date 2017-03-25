@@ -79,8 +79,9 @@ public class Menu {
 	}
 	
 	public void addItemToMeal(String mealName, String itemName) throws WrongItemAdded{
-		int indexMeal = 0;
-		int indexItem = 0;
+		int indexMeal = -1;
+		int indexItem = -1;
+
 		for (int i = 0; i < this.meals.size(); i++) {
 			if(this.meals.get(i).getName().equalsIgnoreCase(mealName)){
 				indexMeal = i;
@@ -93,27 +94,40 @@ public class Menu {
 				break;
 			}
 		}
+		try{
 		this.getMeals().get(indexMeal).addItem(this.getSingleItems().get(indexItem));
+		}
+		catch (ArrayIndexOutOfBoundsException e){
+			if(indexItem==-1){
+			System.out.println("Item not found.");}
+			else if (indexMeal==-1){
+				System.out.println("Meal not found.");
+			}
+		}
 		
 	}
 	
 	public void addPriceTag(String itemName, double price){
-		int indexItem = 0;
+		int indexItem = -1;
+	
 		for (int i = 0; i < this.singleItems.size(); i++) {
 			if(this.singleItems.get(i).getName().equalsIgnoreCase(itemName)){
 				indexItem = i;
 				break;
 			}
 		}
-		this.getSingleItems().get(indexItem).setPrice(price);		
+		try{
+		this.getSingleItems().get(indexItem).setPrice(price);}
+		catch (ArrayIndexOutOfBoundsException e){
+			System.out.println("Item not found.");}
 	}
 	
 	public void addItem(String itemType, String name) throws WrongItemAdded{
 		if(itemType.equalsIgnoreCase("Starter") || itemType.equalsIgnoreCase("mainDish") || itemType.equalsIgnoreCase("dessert")){
-			this.getSingleItems().add(this.getSingleItemFactory().getSingleItem(itemType, name));
+			this.getSingleItems().add(this.getSingleItemFactory().createSingleItem(itemType, name));
 		}
 		else if(itemType.equalsIgnoreCase("FullMeal") || itemType.equalsIgnoreCase("HalfMeal")){
-			this.getMeals().add(this.getMealFactory().getMeal(itemType, name));
+			this.getMeals().add(this.getMealFactory().createMeal(itemType, name));
 		}
 		else{
 			throw new WrongItemAdded();
@@ -128,6 +142,7 @@ public class Menu {
 				break;
 			}
 		}
+
 		this.getMeals().get(indexMeal).setMealOfTheWeek(true);
 	}
 	
