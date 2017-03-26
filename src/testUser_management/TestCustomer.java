@@ -14,7 +14,7 @@ public class TestCustomer {
 		int [] coords = {10,4};
 		Customer maxspahn = new Customer("Spahn", "maxspahn", "wer123ich", "0768483649", "maxspahn3@yahoo.de", coords);
 		assertTrue(maxspahn.getName().equalsIgnoreCase("spahn"));
-		assertTrue(!maxspahn.isSpamAgreement());
+		assertTrue(!maxspahn.getSpamAgreement());
 	}
 
 }

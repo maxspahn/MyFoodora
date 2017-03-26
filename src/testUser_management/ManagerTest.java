@@ -28,9 +28,9 @@ public class ManagerTest {
 			System.out.println(e.getMessage());
 		}
 		
-		assertEquals(3, this.manFac.getManagerList().get(2).getMyFoodora().listUsers.size());
+		assertEquals(3, this.manFac.getManagerList().get(2).getMyFoodora().getListUsers().size());
 
-		Manager manager = (Manager) this.manFac.getManagerList().get(0).getMyFoodora().listUsers.get(0);
+		Manager manager = (Manager) this.manFac.getManagerList().get(0).getMyFoodora().getListUsers().get(0);
 		assertTrue(manager.getRole().equals("CEO"));
 		
 		User theSame = null;
@@ -43,7 +43,7 @@ public class ManagerTest {
 		
 		assertNull(theSame);
 
-		assertEquals(3, this.manFac.getManagerList().get(2).getMyFoodora().listUsers.size());
+		assertEquals(3, this.manFac.getManagerList().get(2).getMyFoodora().getListUsers().size());
 		
 		
 		

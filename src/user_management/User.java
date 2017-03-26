@@ -66,7 +66,6 @@ public abstract class User {
 	}
 	public void setActivated(boolean activated) {
 		this.activated = activated;
-	}
-	
+	}	
 	
 }

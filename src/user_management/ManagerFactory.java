@@ -15,19 +15,12 @@ public class ManagerFactory extends UserFactory{
 		man.setMyFoodora(this.myFoodora);
 		
 		//Check if the userName already exists in the database
-		boolean alreadyExist = false;
-		for (User us : this.getManagerList().get(0).getMyFoodora().listUsers){
-			if (us.getUserName().equalsIgnoreCase(userName)){
-				alreadyExist = true;
-			}
-		}
+		boolean alreadyExist = this.checkExistenceUserName(userName);
 		
 		//If the userName does not exist
 		if(!alreadyExist){
-			//The manager is added to the manager list
-			this.getManagerList().add(man);
-			//The manager is added to the user list of MyFoodora
-			this.getManagerList().get(0).getMyFoodora().listUsers.add(man);
+			//The manager is added to the lists of MyFoodora
+			this.addUserToLists(man);
 			return man;
 		}
 		
@@ -52,7 +45,7 @@ public class ManagerFactory extends UserFactory{
 			CEO.setRole("CEO");
 			
 			this.getManagerList().add(CEO);
-			CEO.getMyFoodora().listUsers.add(CEO);
+			CEO.getMyFoodora().getListUsers().add(CEO);
 			
 			//Creation of the deputy account
 			int[] adress2 = {4,9};

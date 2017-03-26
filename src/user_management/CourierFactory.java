@@ -3,8 +3,6 @@ package user_management;
 
 public class CourierFactory extends UserFactory{
 	
-	
-
 	public CourierFactory() {
 		super();
 		this.load();
@@ -15,25 +13,17 @@ public class CourierFactory extends UserFactory{
 	public User createAccount(String name, String userName, String passWord, String phone, String email, int[] adress) throws SameUserNameException {
 		Courier cour = new Courier(name, userName, passWord, phone, email, adress);
 		
-		//Check if the userName already exists in the database
-		boolean alreadyExist = false;
-		for (User us : this.getManagerList().get(0).getMyFoodora().listUsers){
-			if (us.getUserName().equals(userName)){
-				alreadyExist = true;
-			}	
-		}
-					
+		boolean alreadyExist = this.checkExistenceUserName(userName);			
 		//If the userName does not exist
 		if(!alreadyExist){
 				
-			//The customer is added to the user list of MyFoodora
-			this.getManagerList().get(0).getMyFoodora().listUsers.add(cour);
+			//The customer is added to the lists of MyFoodora
+			this.addUserToLists(cour);
 			return cour;
 		}
 					
 		else{
-			System.out.println("user already exists");
-			return null;
+			throw new SameUserNameException();
 		}
 		
 	}

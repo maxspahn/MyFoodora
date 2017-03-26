@@ -32,88 +32,61 @@ public class Manager extends PhysicalUser{
 	
 	//A manager can add any user
 	public void addUser(User user){
-		this.myFoodora.listUsers.add(user);
+		this.myFoodora.getListUsers().add(user);
 	}
 	
 	//A manager can remove any user, only the CEO can remove other managers
-	public void removeUser(String userName){
+	public void removeUser(String userName) throws UserNotFoundException{
 		
-		int userIndex = -1;
-		for (int i = 0; i < this.myFoodora.listUsers.size(); i++) {
-			if(this.myFoodora.listUsers.get(i).getUserName().equalsIgnoreCase(userName)){
-				userIndex = i;
+		int userIndex = this.findIDUser(userName);
+		
+		//If the user to remove is a manager
+		if (this.myFoodora.getListUsers().get(userIndex) instanceof Manager){
+				
+			//If the manager who is acting is the CEO and the manager to remove is not himself
+			if((this.getRole().equals("CEO"))&&(!this.myFoodora.getListUsers().get(userIndex).equals(this))){
+				this.myFoodora.getListUsers().remove(this.myFoodora.getListUsers().get(userIndex));
 			}
-		}
-		try{
-			//If the user to remove is a manager
-			if (this.myFoodora.listUsers.get(userIndex) instanceof Manager){
-				
-				//If the manager who is acting is the CEO and the manager to remove is not himself
-				if((this.getRole().equals("CEO"))&&(!this.myFoodora.listUsers.get(userIndex).equals(this))){
-					this.myFoodora.listUsers.remove(this.myFoodora.listUsers.get(userIndex));
-				}
 				
 				
-				//If the manager wants to remove himself
-				else if(this.myFoodora.listUsers.get(userIndex).equals(this)){
-				System.out.println("You cannot remove yourself.");
-				}
+			//If the manager wants to remove himself
+			else if(this.myFoodora.getListUsers().get(userIndex).equals(this)){
+			System.out.println("You cannot remove yourself.");
+			}
 				
-				//If the manager who is acting is not the CEO
-				else{
-					System.out.println("You are not allowed to remove another manager.");
-				}
-				}
-			
-			//If the user to remove is not a manager, then any manager can do it
+			//If the manager who is acting is not the CEO
 			else{
-				this.myFoodora.listUsers.remove(this.myFoodora.listUsers.get(userIndex));
+				System.out.println("You are not allowed to remove another manager.");
+			}
+			}
+			
+		//If the user to remove is not a manager, then any manager can do it
+		else{
+			this.myFoodora.getListUsers().remove(this.myFoodora.getListUsers().get(userIndex));			
 			}
 		}
-		catch(ArrayIndexOutOfBoundsException e){
-			System.out.println("User not found" + e.getMessage());
-		}
-	}
+	
 	
 	//A manager can activate any user
-	public void activateUser(String userName){
-		int userIndex = -1;
-		for (int i = 0; i < this.myFoodora.listUsers.size(); i++) {
-			if(this.myFoodora.listUsers.get(i).getUserName().equalsIgnoreCase(userName)){
-				userIndex = i;
-			}
-		}
-		try{
-			this.myFoodora.listUsers.get(userIndex).setActivated(true);
-		}
-		catch(ArrayIndexOutOfBoundsException e){
-			System.out.println("User not found" + e.getMessage());
-		}
+	public void activateUser(String userName) throws UserNotFoundException{
+		int userIndex = this.findIDUser(userName);
+		this.myFoodora.getListUsers().get(userIndex).setActivated(true);
+		
 	}
 	
 	//A manager can disactivate any user, excepted other managers
-	public void disactivate(String userName){
-		int userIndex = -1;
-		for (int i = 0; i < this.myFoodora.listUsers.size(); i++) {
-			if(this.myFoodora.listUsers.get(i).getUserName().equalsIgnoreCase(userName)){
-				userIndex = i;
-			}
-		}
-		
-		try{
-			//If the user to disactivate is a manager
-			if (this.myFoodora.listUsers.get(userIndex) instanceof Manager){
-				System.out.println("You cannot disactivate a manager");
+	public void disactivate(String userName) throws UserNotFoundException{
+		int userIndex = this.findIDUser(userName);
+				
+		//If the user to disactivate is a manager
+		if (this.myFoodora.getListUsers().get(userIndex) instanceof Manager){
+			System.out.println("You cannot disactivate a manager");
 			}
 			
-			//If the user to disactivate is not a manager
-			else{
-				this.myFoodora.listUsers.get(userIndex).setActivated(false);
+		//If the user to disactivate is not a manager
+		else{
+			this.myFoodora.getListUsers().get(userIndex).setActivated(false);
 			}
-		}
-		catch(ArrayIndexOutOfBoundsException e){
-			System.out.println("User not found" + e.getMessage());
-		}
 	}
 	
 	public String toString(){	
@@ -122,6 +95,22 @@ public class Manager extends PhysicalUser{
 		return "ID:"+this.getID()+"/Name:"+this.getName()+"/Surname:"+this.getSurname()+"/Username:"+this.getUserName()
 			+"/Password:"+this.getPassWord()+"/Email:"+this.getEmail()+"/Phone:"+this.getPhone()
 			+"/Adress:{"+x+";"+y+"}"+"/Role:"+this.getRole();
+	}
+	
+	
+	//Method to find a user by searching his userName
+	private int findIDUser(String userName) throws UserNotFoundException{
+		int index = -1;
+		ArrayList<User> listUser = this.getMyFoodora().getListUsers();
+		for (int i = 0; i < listUser.size(); i++) {
+			if (listUser.get(i).getUserName().equals(userName)){
+				index = i;
+			}
+		}
+		if (index == -1){ //The user has not been found
+			throw new UserNotFoundException(userName);
+		}			
+		return index;  //The user has been found and the index is returned
 	}
 
 }

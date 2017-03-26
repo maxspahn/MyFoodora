@@ -5,27 +5,24 @@ import static org.junit.Assert.assertTrue;
 public class Main_application {
 	public static void main(String[] args) throws SameUserNameException {
 		ManagerFactory managerFactory = new ManagerFactory();
-		CourierFactory courierFactory = new CourierFactory();
+		//CourierFactory courierFactory = new CourierFactory();
 		CustomerFactory customerFactory = new CustomerFactory();
 		RestaurantFactory restaurantFactory = new RestaurantFactory();
-		int[] adress = {1,2};
-		//customerFactory.createAccount("hjn", "a", "kjn", "kjn","jn", adress);
-		courierFactory.load();
-		Customer cust = (Customer) customerFactory.createAccount("jeremy", "jerem", "2E", "0665216811", "jeremy.augot@student.ecp.fr", adress);
-		Customer cust1 = (Customer) customerFactory.createAccount("max", "maxs", "wer", "022033", "max@peter.cem", adress);
-		System.out.println(cust.toString());
 		
-
-		Manager manager = (Manager) managerFactory.getManagerList().get(0).getMyFoodora().listUsers.get(0);
-		System.out.println(manager);
-		System.out.println(manager.getRole());
-		System.out.println(manager.getName());
-
-		System.out.println(courierFactory.getManagerList());
-		System.out.println("userlist");
-		System.out.println(courierFactory.getManagerList().get(0).getMyFoodora().listUsers);
-		System.out.println(courierFactory.getManagerList().get(1).toString());
-
+		int[] adress = {1,2};
+		Restaurant rest = (Restaurant) restaurantFactory.getRestaurantList().get(0);
+		rest.setDiscount(0.5);
+		
+		Customer cust = (Customer) customerFactory.createAccount("jeje","je", "iijijij", "098765432", "jere@gmail.com",adress);
+		System.out.println(cust.getNotifications());
+		cust.setSpamAgreement(true);
+		
+		rest.setDiscount(0.3);
+		rest.setMealOfTheWeek("FullMeal");
+		
+		System.out.println(cust.getNotifications());
+		
+		System.out.println(cust.getNotifications());
 		
 	}
 }

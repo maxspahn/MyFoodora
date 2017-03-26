@@ -5,8 +5,6 @@ import java.util.Scanner;
 
 public class CustomerFactory extends UserFactory{
 	
-	
-
 	public CustomerFactory() {
 		super();
 		this.load();
@@ -17,18 +15,13 @@ public class CustomerFactory extends UserFactory{
 		Customer cust = new Customer(name, userName, passWord, phone, email, adress);
 		
 		//Check if the userName already exists in the database
-		boolean alreadyExist = false;
-		for (User us : this.getManagerList().get(0).getMyFoodora().listUsers){
-			if (us.getUserName()==userName){
-				alreadyExist = true;
-			}	
-		}
+		boolean alreadyExist = this.checkExistenceUserName(userName);
 				
 		//If the userName does not exist
 		if(!alreadyExist){
 			
-			//The customer is added to the user list of MyFoodora
-			this.getManagerList().get(0).getMyFoodora().listUsers.add(cust);
+			//The customer is added to the lists of MyFoodora
+			this.addUserToLists(cust);
 			return cust;
 		}
 			

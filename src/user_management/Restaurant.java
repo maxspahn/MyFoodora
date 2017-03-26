@@ -4,10 +4,15 @@ import java.util.ArrayList;
 
 import restaurant.*;
 
-public class Restaurant extends User{
+public class Restaurant extends User implements Observable{
 	//list of all the products (single items and meals) of the restaurant
 	private Menu menu;  
 	private double discount; //Discount for the meal of the week
+	private ArrayList<Customer> allCustomers;
+	
+	//Attributes for the observer pattern
+	private boolean changed;
+	private String message;
 	
 	/*
 	* constructor: by default the list of sold products is empty
@@ -16,6 +21,9 @@ public class Restaurant extends User{
 		super(name, userName, passWord, phone, email, adress);
 		this.menu = new Menu();
 		this.discount = 0.1;
+		this.allCustomers = new ArrayList<Customer>();
+		this.changed = false;
+		this.message = "";
 	}
 
 	//getters
@@ -27,6 +35,10 @@ public class Restaurant extends User{
 		return this.discount;
 	}
 	
+	public ArrayList<Customer> getAllCustomers() {
+		return allCustomers;
+	}
+
 	//setters
 	public void setMenu(Menu menu) {
 		this.menu = menu;
@@ -34,8 +46,16 @@ public class Restaurant extends User{
 	
 	public void setDiscount(double discount){
 		this.discount = discount;
+		
+		//Send a notification to the customers to tell them that there is a new discount
+		this.changed = true;
+		this.notifyObservers("The restaurant "+this.getName()+" offers a discount of "+this.discount+" on all the items of the menu.");
 	}
 	
+	public void setAllCustomers(ArrayList<Customer> allCustomers) {
+		this.allCustomers = allCustomers;
+	}
+
 	public String toString(){	
 		int x = this.getAdress()[0];
 		int y = this.getAdress()[1];
@@ -65,8 +85,29 @@ public class Restaurant extends User{
 		this.menu.getMeals().get(indexMeal).setMealOfTheWeek(true);
 		this.menu.getMeals().get(indexMeal).setDiscount(this.discount);
 		
+		//Send a notification to the customers to tell them that the meal of the week has changed
+		this.changed = true;
+		this.notifyObservers("The restaurant "+this.getName()+" has a new meal of the week: "+mealName);
+		
+	}
+
+	@Override
+	public void notifyObservers(String message) {
+		if (this.changed){
+			for (Customer cust : this.allCustomers){
+				if (cust.getSpamAgreement()){
+					cust.update(message);
+				}
+			}
+			this.changed = false;
+		}
+		
 	}
 	
+	public void setMessage(String message){
+		this.message = message;
+		this.changed = true;
+	}
 	
 	
 }
