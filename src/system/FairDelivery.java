@@ -22,6 +22,7 @@ public class FairDelivery implements DeliveryPolicy {
 				selected = courier;
 			}
 		}
+		selected.setAvailability(false);
 		order.setCourier(selected);
 		return selected;
 	}

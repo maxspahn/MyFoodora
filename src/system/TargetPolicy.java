@@ -5,6 +5,11 @@ public abstract class TargetPolicy {
 	private double service_fee;
 	private double markup_percentage;
 	private double delivery_cost;
+	
+	public double computeProfit(double price){
+		double profit = price * this.getMarkup_percentage() + this.getService_fee()- this.getDelivery_cost();
+		return profit;
+	}
 
 	public TargetPolicy() {
 		// TODO Auto-generated constructor stub

@@ -8,20 +8,20 @@ public class MyFoodora {
 	
 	private TargetPolicy targetPolicy;
 	private DeliveryPolicy deliveryPolicy;
-
-	private double service_fee;
-	private double markup_percentage;
-	private double delivery_cost;
 	
 	private ArrayList<User> listUsers;
 	private ArrayList<Courier> listCourier;
 	private ArrayList<Order> completeOrders;
+	
+	private double incomeLastMonth;
+	private int indexLastCommandMonth;
 	
 	public MyFoodora(){
 		this.setListUsers(new ArrayList<User>());
 		this.setListCourier(new ArrayList<Courier>());
 		this.setDeliveryPolicy(new FastestDelivery());
 		this.setCompleteOrders(new ArrayList<Order>());
+		this.setIndexLastCommandMonth(0);
 	}	
 		
 	public TargetPolicy getTargetPolicy() {
@@ -31,31 +31,6 @@ public class MyFoodora {
 	public void setTargetPolicy(TargetPolicy targetPolicy) {
 		this.targetPolicy = targetPolicy;
 	}
-
-	public double getService_fee() {
-		return service_fee;
-	}
-
-	public void setService_fee(double service_fee) {
-		this.service_fee = service_fee;
-	}
-
-	public double getMarkup_percentage() {
-		return markup_percentage;
-	}
-	
-	public void setMarkup_percentage(double markup_percentage) {
-		this.markup_percentage = markup_percentage;
-	}
-
-	public double getDelivery_cost() {
-		return delivery_cost;
-	}
-
-	public void setDelivery_cost(double delivery_cost) {
-		this.delivery_cost = delivery_cost;
-	}
-
 	
 	public DeliveryPolicy getDeliveryPolicy() {
 		return deliveryPolicy;
@@ -83,9 +58,6 @@ public class MyFoodora {
 
 	public void setTargetPolicy(){
 		this.targetPolicy.setTargetPolicy();
-		this.setService_fee(this.targetPolicy.getService_fee());
-		this.setDelivery_cost(this.getTargetPolicy().getDelivery_cost());
-		this.setMarkup_percentage(this.getTargetPolicy().getMarkup_percentage());
 	}
 	
 	public void setCourierToOrder(Order order){
@@ -99,5 +71,74 @@ public class MyFoodora {
 	public void setCompleteOrders(ArrayList<Order> completeOrders) {
 		this.completeOrders = completeOrders;
 	}
+	
+	public void addOrderToCompleteOrders(Order order){
+		this.completeOrders.add(order);
+	}
+	
+	public void computeProfitForOrder(Order order) throws OrderNotCompletException{
+		if(order.isComplete()){
+			double profit = this.getTargetPolicy().computeProfit(order.getPrice());
+			order.setProfit(profit);
+		}
+		else{
+			throw new OrderNotCompletException();
+		}
+	}
+	
+	public int getIndexOfFirstCommandInMonth(int month, int year) throws NoOrderInMonth, OrderNotCompletException{
+		int index = -1;
+		for (int i = 0; i < this.getCompleteOrders().size(); i++) {
+			if(this.getCompleteOrders().get(i).getYearMonthOfOrder()[0] == year && this.getCompleteOrders().get(i).getYearMonthOfOrder()[1] == month){
+				index = i;
+				break;
+			}
+		}
+		if(index ==-1){
+			throw new NoOrderInMonth(month, year);
+		}
+		return index;
+	}
+	
+	public int getIndexOfLastCommandInMonth(int month, int year) throws NoOrderInMonth, OrderNotCompletException{
+		int index = -1;
+		if(year == this.getCompleteOrders().get(this.getCompleteOrders().size() -1).getYearMonthOfOrder()[0] && month == this.getCompleteOrders().get(this.getCompleteOrders().size() -1).getYearMonthOfOrder()[1]){
+			index = this.getCompleteOrders().size()-1;
+		}
+		else{
+			if(month == 12){
+				month = 0;
+				year = year ++;
+			}
+			index = this.getIndexOfFirstCommandInMonth(month +1, year) -1;
+		}
+		return index;
+	}
+	
+	public void computeTotalIncomeLastMonth(){
+		double income = 0;
+		for (int i = this.getIndexLastCommandMonth(); i < this.getCompleteOrders(); i++) {
+			income += this.getCompleteOrders().get(i).getProfit();
+		}
+		this.setIncomeLastMonth(income);
+	}
+
+	public double getIncomeLastMonth() {
+		return incomeLastMonth;
+	}
+
+	public void setIncomeLastMonth(double incomeLastMonth) {
+		this.incomeLastMonth = incomeLastMonth;
+	}
+
+	public int getIndexLastCommandMonth() {
+		return indexLastCommandMonth;
+	}
+
+	public void setIndexLastCommandMonth(int indexLastCommandMonth) {
+		this.indexLastCommandMonth = indexLastCommandMonth;
+	}
+	
+	
 
 }

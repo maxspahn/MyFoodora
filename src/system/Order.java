@@ -14,15 +14,16 @@ public class Order {
 	private ArrayList<SingleItem> singleItems;
 	private ArrayList<Meal> meals;
 	private boolean complete;
-	private Date creationDate;
+	private Date completeDate;
 	private FidelityCard fidelityCard;
+	private double price;
+	private double profit;
 
 	public Order(Customer customer) {
 		this.setCustomer(customer);
 		this.setMeals(new ArrayList<Meal>());
 		this.setSingleItems(new ArrayList<SingleItem>());
 		this.setComplete(false);
-		this.creationDate = new Date();
 		this.setFidelityCard(customer.getFidelityCard());
 	}
 	
@@ -34,9 +35,24 @@ public class Order {
 		this.getMeals().add(this.getRestaurant().getMenu().getMeal(mealName));
 	}
 	
+	public void getBill() {
+		this.setComplete(true);
+		this.setPrice(this.getFidelityCard().computePrice(this));
+	}
 	
+	public void finishOrder(MyFoodora myfoodera) throws OrderNotCompletException{
+		if(this.complete){
+			//this.customer.addOrder(this);
+			myfoodera.addOrderToCompleteOrders(this);
+			this.courier.setCountDeliveredOrder(this.courier.getCountDeliveredOrder() + 1);
+			this.courier.setAvailability(true);
+			this.completeDate = new Date();
+		}
+		else{
+			throw new OrderNotCompletException();
+		}
+	}
 	
-
 	public Customer getCustomer() {
 		return customer;
 	}
@@ -85,8 +101,8 @@ public class Order {
 		this.complete = complete;
 	}
 
-	public Date getCreationDate() {
-		return creationDate;
+	public Date getCompleteDate() {
+		return completeDate;
 	}
 
 	public FidelityCard getFidelityCard() {
@@ -97,6 +113,31 @@ public class Order {
 		this.fidelityCard = fidelityCard;
 	}
 
+	public double getPrice() {
+		return price;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
+
+	public double getProfit() {
+		return profit;
+	}
+
+	public void setProfit(double profit) {
+		this.profit = profit;
+	}
+
+	public int[] getYearMonthOfOrder() throws OrderNotCompletException{
+		if(this.isComplete()){
+			int [] yearMonth = {this.getCompleteDate().getYear(), this.getCompleteDate().getMonth()};
+			return yearMonth;
+		}
+		else{
+			throw new OrderNotCompletException();
+		}
+	}
 	
 	
 
