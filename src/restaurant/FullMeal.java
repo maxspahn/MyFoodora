@@ -28,6 +28,10 @@ public class FullMeal extends Meal{
 			throw new WrongItemAdded();
 		}
 		
+		if(this.getStarter() != null && this.getMainDish() != null && this.getDesert() != null){
+			this.setComplete(true);
+		}
+		
 	}
 
 	@Override
@@ -39,9 +43,28 @@ public class FullMeal extends Meal{
 		price += this.getMainDish().getPrice();}
 		if (this.getDesert()!=null){
 		price += this.getDesert().getPrice();}
-		if(this.isMealOfTheWeek()) {price *= (1-this.getDiscount());}
-		else {price *= 0.95;}
 		return price;
+	}
+
+	@Override
+	public void removeItem(SingleItem item) throws WrongItemRemoved {
+		
+		if(item instanceof Starter && this.getStarter().equals(item)){
+			this.setStarter(null);
+			this.setComplete(false);
+		}
+		else if(item instanceof MainDish && this.getMainDish().equals(item)){
+			this.setMainDish(null);
+			this.setComplete(false);
+		}
+		else if(item instanceof Desert && this.getDesert().equals(item)){
+			this.setDesert(null);
+			this.setComplete(false);
+		}
+		else{
+			throw new WrongItemRemoved(item.getName());
+		}
+		
 	}
 	
 	

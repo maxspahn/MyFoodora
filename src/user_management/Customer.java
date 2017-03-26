@@ -1,6 +1,12 @@
 package user_management;
 
+import system.*;
 import java.util.ArrayList;
+
+public class Customer extends PhysicalUser implements PeopleToNotify{
+	private boolean spamAgreement;
+	private FidelityCard fidelityCard;
+	private ArrayList<String> notifications;  //Contains all the unread notifications
 
 public class Customer extends PhysicalUser implements PeopleToNotify{
 	private boolean spamAgreement;

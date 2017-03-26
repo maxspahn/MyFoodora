@@ -11,18 +11,28 @@ public class HalfMeal extends Meal{
 		if(item instanceof Starter && this.getStarter() == null && this.getDesert() == null) {
 			this.setStarter((Starter) item);
 			this.checkVegieGluten(item);
+			if(this.getMainDish() != null){
+				this.setComplete(true);
+			}
 		}
 		else if(item instanceof MainDish && this.getMainDish() == null) {
 			this.setMainDish((MainDish) item);
 			this.checkVegieGluten(item);
+			if(this.getStarter() != null || this.getDesert() != null){
+				this.setComplete(true);
+			}
 		}
 		else if(item instanceof Desert && this.getStarter() == null && this.getDesert() == null) {
 			this.setDesert((Desert) item);
 			this.checkVegieGluten(item);
+			if(this.getMainDish() != null){
+				this.setComplete(true);
+			}
 		}
 		else{
 			throw new WrongItemAdded();
 		}
+		
 		
 	}
 
@@ -32,9 +42,27 @@ public class HalfMeal extends Meal{
 		if(this.getStarter() != null) {price += this.getStarter().getPrice();}
 		if(this.getDesert() != null) {price += this.getDesert().getPrice();}
 		if (this.getMainDish() != null){price += this.getMainDish().getPrice();}
-		if(this.isMealOfTheWeek()) {price *= (1-this.getDiscount());}
-		else {price *= 0.95;}
 		return price;
+	}
+
+	@Override
+	public void removeItem(SingleItem item) throws WrongItemRemoved {
+		if(item instanceof Starter && this.getStarter().equals(item)){
+			this.setStarter(null);
+			this.setComplete(false);
+		}
+		else if(item instanceof MainDish && this.getMainDish().equals(item)){
+			this.setMainDish(null);
+			this.setComplete(false);
+		}
+		else if(item instanceof Desert && this.getDesert().equals(item)){
+			this.setDesert(null);
+			this.setComplete(false);
+		}
+		else{
+			throw new WrongItemRemoved(item.getName());
+		}
+		
 	}
 
 }

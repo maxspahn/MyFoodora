@@ -13,6 +13,7 @@ public abstract class Meal {
 	private Desert desert;
 	private boolean mealOfTheWeek;
 	private double discount;
+	private boolean isComplete;
 
 	public Meal(String name) {
 		this.setGlutenFree(true);
@@ -22,9 +23,12 @@ public abstract class Meal {
 		Meal.counter++;
 		this.setMealOfTheWeek(false);
 		this.setDiscount(0.1);
+		this.setComplete(false);
 	}
 	
 	abstract public void addItem(SingleItem item) throws WrongItemAdded;
+	
+	abstract public void removeItem(SingleItem item) throws WrongItemRemoved;
 	
 	public void checkVegieGluten(SingleItem item){
 		if(!item.isGlutenFree()){
@@ -127,6 +131,25 @@ public abstract class Meal {
 		s += "and costs " + this.getPrice();
 		return s;
 		
+	}
+	
+	public boolean equals(Object object){
+		if(object instanceof Meal){
+			Meal meal = (Meal) object;
+			if(meal.getName().equals(this.getName())){
+				return true;
+			}
+		}
+		return false;
+		
+	}
+
+	public boolean isComplete() {
+		return isComplete;
+	}
+
+	protected void setComplete(boolean isComplete) {
+		this.isComplete = isComplete;
 	}
 	
 	

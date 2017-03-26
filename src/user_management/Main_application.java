@@ -15,7 +15,10 @@ public class Main_application {
 		
 		Customer cust = (Customer) customerFactory.createAccount("jeje","je", "iijijij", "098765432", "jere@gmail.com",adress);
 		System.out.println(cust.getNotifications());
+		
+
 		cust.setSpamAgreement(true);
+
 		
 		rest.setDiscount(0.3);
 		rest.setMealOfTheWeek("FullMeal");
