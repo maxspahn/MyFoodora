@@ -73,4 +73,14 @@ public abstract class SingleItem {
 		return s;
 	}
 	
+	public boolean equals(Object object){
+		if(object instanceof SingleItem){
+			SingleItem singleItem = (SingleItem) object;
+			if(singleItem.getName().equalsIgnoreCase(this.getName())){
+				return true;
+			}
+		}
+		return false;
+	}
+	
 }

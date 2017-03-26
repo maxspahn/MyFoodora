@@ -78,9 +78,8 @@ public class Menu {
 		}
 	}
 	
-	public void addItemToMeal(String mealName, String itemName) throws WrongItemAdded{
+	public int searchIndexMeal(String mealName)throws ItemDoesNotExist{
 		int indexMeal = -1;
-		int indexItem = -1;
 
 		for (int i = 0; i < this.meals.size(); i++) {
 			if(this.meals.get(i).getName().equalsIgnoreCase(mealName)){
@@ -88,38 +87,63 @@ public class Menu {
 				break;
 			}
 		}
-		for (int i = 0; i < this.singleItems.size(); i++) {
-			if(this.singleItems.get(i).getName().equalsIgnoreCase(itemName)){
-				indexItem = i;
-				break;
-			}
-		}
-		try{
-		this.getMeals().get(indexMeal).addItem(this.getSingleItems().get(indexItem));
-		}
-		catch (ArrayIndexOutOfBoundsException e){
-			if(indexItem==-1){
-			System.out.println("Item not found.");}
-			else if (indexMeal==-1){
-				System.out.println("Meal not found.");
-			}
-		}
-		
+		if(indexMeal == -1){ throw new ItemDoesNotExist(mealName);}
+		return indexMeal;
 	}
 	
-	public void addPriceTag(String itemName, double price){
-		int indexItem = -1;
-	
+	public int searchIndexSingleItem(String singleItemName) throws ItemDoesNotExist{
+		int indexSingleItem = -1;
+
 		for (int i = 0; i < this.singleItems.size(); i++) {
-			if(this.singleItems.get(i).getName().equalsIgnoreCase(itemName)){
-				indexItem = i;
+			if(this.singleItems.get(i).getName().equalsIgnoreCase(singleItemName)){
+				indexSingleItem = i;
 				break;
 			}
 		}
+		if(indexSingleItem == -1){ throw new ItemDoesNotExist(singleItemName);}
+		return indexSingleItem;
+	}
+	
+	public void addItemToMeal(String mealName, String singleItemName) throws WrongItemAdded{
+		this.getMeal(mealName).addItem(this.getSingleItem(singleItemName));		
+	}
+	
+	public void removeItemFromMeal(String mealName, String singleItemName) throws WrongItemRemoved {
+		this.getMeal(mealName).removeItem(this.getSingleItem(singleItemName));
+	}
+	
+	public Meal getMeal(String mealName){
 		try{
-		this.getSingleItems().get(indexItem).setPrice(price);}
-		catch (ArrayIndexOutOfBoundsException e){
-			System.out.println("Item not found.");}
+			int indexMeal = this.searchIndexMeal(mealName);
+			return this.getMeals().get(indexMeal);
+		}
+		
+		catch(ItemDoesNotExist e){
+			System.out.println(e.getMessage());
+		}
+		return null;
+	}
+	
+	public SingleItem getSingleItem(String singleItemName){
+		try{
+			int indexSingleItemIndex = this.searchIndexSingleItem(singleItemName);
+			return this.getSingleItems().get(indexSingleItemIndex);
+		}
+		
+		catch(ItemDoesNotExist e){
+			System.out.println(e.getMessage());
+		}
+		return null;
+	}
+	
+	public void addPriceTag(String singleItemName, double price){
+		try{
+			int indexSingleItem = this.searchIndexSingleItem(singleItemName);
+			this.getSingleItems().get(indexSingleItem).setPrice(price);
+		}
+		catch (ItemDoesNotExist e){
+			System.out.println(e.getMessage());
+		}
 	}
 	
 	public void addItem(String itemType, String name) throws WrongItemAdded{
@@ -135,15 +159,13 @@ public class Menu {
 	}
 	
 	public void setMealOfTheWeek(String mealName){
-		int indexMeal = 0;
-		for (int i = 0; i < this.meals.size(); i++) {
-			if(this.meals.get(i).getName().equalsIgnoreCase(mealName)){
-				indexMeal = i;
-				break;
-			}
+		try{
+			int indexMeal = this.searchIndexMeal(mealName);
+			this.getMeals().get(indexMeal).setMealOfTheWeek(true);
 		}
-
-		this.getMeals().get(indexMeal).setMealOfTheWeek(true);
+		catch (ItemDoesNotExist e){
+			System.out.println(e.getMessage());
+		}
 	}
 	
 
