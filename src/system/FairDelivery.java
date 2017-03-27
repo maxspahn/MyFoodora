@@ -16,7 +16,7 @@ public class FairDelivery implements DeliveryPolicy {
 		int temp;
 		int indexCourier = -1;
 		for (int i = 0; i < couriers.size(); i++) {
-			if(!refused.contains(i)){
+			if(!refused.contains(i) && couriers.get(i).isAvailability()){
 				temp = couriers.get(i).getCountDeliveredOrder();
 				if(temp < minDelivered){
 					minDelivered = temp;

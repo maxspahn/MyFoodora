@@ -14,7 +14,9 @@ public class Order {
 	private ArrayList<SingleItem> singleItems;
 	private ArrayList<Meal> meals;
 	private boolean complete;
-	private Date completeDate;
+	private int completeMonth;
+	private int completeYear;
+	private int completeDay;
 	private FidelityCard fidelityCard;
 	private double price;
 	private double profit;
@@ -36,17 +38,20 @@ public class Order {
 		this.getMeals().add(this.getRestaurant().getMenu().getMeal(mealName));
 	}
 	
-	public void getBill() {
+	public double getBill() {
 		this.setPrice(this.getFidelityCard().computePrice(this));
+		return this.getPrice();
 	}
 	
-	public void finishOrder(MyFoodora myfoodera) throws OrderNotCompletException{
+	public void finishOrder() throws OrderNotCompletException{
 		if(this.complete){
 			//this.customer.addOrder(this);
-			myfoodera.addOrderToCompleteOrders(this);
+			//this.restaurant.addOrder(this);
 			this.courier.setCountDeliveredOrder(this.courier.getCountDeliveredOrder() + 1);
 			this.courier.setAvailability(true);
-			this.completeDate = new Date();
+			Date date = new Date();
+			this.setCompleteMonth(date.getMonth() + 1);
+			this.setCompleteYear(date.getYear() + 1900);
 		}
 		else{
 			throw new OrderNotCompletException();
@@ -101,9 +106,6 @@ public class Order {
 		this.complete = complete;
 	}
 
-	public Date getCompleteDate() {
-		return completeDate;
-	}
 
 	public FidelityCard getFidelityCard() {
 		return fidelityCard;
@@ -129,24 +131,65 @@ public class Order {
 		this.profit = profit;
 	}
 
-	public int[] getYearMonthOfOrder() throws OrderNotCompletException{
-		if(this.isComplete()){
-			int [] yearMonth = {this.getCompleteDate().getYear(), this.getCompleteDate().getMonth()};
-			return yearMonth;
-		}
-		else{
-			throw new OrderNotCompletException();
-		}
-	}
 	
 	public String toString(){
 		String s = new String();
 		s += "Order from Customer : " + this.getCustomer().getUserName() + " in restaurant : " + this.getRestaurant().getName();
 		if(this.isComplete()){
-			s += " is completed";
+			int year = 0;
+			int month = 0;
+			try {
+				year = this.getCompleteYear();
+				month = this.getCompleteMonth();
+			} catch (OrderNotCompletException e) {
+				// TODO Auto-generated catch block
+				e.getMessage();
+			}
+			s += " has been completed on : year : " + year  + " month : " + month + " done by : " + this.getCourier().getUserName();
 		}
 		return s;
 	}
+
+	public int getCompleteMonth() throws OrderNotCompletException {
+		if(this.isComplete()){
+			return completeMonth;
+		}
+		else{
+			throw new OrderNotCompletException();
+		}
+	}
+
+	public void setCompleteMonth(int completeMonth) {
+		this.completeMonth = completeMonth;
+	}
+
+	public int getCompleteYear() throws OrderNotCompletException {
+		if(this.isComplete()){
+			return completeYear;
+		}
+		else{
+			throw new OrderNotCompletException();
+		}
+	}
+
+	public void setCompleteYear(int completeYear) {
+		this.completeYear = completeYear;
+	}
+
+	public int getCompleteDay() throws OrderNotCompletException {
+		if(this.isComplete()){
+			return completeDay;
+		}
+		else{
+			throw new OrderNotCompletException();
+		}
+	}
+
+	public void setCompleteDay(int completeDay) {
+		this.completeDay = completeDay;
+	}
+
+	
 	
 	
 

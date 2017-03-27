@@ -12,6 +12,7 @@ public class TestIncomeComputation {
 	@Test
 	public void testOrderProcessing() {
 		MyFoodora myFoodera = new MyFoodora();
+		myFoodera.load();
 		int [] adress1 = {2,5};
 		int [] adress2 = {3,6};
 		int [] adress3 = {1,6};
@@ -28,6 +29,7 @@ public class TestIncomeComputation {
 		myFoodera.getListCourier().get(0).setAcceptProbability(1);
 		
 		assertTrue(order1.isComplete() == false);
+		
 		try {
 			myFoodera.setCourierToOrder(order1);
 		} catch (NoCourierFoundToDeliver e) {
@@ -36,7 +38,7 @@ public class TestIncomeComputation {
 		}
 		
 		try {
-			myFoodera.addOrderToCompleteOrders(order1);
+			myFoodera.closeOrder(order1);
 		} catch (OrderNotCompletException e) {
 			// TODO Auto-generated catch block
 			System.out.println(e.getMessage());
@@ -47,6 +49,15 @@ public class TestIncomeComputation {
 		assertTrue(order1.getProfit() == 0.34);
 		
 		assertTrue(order1.isComplete() == true);
+		
+		
+		
+		System.out.println(myFoodera.computeTotalIncomeForMonth(1, 2017));
+		System.out.println(myFoodera.computeTotalIncomeLastMonth());
+		System.out.println(myFoodera.getCompleteOrders());
+		System.out.println(myFoodera.getTotalPriceLastMonth());
+		
+		
 	}
 	
 	@Test

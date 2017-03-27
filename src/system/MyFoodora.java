@@ -1,6 +1,7 @@
 package system;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import user_management.*;
 
@@ -17,6 +18,8 @@ public class MyFoodora {
 	private double service_fee;
 	private double markup_percentage;
 	private double delivery_cost;
+	private double targetProfit;
+	
 	
 	private ArrayList<User> listUsers;
 	private ArrayList<Courier> listCourier;
@@ -27,7 +30,8 @@ public class MyFoodora {
 
 	
 	private double incomeLastMonth;
-	private int indexLastCommandMonth;
+	private double totalPriceLastMonth;
+	private int totalNumberOfOrdersLastMonth;
 	
 	public MyFoodora(){
 		this.setListUsers(new ArrayList<User>());
@@ -37,7 +41,6 @@ public class MyFoodora {
 		this.listCustomer = new ArrayList<Customer>();
 		this.setDeliveryPolicy(new FastestDelivery());
 		this.setCompleteOrders(new ArrayList<Order>());
-		this.setIndexLastCommandMonth(0);
 		this.setService_fee(2.00);
 		this.setDelivery_cost(3.0);
 		this.setMarkup_percentage(0.1);
@@ -46,6 +49,7 @@ public class MyFoodora {
 		this.managerFactory = new ManagerFactory(this);
 		this.customerFactory = new CustomerFactory(this);
 		this.restaurantFactory = new RestaurantFactory(this);
+		this.setTargetProfit(0);
 	}
 	
 	public void load(){
@@ -53,10 +57,15 @@ public class MyFoodora {
 		this.getCustomerFactory().load();
 		this.getRestaurantFactory().load();
 		this.getManagerFactory().load();
+		this.loadOrders();
 	}
 		
 	public TargetPolicy getTargetPolicy() {
 		return targetPolicy;
+	}
+	
+	public void changeFeesAccordingToPolicy(double value1, double value2){
+		this.targetPolicy.setTargetPolicy(this, value1, value2);
 	}
 
 	public void setTargetPolicy(TargetPolicy targetPolicy) {
@@ -87,9 +96,6 @@ public class MyFoodora {
 		this.listCourier = listCourier;
 	}
 
-	public void setTargetPolicy(){
-		this.targetPolicy.setTargetPolicy(this);
-	}
 
 	public ArrayList<Order> getCompleteOrders() {
 		return completeOrders;
@@ -110,6 +116,10 @@ public class MyFoodora {
 	public ArrayList<Customer> getListCustomer() {
 		return listCustomer;
 	}
+	public double computeProfit(double price){
+		double profit = price * this.getMarkup_percentage() + this.getService_fee()- this.getDelivery_cost();
+		return profit;
+	}
 
 
 	public void addOrderToCompleteOrders(Order order) throws OrderNotCompletException{
@@ -124,7 +134,7 @@ public class MyFoodora {
 	
 	public void computeProfitForOrder(Order order) throws OrderNotCompletException{
 		if(order.isComplete()){
-			double profit = Math.round(this.getTargetPolicy().computeProfit(order.getPrice(), this) * 100);
+			double profit = Math.round(this.computeProfit(order.getPrice()) * 100);
 			order.setProfit(profit/100);
 		}
 		else{
@@ -132,23 +142,31 @@ public class MyFoodora {
 		}
 	}
 	
+	public void closeOrder(Order order) throws OrderNotCompletException{
+		this.computeProfitForOrder(order);
+		this.addOrderToCompleteOrders(order);
+		order.finishOrder();
+	}
+	
 	public int getIndexOfFirstCommandInMonth(int month, int year) throws NoOrderInMonth, OrderNotCompletException{
 		int index = -1;
 		for (int i = 0; i < this.getCompleteOrders().size(); i++) {
-			if(this.getCompleteOrders().get(i).getYearMonthOfOrder()[0] == year && this.getCompleteOrders().get(i).getYearMonthOfOrder()[1] == month){
+			if(this.getCompleteOrders().get(i).getCompleteYear() == year && this.getCompleteOrders().get(i).getCompleteMonth() == month){
 				index = i;
 				break;
 			}
 		}
-		if(index ==-1){
+		if(index !=-1){
+			return index;
+		}
+		else{
 			throw new NoOrderInMonth(month, year);
 		}
-		return index;
 	}
 	
-	public int getIndexOfLastCommandInMonth(int month, int year) throws NoOrderInMonth, OrderNotCompletException{
+	public int getIndexOfLastCommandInMonth(int month, int year) throws OrderNotCompletException, NoOrderInMonth{
 		int index = -1;
-		if(year == this.getCompleteOrders().get(this.getCompleteOrders().size() -1).getYearMonthOfOrder()[0] && month == this.getCompleteOrders().get(this.getCompleteOrders().size() -1).getYearMonthOfOrder()[1]){
+		if(year == this.getCompleteOrders().get(this.getCompleteOrders().size() -1).getCompleteYear() && month == this.getCompleteOrders().get(this.getCompleteOrders().size() -1).getCompleteMonth()){
 			index = this.getCompleteOrders().size()-1;
 		}
 		else{
@@ -160,7 +178,7 @@ public class MyFoodora {
 		}
 		return index;
 	}
-	
+		
 	public double computeTotalIncomeForMonth(int month, int year) {
 		int indexFirstOrder;
 		int indexLastOrder;
@@ -168,23 +186,63 @@ public class MyFoodora {
 		try {
 			indexFirstOrder = getIndexOfFirstCommandInMonth(month, year);
 			indexLastOrder= getIndexOfLastCommandInMonth(month, year);
-			for (int i = indexFirstOrder; i < indexLastOrder; i++) {
-				income =+ this.getCompleteOrders().get(i).getProfit();
+			for (int i = indexFirstOrder; i <= indexLastOrder; i++) {
+				income += this.getCompleteOrders().get(i).getProfit();
 			}
 		} catch (NoOrderInMonth | OrderNotCompletException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			e.getMessage();
 		}
 		return income;
-		
 	}
 	
-	public void computeTotalIncomeLastMonth(){
-		double income = 0;
-		for (int i = this.getIndexLastCommandMonth(); i < this.getCompleteOrders().size(); i++) {
-			income += this.getCompleteOrders().get(i).getProfit();
+	public double computeTotalPriceForMonth(int month, int year) {
+		int indexFirstOrder;
+		int indexLastOrder;
+		double price = 0;
+		try {
+			indexFirstOrder = getIndexOfFirstCommandInMonth(month, year);
+			indexLastOrder= getIndexOfLastCommandInMonth(month, year);
+			for (int i = indexFirstOrder; i <= indexLastOrder; i++) {
+				price += this.getCompleteOrders().get(i).getPrice();
+			}
+		} catch (NoOrderInMonth | OrderNotCompletException e) {
+			// TODO Auto-generated catch block
+			e.getMessage();
 		}
+		return price;
+	}
+	
+	public int computeTotalNumberOfCommandsForMonth(int month, int year) {
+		int indexFirstOrder;
+		int indexLastOrder;
+		int number = 0;
+		double price = 0;
+		try {
+			indexFirstOrder = getIndexOfFirstCommandInMonth(month, year);
+			indexLastOrder= getIndexOfLastCommandInMonth(month, year);
+			number = indexLastOrder - indexFirstOrder + 1;
+		} catch (NoOrderInMonth | OrderNotCompletException e) {
+			// TODO Auto-generated catch block
+			e.getMessage();
+		}
+		return number;
+	}
+	
+	public double computeTotalIncomeLastMonth(){
+		double income = 0;
+		Date date = new Date();
+		int month = date.getMonth();
+		int year = date.getYear() + 1900;
+		if(month == 0){
+			year--;
+			month = 1;
+		}
+		income = computeTotalIncomeForMonth(month, year);
+		this.setTotalPriceLastMonth(computeTotalPriceForMonth(month, year));
 		this.setIncomeLastMonth(income);
+		this.setTotalNumberOfOrdersLastMonth(this.computeTotalNumberOfCommandsForMonth(month, year));
+		return income;
 	}
 	
 	public void setCourierToOrder(Order order) throws NoCourierFoundToDeliver{
@@ -203,6 +261,35 @@ public class MyFoodora {
 		}
 		order.setComplete(true);
 		order.setCourier(this.getListCourier().get(indexCourier));
+		order.getCourier().setAvailability(false);
+		
+	}
+	
+	public void loadOrders() {
+		Order order = new Order(this.getListCustomer().get(6), this.getListRestaurant().get(2));
+		order.AddMealToOrder("classic");
+		order.AddSingleItemToOrder("soup");
+		order.getBill();
+		Order order2 = new Order(this.getListCustomer().get(1), this.getListRestaurant().get(1));
+		order2.AddMealToOrder("classic");
+		order2.AddSingleItemToOrder("pineapple");
+		order2.AddSingleItemToOrder("quiche");
+		order2.getBill();
+		try {
+			this.setCourierToOrder(order);
+			this.setCourierToOrder(order2);
+			this.closeOrder(order);
+			this.closeOrder(order2);
+			order2.setCompleteMonth(2);
+			order.setCompleteMonth(2);
+			
+		} catch (NoCourierFoundToDeliver e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (OrderNotCompletException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 
@@ -212,14 +299,6 @@ public class MyFoodora {
 
 	public void setIncomeLastMonth(double incomeLastMonth) {
 		this.incomeLastMonth = incomeLastMonth;
-	}
-
-	public int getIndexLastCommandMonth() {
-		return indexLastCommandMonth;
-	}
-
-	public void setIndexLastCommandMonth(int indexLastCommandMonth) {
-		this.indexLastCommandMonth = indexLastCommandMonth;
 	}
 
 	public double getService_fee() {
@@ -260,6 +339,30 @@ public class MyFoodora {
 
 	public RestaurantFactory getRestaurantFactory() {
 		return restaurantFactory;
+	}
+
+	public double getTargetProfit() {
+		return targetProfit;
+	}
+
+	public void setTargetProfit(double targetProfit) {
+		this.targetProfit = targetProfit;
+	}
+
+	public double getTotalPriceLastMonth() {
+		return totalPriceLastMonth;
+	}
+
+	public void setTotalPriceLastMonth(double totalPriceLastMonth) {
+		this.totalPriceLastMonth = totalPriceLastMonth;
+	}
+
+	public int getTotalNumberOfOrdersLastMonth() {
+		return totalNumberOfOrdersLastMonth;
+	}
+
+	public void setTotalNumberOfOrdersLastMonth(int totalNumberOfOrdersLastMonth) {
+		this.totalNumberOfOrdersLastMonth = totalNumberOfOrdersLastMonth;
 	}
 	
 	

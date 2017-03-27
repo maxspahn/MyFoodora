@@ -7,7 +7,9 @@ import restaurant.SingleItem;
 
 public class LotteryFidelityCard implements FidelityCard{
 	
-	private Date lastFreeCommandDate;
+	private int lastFreeCommandYear;
+	private int lastFreeCommandMonth;
+	private int lastFreeCommandDay;
 	private double probability;
 
 	public LotteryFidelityCard() {
@@ -17,6 +19,10 @@ public class LotteryFidelityCard implements FidelityCard{
 	@Override
 	public double computePrice(Order order) {
 		double price = 0;
+		Date date = new Date();
+		int year = date.getYear() + 1900;
+		int month = date.getMonth() + 1;
+		int day = date.getDay() + 1;
 		for (SingleItem singleItem : order.getSingleItems()) {
 			price += singleItem.getPrice();
 		}
@@ -25,22 +31,47 @@ public class LotteryFidelityCard implements FidelityCard{
 		}
 		// TODO each day
 		double decider = Math.random();
-		if(decider < this.getProbability()){
+		if(decider < this.getProbability() && (year != this.getLastFreeCommandYear() || month != this.getLastFreeCommandMonth() || day != this.getLastFreeCommandDay())){
 			price = 0;
-			this.setLastFreeCommandDate(order.getCompleteDate());
+			try{
+				this.setLastFreeCommandDay(order.getCompleteDay());
+				this.setLastFreeCommandMonth(order.getCompleteMonth());
+				this.setLastFreeCommandYear(order.getCompleteYear());
+			}
+			catch( OrderNotCompletException e){
+				System.out.println(e.getMessage());
+			}
 		}
 		return price;
 		
 	}
 
-	public Date getLastFreeCommandDate() {
-		return this.lastFreeCommandDate;
-	}
 	
-	public void setLastFreeCommandDate(Date lastFreeCommandDate) {
-		this.lastFreeCommandDate = lastFreeCommandDate;
-	}
 	
+	protected int getLastFreeCommandYear() {
+		return lastFreeCommandYear;
+	}
+
+	protected void setLastFreeCommandYear(int lastFreeCommandYear) {
+		this.lastFreeCommandYear = lastFreeCommandYear;
+	}
+
+	protected int getLastFreeCommandMonth() {
+		return lastFreeCommandMonth;
+	}
+
+	protected void setLastFreeCommandMonth(int lastFreeCommandMonth) {
+		this.lastFreeCommandMonth = lastFreeCommandMonth;
+	}
+
+	protected int getLastFreeCommandDay() {
+		return lastFreeCommandDay;
+	}
+
+	protected void setLastFreeCommandDay(int lastFreeCommandDay) {
+		this.lastFreeCommandDay = lastFreeCommandDay;
+	}
+
 	public double getProbability() {
 		return probability;
 	}
