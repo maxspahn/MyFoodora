@@ -1,17 +1,19 @@
 package user_management;
 
+import system.MyFoodora;
+
 public class RestaurantFactory extends UserFactory{
 	
-	public RestaurantFactory(){
-		this.load();
+	public RestaurantFactory(MyFoodora myFoodora){
+		super(myFoodora);
 	}
 	
 	@Override
 	public User createAccount(String name, String userName, String passWord, String phone, String email, int[] adress) throws SameUserNameException {
 		Restaurant res = new Restaurant(name, userName, passWord, phone, email, adress);
-		res.setAllCustomers(UserFactory.customerList);
 		//Check if the username already exists in the database
 		boolean alreadyExist = this.checkExistenceUserName(userName);
+		res.setMyFoodora(this.getMyFoodora());
 							
 		//If the username does not exist
 		if(!alreadyExist){

@@ -2,6 +2,8 @@ package user_management;
 
 import java.util.*;
 
+import system.MyFoodora;
+
 public class Manager extends PhysicalUser{
 	private MyFoodora myFoodora;
 	private String role;

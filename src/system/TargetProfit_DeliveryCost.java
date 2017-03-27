@@ -7,9 +7,10 @@ public class TargetProfit_DeliveryCost extends TargetPolicy{
 	}
 
 	@Override
-	public void setTargetPolicy() {
+	public void setTargetPolicy(MyFoodora myFoodora) {
 		// TODO Auto-generated method stub
 		
 	}
+
 
 }

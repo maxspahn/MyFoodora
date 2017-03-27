@@ -11,20 +11,20 @@ public class FairDelivery implements DeliveryPolicy {
 	}
 
 	@Override
-	public Courier allocateCourier(Order order, ArrayList<Courier> couriers) {
+	public int allocateCourier(Order order, ArrayList<Courier> couriers, ArrayList<Integer> refused) {
 		int minDelivered = 10000;
-		Courier selected = null;
 		int temp;
-		for (Courier courier : couriers) {
-			temp = courier.getCountDeliveredOrder();
-			if(temp < minDelivered){
-				minDelivered = temp;
-				selected = courier;
+		int indexCourier = -1;
+		for (int i = 0; i < couriers.size(); i++) {
+			if(!refused.contains(i)){
+				temp = couriers.get(i).getCountDeliveredOrder();
+				if(temp < minDelivered){
+					minDelivered = temp;
+					indexCourier = i;
+				}
 			}
 		}
-		selected.setAvailability(false);
-		order.setCourier(selected);
-		return selected;
+		return indexCourier;
 	}
 
 }

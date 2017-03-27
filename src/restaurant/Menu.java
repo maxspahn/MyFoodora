@@ -55,6 +55,10 @@ public class Menu {
 			this.addPriceTag("Ice Cream", 2.00);
 			this.addItem("Dessert", "Fruit Salad");
 			this.addPriceTag("Fruit Salad", 3.10);
+			this.addItem("Starter", "Tomatoes");
+			this.addPriceTag("Tomatoes", 2.90);
+			this.addItem("Dessert", "Pineapple");
+			this.addPriceTag("Pineapple", 3.10);
 		} catch (WrongItemAdded e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -71,6 +75,13 @@ public class Menu {
 			this.addItem("HalfMeal", "Classic");
 			this.addItemToMeal("Classic", "Garlic Bread");
 			this.addItemToMeal("Classic", "Entrecote");
+			this.addItem("Halfmeal", "Exotic");
+			this.addItemToMeal("exotic"	, "pineapple");
+			this.addItemToMeal("exotic", "pizza fungi");
+			this.addItem("halfmeal", "chef's");
+			this.addItemToMeal("chef's", "quiche");
+			this.addItemToMeal("chef's", "Boeuf Bourguignon");
+			
 			
 		} catch (WrongItemAdded e) {
 			// TODO Auto-generated catch block

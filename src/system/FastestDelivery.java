@@ -11,22 +11,22 @@ public class FastestDelivery implements DeliveryPolicy {
 	}
 
 	@Override
-	public Courier allocateCourier(Order order, ArrayList<Courier> couriers) {
+	public int allocateCourier(Order order, ArrayList<Courier> couriers, ArrayList<Integer> refused) {
 		double minDistance = 10000;
 		double temp;
-		Courier selected = null;
-		for (Courier courier : couriers) {
-			temp = 0;
-			temp += Math.pow(order.getRestaurant().getAdress()[0] - courier.getAdress()[0], 2);
-			temp += Math.pow(order.getRestaurant().getAdress()[1] - courier.getAdress()[1], 2);
-			if(temp < minDistance){
-				minDistance = temp;
-				selected = courier;
+		int indexCourier = -1;
+		for (int i = 0; i < couriers.size(); i++) {
+			if(!refused.contains(i)){
+				temp = 0;
+				temp += Math.pow(order.getRestaurant().getAdress()[0] - couriers.get(i).getAdress()[0], 2);
+				temp += Math.pow(order.getRestaurant().getAdress()[1] - couriers.get(i).getAdress()[1], 2);
+				if(temp < minDistance){
+					minDistance = temp;
+					indexCourier = i;
+				}
 			}
 		}
-		selected.setAvailability(false);
-		order.setCourier(selected);
-		return selected;
+		return indexCourier;
 	}
 
 	

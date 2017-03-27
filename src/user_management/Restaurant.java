@@ -24,6 +24,7 @@ public class Restaurant extends User implements Observable{
 		this.allCustomers = new ArrayList<Customer>();
 		this.changed = false;
 		this.message = "";
+		
 	}
 
 	//getters
@@ -94,7 +95,7 @@ public class Restaurant extends User implements Observable{
 	@Override
 	public void notifyObservers(String message) {
 		if (this.changed){
-			for (Customer cust : this.allCustomers){
+			for (Customer cust : this.getMyFoodora().getListCustomer()){
 				if (cust.getSpamAgreement()){
 					cust.update(message);
 				}

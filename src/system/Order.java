@@ -19,12 +19,13 @@ public class Order {
 	private double price;
 	private double profit;
 
-	public Order(Customer customer) {
+	public Order(Customer customer, Restaurant restaurant) {
 		this.setCustomer(customer);
 		this.setMeals(new ArrayList<Meal>());
 		this.setSingleItems(new ArrayList<SingleItem>());
 		this.setComplete(false);
 		this.setFidelityCard(customer.getFidelityCard());
+		this.setRestaurant(restaurant);
 	}
 	
 	public void AddSingleItemToOrder(String singleItemName){
@@ -36,7 +37,6 @@ public class Order {
 	}
 	
 	public void getBill() {
-		this.setComplete(true);
 		this.setPrice(this.getFidelityCard().computePrice(this));
 	}
 	
@@ -137,6 +137,15 @@ public class Order {
 		else{
 			throw new OrderNotCompletException();
 		}
+	}
+	
+	public String toString(){
+		String s = new String();
+		s += "Order from Customer : " + this.getCustomer().getUserName() + " in restaurant : " + this.getRestaurant().getName();
+		if(this.isComplete()){
+			s += " is completed";
+		}
+		return s;
 	}
 	
 	

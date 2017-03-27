@@ -1,18 +1,18 @@
 package user_management;
 
+import system.MyFoodora;
+
 public class ManagerFactory extends UserFactory{
-	private MyFoodora myFoodora;
 	
-	public ManagerFactory(){
-		this.myFoodora = new MyFoodora();
-		this.load();
+	public ManagerFactory(MyFoodora myFoodora){
+		super(myFoodora);
 	}
 	
-
+	
 	@Override
 	public User createAccount(String name, String userName, String passWord, String phone, String email, int[] adress) throws SameUserNameException {
 		Manager man = new Manager(name, userName, passWord, phone, email, adress);
-		man.setMyFoodora(this.myFoodora);
+		man.setMyFoodora(this.getMyFoodora());
 		
 		//Check if the userName already exists in the database
 		boolean alreadyExist = this.checkExistenceUserName(userName);
@@ -37,15 +37,12 @@ public class ManagerFactory extends UserFactory{
 		int[] adress = {4,9};
 		Manager CEO;
 		try {
-			CEO = new Manager("Jack", "sparrowj", 
+			CEO = (Manager) this.createAccount("Jack", "sparrowj", 
 			"blackPearl", "0712457126","jack.sparrow@gmail.com", adress);
 			CEO.setSurname("Sparrow");
 			CEO.setBirthdayDate(12,1,1978);
-			CEO.setMyFoodora(this.myFoodora);
 			CEO.setRole("CEO");
-			
-			this.getManagerList().add(CEO);
-			CEO.getMyFoodora().getListUsers().add(CEO);
+	
 			
 			//Creation of the deputy account
 			int[] adress2 = {4,9};
@@ -53,7 +50,6 @@ public class ManagerFactory extends UserFactory{
 			"patrick", "0675314518","bob.sponge@gmail.com", adress2);
 			deputy.setSurname("Sponge");
 			deputy.setBirthdayDate(12,2,1978);
-			deputy.setMyFoodora(this.myFoodora);
 			deputy.setRole("deputy");
 			
 		} catch (SameUserNameException e) {

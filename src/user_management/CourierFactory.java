@@ -1,11 +1,12 @@
 package user_management;
 
+import system.MyFoodora;
+
 
 public class CourierFactory extends UserFactory{
 	
-	public CourierFactory() {
-		super();
-		this.load();
+	public CourierFactory(MyFoodora myFoodora) {
+		super(myFoodora);
 	}
 
 

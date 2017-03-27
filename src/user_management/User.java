@@ -1,5 +1,7 @@
 package user_management;
 
+import system.MyFoodora;
+
 public abstract class User {
 	private int ID;
 	private static int counter; //static counter to avoid 2 users with the same ID
@@ -10,6 +12,8 @@ public abstract class User {
 	private String email;
 	private int[] adress; //Written like {x,y}
 	private boolean activated;
+	
+	private MyFoodora myFoodora;
 	
 	
 	//constructor
@@ -66,6 +70,14 @@ public abstract class User {
 	}
 	public void setActivated(boolean activated) {
 		this.activated = activated;
+	}
+
+	public MyFoodora getMyFoodora() {
+		return myFoodora;
+	}
+
+	public void setMyFoodora(MyFoodora myFoodora) {
+		this.myFoodora = myFoodora;
 	}	
 	
 }

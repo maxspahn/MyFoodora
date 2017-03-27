@@ -23,11 +23,11 @@ public class LotteryFidelityCard implements FidelityCard{
 		for (Meal meal : order.getMeals()) {
 			price += meal.getPrice() * 0.95;
 		}
-		
+		// TODO each day
 		double decider = Math.random();
 		if(decider < this.getProbability()){
 			price = 0;
-			this.setLastFreeCommandDate(order.getCreationDate());
+			this.setLastFreeCommandDate(order.getCompleteDate());
 		}
 		return price;
 		

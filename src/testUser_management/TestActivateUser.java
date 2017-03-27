@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import system.MyFoodora;
 import user_management.CourierFactory;
 import user_management.CustomerFactory;
 import user_management.ManagerFactory;
@@ -14,28 +15,26 @@ public class TestActivateUser {
 
 	@Test
 	public void test() {
-
-		ManagerFactory manFac = new ManagerFactory();
-		RestaurantFactory resFac = new RestaurantFactory();
-		CustomerFactory custFac = new CustomerFactory();
-		CourierFactory courFac = new CourierFactory();
 		
-		assertTrue(manFac.getManagerList().get(0).getMyFoodora().getListUsers().get(3).isActivated());
+		MyFoodora myFoodora = new MyFoodora();
+		myFoodora.load();
+		
+		assertTrue(myFoodora.getListUsers().get(3).isActivated());
 		try {
-			manFac.getManagerList().get(1).disactivate("bertrandc");
+			myFoodora.getListManager().get(1).disactivate("bertrandc");
 		} catch (UserNotFoundException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}		
-		assertFalse(manFac.getManagerList().get(0).getMyFoodora().getListUsers().get(3).isActivated());
+		assertFalse(myFoodora.getListUsers().get(3).isActivated());
 		
 		try {
-			manFac.getManagerList().get(1).activateUser("bertrandc");
+			myFoodora.getListManager().get(1).activateUser("bertrandc");
 		} catch (UserNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}		
-		assertTrue(manFac.getManagerList().get(0).getMyFoodora().getListUsers().get(3).isActivated());
+		assertTrue(myFoodora.getListUsers().get(3).isActivated());
 	}
 
 }
