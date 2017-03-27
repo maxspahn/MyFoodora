@@ -55,6 +55,7 @@ public abstract class User {
 		return activated;
 	}
 	
+	
 	//setters
 	public void setPassWord(String passWord) {
 		this.passWord = passWord;
@@ -79,5 +80,5 @@ public abstract class User {
 	public void setMyFoodora(MyFoodora myFoodora) {
 		this.myFoodora = myFoodora;
 	}	
-	
+
 }

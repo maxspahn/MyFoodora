@@ -1,13 +1,17 @@
 package user_management;
 
 public class UserNotFoundException extends Exception {
-	private String userName;
+	private String message;
+	
 	public UserNotFoundException(String userName){
-		System.out.println("There is no user with that user name: "+userName);
-		this.userName = userName;
+		this.setMessage("There exist no user with that name : "+userName);
 	}
 	
-	public String getMessage(){
-		return "There is no user with that user name: "+userName;
+	public String getMessage() {
+		return message;
+	}
+	
+	public void setMessage(String message) {
+		this.message = message;
 	}
 }

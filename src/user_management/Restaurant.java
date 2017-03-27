@@ -65,16 +65,7 @@ public class Restaurant extends User implements Observable{
 			+"/Adress:{"+x+";"+y+"}";
 	}
 	
-	//Add an item
-	public void addItem(String type, String name) throws WrongItemAdded{
-		this.menu.addItem(type, name);
-	}
-	
-	//Add an item to a meal
-	public void addItemToMeal(String mealName, String itemName) throws WrongItemAdded{
-		this.menu.addItemToMeal(mealName, itemName);
-	}
-	
+	//Set the meal of the week
 	public void setMealOfTheWeek(String mealName){
 		int indexMeal = 0;
 		for (int i = 0; i < this.menu.getMeals().size(); i++) {
@@ -110,5 +101,32 @@ public class Restaurant extends User implements Observable{
 		this.changed = true;
 	}
 	
+	//Editing the menu
+
+	public void createNewFullMeal(String fullMealName, String starterName, String mainDishName, String dessertName) throws WrongItemAdded{
+		this.menu.addItem("FullMeal", fullMealName);
+		this.menu.addItemToMeal(fullMealName, starterName);
+		this.menu.addItemToMeal(fullMealName, mainDishName);
+		this.menu.addItemToMeal(fullMealName, dessertName);
+		System.out.println("The full meal "+fullMealName+" has been created and added to the menu. It contains:"+"\r\n"
+		+"Starter: "+starterName+"\r\n"
+		+"Main dish: "+mainDishName+"\r\n"
+		+"Dessert: "+dessertName);
+		
+	}
+	
+	public void createNewHalfMeal(String halfMealName, String mainDishName, String secondItemName) throws WrongItemAdded{
+		this.menu.addItem("HalfMeal", halfMealName);
+		this.menu.addItemToMeal(halfMealName, mainDishName);
+		this.menu.addItemToMeal(halfMealName, secondItemName);
+		System.out.println("The full meal "+halfMealName+" has been created and added to the menu. It contains:"+"\r\n"
+		+"Main dish: "+mainDishName+"\r\n"
+		+"and: "+secondItemName);
+		
+	}
+	
+	public void createNewItem(String itemType, String name) throws WrongItemAdded{
+		this.menu.addItem(itemType, name);
+	}
 	
 }

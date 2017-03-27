@@ -9,6 +9,7 @@ import user_management.Manager;
 import user_management.ManagerFactory;
 import user_management.SameUserNameException;
 import user_management.User;
+import user_management.WrongUserNameOrPassWordException;
 
 public class ManagerTest {
 	
@@ -33,9 +34,13 @@ public class ManagerTest {
 		
 		User theSame = null;
 		try {
-			theSame = myFoodora.getManagerFactory().createAccount("maxlustig", "max3", "peter", "0899000", "maxlustig", coord);
+			myFoodora.getManagerFactory().createAccount("maxlustig", "max3", "peter", "0899000", "maxlustig", coord);
+			theSame = myFoodora.getManagerFactory().login("max3", "peter");
 		} catch (SameUserNameException e) {
 			// TODO Auto-generated catch block
+			System.out.println(e.getMessage());
+		}
+		catch (WrongUserNameOrPassWordException e){
 			System.out.println(e.getMessage());
 		}
 		
