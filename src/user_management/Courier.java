@@ -61,4 +61,10 @@ public class Courier extends PhysicalUser{
 		this.acceptProbability = acceptProbability;
 	}
 	
+	
+	//A courier can unregister himself form MyFoodora
+	public void unRegister(){
+		this.getMyFoodora().getListCourier().remove(this);
+		System.out.println("Your account has been deleted.");
+	}
 }

@@ -9,11 +9,11 @@ public class Customer extends PhysicalUser implements PeopleToNotify{
 	private FidelityCard fidelityCard;
 	private ArrayList<String> notifications;  //Contains all the unread notifications
 	private int notificationNumber;
+	private ArrayList<Order> historyOfOrders;
 	
 	/*
 	* constructor: it he fidelity card by default is the basic one
 	* the spamAgreement is false by default
-	* 
 	*/
 	public Customer(String name, String userName, String passWord, String phone,
 			String email, int[] adress) {
@@ -26,15 +26,19 @@ public class Customer extends PhysicalUser implements PeopleToNotify{
 	}
 
 	//getters
-	public boolean getSpamAgreement() {
+	public boolean getSpamAgreement(){
 		return spamAgreement;
 	}
 
-	public FidelityCard getFidelityCard() {
+	public FidelityCard getFidelityCard(){
 		return fidelityCard;
 	}
 
-	public String getNotifications() {
+	public ArrayList<Order> getHistoryOfOrders() {
+		return historyOfOrders;
+	}
+
+	public String getNotifications(){
 		String notificationString = this.notifications.get(0)+"\r\n";
 		if (this.notificationNumber>0){
 		for (int i = 1; i < this.notifications.size(); i++) {
@@ -53,12 +57,42 @@ public class Customer extends PhysicalUser implements PeopleToNotify{
 	}
 
 	//setters
-	public void setSpamAgreement(boolean spamAgreement) {
+	public void setSpamAgreement(boolean spamAgreement){
+
 		this.spamAgreement = spamAgreement;
 	}
 
-	public void setFidelityCard(FidelityCard fidelityCard) {
-		this.fidelityCard = fidelityCard;
+	public void setFidelityCard(String name) {
+		//If the current fidelity card is a point fidelity card, the points are lost 
+		if (this.fidelityCard instanceof PointFidelityCard){
+			System.out.println("You lost the points on your point fidelity card");
+		if (name.equalsIgnoreCase("basic fidelity card")||name.equalsIgnoreCase("basicfidelitycard")){
+			if (this.fidelityCard instanceof BasicFidelityCard){
+				System.out.println("You already have a basic fidelity card.");
+			}
+			else{
+				this.fidelityCard = new BasicFidelityCard();
+			}
+		}
+		
+		else if (name.equalsIgnoreCase("lottery fidelity card")||name.equalsIgnoreCase("lotteryfidelitycard")){
+			if (this.fidelityCard instanceof LotteryFidelityCard){
+				System.out.println("You already have a lottery fidelity card.");
+			}
+			else{
+				this.fidelityCard = new LotteryFidelityCard();
+			}
+		}
+		}
+		
+		else if (name.equalsIgnoreCase("point fidelity card")||name.equalsIgnoreCase("pointfidelitycard")){
+			if (this.fidelityCard instanceof PointFidelityCard){
+				System.out.println("You already have a point fidelity card.");
+			}
+			else{
+				this.fidelityCard = new PointFidelityCard();
+			}
+		}
 	}
 	
 	public String toString(){	
@@ -79,5 +113,39 @@ public class Customer extends PhysicalUser implements PeopleToNotify{
 		else{
 		this.notifications.set(0,"You have "+this.notificationNumber+" notifications");}
 	}
+	
+	//Get the points acquired by fidelity card
+	public String getPointsFidelityCard(){
+		//If the card is a basic fidelity card or a lottery fidelity card
+		if (this.fidelityCard instanceof BasicFidelityCard||this.fidelityCard instanceof LotteryFidelityCard){
+			return"This card does not work with points.";
+		}
+		//If the card is a point fidelity card
+		else{
+			PointFidelityCard pointFidefiltyCar = (PointFidelityCard) this.fidelityCard;
+			return "You have "+pointFidefiltyCar.getPoints()+" points.";
+		}
+	}
+	
+	public Order newOrder(String restaurantName) throws RestaurantNotFoundException{
+		int restaurantIndex = this.findIDRestaurant(restaurantName);
+	
+		return new Order(this, this.getMyFoodora().getListRestaurant().get(restaurantIndex));
+	}
+	
+	//Method to find a restaurant by searching his userName
+	private int findIDRestaurant(String restaurantName) throws RestaurantNotFoundException{
+		int index = -1;
+		ArrayList<Restaurant> listRestaurants = this.getMyFoodora().getListRestaurant();
+		for (int i = 0; i < listRestaurants.size(); i++) {
+			if (listRestaurants.get(i).getName().equalsIgnoreCase(restaurantName)){
+				index = i;
+			}
+		}
+		if (index == -1){ //The user has not been found
+			throw new RestaurantNotFoundException(restaurantName);
+		}			
+		return index;  //The user has been found and the index is returned
+		}
 	
 }

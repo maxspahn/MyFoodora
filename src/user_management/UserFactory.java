@@ -18,12 +18,12 @@ public abstract class UserFactory {
 	* method to create a new account, uses createAccountNextStep() method
 	* Asks for all the attributes in common between all the users
 	*/
-	abstract public User createAccount(String name, String userName, String passWord, String phone, String email, int[] adress) throws SameUserNameException;
+	abstract public void createAccount(String name, String userName, String passWord, String phone, String email, int[] adress) throws SameUserNameException;
 		
 	
 	
 	//method to login to an existing account
-	public void login(String userName, String password){
+	public User login(String userName, String password) throws WrongUserNameOrPassWordException{
 		User loggedUser = null;
 		boolean found = false;  //Boolean: to know if the user has been found in the user list
 		for (User loopUser : this.getMyFoodora().getListUsers()){
@@ -35,7 +35,10 @@ public abstract class UserFactory {
 			}
 		}
 		if (!found){  //If the user has not been found
-			System.out.println("Unfortunately your user name or your password is false.");
+			throw new WrongUserNameOrPassWordException();
+		}
+		else{
+			return loggedUser;
 		}
 	}
 	
