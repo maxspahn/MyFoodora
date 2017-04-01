@@ -34,11 +34,11 @@ public class MealTest {
 			menuTest.addItem("fullmeal", "fullmealtest");
 			menuTest.addItemToMeal("fullmealtest", "tomato");
 		} catch (WrongItemAdded e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			assertTrue(true);
+			
 		}
 		catch (ArrayIndexOutOfBoundsException e){
-			assertTrue(true);
+			e.printStackTrace();
 		}
 	}
 	
@@ -51,10 +51,10 @@ public class MealTest {
 			menuTest.addItemToMeal("fullmealtest", "cake");
 		} catch (WrongItemAdded e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			assertTrue(true);
 		}
 		catch (ArrayIndexOutOfBoundsException e){
-			assertTrue(true);
+			e.printStackTrace();
 		}
 	}
 	

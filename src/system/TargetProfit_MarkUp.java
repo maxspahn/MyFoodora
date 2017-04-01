@@ -1,8 +1,8 @@
 package system;
 
-public class targetProfit_Markup implements TargetPolicy  {
+public class TargetProfit_Markup implements TargetPolicy  {
 
-	public targetProfit_Markup() {
+	public TargetProfit_Markup() {
 		// TODO Auto-generated constructor stub
 	}
 

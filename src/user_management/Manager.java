@@ -3,6 +3,7 @@ package user_management;
 import java.util.*;
 
 import system.MyFoodora;
+import system.*;
 
 public class Manager extends PhysicalUser{
 	private MyFoodora myFoodora;
@@ -115,4 +116,106 @@ public class Manager extends PhysicalUser{
 		return index;  //The user has been found and the index is returned
 	}
 
+	//set the percentage-fee
+	public void setServiceFee(double serviceFee){
+		this.myFoodora.setService_fee(serviceFee);
+	}
+	//set the markup percentage
+	public void setMarkup(double markup){
+		this.myFoodora.setMarkup_percentage(markup);
+	}
+	//set the delivery cost
+	public void setDeliveryCost(double deliveryCost){
+		this.myFoodora.setDelivery_cost(deliveryCost);
+	}
+	
+	//set the percentage-fee according the target policy
+	public void setServiceFeeAccordingTargetPolicy(double value1, double value2){
+		this.myFoodora.setTargetPolicy(new TargetProfit_ServiceFee());
+		this.myFoodora.changeFeesAccordingToPolicy(value1, value2);
+	}
+	
+	//set the markup percentage according the target policy
+	public void setMarkupAccordingTargetPolicy(double value1, double value2){
+		this.myFoodora.setTargetPolicy(new TargetProfit_Markup());
+		this.myFoodora.changeFeesAccordingToPolicy(value1, value2);
+	}
+	
+	//set the delivery cost according the target policy
+	public void setDeliveryCostAccordingTargetPolicy(double value1, double value2){
+		this.myFoodora.setTargetPolicy(new TargetProfit_DeliveryCost());		
+		this.myFoodora.changeFeesAccordingToPolicy(value1, value2);
+		}
+	
+	//determine which the most selling restaurant
+	public Restaurant mostSellingRestaurant(){
+		double maxSelling = this.myFoodora.getListRestaurant().get(0).getTotalSelling();
+		Restaurant mostSellingRestaurant = this.myFoodora.getListRestaurant().get(0);
+		for(Restaurant rest:this.myFoodora.getListRestaurant()){
+			if(rest.getTotalSelling()>maxSelling){
+				maxSelling = rest.getTotalSelling();
+				mostSellingRestaurant = rest;
+			}
+		}
+		System.out.println("The most selling restaurant is "+mostSellingRestaurant.getName());
+		return mostSellingRestaurant;
+	}
+	
+	//determine which the least selling restaurant
+	public Restaurant leastSellingRestaurant(){
+		Restaurant leastSellingRestaurant = this.myFoodora.getListRestaurant().get(0);
+		double minSelling = leastSellingRestaurant.getTotalSelling();
+		for(Restaurant rest:this.myFoodora.getListRestaurant()){
+			if(rest.getTotalSelling()<minSelling){
+				minSelling = rest.getTotalSelling();
+				leastSellingRestaurant = rest;
+			}
+		}
+		System.out.println("The least selling restaurant is "+leastSellingRestaurant.getName());
+		return leastSellingRestaurant;
+		}
+	
+	//determine the most active courier
+	public Courier mostActiveCourier(){
+		Courier mostActiveCourier = this.myFoodora.getListCourier().get(0);
+		int maxDeliveredOrders = mostActiveCourier.getCountDeliveredOrder();
+		for(Courier cour:this.myFoodora.getListCourier()){
+			if(cour.getCountDeliveredOrder()>maxDeliveredOrders){
+				maxDeliveredOrders = cour.getCountDeliveredOrder();
+				mostActiveCourier = cour;
+			}
+		}
+		System.out.println("The most active courier is "+mostActiveCourier.getName()+" "+mostActiveCourier.getSurname());
+		return mostActiveCourier;
+		
+	}
+	
+	//determine the most active courier
+	public Courier leastActiveCourier(){
+		Courier leastActiveCourier = this.myFoodora.getListCourier().get(0);
+		int minDeliveredOrders = leastActiveCourier.getCountDeliveredOrder();
+		for(Courier cour:this.myFoodora.getListCourier()){
+			if(cour.getCountDeliveredOrder()<minDeliveredOrders){
+				minDeliveredOrders = cour.getCountDeliveredOrder();
+				leastActiveCourier = cour;
+			}
+		}
+		System.out.println("The least active courier is "+leastActiveCourier.getName()+" "+leastActiveCourier.getSurname());
+		return leastActiveCourier;
+			
+	}
+	
+	//set the delivery policy
+	public void setDeliveryPolicy(String deliveryName){
+		if(deliveryName.equalsIgnoreCase("fastest delivery")||deliveryName.equalsIgnoreCase("fastest")||deliveryName.equalsIgnoreCase("fastestDelivery")){
+			this.myFoodora.setDeliveryPolicy(new FastestDelivery());
+		}
+		else if(deliveryName.equalsIgnoreCase("fair")||deliveryName.equalsIgnoreCase("fair-occupation delivery")||deliveryName.equalsIgnoreCase("fair occupation delivery")||deliveryName.equalsIgnoreCase("fairoccupationdelivery")){
+			this.myFoodora.setDeliveryPolicy(new FastestDelivery());
+		}
+		else{
+			System.out.println("This delivery policy does not exist.");
+		}
+	}
+	
 }
