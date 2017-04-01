@@ -3,6 +3,7 @@ package system;
 import java.util.ArrayList;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
@@ -106,7 +107,7 @@ public class MyFoodora {
 	public double computeTotalIncome(){
 		double income = 0;
 		for (Order order : this.getCompleteOrders()) {
-			income += order.getProfit();
+			income += order.getPrice();
 		}
 		return income;
 	}		
@@ -153,10 +154,6 @@ public class MyFoodora {
 	}
 	
 	
-	/** Search the halfMealSort object which belongs to the given halfMeal in the list.
-	 * @param halfMeal Object to be found.
-	 * @return Reference to the HalfMealSort object. Null if not found.
-	 */
 	public HalfMealSort getHalfMealSort(HalfMeal halfMeal){
 		for (HalfMealSort halfMealSort : this.getDeliveredHalfMeals()) {
 			if(halfMealSort.getHalfMeal().equals(halfMeal)){
@@ -257,6 +254,7 @@ public class MyFoodora {
 		double income = 0;
 		double profit = 0;
 		double nbOrders = 0;
+		HashSet setCustomers = new HashSet();
 		
 		System.out.println("dates " + day1 + "/" + month1 + "/" + year1 + " through " + day2 + "/" + month2 + "/" + year2);
 		
@@ -293,7 +291,7 @@ public class MyFoodora {
 			e.printStackTrace();
 		}
 		
-		double[] result = {income, profit, nbOrders};
+		double[] result = {income, profit, nbOrders, (double) setCustomers.size()};
 		
 		
 		return result;
@@ -385,7 +383,7 @@ public class MyFoodora {
 			order.AddSingleItemToOrder("soup");
 			order.getBill();
 			Order order2 = new Order(this.getListCustomer().get(1), this.getListRestaurant().get(1));
-			order2.AddMealToOrder("classic");
+			order2.AddMealToOrder("basic");
 			order2.AddSingleItemToOrder("pineapple");
 			order2.AddSingleItemToOrder("quiche");
 			order2.getBill();

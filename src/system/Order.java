@@ -25,6 +25,8 @@ public class Order {
 	private int completeDay;
 	private double price;
 	private double profit;
+	private int ID;
+	private static int counter;
 
 	/**Constructor. When creating an order, it is associated to a customer and a restaurant.
 	 * @param customer
@@ -36,6 +38,8 @@ public class Order {
 		this.setSingleItems(new ArrayList<SingleItem>());
 		this.setComplete(false);
 		this.setRestaurant(restaurant);
+		this.ID = Order.counter+1;
+		Order.counter++;
 	}
 	
 	/** Adds an singleItem to the order.
@@ -68,7 +72,7 @@ public class Order {
 	 */
 	public void finishOrder() throws OrderNotCompletException{
 		if(this.complete){
-			//this.customer.addOrder(this);
+			this.customer.addOrder(this);
 			//this.restaurant.addOrder(this);
 			this.courier.setCountDeliveredOrder(this.courier.getCountDeliveredOrder() + 1);
 			this.courier.setAvailability(true);
@@ -270,10 +274,8 @@ public class Order {
 		this.completeDay = completeDay;
 	}
 
-	
-
-	
-	
-	
+	public int getID() {
+		return ID;
+	}
 
 }

@@ -59,7 +59,7 @@ public class Menu {
 			this.addPriceTag("Quiche", 3.00);
 			this.addItem("Starter", "Garlic Bread");
 			this.addPriceTag("Garlic Bread", 2.00);
-			this.addItem("MainDish", "Tartar");
+			this.addItem("MainDish", "Tartar"); 
 			this.addPriceTag("Tartar", 9.10);
 			this.addItem("MainDish", "Pizza Fungi");
 			this.addPriceTag("Pizza Fungi", 6.70);

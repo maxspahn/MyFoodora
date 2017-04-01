@@ -45,7 +45,6 @@ public class MealTest {
 		catch (ArrayIndexOutOfBoundsException e){
 			assertTrue(true);
 		} catch (ItemDoesNotExist e) {
-		
 			e.printStackTrace();
 		}
 	}
@@ -63,10 +62,13 @@ public class MealTest {
 			// TODO Auto-generated catch block
 			assertTrue(true);
 		}
+			e.printStackTrace();
+		}
 		catch (ArrayIndexOutOfBoundsException e){
 			e.printStackTrace();
 		}
-	
+
+	}
 	}
 
 }
