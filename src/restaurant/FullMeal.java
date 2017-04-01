@@ -1,5 +1,11 @@
 package restaurant;
 
+/** FullMeal is an extension to the Meal class.
+ * 
+ * @author maxspahn
+ * @author jeremyaugot
+ *
+ */
 public class FullMeal extends Meal{
 	
 

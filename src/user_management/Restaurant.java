@@ -1,7 +1,5 @@
 package user_management;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.TreeSet;
 
 import restaurant.*;
@@ -16,7 +14,6 @@ public class Restaurant extends User implements Observable{
 	
 	//Attributes for the observer pattern
 	private boolean changed;
-	private String message;
 	private double totalSelling;
 
 
@@ -33,7 +30,6 @@ public class Restaurant extends User implements Observable{
 		this.discount = 0.1;
 		//this.allCustomers = new ArrayList<Customer>();
 		this.changed = false;
-		this.message = "";
 		this.totalSelling = 0;
 		this.setDeliverdSingleItems(new TreeSet<SingleItemSort>());
 		this.setDeliveredFullMeals(new TreeSet<FullMealSort>());
@@ -71,7 +67,7 @@ public class Restaurant extends User implements Observable{
 	}
 	
 	//Set the meal of the week
-	public void setMealOfTheWeek(String mealName){
+	public void setMealOfTheWeek(String mealName) throws ItemDoesNotExist{
 		for (int i = 0; i < this.menu.getMeals().size(); i++) {
 			this.menu.getMeals().get(i).setMealOfTheWeek(false);
 		}
@@ -99,7 +95,6 @@ public class Restaurant extends User implements Observable{
 	}
 	
 	public void setMessage(String message){
-		this.message = message;
 		this.changed = true;
 	}
 	
@@ -113,7 +108,7 @@ public class Restaurant extends User implements Observable{
 		System.out.println("The full meal "+fullMealName+" has been created and added to the menu. It contains:"+"\r\n"
 		+"Starter: "+starterName+"\r\n"
 		+"Main dish: "+mainDishName+"\r\n"
-		+"Dessert: "+dessertName);
+		+"Desert: "+dessertName);
 		
 	}
 	

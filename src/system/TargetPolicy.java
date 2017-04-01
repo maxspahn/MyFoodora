@@ -2,6 +2,6 @@ package system;
 
 public interface TargetPolicy {
 	
-	public void setTargetPolicy(MyFoodora myFoodora, double value1, double value2) throws OrderNotCompletException;
+	public void setTargetPolicy(MyFoodora myFoodora, double value1, double value2);
 
 }

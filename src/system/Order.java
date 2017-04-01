@@ -6,6 +6,12 @@ import java.util.Date;
 import restaurant.*;
 import user_management.*;
 
+/** All information of an order are stored here. 
+ * 
+ * @author maxspahn
+ * @author jeremyaugot
+ *
+ */
 public class Order {
 	
 	private Customer customer;
@@ -17,39 +23,56 @@ public class Order {
 	private int completeMonth;
 	private int completeYear;
 	private int completeDay;
-	private FidelityCard fidelityCard;
 	private double price;
 	private double profit;
 
+	/**Constructor. When creating an order, it is associated to a customer and a restaurant.
+	 * @param customer
+	 * @param restaurant
+	 */
 	public Order(Customer customer, Restaurant restaurant) {
 		this.setCustomer(customer);
 		this.setMeals(new ArrayList<Meal>());
 		this.setSingleItems(new ArrayList<SingleItem>());
 		this.setComplete(false);
-		this.setFidelityCard(customer.getFidelityCard());
 		this.setRestaurant(restaurant);
 	}
 	
+	/** Adds an singleItem to the order.
+	 * @param singleItemName The name of the item.
+	 */
 	public void AddSingleItemToOrder(String singleItemName){
 		this.getSingleItems().add(this.getRestaurant().getMenu().getSingleItem(singleItemName));
 	}
 	
+	/**Adds an meal to the order.
+	 * @param mealName Name of the meal.
+	 * @throws ItemDoesNotExist
+	 */
 	public void AddMealToOrder(String mealName) throws ItemDoesNotExist{
 		this.getMeals().add(this.getRestaurant().getMenu().getMeal(mealName));
 	}
 	
+	/** Gets the price of the order.
+	 * @return The price.
+	 */
 	public double getBill() {
-		this.setPrice(this.getFidelityCard().computePrice(this));
-		
+		this.setPrice(this.getCustomer().getFidelityCard().computePrice(this));
 		return this.getPrice();
 	}
 	
+	/** Finishing the order. If the order is not completed, no courier allocated, it throws an exception.
+	 * The completion date is set as the current date. The courier is set available. And the price of the order is added
+	 * to the sum of selling of the restaurant.
+	 * @throws OrderNotCompletException
+	 */
 	public void finishOrder() throws OrderNotCompletException{
 		if(this.complete){
 			//this.customer.addOrder(this);
 			//this.restaurant.addOrder(this);
 			this.courier.setCountDeliveredOrder(this.courier.getCountDeliveredOrder() + 1);
 			this.courier.setAvailability(true);
+			this.courier.setAdress(this.customer.getAdress());
 			Date date = new Date();
 			this.setCompleteMonth(date.getMonth() + 1);
 			this.setCompleteYear(date.getYear() + 1900);
@@ -60,99 +83,24 @@ public class Order {
 			throw new OrderNotCompletException();
 		}
 	}
-	
-	public Customer getCustomer() {
-		return customer;
-	}
-
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
-	}
-
-	public Courier getCourier() {
-		return courier;
-	}
-
-	public void setCourier(Courier courier) {
-		this.courier = courier;
-	}
-
-	public Restaurant getRestaurant() {
-		return restaurant;
-	}
-
-	public void setRestaurant(Restaurant restaurant) {
-		this.restaurant = restaurant;
-	}
-
-	public ArrayList<SingleItem> getSingleItems() {
-		return singleItems;
-	}
-
-	public void setSingleItems(ArrayList<SingleItem> singleItems) {
-		this.singleItems = singleItems;
-	}
-
-	public ArrayList<Meal> getMeals() {
-		return meals;
-	}
-
-	public void setMeals(ArrayList<Meal> meals) {
-		this.meals = meals;
-	}
-
-	public boolean isComplete() {
-		return complete;
-	}
-
-	public void setComplete(boolean complete) {
-		this.complete = complete;
-	}
-
-
-	public FidelityCard getFidelityCard() {
-		return fidelityCard;
-	}
-
-	public void setFidelityCard(FidelityCard fidelityCard) {
-		this.fidelityCard = fidelityCard;
-	}
-
-	public double getPrice() {
-		return price;
-	}
-
-	public void setPrice(double price) {
-		this.price = price;
-	}
-
-	public double getProfit() {
-		return profit;
-	}
-
-	public void setProfit(double profit) {
-		this.profit = profit;
-	}
 
 	
+	/** Overriding of the function to print the order. A second line is added if it is completed.
+	 * 
+	 **/
 	public String toString(){
 		String s = new String();
 		s += "Order from Customer : " + this.getCustomer().getUserName() + " in restaurant : " + this.getRestaurant().getName();
 		if(this.isComplete()){
-			int year = 0;
-			int month = 0;
-			try {
-				year = this.getCompleteYear();
-				month = this.getCompleteMonth();
-			} catch (OrderNotCompletException e) {
-				// TODO Auto-generated catch block
-				e.getMessage();
-			}
-			s += " has been completed on : " + this.completeDay + "/" + this.completeMonth + "/" + this.completeYear + " done by : " + this.getCourier().getUserName();
+			s += "\nCompleted on : " + this.completeDay + "/" + this.completeMonth + "/" + this.completeYear + " done by : " + this.getCourier().getUserName();
 		}
 		return s;
 	}
 
+	/** Get the month when the order was completed.
+	 * @return
+	 * @throws OrderNotCompletException
+	 */
 	public int getCompleteMonth() throws OrderNotCompletException {
 		if(this.isComplete()){
 			return completeMonth;
@@ -162,10 +110,11 @@ public class Order {
 		}
 	}
 
-	public void setCompleteMonth(int completeMonth) {
-		this.completeMonth = completeMonth;
-	}
 
+	/** Get the year when the order was completed.
+	 * @return
+	 * @throws OrderNotCompletException
+	 */
 	public int getCompleteYear() throws OrderNotCompletException {
 		if(this.isComplete()){
 			return completeYear;
@@ -175,10 +124,10 @@ public class Order {
 		}
 	}
 
-	public void setCompleteYear(int completeYear) {
-		this.completeYear = completeYear;
-	}
-
+	/** Get the day when the order was completed.
+	 * @return
+	 * @throws OrderNotCompletException
+	 */
 	public int getCompleteDay() throws OrderNotCompletException {
 		if(this.isComplete()){
 			return completeDay;
@@ -188,9 +137,140 @@ public class Order {
 		}
 	}
 
+	/**
+	 * @return the customer
+	 */
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	/**
+	 * @param customer the customer to set
+	 */
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+
+	/**
+	 * @return the courier
+	 */
+	public Courier getCourier() {
+		return courier;
+	}
+
+	/**
+	 * @param courier the courier to set
+	 */
+	public void setCourier(Courier courier) {
+		this.courier = courier;
+	}
+
+	/**
+	 * @return the restaurant
+	 */
+	public Restaurant getRestaurant() {
+		return restaurant;
+	}
+
+	/**
+	 * @param restaurant the restaurant to set
+	 */
+	public void setRestaurant(Restaurant restaurant) {
+		this.restaurant = restaurant;
+	}
+
+	/**
+	 * @return the singleItems
+	 */
+	public ArrayList<SingleItem> getSingleItems() {
+		return singleItems;
+	}
+
+	/**
+	 * @param singleItems the singleItems to set
+	 */
+	public void setSingleItems(ArrayList<SingleItem> singleItems) {
+		this.singleItems = singleItems;
+	}
+
+	/**
+	 * @return the meals
+	 */
+	public ArrayList<Meal> getMeals() {
+		return meals;
+	}
+
+	/**
+	 * @param meals the meals to set
+	 */
+	public void setMeals(ArrayList<Meal> meals) {
+		this.meals = meals;
+	}
+
+	/**
+	 * @return the complete
+	 */
+	public boolean isComplete() {
+		return complete;
+	}
+
+	/**
+	 * @param complete the complete to set
+	 */
+	public void setComplete(boolean complete) {
+		this.complete = complete;
+	}
+
+	/**
+	 * @return the price
+	 */
+	public double getPrice() {
+		return price;
+	}
+
+	/**
+	 * @param price the price to set
+	 */
+	public void setPrice(double price) {
+		this.price = price;
+	}
+
+	/**
+	 * @return the profit
+	 */
+	public double getProfit() {
+		return profit;
+	}
+
+	/**
+	 * @param profit the profit to set
+	 */
+	public void setProfit(double profit) {
+		this.profit = profit;
+	}
+
+	/**
+	 * @param completeMonth the completeMonth to set
+	 */
+	public void setCompleteMonth(int completeMonth) {
+		this.completeMonth = completeMonth;
+	}
+
+	/**
+	 * @param completeYear the completeYear to set
+	 */
+	public void setCompleteYear(int completeYear) {
+		this.completeYear = completeYear;
+	}
+
+	/**
+	 * @param completeDay the completeDay to set
+	 */
 	public void setCompleteDay(int completeDay) {
 		this.completeDay = completeDay;
 	}
+
+	
 
 	
 	

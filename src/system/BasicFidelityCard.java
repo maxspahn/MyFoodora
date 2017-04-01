@@ -3,11 +3,14 @@ package system;
 import restaurant.Meal;
 import restaurant.SingleItem;
 
+/** Implementation of FideltyCard. Meal of the week at a special discount.
+ * 
+ * @author maxspahn
+ * @author jeremyaugot
+ *
+ */
 public class BasicFidelityCard implements FidelityCard{
 
-	public BasicFidelityCard() {
-		// TODO Auto-generated constructor stub
-	}
 
 	@Override
 	public double computePrice(Order order) {

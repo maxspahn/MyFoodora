@@ -7,7 +7,7 @@ public class TargetProfit_DeliveryCost implements TargetPolicy{
 	}
 
 	@Override
-	public void setTargetPolicy(MyFoodora myFoodora, double value1,	double value2) throws OrderNotCompletException {
+	public void setTargetPolicy(MyFoodora myFoodora, double value1,	double value2) {
 		double deliveryCost = -1;
 		if(myFoodora.getTargetProfit() == 0){
 			myFoodora.setTargetProfit(myFoodora.computeValuesLastMonth()[0]);

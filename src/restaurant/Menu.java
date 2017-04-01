@@ -2,6 +2,13 @@ package restaurant;
 
 import java.util.ArrayList;
 
+/**The class provides the listing of singleItems and Meals that one Restaurant offers. The creation of items is done in this class.
+ * Functions to edit Meals and Items are stored here.
+ * 
+ * @author maxspahn
+ * @author jeremyaugot
+ *
+ */
 public class Menu {
 	
 	private ArrayList<SingleItem> singleItems = new ArrayList<>();
@@ -10,6 +17,9 @@ public class Menu {
 	private SingleItemFactory singleItemFactory;
 	private MealFactory mealFactory;
 	
+	/**Constructor. Includes the creation of the ItemFactories. The default items are loaded.
+	 * 
+	 */
 	public Menu(){
 		this.setTitle("Title");
 		this.setMealFactory(new MealFactory());
@@ -17,6 +27,10 @@ public class Menu {
 		this.load();
 	}
 
+	/**Constructor. Includes the creation of the ItemFactories. The default items are loaded. 
+	 * @param title This title is given to the menu.
+	 * 
+	 */
 	public Menu(String title) {
 		this.setTitle(title);
 		this.setMealFactory(new MealFactory());
@@ -24,11 +38,17 @@ public class Menu {
 		this.load();
 	}
 	
+	/** Load default Items, Meals and SingleItems.
+	 * 
+	 */
 	public void load(){
 		this.loadSingleItems();
 		this.loadMeals();
 	}
 	
+	/** Load the list of default singleItems, with the price tags added.
+	 * 
+	 */
 	public void loadSingleItems(){
 		try {
 			this.addItem("Starter", "Soup");
@@ -65,7 +85,11 @@ public class Menu {
 		}
 	}
 	
+	/** Load the list of default meals, and sets the "basic" meal as the meal of the week.
+	 * 
+	 */
 	public void loadMeals(){
+		
 		try {
 			this.addItem("FullMeal", "Basic");
 			this.addItemToMeal("Basic", "Ceasar Salad");
@@ -92,6 +116,11 @@ public class Menu {
 		}
 	}
 	
+	/** Searches the index in the list of meals of the meal with the given name. Throws Exception if not in list.
+	 * @param mealName The name of the meal.
+	 * @return indexMeal 
+	 * @throws ItemDoesNotExist
+	 */
 	public int searchIndexMeal(String mealName)throws ItemDoesNotExist{
 		int indexMeal = -1;
 
@@ -105,6 +134,11 @@ public class Menu {
 		return indexMeal;
 	}
 	
+	/** Searches the index in the list of singleItems of the singleItem with the given name. Throws Exception if not in list.
+	 * @param singleItemName Name of the singleItem.
+	 * @return indexSingleItem 
+	 * @throws ItemDoesNotExist
+	 */
 	public int searchIndexSingleItem(String singleItemName) throws ItemDoesNotExist{
 		int indexSingleItem = -1;
 
@@ -118,20 +152,41 @@ public class Menu {
 		return indexSingleItem;
 	}
 	
+	/** Adds an item to a meal.
+	 * @param mealName Name of the meal, where the item should be added.
+	 * @param singleItemName Name of the singleItem to be added.
+	 * @throws WrongItemAdded
+	 * @throws ItemDoesNotExist
+	 */
 	public void addItemToMeal(String mealName, String singleItemName) throws WrongItemAdded, ItemDoesNotExist{
 		this.getMeal(mealName).addItem(this.getSingleItem(singleItemName));		
 	}
 	
+	/** Removes an item from a meal.
+	 * @param mealName Name of the meal, where the item should be removed.
+	 * @param singleItemName Name of the singleItem that should be removed.
+	 * @throws WrongItemRemoved
+	 * @throws ItemDoesNotExist
+	 */
 	public void removeItemFromMeal(String mealName, String singleItemName) throws WrongItemRemoved, ItemDoesNotExist {
 		this.getMeal(mealName).removeItem(this.getSingleItem(singleItemName));
 	}
 	
+	/** Returns the meal given its name.
+	 * @param mealName Name of the meal.
+	 * @return Reference to the meal.
+	 * @throws ItemDoesNotExist
+	 */
 	public Meal getMeal(String mealName) throws ItemDoesNotExist{ 
 		int indexMeal = this.searchIndexMeal(mealName);
 		return this.getMeals().get(indexMeal);
 		
 	}
 	
+	/** Returns the singleItem given its name.
+	 * @param singleItemName Name of the singleItem.
+	 * @return Reference to the singleItem.
+	 */
 	public SingleItem getSingleItem(String singleItemName){
 		try{
 			int indexSingleItemIndex = this.searchIndexSingleItem(singleItemName);
@@ -144,6 +199,10 @@ public class Menu {
 		return null;
 	}
 	
+	/** Assigns a price to a singleItem.
+	 * @param singleItemName Reference of the singleItem.
+	 * @param price The price that should be assigned to the item.
+	 */
 	public void addPriceTag(String singleItemName, double price){
 		try{
 			int indexSingleItem = this.searchIndexSingleItem(singleItemName);
@@ -154,6 +213,11 @@ public class Menu {
 		}
 	}
 	
+	/** Adds an item to the menu.
+	 * @param itemType String corresponding to the type.
+	 * @param name The name of the new item.
+	 * @throws WrongItemAdded
+	 */
 	public void addItem(String itemType, String name) throws WrongItemAdded{
 		if(itemType.equalsIgnoreCase("Starter") || itemType.equalsIgnoreCase("mainDish") || itemType.equalsIgnoreCase("dessert")){
 			this.getSingleItems().add(this.getSingleItemFactory().createSingleItem(itemType, name));
@@ -166,6 +230,9 @@ public class Menu {
 		}
 	}
 	
+	/** Set the meal of the week.
+	 * @param mealName Name of the meal that is set meal of the week.
+	 */
 	public void setMealOfTheWeek(String mealName){
 		try{
 			int indexMeal = this.searchIndexMeal(mealName);
@@ -176,46 +243,88 @@ public class Menu {
 		}
 	}
 	
+	/** Unset the meal of the week.
+	 * @param mealName The name of the meal.
+	 */
+	public void unsetMealOfTheWeek(String mealName){
+		try{
+			int indexMeal = this.searchIndexMeal(mealName);
+			this.getMeals().get(indexMeal).setMealOfTheWeek(false);
+		}
+		catch (ItemDoesNotExist e){
+			System.out.println(e.getMessage());
+		}
+	}
 
+	/**
+	 * @return the singleItems
+	 */
 	public ArrayList<SingleItem> getSingleItems() {
 		return singleItems;
 	}
 
+	/**
+	 * @param singleItems the singleItems to set
+	 */
 	public void setSingleItems(ArrayList<SingleItem> singleItems) {
 		this.singleItems = singleItems;
 	}
 
+	/**
+	 * @return the meals
+	 */
 	public ArrayList<Meal> getMeals() {
 		return meals;
 	}
 
+	/**
+	 * @param meals the meals to set
+	 */
 	public void setMeals(ArrayList<Meal> meals) {
 		this.meals = meals;
 	}
 
+	/**
+	 * @return the title
+	 */
 	public String getTitle() {
 		return title;
 	}
 
+	/**
+	 * @param title the title to set
+	 */
 	public void setTitle(String title) {
 		this.title = title;
 	}
 
+	/**
+	 * @return the singleItemFactory
+	 */
 	public SingleItemFactory getSingleItemFactory() {
 		return singleItemFactory;
 	}
 
+	/**
+	 * @param singleItemFactory the singleItemFactory to set
+	 */
 	public void setSingleItemFactory(SingleItemFactory singleItemFactory) {
 		this.singleItemFactory = singleItemFactory;
 	}
 
+	/**
+	 * @return the mealFactory
+	 */
 	public MealFactory getMealFactory() {
 		return mealFactory;
 	}
 
+	/**
+	 * @param mealFactory the mealFactory to set
+	 */
 	public void setMealFactory(MealFactory mealFactory) {
 		this.mealFactory = mealFactory;
 	}
-	
 
+	
 }

@@ -5,6 +5,10 @@ import java.util.*;
 import system.MyFoodora;
 import system.*;
 
+/**
+ * @author maxspahn
+ *
+ */
 public class Manager extends PhysicalUser{
 	private MyFoodora myFoodora;
 	private String role;
@@ -35,7 +39,7 @@ public class Manager extends PhysicalUser{
 	
 	//A manager can add any user
 	public void addUser(User user){
-		this.myFoodora.getListUsers().add(user);
+		this.myFoodora.getManagerFactory().addUserToLists(user);
 	}
 	
 	//A manager can remove any user, only the CEO can remove other managers
@@ -72,23 +76,23 @@ public class Manager extends PhysicalUser{
 	
 	//A manager can activate any user
 	public void activateUser(String userName) throws UserNotFoundException{
-		int userIndex = this.findIDUser(userName);
-		this.myFoodora.getListUsers().get(userIndex).setActivated(true);
+		User user = this.getUser(userName);
+		user.setActivated(true);
 		
 	}
 	
 	//A manager can disactivate any user, excepted other managers
 	public void disactivate(String userName) throws UserNotFoundException{
-		int userIndex = this.findIDUser(userName);
+		User user = this.getUser(userName);
 				
 		//If the user to disactivate is a manager
-		if (this.myFoodora.getListUsers().get(userIndex) instanceof Manager){
+		if (user instanceof Manager){
 			System.out.println("You cannot disactivate a manager");
 			}
 			
 		//If the user to disactivate is not a manager
 		else{
-			this.myFoodora.getListUsers().get(userIndex).setActivated(false);
+			user.setActivated(false);
 			}
 	}
 	
@@ -114,6 +118,24 @@ public class Manager extends PhysicalUser{
 			throw new UserNotFoundException(userName);
 		}			
 		return index;  //The user has been found and the index is returned
+	}
+	
+	public User getUser(String userName) throws UserNotFoundException{
+		return this.myFoodora.getListUsers().get(this.findIDUser(userName));
+	}
+	
+	/** Sets the targetProfit.
+	 * @param targetProfit The value that is targeted for the next month.
+	 */
+	public void setTargetProfit(double targetProfit){
+		this.myFoodora.setTargetProfit(targetProfit);
+	}
+	
+	/** Sets the number of commands expected for the target period.
+	 * @param targetCommands Number of commands.
+	 */
+	public void setTargetCommands(int targetCommands){
+		this.myFoodora.setTargetCommands(targetCommands);
 	}
 
 	//set the percentage-fee
