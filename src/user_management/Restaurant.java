@@ -13,7 +13,6 @@ public class Restaurant extends User implements Observable{
 	//list of all the products (single items and meals) of the restaurant
 	private Menu menu;  
 	private double discount; //Discount for the meal of the week
-	private ArrayList<Customer> allCustomers;
 	
 	//Attributes for the observer pattern
 	private boolean changed;
@@ -32,7 +31,7 @@ public class Restaurant extends User implements Observable{
 		super(name, userName, passWord, phone, email, adress);
 		this.menu = new Menu();
 		this.discount = 0.1;
-		this.allCustomers = new ArrayList<Customer>();
+		//this.allCustomers = new ArrayList<Customer>();
 		this.changed = false;
 		this.message = "";
 		this.totalSelling = 0;
@@ -49,10 +48,6 @@ public class Restaurant extends User implements Observable{
 	public double getDiscount(){
 		return this.discount;
 	}
-	
-	public ArrayList<Customer> getAllCustomers() {
-		return allCustomers;
-	}
 
 	//setters
 	public void setMenu(Menu menu) {
@@ -66,10 +61,6 @@ public class Restaurant extends User implements Observable{
 		this.changed = true;
 		this.notifyObservers("The restaurant "+this.getName()+" offers a discount of "+this.discount+" on all the items of the menu.");
 	}
-	
-	public void setAllCustomers(ArrayList<Customer> allCustomers) {
-		this.allCustomers = allCustomers;
-	}
 
 	public String toString(){	
 		int x = this.getAdress()[0];
@@ -81,15 +72,12 @@ public class Restaurant extends User implements Observable{
 	
 	//Set the meal of the week
 	public void setMealOfTheWeek(String mealName){
-		int indexMeal = 0;
 		for (int i = 0; i < this.menu.getMeals().size(); i++) {
-			if(this.menu.getMeals().get(i).getName().equalsIgnoreCase(mealName)){
-				indexMeal = i;
-				break;
-			}
+			this.menu.getMeals().get(i).setMealOfTheWeek(false);
 		}
-		this.menu.getMeals().get(indexMeal).setMealOfTheWeek(true);
-		this.menu.getMeals().get(indexMeal).setDiscount(this.discount);
+		
+		this.menu.getMeal(mealName).setMealOfTheWeek(true);
+		this.menu.getMeal(mealName).setDiscount(this.discount);
 		
 		//Send a notification to the customers to tell them that the meal of the week has changed
 		this.changed = true;

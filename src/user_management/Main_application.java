@@ -22,7 +22,7 @@ public class Main_application {
 		Order order;
 
 		try {
-			Customer cust= (Customer) myFoodora.getCustomerFactory().login("je", "iijijij");
+			Customer cust= (Customer) myFoodora.getCustomerFactory().login("je", "iijijll	ij");
 			order = cust.newOrder("The five fields");
 			order.AddSingleItemToOrder("Soup");
 			

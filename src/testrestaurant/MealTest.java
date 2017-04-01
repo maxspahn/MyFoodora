@@ -39,13 +39,16 @@ public class MealTest {
 			menuTest.addItem("fullmeal", "LocalAdvise");
 			menuTest.addItemToMeal("LocalAdvise", "tomato");
 		} catch (WrongItemAdded e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			assertTrue(true);
+			
 		}
 		catch (ArrayIndexOutOfBoundsException e){
+<<<<<<< HEAD
 			assertTrue(true);
 		} catch (ItemDoesNotExist e) {
 			// TODO Auto-generated catch block
+=======
+>>>>>>> 1436464f017bbc02ad328b6ea05fbcf46753aeb6
 			e.printStackTrace();
 		}
 	}
@@ -61,8 +64,14 @@ public class MealTest {
 			assertTrue(true);
 		} catch (ItemDoesNotExist e) {
 			// TODO Auto-generated catch block
+			assertTrue(true);
+		}
+<<<<<<< HEAD
+=======
+		catch (ArrayIndexOutOfBoundsException e){
 			e.printStackTrace();
 		}
+>>>>>>> 1436464f017bbc02ad328b6ea05fbcf46753aeb6
 	}
 	
 	
