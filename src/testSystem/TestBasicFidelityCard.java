@@ -29,10 +29,4 @@ public class TestBasicFidelityCard {
 		
 	}
 	
-	@Test
-	public void NbHalfMealTest(){
-		MyFoodora myFoodora = new MyFoodora();
-		myFoodora.load();
-		assertTrue(myFoodora.getNbOfHalfMeals(halfMeal))
-	}
 }

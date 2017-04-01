@@ -62,13 +62,10 @@ public class MealTest {
 			// TODO Auto-generated catch block
 			assertTrue(true);
 		}
-			e.printStackTrace();
-		}
 		catch (ArrayIndexOutOfBoundsException e){
 			e.printStackTrace();
 		}
 
-	}
 	}
 
 }
