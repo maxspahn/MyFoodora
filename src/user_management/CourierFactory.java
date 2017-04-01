@@ -43,6 +43,7 @@ public class CourierFactory extends UserFactory{
 		courier1.setBirthdayDate(10,1,1990);
 		courier1.setAvailability(true);
 		
+		
 		//Creation of the second courier
 		int[] adress2 = {3,27};
 		this.createAccount("Marie", "varam",

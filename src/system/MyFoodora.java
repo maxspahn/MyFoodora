@@ -3,6 +3,7 @@ package system;
 import java.util.ArrayList;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
@@ -139,7 +140,7 @@ public class MyFoodora {
 	public double computeTotalIncome(){
 		double income = 0;
 		for (Order order : this.getCompleteOrders()) {
-			income += order.getProfit();
+			income += order.getPrice();
 		}
 		return income;
 	}		
@@ -178,36 +179,6 @@ public class MyFoodora {
 		}
 	}
 	
-	public int getNbOfHalfMeals(HalfMeal halfMeal){
-		int nb = 0;
-		for (HalfMealSort halfMealSort : this.getDeliveredHalfMeals()) {
-			if(halfMealSort.getHalfMeal().equals(halfMeal)){
-				nb = halfMealSort.getCount();
-			}
-		}
-		return nb;
-	}
-	
-	public int getNbOfSingleItems(SingleItem singleItem){
-		int nb = 0;
-		for (SingleItemSort singleItemSort : this.getDeliverdSingleItems()) {
-			if(singleItemSort.getSingleItem().equals(singleItem)){
-				nb = singleItemSort.getCount();
-			}
-		}
-		return nb;
-	}
-	
-	public int getNbOfFullMeals(FullMeal fullMeal){
-		int nb = 0;
-		for(FullMealSort fullMealSort : this.getDeliveredFullMeals()){
-			if(fullMealSort.getFullMeal().equals(fullMeal)){
-				nb = fullMealSort.getCount();
-			}
-		}
-		return nb;
-	}
-	
 	public HalfMealSort getHalfMealSort(HalfMeal halfMeal){
 		for (HalfMealSort halfMealSort : this.getDeliveredHalfMeals()) {
 			if(halfMealSort.getHalfMeal().equals(halfMeal)){
@@ -216,7 +187,7 @@ public class MyFoodora {
 		}
 		return null;
 	}
-	
+
 	public FullMealSort getFullMealSort(FullMeal fullMeal){
 		for (FullMealSort fullMealSort : this.getDeliveredFullMeals()) {
 			if(fullMealSort.getFullMeal().equals(fullMeal)){
@@ -283,38 +254,43 @@ public class MyFoodora {
 		double income = 0;
 		double profit = 0;
 		double nbOrders = 0;
+		HashSet setCustomers = new HashSet();
 		
 		System.out.println("dates " + day1 + "/" + month1 + "/" + year1 + " through " + day2 + "/" + month2 + "/" + year2);
 		int i = 0;
-		while(this.completeOrders.get(i).getCompleteYear() < year1){
+		int size = this.completeOrders.size();
+		while(i<size && this.completeOrders.get(i).getCompleteYear() < year1){
 			i++;
 		}
-		while(this.completeOrders.get(i).getCompleteYear() == year1 && this.completeOrders.get(i).getCompleteMonth() < month1){
+		while(i<size &&this.completeOrders.get(i).getCompleteYear() == year1 && this.completeOrders.get(i).getCompleteMonth() < month1){
 			i++;
 		}
-		while(this.completeOrders.get(i).getCompleteMonth() == month1 && this.completeOrders.get(i).getCompleteYear() == year1 && this.completeOrders.get(i).getCompleteDay() < day1){
+		while(i<size &&this.completeOrders.get(i).getCompleteMonth() == month1 && this.completeOrders.get(i).getCompleteYear() == year1 && this.completeOrders.get(i).getCompleteDay() < day1){
 			i++;
 		}
-		while(this.completeOrders.get(i).getCompleteYear() < year2){
+		while(i<size &&this.completeOrders.get(i).getCompleteYear() < year2){
+			setCustomers.add(completeOrders.get(i).getCustomer());
 			profit += this.completeOrders.get(i).getProfit();
 			income += this.completeOrders.get(i).getPrice();
 			nbOrders ++;
 			i++;
 		}
-		while(this.completeOrders.get(i).getCompleteYear() == year2 && this.completeOrders.get(i).getCompleteMonth() < month2){
+		while(i<size &&this.completeOrders.get(i).getCompleteYear() == year2 && this.completeOrders.get(i).getCompleteMonth() < month2){
 			nbOrders ++;
+			setCustomers.add(completeOrders.get(i).getCustomer());
 			profit += this.completeOrders.get(i).getProfit();
 			income += this.completeOrders.get(i).getPrice();
 			i++;
 		}
-		while(this.completeOrders.get(i).getCompleteMonth() == month2 && this.completeOrders.get(i).getCompleteYear() == year2 && this.completeOrders.get(i).getCompleteDay() < day2){
+		while(i<size &&this.completeOrders.get(i).getCompleteMonth() == month2 && this.completeOrders.get(i).getCompleteYear() == year2 && this.completeOrders.get(i).getCompleteDay() < day2){
 			nbOrders ++;
+			setCustomers.add(completeOrders.get(i).getCustomer());
 			profit += this.completeOrders.get(i).getProfit();
 			income += this.completeOrders.get(i).getPrice();
 			i++;
 		}
 		
-		double[] result = {income, profit, nbOrders};
+		double[] result = {income, profit, nbOrders, (double) setCustomers.size()};
 		
 		return result;
 		
@@ -375,18 +351,16 @@ public class MyFoodora {
 			order.AddSingleItemToOrder("soup");
 			order.getBill();
 			Order order2 = new Order(this.getListCustomer().get(1), this.getListRestaurant().get(1));
-			order2.AddMealToOrder("classic");
+			order2.AddMealToOrder("basic");
 			order2.AddSingleItemToOrder("pineapple");
 			order2.AddSingleItemToOrder("quiche");
 			order2.getBill();
 			this.setCourierToOrder(order);
-			this.setCourierToOrder(order2);
-			System.out.println("hello line 441");
 			this.closeOrder(order);
+			this.setCourierToOrder(order2);
 			this.closeOrder(order2);
-			System.out.println("hello line 111");
-			order2.setCompleteMonth(2);
-			order.setCompleteMonth(2);
+			order2.setCompleteMonth(3);
+			order.setCompleteMonth(3);
 			
 		} catch (NoCourierFoundToDeliver e) {
 			// TODO Auto-generated catch block

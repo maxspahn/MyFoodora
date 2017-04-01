@@ -10,6 +10,8 @@ public class Customer extends PhysicalUser implements PeopleToNotify{
 	private ArrayList<String> notifications;  //Contains all the unread notifications
 	private int notificationNumber;
 	private ArrayList<Order> historyOfOrders;
+	private String contactForOffers;
+	
 	
 	/*
 	* constructor: it he fidelity card by default is the basic one
@@ -23,6 +25,8 @@ public class Customer extends PhysicalUser implements PeopleToNotify{
 		this.notifications = new ArrayList<String>();
 		this.notificationNumber = 0;
 		this.notifications.add("You have 0 notification");
+		this.contactForOffers = "email";
+		this.historyOfOrders = new ArrayList<Order>();
 	}
 
 	//getters
@@ -39,7 +43,7 @@ public class Customer extends PhysicalUser implements PeopleToNotify{
 	}
 
 	public String getNotifications(){
-		String notificationString = this.notifications.get(0)+"\r\n";
+		String notificationString = this.contactForOffers+"\r\n"+this.notifications.get(0)+"\r\n";
 		if (this.notificationNumber>0){
 		for (int i = 1; i < this.notifications.size(); i++) {
 			String newNotification = this.notifications.get(i)+"\r\n";
@@ -55,6 +59,10 @@ public class Customer extends PhysicalUser implements PeopleToNotify{
 		this.notifications.set(0, "You have 0 notification");
 		return notificationString;
 	}
+	
+	public String getContactForOffers(){
+		return this.contactForOffers;
+	}
 
 	//setters
 	public void setSpamAgreement(boolean spamAgreement){
@@ -62,7 +70,7 @@ public class Customer extends PhysicalUser implements PeopleToNotify{
 		this.spamAgreement = spamAgreement;
 	}
 
-	public void setFidelityCard(String name) {
+	public void setFidelityCard(String name) throws FidelityCardDoesNotExistException {
 		//If the current fidelity card is a point fidelity card, the points are lost 
 		if (this.fidelityCard instanceof PointFidelityCard){
 			System.out.println("You lost the points on your point fidelity card");
@@ -76,6 +84,7 @@ public class Customer extends PhysicalUser implements PeopleToNotify{
 		}
 		
 		else if (name.equalsIgnoreCase("lottery fidelity card")||name.equalsIgnoreCase("lotteryfidelitycard")){
+			System.out.println("a");
 			if (this.fidelityCard instanceof LotteryFidelityCard){
 				System.out.println("You already have a lottery fidelity card.");
 			}
@@ -92,6 +101,33 @@ public class Customer extends PhysicalUser implements PeopleToNotify{
 			else{
 				this.fidelityCard = new PointFidelityCard();
 			}
+		}
+		
+		else if (name.equalsIgnoreCase("lottery fidelity card")||name.equalsIgnoreCase("lotteryfidelitycard")){
+			if (this.fidelityCard instanceof LotteryFidelityCard){
+				System.out.println("You already have a lottery fidelity card.");
+			}
+			else{
+				this.fidelityCard = new LotteryFidelityCard();
+			}
+		}
+		else{
+			throw new FidelityCardDoesNotExistException();
+		}
+	}
+	
+	public void setContactForOffers(String str) throws KindOfContactDoesNotExistException{
+		if(str.equalsIgnoreCase("email")){
+			this.contactForOffers = "email";
+		}
+		else if(str.equalsIgnoreCase("phone")){
+			this.contactForOffers = "phone";
+		}
+		else if(str.equalsIgnoreCase("letter")){
+			this.contactForOffers = "letter";
+		}
+		else{
+			throw new KindOfContactDoesNotExistException();
 		}
 	}
 	
@@ -147,5 +183,9 @@ public class Customer extends PhysicalUser implements PeopleToNotify{
 		}			
 		return index;  //The user has been found and the index is returned
 		}
+	
+	public void addOrder(Order order){
+		this.historyOfOrders.add(order);
+	}
 	
 }

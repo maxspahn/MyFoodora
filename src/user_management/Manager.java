@@ -2,7 +2,6 @@ package user_management;
 
 import java.util.*;
 
-import system.MyFoodora;
 import system.*;
 
 public class Manager extends PhysicalUser{
@@ -130,19 +129,19 @@ public class Manager extends PhysicalUser{
 	}
 	
 	//set the percentage-fee according the target policy
-	public void setServiceFeeAccordingTargetPolicy(double value1, double value2){
+	public void setServiceFeeAccordingTargetPolicy(double value1, double value2) throws OrderNotCompletException{
 		this.myFoodora.setTargetPolicy(new TargetProfit_ServiceFee());
 		this.myFoodora.changeFeesAccordingToPolicy(value1, value2);
 	}
 	
 	//set the markup percentage according the target policy
-	public void setMarkupAccordingTargetPolicy(double value1, double value2){
+	public void setMarkupAccordingTargetPolicy(double value1, double value2) throws OrderNotCompletException{
 		this.myFoodora.setTargetPolicy(new TargetProfit_Markup());
 		this.myFoodora.changeFeesAccordingToPolicy(value1, value2);
 	}
 	
 	//set the delivery cost according the target policy
-	public void setDeliveryCostAccordingTargetPolicy(double value1, double value2){
+	public void setDeliveryCostAccordingTargetPolicy(double value1, double value2) throws OrderNotCompletException{
 		this.myFoodora.setTargetPolicy(new TargetProfit_DeliveryCost());		
 		this.myFoodora.changeFeesAccordingToPolicy(value1, value2);
 		}
@@ -215,6 +214,23 @@ public class Manager extends PhysicalUser{
 		}
 		else{
 			System.out.println("This delivery policy does not exist.");
+		}
+	}
+	
+	//Compute total income for a given period
+	public double[] computeTotalIncomeAndProfitOverPeriod(int day1, int month1, int year1, int day2, int month2, int year2) throws OrderNotCompletException{
+		double[] result = this.myFoodora.getIncomeForPeriod(day1, month1, year1, day2, month2, year2);
+		double[] returnedResult = {result[0], result[1]};
+		return returnedResult;
+	}
+	 
+	public double computeIncomePerCustomerOverPeriod(int day1, int month1, int year1, int day2, int month2, int year2) throws OrderNotCompletException{
+		double[] result = this.myFoodora.getIncomeForPeriod(day1, month1, year1, day2, month2, year2);
+		if (result[3]!=0){
+		double incomePerCustomer = result[0]/result[3];
+		return incomePerCustomer;}
+		else{
+			return 0;
 		}
 	}
 	

@@ -17,17 +17,19 @@ public class Order {
 	private int completeMonth;
 	private int completeYear;
 	private int completeDay;
-	private FidelityCard fidelityCard;
 	private double price;
 	private double profit;
+	private int ID;
+	private static int counter;
 
 	public Order(Customer customer, Restaurant restaurant) {
 		this.setCustomer(customer);
 		this.setMeals(new ArrayList<Meal>());
 		this.setSingleItems(new ArrayList<SingleItem>());
 		this.setComplete(false);
-		this.setFidelityCard(customer.getFidelityCard());
 		this.setRestaurant(restaurant);
+		this.ID = Order.counter+1;
+		Order.counter++;
 	}
 	
 	public void AddSingleItemToOrder(String singleItemName){
@@ -39,14 +41,14 @@ public class Order {
 	}
 	
 	public double getBill() {
-		this.setPrice(this.getFidelityCard().computePrice(this));
+		this.setPrice(this.getCustomer().getFidelityCard().computePrice(this));
 		
 		return this.getPrice();
 	}
 	
 	public void finishOrder() throws OrderNotCompletException{
 		if(this.complete){
-			//this.customer.addOrder(this);
+			this.customer.addOrder(this);
 			//this.restaurant.addOrder(this);
 			this.courier.setCountDeliveredOrder(this.courier.getCountDeliveredOrder() + 1);
 			this.courier.setAvailability(true);
@@ -107,15 +109,6 @@ public class Order {
 
 	public void setComplete(boolean complete) {
 		this.complete = complete;
-	}
-
-
-	public FidelityCard getFidelityCard() {
-		return fidelityCard;
-	}
-
-	public void setFidelityCard(FidelityCard fidelityCard) {
-		this.fidelityCard = fidelityCard;
 	}
 
 	public double getPrice() {
@@ -192,8 +185,8 @@ public class Order {
 		this.completeDay = completeDay;
 	}
 
-	
-	
-	
+	public int getID() {
+		return ID;
+	}
 
 }

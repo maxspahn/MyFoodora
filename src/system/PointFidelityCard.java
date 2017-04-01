@@ -31,7 +31,7 @@ public class PointFidelityCard implements FidelityCard{
 	}
 	
 	private void addPoints(double price){
-		int count = (int) points/10;
+		int count = (int) price/10;
 		this.setPoints(this.getPoints() + count );
 	}
 

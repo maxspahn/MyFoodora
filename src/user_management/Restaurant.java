@@ -71,7 +71,7 @@ public class Restaurant extends User implements Observable{
 	}
 	
 	//Set the meal of the week
-	public void setMealOfTheWeek(String mealName){
+	public void setMealOfTheWeek(String mealName) throws ItemDoesNotExist{
 		for (int i = 0; i < this.menu.getMeals().size(); i++) {
 			this.menu.getMeals().get(i).setMealOfTheWeek(false);
 		}
