@@ -15,5 +15,7 @@ public class Desert extends SingleItem{
 		}
 		return false;
 	}
+	
+	
 
 }

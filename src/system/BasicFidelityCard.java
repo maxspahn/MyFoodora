@@ -19,10 +19,8 @@ public class BasicFidelityCard implements FidelityCard{
 		for (Meal meal : order.getMeals()) {
 			temp = meal.getPrice();
 			if(meal.isMealOfTheWeek()){
+				temp /= 0.95;
 				temp *= (1-meal.getDiscount());
-			}
-			else{
-				temp *= 0.95;
 			}
 			price += temp;
 		}

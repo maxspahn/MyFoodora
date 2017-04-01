@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import restaurant.ItemDoesNotExist;
 import restaurant.Menu;
 import restaurant.WrongItemAdded;
 import restaurant.WrongItemRemoved;
@@ -25,18 +26,24 @@ public class RemoveItemMealTest {
 		} catch (WrongItemAdded e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		
-		assertTrue(menuTest.getMeal("fullmealTest").isComplete());
-		
-		try {
-			menuTest.removeItemFromMeal("fullmealTest", "tomato");
-		} catch (WrongItemRemoved e) {
+		} catch (ItemDoesNotExist e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		assertTrue(!menuTest.getMeal("fullMealTest").isComplete());
+		
+		try {
+			assertTrue(menuTest.getMeal("fullmealTest").isComplete());
+			menuTest.removeItemFromMeal("fullmealTest", "tomato");
+			assertTrue(!menuTest.getMeal("fullMealTest").isComplete());
+		} catch (WrongItemRemoved e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ItemDoesNotExist e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 }

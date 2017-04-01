@@ -86,6 +86,9 @@ public class Menu {
 		} catch (WrongItemAdded e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} catch (ItemDoesNotExist e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 	
@@ -115,24 +118,18 @@ public class Menu {
 		return indexSingleItem;
 	}
 	
-	public void addItemToMeal(String mealName, String singleItemName) throws WrongItemAdded{
+	public void addItemToMeal(String mealName, String singleItemName) throws WrongItemAdded, ItemDoesNotExist{
 		this.getMeal(mealName).addItem(this.getSingleItem(singleItemName));		
 	}
 	
-	public void removeItemFromMeal(String mealName, String singleItemName) throws WrongItemRemoved {
+	public void removeItemFromMeal(String mealName, String singleItemName) throws WrongItemRemoved, ItemDoesNotExist {
 		this.getMeal(mealName).removeItem(this.getSingleItem(singleItemName));
 	}
 	
-	public Meal getMeal(String mealName){
-		try{
-			int indexMeal = this.searchIndexMeal(mealName);
-			return this.getMeals().get(indexMeal);
-		}
+	public Meal getMeal(String mealName) throws ItemDoesNotExist{ 
+		int indexMeal = this.searchIndexMeal(mealName);
+		return this.getMeals().get(indexMeal);
 		
-		catch(ItemDoesNotExist e){
-			System.out.println(e.getMessage());
-		}
-		return null;
 	}
 	
 	public SingleItem getSingleItem(String singleItemName){

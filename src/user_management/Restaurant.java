@@ -1,8 +1,13 @@
 package user_management;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.TreeSet;
 
 import restaurant.*;
+import system.FullMealSort;
+import system.HalfMealSort;
+import system.SingleItemSort;
 
 public class Restaurant extends User implements Observable{
 	//list of all the products (single items and meals) of the restaurant
@@ -13,6 +18,12 @@ public class Restaurant extends User implements Observable{
 	//Attributes for the observer pattern
 	private boolean changed;
 	private String message;
+	private double totalSelling;
+
+
+	private TreeSet<FullMealSort> deliveredFullMeals;
+	private TreeSet<HalfMealSort> deliveredHalfMeals;
+	private TreeSet<SingleItemSort> deliverdSingleItems;
 	
 	/*
 	* constructor: by default the list of sold products is empty
@@ -24,7 +35,10 @@ public class Restaurant extends User implements Observable{
 		this.allCustomers = new ArrayList<Customer>();
 		this.changed = false;
 		this.message = "";
-		
+		this.totalSelling = 0;
+		this.setDeliverdSingleItems(new TreeSet<SingleItemSort>());
+		this.setDeliveredFullMeals(new TreeSet<FullMealSort>());
+		this.setDeliveredHalfMeals(new TreeSet<HalfMealSort>());
 	}
 
 	//getters
@@ -103,7 +117,7 @@ public class Restaurant extends User implements Observable{
 	
 	//Editing the menu
 
-	public void createNewFullMeal(String fullMealName, String starterName, String mainDishName, String dessertName) throws WrongItemAdded{
+	public void createNewFullMeal(String fullMealName, String starterName, String mainDishName, String dessertName) throws WrongItemAdded, ItemDoesNotExist{
 		this.menu.addItem("FullMeal", fullMealName);
 		this.menu.addItemToMeal(fullMealName, starterName);
 		this.menu.addItemToMeal(fullMealName, mainDishName);
@@ -115,7 +129,7 @@ public class Restaurant extends User implements Observable{
 		
 	}
 	
-	public void createNewHalfMeal(String halfMealName, String mainDishName, String secondItemName) throws WrongItemAdded{
+	public void createNewHalfMeal(String halfMealName, String mainDishName, String secondItemName) throws WrongItemAdded, ItemDoesNotExist{
 		this.menu.addItem("HalfMeal", halfMealName);
 		this.menu.addItemToMeal(halfMealName, mainDishName);
 		this.menu.addItemToMeal(halfMealName, secondItemName);
@@ -128,5 +142,40 @@ public class Restaurant extends User implements Observable{
 	public void createNewItem(String itemType, String name) throws WrongItemAdded{
 		this.menu.addItem(itemType, name);
 	}
+
+
+	public double getTotalSelling() {
+		return totalSelling;
+	}
+
+	public void setTotalSelling(double totalSelling) {
+		this.totalSelling = totalSelling;
+	}
+
+	public TreeSet<FullMealSort> getDeliveredFullMeals() {
+		return deliveredFullMeals;
+	}
+
+	public void setDeliveredFullMeals(TreeSet<FullMealSort> deliveredFullMeals) {
+		this.deliveredFullMeals = deliveredFullMeals;
+	}
+
+	public TreeSet<HalfMealSort> getDeliveredHalfMeals() {
+		return deliveredHalfMeals;
+	}
+
+	public void setDeliveredHalfMeals(TreeSet<HalfMealSort> deliveredHalfMeals) {
+		this.deliveredHalfMeals = deliveredHalfMeals;
+	}
+
+	public TreeSet<SingleItemSort> getDeliverdSingleItems() {
+		return deliverdSingleItems;
+	}
+
+	public void setDeliverdSingleItems(TreeSet<SingleItemSort> deliverdSingleItems) {
+		this.deliverdSingleItems = deliverdSingleItems;
+	}
+	
+	
 	
 }

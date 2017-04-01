@@ -7,18 +7,19 @@ public class TargetProfit_ServiceFee implements TargetPolicy{
 	}
 	
 	@Override
-	public void setTargetPolicy(MyFoodora myFoodora, double value1,	double value2) {
-		myFoodora.computeTotalIncomeLastMonth();
+	public void setTargetPolicy(MyFoodora myFoodora, double value1,	double value2) throws OrderNotCompletException {
 		double serviceFee = -1;
 		if(myFoodora.getTargetProfit() == 0){
-			myFoodora.setTargetProfit(myFoodora.computeTotalIncomeLastMonth());
+			myFoodora.setTargetProfit(myFoodora.computeValuesLastMonth()[0]);
 		}
-		if(myFoodora.getTargetProfit() == 0){
+		if(myFoodora.getTargetCommands() == 0){
+			myFoodora.setTargetCommands((int) myFoodora.computeValuesLastMonth()[2]);			
+		}
+		if(myFoodora.getTargetProfit() == 0 || myFoodora.getTargetCommands() == 0){
 			System.out.println("no Target defined and income last month is 0");
 		}
 		else{
-			serviceFee  = myFoodora.getTargetProfit() + myFoodora.getTotalNumberOfOrdersLastMonth() * value2 - myFoodora.getTotalPriceLastMonth() * value1;
-			serviceFee /= myFoodora.getTotalNumberOfOrdersLastMonth();
+			serviceFee  = myFoodora.getTargetProfit()/myFoodora.getTargetCommands() +  value2 - myFoodora.getAveragePricePerCommand() * value1;
 		}
 		
 		if(serviceFee <= 0){

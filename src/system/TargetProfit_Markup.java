@@ -1,14 +1,14 @@
 package system;
 
-public class TargetProfit_DeliveryCost implements TargetPolicy{
+public class TargetProfit_Markup implements TargetPolicy  {
 
-	public TargetProfit_DeliveryCost() {
+	public TargetProfit_Markup() {
 		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public void setTargetPolicy(MyFoodora myFoodora, double value1,	double value2) throws OrderNotCompletException {
-		double deliveryCost = -1;
+		double markup = -1;
 		if(myFoodora.getTargetProfit() == 0){
 			myFoodora.setTargetProfit(myFoodora.computeValuesLastMonth()[0]);
 		}
@@ -19,19 +19,19 @@ public class TargetProfit_DeliveryCost implements TargetPolicy{
 			System.out.println("no Target defined and income last month is 0");
 		}
 		else{
-			deliveryCost  = -myFoodora.getTargetProfit()/myFoodora.getTargetCommands() + myFoodora.getAveragePricePerCommand() * value1 + value2;
+			markup  = myFoodora.getTargetProfit()/myFoodora.getTargetCommands() + value2 - value1;
+			markup /= myFoodora.getAveragePricePerCommand();
 		}
 		
-		if(deliveryCost <= 0){
+		if(markup <= 0){
 			System.out.println("The target cannot be fullfilled with the values given, the fees have not been changed");
 		}
 		else{
-			myFoodora.setDelivery_cost(deliveryCost);
-			myFoodora.setMarkup_percentage(value1);
-			myFoodora.setService_fee(value2);			
+			myFoodora.setDelivery_cost(value2);
+			myFoodora.setMarkup_percentage(markup);
+			myFoodora.setService_fee(value1);			
 		}
 		
 	}
-
 
 }

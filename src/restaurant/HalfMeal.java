@@ -42,7 +42,7 @@ public class HalfMeal extends Meal{
 		if(this.getStarter() != null) {price += this.getStarter().getPrice();}
 		if(this.getDesert() != null) {price += this.getDesert().getPrice();}
 		if (this.getMainDish() != null){price += this.getMainDish().getPrice();}
-		return price;
+		return price * 0.95;
 	}
 
 	@Override

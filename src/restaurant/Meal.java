@@ -1,7 +1,7 @@
 package restaurant;
 
 
-public abstract class Meal {	
+public abstract class Meal{	
 
 	private static int counter = 1;
 	private int id;
@@ -133,16 +133,71 @@ public abstract class Meal {
 		
 	}
 	
-	public boolean equals(Object object){
-		if(object instanceof Meal){
-			Meal meal = (Meal) object;
-			if(meal.getName().equals(this.getName())){
-				return true;
-			}
-		}
-		return false;
-		
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((desert == null) ? 0 : desert.hashCode());
+		long temp;
+		temp = Double.doubleToLongBits(discount);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + (glutenFree ? 1231 : 1237);
+		result = prime * result + id;
+		result = prime * result + (isComplete ? 1231 : 1237);
+		result = prime * result
+				+ ((mainDish == null) ? 0 : mainDish.hashCode());
+		result = prime * result + (mealOfTheWeek ? 1231 : 1237);
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((starter == null) ? 0 : starter.hashCode());
+		result = prime * result + (vegetarian ? 1231 : 1237);
+		return result;
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Meal other = (Meal) obj;
+		if (desert == null) {
+			if (other.desert != null)
+				return false;
+		} else if (!desert.equals(other.desert))
+			return false;
+		if (Double.doubleToLongBits(discount) != Double
+				.doubleToLongBits(other.discount))
+			return false;
+		if (glutenFree != other.glutenFree)
+			return false;
+		if (id != other.id)
+			return false;
+		if (isComplete != other.isComplete)
+			return false;
+		if (mainDish == null) {
+			if (other.mainDish != null)
+				return false;
+		} else if (!mainDish.equals(other.mainDish))
+			return false;
+		if (mealOfTheWeek != other.mealOfTheWeek)
+			return false;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		if (starter == null) {
+			if (other.starter != null)
+				return false;
+		} else if (!starter.equals(other.starter))
+			return false;
+		if (vegetarian != other.vegetarian)
+			return false;
+		return true;
+	}
+	
 
 	public boolean isComplete() {
 		return isComplete;

@@ -18,7 +18,7 @@ public class PointFidelityCard implements FidelityCard{
 			price += singleItem.getPrice();
 		}
 		for (Meal meal : order.getMeals()) {
-			price += meal.getPrice() * 0.95;
+			price += meal.getPrice();
 		}
 		if(this.getPoints() >= 100){
 			price *= 0.9;

@@ -2,8 +2,11 @@ package testSystem;
 
 import static org.junit.Assert.*;
 
+import java.util.Date;
+
 import org.junit.Test;
 
+import restaurant.ItemDoesNotExist;
 import system.*;
 import user_management.*;
 
@@ -22,7 +25,12 @@ public class TestIncomeComputation {
 		myFoodera.getListCourier().add(new Courier("peter", "peter12", "peterk", "09341", "peter@gmail.com", adress3));
 
 		Order order1 = new Order(customer, rest);
-		order1.AddMealToOrder("basic");
+		try {
+			order1.AddMealToOrder("basic");
+		} catch (ItemDoesNotExist e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		order1.AddSingleItemToOrder("soup");
 		order1.getBill();
 		
@@ -52,11 +60,22 @@ public class TestIncomeComputation {
 		
 		
 		
+		try {
+			
+			System.out.println(myFoodera.computeValuesLastMonth()[1]);
+			System.out.println(myFoodera.computeTotalIncome());
+			System.out.println(myFoodera.getIncomeForMonth(2, 2017));
+		} catch (OrderNotCompletException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		/*
 		System.out.println(myFoodera.computeTotalIncomeForMonth(1, 2017));
 		System.out.println(myFoodera.computeTotalIncomeLastMonth());
 		System.out.println(myFoodera.getCompleteOrders());
 		System.out.println(myFoodera.getTotalPriceLastMonth());
-		
+		*/
 		
 	}
 	

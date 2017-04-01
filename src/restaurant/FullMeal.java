@@ -1,6 +1,7 @@
 package restaurant;
 
 public class FullMeal extends Meal{
+	
 
 	public FullMeal(String name) {
 		super(name);
@@ -43,7 +44,7 @@ public class FullMeal extends Meal{
 		price += this.getMainDish().getPrice();}
 		if (this.getDesert()!=null){
 		price += this.getDesert().getPrice();}
-		return price;
+		return price * 0.95;
 	}
 
 	@Override

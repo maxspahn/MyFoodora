@@ -27,7 +27,7 @@ public class LotteryFidelityCard implements FidelityCard{
 			price += singleItem.getPrice();
 		}
 		for (Meal meal : order.getMeals()) {
-			price += meal.getPrice() * 0.95;
+			price += meal.getPrice();
 		}
 		// TODO each day
 		double decider = Math.random();

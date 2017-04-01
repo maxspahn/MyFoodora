@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import restaurant.ItemDoesNotExist;
 import restaurant.Menu;
 import restaurant.WrongItemAdded;
 
@@ -22,8 +23,12 @@ public class MealTest {
 		} catch (WrongItemAdded e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} catch (ItemDoesNotExist e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		assertTrue(menuTest.getMeals().get(2).getDesert().getName().equals("cake"));
+		System.out.println(menuTest.getMeals());
+		assertTrue(menuTest.getMeals().get(4).getDesert().getName().equals("cake"));
 	}
 	
 	@Test
@@ -31,14 +36,17 @@ public class MealTest {
 		Menu menuTest = new Menu("Menu");
 		
 		try {
-			menuTest.addItem("fullmeal", "fullmealtest");
-			menuTest.addItemToMeal("fullmealtest", "tomato");
+			menuTest.addItem("fullmeal", "LocalAdvise");
+			menuTest.addItemToMeal("LocalAdvise", "tomato");
 		} catch (WrongItemAdded e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		catch (ArrayIndexOutOfBoundsException e){
 			assertTrue(true);
+		} catch (ItemDoesNotExist e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 	
@@ -50,11 +58,10 @@ public class MealTest {
 			menuTest.addItem("dessert", "cake");
 			menuTest.addItemToMeal("fullmealtest", "cake");
 		} catch (WrongItemAdded e) {
+			assertTrue(true);
+		} catch (ItemDoesNotExist e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		catch (ArrayIndexOutOfBoundsException e){
-			assertTrue(true);
 		}
 	}
 	

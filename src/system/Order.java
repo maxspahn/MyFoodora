@@ -34,12 +34,13 @@ public class Order {
 		this.getSingleItems().add(this.getRestaurant().getMenu().getSingleItem(singleItemName));
 	}
 	
-	public void AddMealToOrder(String mealName){
+	public void AddMealToOrder(String mealName) throws ItemDoesNotExist{
 		this.getMeals().add(this.getRestaurant().getMenu().getMeal(mealName));
 	}
 	
 	public double getBill() {
 		this.setPrice(this.getFidelityCard().computePrice(this));
+		
 		return this.getPrice();
 	}
 	
@@ -52,6 +53,8 @@ public class Order {
 			Date date = new Date();
 			this.setCompleteMonth(date.getMonth() + 1);
 			this.setCompleteYear(date.getYear() + 1900);
+			this.setCompleteDay(date.getDate());
+			this.getRestaurant().setTotalSelling(this.getRestaurant().getTotalSelling() + this.getPrice());
 		}
 		else{
 			throw new OrderNotCompletException();
@@ -145,7 +148,7 @@ public class Order {
 				// TODO Auto-generated catch block
 				e.getMessage();
 			}
-			s += " has been completed on : year : " + year  + " month : " + month + " done by : " + this.getCourier().getUserName();
+			s += " has been completed on : " + this.completeDay + "/" + this.completeMonth + "/" + this.completeYear + " done by : " + this.getCourier().getUserName();
 		}
 		return s;
 	}
