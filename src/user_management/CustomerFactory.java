@@ -2,6 +2,12 @@ package user_management;
 
 import system.MyFoodora;
 
+/** CustomerFactory class enables creating a new customer thanks to a factory pattern. Extends UserFactory class. 
+ * It also provides the method to load seven customers in MyFoodora system.
+ * @author maxspahn
+ * @author jeremyaugot
+ *
+ */
 public class CustomerFactory extends UserFactory{
 	
 	public CustomerFactory(MyFoodora myFoodora) {

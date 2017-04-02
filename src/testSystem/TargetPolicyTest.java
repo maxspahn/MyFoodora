@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+
 import system.MyFoodora;
 import system.TargetProfit_Markup;
 import system.TargetProfit_ServiceFee;
@@ -25,8 +26,7 @@ public class TargetPolicyTest {
 		m.setTargetProfit(profit);
 		
 		double average = m.getAveragePricePerCommand();
-		
-		
+
 		// not possible to compute positive values
 		m.changeFeesAccordingToPolicy(markup, service);
 		assertTrue(m.getDelivery_cost() == 3.0);
@@ -56,7 +56,6 @@ public class TargetPolicyTest {
 		
 		double average = m.getAveragePricePerCommand();
 		
-		
 		// not possible to compute positive values
 		m.changeFeesAccordingToPolicy(service, delivery);
 		assertTrue(m.getDelivery_cost() == 3.0);
@@ -84,7 +83,6 @@ public class TargetPolicyTest {
 		m.setTargetProfit(profit);
 		
 		double average = m.getAveragePricePerCommand();
-		
 		
 		// not possible to compute positive values
 		m.changeFeesAccordingToPolicy(markup, delivery);

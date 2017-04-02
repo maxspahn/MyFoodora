@@ -528,6 +528,7 @@ public class MyFoodora {
 
 	/**
 	 * @param targetProfit the targetProfit to set
+	 * @throws AccessRefusedException 
 	 */
 	public void setTargetProfit(double targetProfit) {
 		this.targetProfit = targetProfit;

@@ -2,7 +2,12 @@ package user_management;
 
 import system.MyFoodora;
 
-
+/** CourierFactory class enables creating a new courier thanks to a factory pattern. Extends UserFactory class. 
+ * It also provides the method to load two couriers in MyFoodora system.
+ * @author maxspahn
+ * @author jeremyaugot
+ *
+ */
 public class CourierFactory extends UserFactory{
 	
 	public CourierFactory(MyFoodora myFoodora) {
@@ -30,7 +35,6 @@ public class CourierFactory extends UserFactory{
 
 
 	@Override
-	//By default, there are 2 couriers
 	public void load() {
 		
 		try{

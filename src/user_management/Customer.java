@@ -3,7 +3,12 @@ package user_management;
 import system.*;
 import java.util.ArrayList;
 
-
+/** Implementation of Customer, extends the PhysicalUser class. Implements the PeopleToNotify interface.
+ * A customer can receive notifications sent by restaurants thanks to an observer pattern. 
+ * @author maxspahn
+ * @author jeremyaugot
+ *
+ */
 public class Customer extends PhysicalUser implements PeopleToNotify{
 	private boolean spamAgreement;
 	private FidelityCard fidelityCard;
@@ -12,11 +17,10 @@ public class Customer extends PhysicalUser implements PeopleToNotify{
 	private ArrayList<Order> historyOfOrders;
 	private String contactForOffers;
 	
-	
-	/*
-	* constructor: it he fidelity card by default is the basic one
-	* the spamAgreement is false by default
-	*/
+	/**Constructor.
+	 * By default, the fidelity card is a basic one, the customer cannot receive spam 
+	 * and ths way to contact her/him is by using the email adress.
+	 */
 	public Customer(String name, String userName, String passWord, String phone,
 			String email, int[] adress) {
 		super(name, userName, passWord, phone, email, adress);
@@ -29,19 +33,9 @@ public class Customer extends PhysicalUser implements PeopleToNotify{
 		this.historyOfOrders = new ArrayList<Order>();
 	}
 
-	//getters
-	public boolean getSpamAgreement(){
-		return spamAgreement;
-	}
-
-	public FidelityCard getFidelityCard(){
-		return fidelityCard;
-	}
-
-	public ArrayList<Order> getHistoryOfOrders() {
-		return historyOfOrders;
-	}
-
+	/**
+	 * @return A string containing all the received notifications.
+	 */
 	public String getNotifications(){
 		String notificationString = this.contactForOffers+"\r\n"+this.notifications.get(0)+"\r\n";
 		if (this.notificationNumber>0){
@@ -60,16 +54,9 @@ public class Customer extends PhysicalUser implements PeopleToNotify{
 		return notificationString;
 	}
 	
-	public String getContactForOffers(){
-		return this.contactForOffers;
-	}
-
-	//setters
-	public void setSpamAgreement(boolean spamAgreement){
-
-		this.spamAgreement = spamAgreement;
-	}
-
+	/**
+	 * @param name String which contains the name of the chosen fidelity card.
+	 */
 	public void setFidelityCard(String name) throws FidelityCardDoesNotExistException {
 		//If the current fidelity card is a point fidelity card, the points are lost 
 		if (this.fidelityCard instanceof PointFidelityCard){
@@ -116,6 +103,9 @@ public class Customer extends PhysicalUser implements PeopleToNotify{
 		}
 	}
 	
+	/**
+	 * @param str String which contains the way to contact the customer.
+	 */
 	public void setContactForOffers(String str) throws KindOfContactDoesNotExistException{
 		if(str.equalsIgnoreCase("email")){
 			this.contactForOffers = "email";
@@ -150,7 +140,9 @@ public class Customer extends PhysicalUser implements PeopleToNotify{
 		this.notifications.set(0,"You have "+this.notificationNumber+" notifications");}
 	}
 	
-	//Get the points acquired by fidelity card
+	/**
+	 * @return A string saying how many points there are on the point fidelity card.
+	 */
 	public String getPointsFidelityCard(){
 		//If the card is a basic fidelity card or a lottery fidelity card
 		if (this.fidelityCard instanceof BasicFidelityCard||this.fidelityCard instanceof LotteryFidelityCard){
@@ -163,13 +155,22 @@ public class Customer extends PhysicalUser implements PeopleToNotify{
 		}
 	}
 	
+	/**Place an order.
+	 * @param restaurantName String which contains the name of the restaurant in which the customer wants to order.
+	 * @return Order with two arguments: the customer and the name of the restaurant.
+	 * @throws RestaurantNotFoundException If the restaurant username does not exist in MyFoodora system.
+	 */
 	public Order newOrder(String restaurantName) throws RestaurantNotFoundException{
 		int restaurantIndex = this.findIDRestaurant(restaurantName);
 	
 		return new Order(this, this.getMyFoodora().getListRestaurant().get(restaurantIndex));
 	}
 	
-	//Method to find a restaurant by searching his userName
+	/**Find a restaurant by searching its username.
+	 * @param restaurantName String which contains the name of the restaurant to be found in the list of all the restaurants.
+	 * @return index Integer representing the position of the restaurant in the list.
+	 * @throws RestaurantNotFoundException If the restaurant name does not exist in MyFoodora system.
+	 */
 	private int findIDRestaurant(String restaurantName) throws RestaurantNotFoundException{
 		int index = -1;
 		ArrayList<Restaurant> listRestaurants = this.getMyFoodora().getListRestaurant();
@@ -184,8 +185,58 @@ public class Customer extends PhysicalUser implements PeopleToNotify{
 		return index;  //The user has been found and the index is returned
 		}
 	
+	
+	/**Add an order to the history-of-orders-list.
+	 * @param order Order to add in the list
+	 */
 	public void addOrder(Order order){
 		this.historyOfOrders.add(order);
 	}
+
+	/**
+	 * @return the spamAgreement
+	 */
+	public boolean getSpamAgreement() {
+		return spamAgreement;
+	}
+
+	/**
+	 * @return the fidelityCard
+	 */
+	public FidelityCard getFidelityCard() {
+		return fidelityCard;
+	}
+
+	/**
+	 * @return the notificationNumber
+	 */
+	public int getNotificationNumber() {
+		return notificationNumber;
+	}
+
+	/**
+	 * @return the historyOfOrders
+	 */
+	public ArrayList<Order> getHistoryOfOrders() {
+		return historyOfOrders;
+	}
+
+	/**
+	 * @return the contactForOffers
+	 */
+	public String getContactForOffers() {
+		return contactForOffers;
+	}
+
+	/**
+	 * @param spamAgreement the spamAgreement to set
+	 */
+	public void setSpamAgreement(boolean spamAgreement) {
+		this.spamAgreement = spamAgreement;
+	}
+	
+	
+	
+	
 	
 }
