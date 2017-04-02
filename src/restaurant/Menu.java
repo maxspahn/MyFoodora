@@ -102,7 +102,7 @@ public class Menu {
 			this.addItem("Halfmeal", "Exotic");
 			this.addItemToMeal("exotic"	, "pineapple");
 			this.addItemToMeal("exotic", "pizza fungi");
-			this.addItem("halfmeal", "chef's");
+			this.addItem("halfmeal", "chef's");   
 			this.addItemToMeal("chef's", "quiche");
 			this.addItemToMeal("chef's", "Boeuf Bourguignon");
 			

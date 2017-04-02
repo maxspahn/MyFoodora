@@ -2,9 +2,15 @@ package testSystem;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+
 import org.junit.Test;
 
+import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
+
+import restaurant.HalfMeal;
 import restaurant.ItemDoesNotExist;
+import system.HalfMealSort;
 import system.MyFoodora;
 import system.Order;
 import system.OrderNotCompletException;
@@ -82,8 +88,67 @@ public class TestMyFoodora {
 	}
 	
 	@Test
-	public void HalfMealSortTest(){
+	public void HalfMealCountTest(){
 		MyFoodora myFoodora = new MyFoodora();
 		myFoodora.load();
+		int count = myFoodora.getDeliveredHalfMeals().first().getCount();
+		assertTrue(count==1);
+	}
+	
+	@Test
+	public void SortedHalfMealTest(){
+		MyFoodora myFoodora = new MyFoodora();
+		myFoodora.load();
+		try{
+			//Order1
+			Order order = new Order(myFoodora.getListCustomer().get(0), myFoodora.getListRestaurant().get(0));
+			order.AddMealToOrder("classic");		
+			order.getBill();
+			myFoodora.getListCourier().get(0).setAcceptProbability(1); //To be sure that the order is always accepted in the test			myFoodora.setCourierToOrder(order);
+			myFoodora.closeOrder(order);
+
+			//Order2
+			Order order2 = new Order(myFoodora.getListCustomer().get(0), myFoodora.getListRestaurant().get(0));
+			order2.AddMealToOrder("exotic");		
+			order2.getBill();
+			myFoodora.getListCourier().get(0).setAcceptProbability(1); //To be sure that the order is always accepted in the test			myFoodora.setCourierToOrder(order);
+			myFoodora.closeOrder(order2);
+			
+			//Order3
+			Order order3 = new Order(myFoodora.getListCustomer().get(0), myFoodora.getListRestaurant().get(0));
+			order3.AddMealToOrder("chef's");		
+			order3.getBill();
+			myFoodora.getListCourier().get(0).setAcceptProbability(1); //To be sure that the order is always accepted in the test			myFoodora.setCourierToOrder(order);
+			myFoodora.closeOrder(order3);
+			
+			//Order4
+			Order order4 = new Order(myFoodora.getListCustomer().get(0), myFoodora.getListRestaurant().get(0));
+			order.AddMealToOrder("classic");		
+			order.getBill();
+			myFoodora.getListCourier().get(0).setAcceptProbability(1); //To be sure that the order is always accepted in the test			myFoodora.setCourierToOrder(order);
+			myFoodora.closeOrder(order4);
+			
+			//Order5
+			Order order5 = new Order(myFoodora.getListCustomer().get(0), myFoodora.getListRestaurant().get(0));
+			order.AddMealToOrder("exotic");		
+			order.getBill();
+			myFoodora.getListCourier().get(0).setAcceptProbability(1); //To be sure that the order is always accepted in the test			myFoodora.setCourierToOrder(order);
+			myFoodora.closeOrder(order5);
+			
+			ArrayList<HalfMealSort> halfmeallist = new ArrayList<HalfMealSort>(myFoodora.getDeliveredHalfMeals());
+			HalfMeal meal1 = halfmeallist.get(0).getHalfMeal();
+			HalfMeal meal2 = halfmeallist.get(1).getHalfMeal();
+			HalfMeal meal3 = halfmeallist.get(2).getHalfMeal();
+			
+			assertTrue(meal1.getName().equalsIgnoreCase("Classic")&&meal2.getName().equalsIgnoreCase("exotic")
+					&&meal3.getName().equalsIgnoreCase("chef's"));
+			
+			}
+			catch(OrderNotCompletException e){
+				e.getMessage();
+			}
+			catch(ItemDoesNotExist e){
+				e.getMessage();
+			}
 	}
 }
