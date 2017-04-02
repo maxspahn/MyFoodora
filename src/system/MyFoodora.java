@@ -214,7 +214,7 @@ public class MyFoodora {
 					this.getDeliveredHalfMeals().add(halfMealSort);
 					order.getRestaurant().getDeliveredHalfMeals().add(halfMealSort);
 				}
-				
+				   
 			}
 			if(meal instanceof FullMeal){
 				FullMealSort fullMealSort = getFullMealSort((FullMeal) meal);
