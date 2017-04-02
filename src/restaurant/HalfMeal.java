@@ -1,5 +1,9 @@
 package restaurant;
 
+/** HalfMeal is one type of meal, it extends the abstract Meal Class.
+ * @author maxspahn
+ *
+ */
 public class HalfMeal extends Meal{
 
 	public HalfMeal(String name) {

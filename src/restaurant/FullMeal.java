@@ -13,6 +13,14 @@ public class FullMeal extends Meal{
 		super(name);
 	}
 
+	
+	/** Adds an item to the fullmeal. Checks if this item-type already exists in the meal and modifies the glutenFree and vegetarian status.
+	 * In case that a wrong item has been added, an Exception is added.
+	 * 
+	 * @param item SingleItem to be added.
+	 * @throws WrongItemAdded
+	 * 
+	 */
 	@Override
 	public void addItem(SingleItem item) throws WrongItemAdded {
 		
@@ -41,6 +49,9 @@ public class FullMeal extends Meal{
 		
 	}
 
+	/** Calculates the price of the meal, the sum of the ingredients with the reduction of 5%.
+	 * 
+	 */
 	@Override
 	public double getPrice() {
 		double price = 0;
@@ -53,6 +64,11 @@ public class FullMeal extends Meal{
 		return price * 0.95;
 	}
 
+	/** Removes one singleItem from the meal, and sets the complete-status to false. Checks if the item that is removed, is in the meal.
+	 * 
+	 * @param item SingleItem to be removed.
+	 * @throws WrongItemRemoved
+	 */
 	@Override
 	public void removeItem(SingleItem item) throws WrongItemRemoved {
 		

@@ -33,8 +33,10 @@ public class TargetPolicyTest {
 		
 		// possible to compute positive values
 		markup = 0.5;
-		m.changeFeesAccordingToPolicy(markup, service);
-		assertTrue(profit == m.getTargetCommands() * ( m.getMarkup_percentage() * average + m.getService_fee() - m.getDelivery_cost()));
+		m.changeFeesAccordingToPolicy(markup, service);		
+		double test = ((double) Math.round(100* (average * m.getMarkup_percentage() + m.getService_fee() - profit/targetCommands))/100);
+		assertTrue(test == m.getDelivery_cost());
+		
 		
 	}
 	
@@ -58,12 +60,13 @@ public class TargetPolicyTest {
 		
 		// not possible to compute positive values
 		m.changeFeesAccordingToPolicy(service, delivery);
-		assertTrue(m.getDelivery_cost() == 3.0);
+		assertTrue(m.getMarkup_percentage() == 0.1);
 		
 		// possible to compute positive values
 		service = 0.5;
 		m.changeFeesAccordingToPolicy(service, delivery);
-		assertTrue(profit == m.getTargetCommands() * ( m.getMarkup_percentage() * average + m.getService_fee() - m.getDelivery_cost()));
+		double test = ((double) Math.round(100*(profit/targetCommands + delivery - service)/average))/100;
+		assertTrue(test == m.getMarkup_percentage());
 	}
 	
 	@Test
@@ -91,6 +94,7 @@ public class TargetPolicyTest {
 		// possible to compute positive values
 		delivery = 10;
 		m.changeFeesAccordingToPolicy(markup, delivery);
-		assertTrue(profit == m.getTargetCommands() * ( m.getMarkup_percentage() * average + m.getService_fee() - m.getDelivery_cost()));
+		double test = ((double) Math.round(100*(profit/targetCommands + delivery - average * markup)))/100;
+		assertTrue(test == m.getService_fee());
 	}
 }

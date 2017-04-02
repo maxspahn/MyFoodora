@@ -13,6 +13,7 @@ public class Courier extends PhysicalUser{
 	private boolean availability; //False if he/she is already delivering a product
 	private int countDeliveredOrder;	
 	private double acceptProbability;
+	private int[] location;
 	
 	/**Constructor.
 	 * By default, the courier is available, and the counter of delivered order is equal to 0.
@@ -24,6 +25,7 @@ public class Courier extends PhysicalUser{
 		this.availability = true;
 		this.countDeliveredOrder = 0;
 		this.setAcceptProbability(0.9);
+		this.setLocation(this.getAdress());
 	}
 	
 	
@@ -98,5 +100,25 @@ public class Courier extends PhysicalUser{
 	public void setAcceptProbability(double acceptProbability) {
 		this.acceptProbability = acceptProbability;
 	}
-		
+	
+	
+	//A courier can unregister himself form MyFoodora
+	public void unRegister(){
+		this.getMyFoodora().getListCourier().remove(this);
+		System.out.println("Your account has been deleted.");
+	}
+
+	/**
+	 * @return the location
+	 */
+	public int[] getLocation() {
+		return location;
+	}
+
+	/**
+	 * @param location the location to set
+	 */
+	public void setLocation(int[] location) {
+		this.location = location;
+	}
 }

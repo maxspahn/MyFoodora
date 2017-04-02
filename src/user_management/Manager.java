@@ -4,14 +4,24 @@ import java.util.*;
 
 import system.*;
 
-/**
+/** Manager is a physical user of the system, it extends PhysicalUser. Manager has access to most of the functions of MyFoodora.
+ * A manager has a role, like "CEO". 
+ * 
  * @author maxspahn
- *
+ * @author jeremyaugot
  */
 public class Manager extends PhysicalUser{
 	private MyFoodora myFoodora;
 	private String role;
 	
+	/**Constructor. Creates a manager, this function should not be used seperately, look Factory. 
+	 * @param name
+	 * @param userName
+	 * @param passWord
+	 * @param phone
+	 * @param email
+	 * @param adress
+	 */
 	public Manager(String name, String userName, String passWord, String phone,
 			String email, int[] adress) {
 		super(name, userName, passWord, phone, email, adress);
@@ -41,7 +51,11 @@ public class Manager extends PhysicalUser{
 		this.myFoodora.getManagerFactory().addUserToLists(user);
 	}
 	
-	//A manager can remove any user, only the CEO can remove other managers
+	/**Removes a user from the system. A manager can remove any user, only the CEO can remove other managers.
+	 * 
+	 * @param userName The userName of the user to be removed.
+	 * @throws UserNotFoundException
+	 */
 	public void removeUser(String userName) throws UserNotFoundException{
 		
 		int userIndex = this.findIDUser(userName);
@@ -73,14 +87,22 @@ public class Manager extends PhysicalUser{
 		}
 	
 	
-	//A manager can activate any user
+	/**A manager can activate any user, sets the users status to active.
+	 * 
+	 * @param userName Name of the user
+	 * @throws UserNotFoundException
+	 */
 	public void activateUser(String userName) throws UserNotFoundException{
 		User user = this.getUser(userName);
 		user.setActivated(true);
 		
 	}
 	
-	//A manager can disactivate any user, excepted other managers
+	/**A manager can disactivate any user, excepted other managers
+	 * 
+	 * @param userName Name of the user to be disactivated.
+	 * @throws UserNotFoundException
+	 */
 	public void disactivate(String userName) throws UserNotFoundException{
 		User user = this.getUser(userName);
 				
@@ -104,7 +126,12 @@ public class Manager extends PhysicalUser{
 	}
 	
 	
-	//Method to find a user by searching his userName
+	/**Method to find a user by searching his userName. Throws exception if user is not in the system.
+	 * 
+	 * @param userName Name of the user stored in a string.
+	 * @return index of the user that is searched.
+	 * @throws UserNotFoundException
+	 */
 	private int findIDUser(String userName) throws UserNotFoundException{
 		int index = -1;
 		ArrayList<User> listUser = this.getMyFoodora().getListUsers();
@@ -119,6 +146,11 @@ public class Manager extends PhysicalUser{
 		return index;  //The user has been found and the index is returned
 	}
 	
+	/** Getter for user by the username. Throws exception if user not in system.
+	 * @param userName Name of the user.
+	 * @return User object of the searched user.
+	 * @throws UserNotFoundException
+	 */
 	public User getUser(String userName) throws UserNotFoundException{
 		return this.myFoodora.getListUsers().get(this.findIDUser(userName));
 	}
@@ -149,26 +181,38 @@ public class Manager extends PhysicalUser{
 	public void setDeliveryCost(double deliveryCost){
 		this.myFoodora.setDelivery_cost(deliveryCost);
 	}
-	
-	//set the percentage-fee according the target policy
-	public void setServiceFeeAccordingTargetPolicy(double value1, double value2) throws OrderNotCompletException{
+
+	/** Sets the fees, service fees are computed according to the targetProfit.
+	 * @param markup_percentage
+	 * @param delivery_cost
+	 */
+	public void setServiceFeeAccordingTargetPolicy(double markup_percentage, double delivery_cost){
 		this.myFoodora.setTargetPolicy(new TargetProfit_ServiceFee());
-		this.myFoodora.changeFeesAccordingToPolicy(value1, value2);
+		this.myFoodora.changeFeesAccordingToPolicy(markup_percentage, delivery_cost);
 	}
 	
-	//set the markup percentage according the target policy
-	public void setMarkupAccordingTargetPolicy(double value1, double value2) throws OrderNotCompletException{
+	/** Sets the fees, markup_percentage is computed according to the targetProfit.
+	 * @param service_fee
+	 * @param delivery_cost
+	 */
+	public void setMarkupAccordingTargetPolicy(double service_fee, double delivery_cost){
 		this.myFoodora.setTargetPolicy(new TargetProfit_Markup());
-		this.myFoodora.changeFeesAccordingToPolicy(value1, value2);
+		this.myFoodora.changeFeesAccordingToPolicy(service_fee, delivery_cost);
 	}
 	
-	//set the delivery cost according the target policy
-	public void setDeliveryCostAccordingTargetPolicy(double value1, double value2) throws OrderNotCompletException{
+	/** Sets the fees, delivery_cost is computed according to the targetProfit.
+	 * @param markup_percentage
+	 * @param service_fee
+	 */
+	public void setDeliveryCostAccordingTargetPolicy(double markup_percentage, double service_fee){
 		this.myFoodora.setTargetPolicy(new TargetProfit_DeliveryCost());		
-		this.myFoodora.changeFeesAccordingToPolicy(value1, value2);
+		this.myFoodora.changeFeesAccordingToPolicy(markup_percentage, service_fee);
 		}
 	
-	//determine which the most selling restaurant
+	/** Determine which the most selling restaurant according to the income.
+	 * 
+	 * @return Most Selling restaurant.
+	 */
 	public Restaurant mostSellingRestaurant(){
 		double maxSelling = this.myFoodora.getListRestaurant().get(0).getTotalSelling();
 		Restaurant mostSellingRestaurant = this.myFoodora.getListRestaurant().get(0);
@@ -182,7 +226,10 @@ public class Manager extends PhysicalUser{
 		return mostSellingRestaurant;
 	}
 	
-	//determine which the least selling restaurant
+	/** Determine which the least selling restaurant according to the income.
+	 * 
+	 * @return Least selling restaurant.
+	 */
 	public Restaurant leastSellingRestaurant(){
 		Restaurant leastSellingRestaurant = this.myFoodora.getListRestaurant().get(0);
 		double minSelling = leastSellingRestaurant.getTotalSelling();
@@ -196,7 +243,10 @@ public class Manager extends PhysicalUser{
 		return leastSellingRestaurant;
 		}
 	
-	//determine the most active courier
+	/** Determine the most active courier according to the number of delivered orders.
+	 * 
+	 * @return Most active Courier.
+	 */
 	public Courier mostActiveCourier(){
 		Courier mostActiveCourier = this.myFoodora.getListCourier().get(0);
 		int maxDeliveredOrders = mostActiveCourier.getCountDeliveredOrder();
@@ -211,7 +261,10 @@ public class Manager extends PhysicalUser{
 		
 	}
 	
-	//determine the most active courier
+	/** Determine the most active courier according to the number of delivered orders.
+	 * 
+	 * @return Least active Courier.
+	 */
 	public Courier leastActiveCourier(){
 		Courier leastActiveCourier = this.myFoodora.getListCourier().get(0);
 		int minDeliveredOrders = leastActiveCourier.getCountDeliveredOrder();
@@ -226,31 +279,54 @@ public class Manager extends PhysicalUser{
 			
 	}
 	
-	//set the delivery policy
+	/** Set the delivery policy. Prints an error is delivery policy does not exist.
+	 * 
+	 * @param deliveryName Name of the policy as a String.
+	 */
 	public void setDeliveryPolicy(String deliveryName){
 		if(deliveryName.equalsIgnoreCase("fastest delivery")||deliveryName.equalsIgnoreCase("fastest")||deliveryName.equalsIgnoreCase("fastestDelivery")){
 			this.myFoodora.setDeliveryPolicy(new FastestDelivery());
 		}
-		else if(deliveryName.equalsIgnoreCase("fair")||deliveryName.equalsIgnoreCase("fair-occupation delivery")||deliveryName.equalsIgnoreCase("fair occupation delivery")||deliveryName.equalsIgnoreCase("fairoccupationdelivery")){
-			this.myFoodora.setDeliveryPolicy(new FastestDelivery());
+		else if(deliveryName.equalsIgnoreCase("fair")||deliveryName.equalsIgnoreCase("fair-occupation delivery")||deliveryName.equalsIgnoreCase("fair occupation delivery")||deliveryName.equalsIgnoreCase("fairoccupationdelivery") || deliveryName.equalsIgnoreCase("fairDelivery")){
+			this.myFoodora.setDeliveryPolicy(new FairDelivery());
 		}
 		else{
 			System.out.println("This delivery policy does not exist.");
 		}
 	}
 	
-	//Compute total income for a given period
+	/** Compute total income for a given period. Takes as input the dates of starting and ending of the period.
+	 * 
+	 * @param day1
+	 * @param month1
+	 * @param year1
+	 * @param day2
+	 * @param month2
+	 * @param year2
+	 * @return Double Array storing the income at index 0 and the profit at index 1.
+	 * @throws OrderNotCompletException
+	 */
 	public double[] computeTotalIncomeAndProfitOverPeriod(int day1, int month1, int year1, int day2, int month2, int year2) throws OrderNotCompletException{
 		double[] result = this.myFoodora.getIncomeForPeriod(day1, month1, year1, day2, month2, year2);
 		double[] returnedResult = {result[0], result[1]};
 		return returnedResult;
 	}
 	 
+	/** Computes the average income per customer for a given time-period.
+	 * @param day1
+	 * @param month1
+	 * @param year1
+	 * @param day2
+	 * @param month2
+	 * @param year2
+	 * @return Average for the period, 0 if no command was done in that period.
+	 * @throws OrderNotCompletException
+	 */
 	public double computeIncomePerCustomerOverPeriod(int day1, int month1, int year1, int day2, int month2, int year2) throws OrderNotCompletException{
 		double[] result = this.myFoodora.getIncomeForPeriod(day1, month1, year1, day2, month2, year2);
 		if (result[3]!=0){
-		double incomePerCustomer = result[0]/result[3];
-		return incomePerCustomer;}
+			double incomePerCustomer = result[0]/result[3];
+			return incomePerCustomer;}
 		else{
 			return 0;
 		}

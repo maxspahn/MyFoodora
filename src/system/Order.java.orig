@@ -62,6 +62,10 @@ public class Order {
 	 */
 	public double getBill() {
 		this.setPrice(this.getCustomer().getFidelityCard().computePrice(this));
+<<<<<<< HEAD
+=======
+		
+>>>>>>> c32b928cf0404279158caa1ec06ae793975b5516
 		return this.getPrice();
 	}
 	
@@ -76,7 +80,7 @@ public class Order {
 			//this.restaurant.addOrder(this);
 			this.courier.setCountDeliveredOrder(this.courier.getCountDeliveredOrder() + 1);
 			this.courier.setAvailability(true);
-			this.courier.setLocation(this.customer.getAdress());
+			this.courier.setAdress(this.customer.getAdress());
 			Date date = new Date();
 			this.setCompleteMonth(date.getMonth() + 1);
 			this.setCompleteYear(date.getYear() + 1900);
@@ -225,9 +229,12 @@ public class Order {
 		this.complete = complete;
 	}
 
+<<<<<<< HEAD
 	/**
 	 * @return the price
 	 */
+=======
+>>>>>>> c32b928cf0404279158caa1ec06ae793975b5516
 	public double getPrice() {
 		return price;
 	}
@@ -274,8 +281,16 @@ public class Order {
 		this.completeDay = completeDay;
 	}
 
+<<<<<<< HEAD
+	
+
+	
+	
+	
+=======
 	public int getID() {
 		return ID;
 	}
+>>>>>>> c32b928cf0404279158caa1ec06ae793975b5516
 
 }

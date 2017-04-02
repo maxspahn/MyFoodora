@@ -7,6 +7,8 @@ import java.util.Arrays;
 import org.junit.Test;
 
 import system.MyFoodora;
+import system.Order;
+import system.OrderNotCompletException;
 import user_management.Manager;
 import user_management.ManagerFactory;
 import user_management.Restaurant;
@@ -145,7 +147,7 @@ public class ManagerTest {
 	}
 	
 	@Test
-	public void setFeesTargetPolicy(){
+	public void setFeesTargetPolicy_DeliveryCost(){
 		MyFoodora m = new MyFoodora();
 		m.load();
 		Manager manager = null;
@@ -155,11 +157,140 @@ public class ManagerTest {
 			e.printStackTrace();
 		}
 		
+		//Testing without given targetValues, it takes the last month values
+		manager.setDeliveryCostAccordingTargetPolicy(0.5, 2);
+		assertTrue(m.getDelivery_cost() == 9.44);
+
+		
+		//Testing with given targetValues
 		manager.setTargetCommands(10);
 		manager.setTargetProfit(100);
+		manager.setDeliveryCostAccordingTargetPolicy(0.5, 2);
+		assertTrue(m.getDelivery_cost() == 0.05);	
+		
+	}
+	
+	@Test
+	public void setFeesTargetPolicy_MarkUp(){
+		MyFoodora m = new MyFoodora();
+		m.load();
+		Manager manager = null;
+		try{
+			manager = (Manager) m.getUser("spongeb");
+		} catch (UserNotFoundException e){
+			e.printStackTrace();
+		}
+		
+		//Testing without given targetValues, it takes the last month values
+		manager.setMarkupAccordingTargetPolicy(2, 3);
+		assertTrue(m.getMarkup_percentage() == 0.1);
+
+		
+		//Testing with given targetValues
+		manager.setTargetCommands(10);
+		manager.setTargetProfit(100);
+		manager.setMarkupAccordingTargetPolicy(2, 3);
+		assertTrue(m.getMarkup_percentage() == 0.68);	
+		
+	}
+	
+	@Test
+	public void setFeesTargetPolicy_ServiceFee(){
+		MyFoodora m = new MyFoodora();
+		m.load();
+		Manager manager = null;
+		try{
+			manager = (Manager) m.getUser("spongeb");
+		} catch (UserNotFoundException e){
+			e.printStackTrace();
+		}
+		
+		//Testing without given targetValues, it takes the last month values
+		// In this case no positive could be computed, so the fees stay unchanged
+		manager.setServiceFeeAccordingTargetPolicy(0.4, 3);
+		assertTrue(m.getService_fee() == 2);
+
+		
+		//Testing with given targetValues
+		manager.setTargetCommands(10);
+		manager.setTargetProfit(100);
+		manager.setServiceFeeAccordingTargetPolicy(0.4, 3);		
+		assertTrue(m.getService_fee() == 6.56);
 		
 		
 		
+	}
+	
+	@Test
+	public void TestSetdeliveryPolicy(){
+		MyFoodora m = new MyFoodora();
+		m.load();
+		
+		Manager manager = null;
+		manager = m.getListManager().get(1);
+		
+		manager.setDeliveryPolicy("dynamicDelivery");
+		// should return fastestDelivery because the given policy does not exist.
+		assertTrue(m.getDeliveryPolicy().toString().equalsIgnoreCase("fastestDelivery"));
+		
+		manager.setDeliveryPolicy("fairDelivery");
+		// should return fairDelivery
+		assertTrue(m.getDeliveryPolicy().toString().equalsIgnoreCase("FairDelivery"));
+		
+		manager.setDeliveryPolicy("fastest");
+		// should return fairDelivery
+		assertTrue(m.getDeliveryPolicy().toString().equalsIgnoreCase("fastestDelivery"));
+	}
+	
+	@Test
+	public void testComputationsIncome(){
+		MyFoodora m = new MyFoodora();
+		m.load();
+		
+		Manager manager = null;
+		manager = m.getListManager().get(1);
+		
+		try {
+			assertTrue(manager.computeIncomePerCustomerOverPeriod(1, 3, 2017, 31, 3, 2017) == m.getIncomeForMonth(3, 2017)/2);
+		} catch (OrderNotCompletException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
+		//add a new order done by one of the customers who has already did a command.
+		Order order = new Order(m.getListCustomer().get(1),m.getListRestaurant().get(1));
+		try {
+			order.AddMealToOrder("basic");
+			order.AddSingleItemToOrder("apple pie");
+			order.getBill();
+			m.setCourierToOrder(order);
+			m.closeOrder(order);
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		try {
+			//test if the new order was added
+			assertTrue(m.getIncomeForMonth(4, 2017)== 12.85);
+			//test if the computation takes into account if there was twice the same customer
+			assertTrue(manager.computeIncomePerCustomerOverPeriod(1, 3, 2017, 31, 4, 2017) == (m.getIncomeForMonth(3, 2017) + m.getIncomeForMonth(4, 2017))/2);
+			//test value in the future should be 0
+			assertTrue(manager.computeIncomePerCustomerOverPeriod(01, 05, 2017, 31, 5, 2017)==0);
+		} catch (OrderNotCompletException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		try {
+			// tests the income calculation
+			assertTrue(manager.computeTotalIncomeAndProfitOverPeriod(01, 3, 2017, 31, 5, 2017)[0] == 32.185 + 12.85);
+		} catch (OrderNotCompletException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 
