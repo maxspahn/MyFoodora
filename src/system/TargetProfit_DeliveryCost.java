@@ -1,16 +1,28 @@
 package system;
 
+/** Implementation of TargetPolicy to compute and set the deliveryCost according to a targetProfit and given values for markupPercentage and serviceFee.
+ * @author maxspahn
+ * @author jeremyaugot
+ */
 public class TargetProfit_DeliveryCost implements TargetPolicy{
 
+	/** default Constructor.
+	 * 
+	 */
 	public TargetProfit_DeliveryCost() {
-		// TODO Auto-generated constructor stub
+		super();
 	}
-
+	
+	
+	/**
+	 * @param value1 markup_percentage.
+	 * @param value2 service_fee.
+	 */
 	@Override
 	public void setTargetPolicy(MyFoodora myFoodora, double value1,	double value2) {
 		double deliveryCost = -1;
 		if(myFoodora.getTargetProfit() == 0){
-			myFoodora.setTargetProfit(myFoodora.computeValuesLastMonth()[0]);
+			myFoodora.setTargetProfit(myFoodora.computeValuesLastMonth()[1]);
 		}
 		if(myFoodora.getTargetCommands() == 0){
 			myFoodora.setTargetCommands((int) myFoodora.computeValuesLastMonth()[2]);			
@@ -20,6 +32,7 @@ public class TargetProfit_DeliveryCost implements TargetPolicy{
 		}
 		else{
 			deliveryCost  = -myFoodora.getTargetProfit()/myFoodora.getTargetCommands() + myFoodora.getAveragePricePerCommand() * value1 + value2;
+			deliveryCost = ((double)Math.round(deliveryCost*100))/100;
 		}
 		
 		if(deliveryCost <= 0){

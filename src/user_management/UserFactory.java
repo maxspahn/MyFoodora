@@ -1,28 +1,35 @@
 package user_management;
 
-import java.util.ArrayList;
-
 import system.MyFoodora;
 
+/** Abstract UserFactory, part of the Factory-Pattern to create users.
+ * @author maxspahn
+ * @author jeremyaugot
+ *
+ */
 public abstract class UserFactory {
 	
 	private MyFoodora myFoodora;
 	
+	/** Constructor. Makes sure that every user has access to the same system. 
+	 * @param myFoodora The core part of the system.
+	 */
 	public UserFactory(MyFoodora myFoodora){
 		this.myFoodora = myFoodora;
 	}
 	
-	
-
-	/*
-	* method to create a new account, uses createAccountNextStep() method
-	* Asks for all the attributes in common between all the users
+	/**
+	* Method to create a new account, uses createAccountNextStep() method.
+	* Asks for all the attributes in common between all the users.
 	*/
 	abstract public void createAccount(String name, String userName, String passWord, String phone, String email, int[] adress) throws SameUserNameException;
 		
-	
-	
-	//method to login to an existing account
+	/** Method to login to an existing account.
+	 * @param userName Name of user to login.
+	 * @param password User's password.
+	 * @return The user object.
+	 * @throws WrongUserNameOrPassWordException
+	 */
 	public User login(String userName, String password) throws WrongUserNameOrPassWordException{
 		User loggedUser = null;
 		boolean found = false;  //Boolean: to know if the user has been found in the user list
@@ -43,11 +50,16 @@ public abstract class UserFactory {
 	}
 	
 	
-	//abstract method to load the users who are already inserted in the system, to be overriden
+	/** Abstract method to load the users who are already inserted in the system.
+	 * The function is overriden by every specific user-type.
+	 */
 	public abstract void load();
 
 	
-	//A method which adds the user in the user list and the list in which he/she belongs
+	/**A method which adds the user in the user list and the list in which he/she belongs.
+	 * 
+	 * @param user User to be added to the system.
+	 */
 	public void addUserToLists(User user){
 		//The user is added in the list of all users
 		this.getMyFoodora().getListUsers().add(user);
@@ -74,7 +86,11 @@ public abstract class UserFactory {
 			}
 	}
 	
-	//Method to check if the userName already exists
+	/**Method to check if the userName already exists.
+	 * 
+	 * @param userName User to be checked.
+	 * @return True if the user has been registered in the system.
+	 */
 	public boolean checkExistenceUserName(String userName){
 		boolean alreadyExist = false;
 		for (User us : this.getMyFoodora().getListUsers()){
@@ -84,10 +100,14 @@ public abstract class UserFactory {
 		}
 		return alreadyExist;
 	}
-	
+
+	/**
+	 * @return the myFoodora object
+	 */
 	public MyFoodora getMyFoodora() {
 		return myFoodora;
 	}
+	
 	
 	
 	

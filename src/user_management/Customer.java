@@ -187,5 +187,8 @@ public class Customer extends PhysicalUser implements PeopleToNotify{
 	public void addOrder(Order order){
 		this.historyOfOrders.add(order);
 	}
+
+	
+	
 	
 }

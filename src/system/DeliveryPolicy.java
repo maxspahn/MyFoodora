@@ -15,5 +15,7 @@ public interface DeliveryPolicy {
 	// deliveryPolicy.
 	// @todo needs access to the list of couriers.
 	public int allocateCourier(Order order, ArrayList<Courier> couriers, ArrayList<Integer> refused);
+	
+	public String toString();
 
 }

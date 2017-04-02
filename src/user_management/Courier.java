@@ -6,6 +6,7 @@ public class Courier extends PhysicalUser{
 	private boolean availability; //False if he/she is already delivering a product
 	private int countDeliveredOrder;	
 	private double acceptProbability;
+	private int[] location;
 	
 	/*
 	* constructor: if the courier gives his/her availability
@@ -17,6 +18,7 @@ public class Courier extends PhysicalUser{
 		this.availability = true;
 		this.countDeliveredOrder = 0;
 		this.setAcceptProbability(0.9);
+		this.setLocation(this.getAdress());
 	}
 
 	//getters
@@ -66,5 +68,19 @@ public class Courier extends PhysicalUser{
 	public void unRegister(){
 		this.getMyFoodora().getListCourier().remove(this);
 		System.out.println("Your account has been deleted.");
+	}
+
+	/**
+	 * @return the location
+	 */
+	public int[] getLocation() {
+		return location;
+	}
+
+	/**
+	 * @param location the location to set
+	 */
+	public void setLocation(int[] location) {
+		this.location = location;
 	}
 }

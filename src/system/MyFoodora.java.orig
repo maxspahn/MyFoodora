@@ -46,10 +46,6 @@ public class MyFoodora {
 	private TreeSet<HalfMealSort> deliveredHalfMeals;
 	private TreeSet<SingleItemSort> deliverdSingleItems;
 		
-	/** Constructor. Creates all the lists and sets the following default values: service_fee = 2, delivery_cost = 3, markUp_percentage = 0.1,
-	 * targetProfit = 0, targetCommands = 0.
-	 * 
-	 */
 	public MyFoodora(){
 		this.setListUsers(new ArrayList<User>());
 		this.listCourier = new ArrayList<Courier>();
@@ -157,7 +153,14 @@ public class MyFoodora {
 		}
 	}
 	
+<<<<<<< HEAD
 	
+	/** Search the halfMealSort object which belongs to the given halfMeal in the list.
+	 * @param halfMeal Object to be found.
+	 * @return Reference to the HalfMealSort object. Null if not found.
+	 */
+=======
+>>>>>>> c32b928cf0404279158caa1ec06ae793975b5516
 	public HalfMealSort getHalfMealSort(HalfMeal halfMeal){
 		for (HalfMealSort halfMealSort : this.getDeliveredHalfMeals()) {
 			if(halfMealSort.getHalfMeal().equals(halfMeal)){
@@ -166,11 +169,15 @@ public class MyFoodora {
 		}
 		return null;
 	}
+<<<<<<< HEAD
 	
 	/** Search the fullMealSort object which belongs to the given fullMeal in the list.
 	 * @param fullMeal Object to be found.
 	 * @return Reference to the FullMealSort object. Null if not found.
 	 */
+=======
+
+>>>>>>> c32b928cf0404279158caa1ec06ae793975b5516
 	public FullMealSort getFullMealSort(FullMeal fullMeal){
 		for (FullMealSort fullMealSort : this.getDeliveredFullMeals()) {
 			if(fullMealSort.getFullMeal().equals(fullMeal)){
@@ -258,54 +265,81 @@ public class MyFoodora {
 		double income = 0;
 		double profit = 0;
 		double nbOrders = 0;
-		HashSet<Customer> setCustomers =new HashSet<>();
- 		
- 		System.out.println("dates " + day1 + "/" + month1 + "/" + year1 + " through " + day2 + "/" + month2 + "/" + year2);
- 		int i = 0;
-		int size = this.completeOrders.size();
+		HashSet setCustomers = new HashSet();
 		
-		try {
-			while(i<size && this.completeOrders.get(i).getCompleteYear() < year1){
+		System.out.println("dates " + day1 + "/" + month1 + "/" + year1 + " through " + day2 + "/" + month2 + "/" + year2);
+<<<<<<< HEAD
+		
+		try{
+			int i = 0;
+			while(this.completeOrders.get(i).getCompleteYear() < year1){
 				i++;
 			}
-			while(i<size &&this.completeOrders.get(i).getCompleteYear() == year1 && this.completeOrders.get(i).getCompleteMonth() < month1){
-	 			i++;
-	 		}
-			while(i<size &&this.completeOrders.get(i).getCompleteMonth() == month1 && this.completeOrders.get(i).getCompleteYear() == year1 && this.completeOrders.get(i).getCompleteDay() < day1){
-	 			i++;
-	 		}
-			
-			while(i<size &&this.completeOrders.get(i).getCompleteYear() < year2){
-				setCustomers.add(completeOrders.get(i).getCustomer());
-	 			profit += this.completeOrders.get(i).getProfit();
-	 			income += this.completeOrders.get(i).getPrice();
-	 			nbOrders ++;
-	 			i++;
-	 		}
-			
-			while(i<size &&this.completeOrders.get(i).getCompleteYear() == year2 && this.completeOrders.get(i).getCompleteMonth() < month2){
-	 			nbOrders ++;
-				setCustomers.add(completeOrders.get(i).getCustomer());
-	 			profit += this.completeOrders.get(i).getProfit();
-	 			income += this.completeOrders.get(i).getPrice();
-	 			i++;
-	 		}
-			while(i<size &&this.completeOrders.get(i).getCompleteMonth() == month2 && this.completeOrders.get(i).getCompleteYear() == year2 && this.completeOrders.get(i).getCompleteDay() < day2){
-	 			nbOrders ++;
-				setCustomers.add(completeOrders.get(i).getCustomer());
-	 			profit += this.completeOrders.get(i).getProfit();
-	 			income += this.completeOrders.get(i).getPrice();
-	 			i++;
-	 		}
-		} catch (OrderNotCompletException e) {
-			// TODO Auto-generated catch block
+			while(this.completeOrders.get(i).getCompleteYear() == year1 && this.completeOrders.get(i).getCompleteMonth() < month1){
+				i++;
+			}
+			while(this.completeOrders.get(i).getCompleteMonth() == month1 && this.completeOrders.get(i).getCompleteYear() == year1 && this.completeOrders.get(i).getCompleteDay() < day1){
+				i++;
+			}
+			while(this.completeOrders.get(i).getCompleteYear() < year2){
+				profit += this.completeOrders.get(i).getProfit();
+				income += this.completeOrders.get(i).getPrice();
+				nbOrders ++;
+				i++;
+			}
+			while(this.completeOrders.get(i).getCompleteYear() == year2 && this.completeOrders.get(i).getCompleteMonth() < month2){
+				nbOrders ++;
+				profit += this.completeOrders.get(i).getProfit();
+				income += this.completeOrders.get(i).getPrice();
+				i++;
+			}
+			while(this.completeOrders.get(i).getCompleteMonth() == month2 && this.completeOrders.get(i).getCompleteYear() == year2 && this.completeOrders.get(i).getCompleteDay() < day2){
+				nbOrders ++;
+				profit += this.completeOrders.get(i).getProfit();
+				income += this.completeOrders.get(i).getPrice();
+				i++;
+			}
+		} catch(OrderNotCompletException e){
 			e.printStackTrace();
+=======
+		int i = 0;
+		int size = this.completeOrders.size();
+		while(i<size && this.completeOrders.get(i).getCompleteYear() < year1){
+			i++;
+		}
+		while(i<size &&this.completeOrders.get(i).getCompleteYear() == year1 && this.completeOrders.get(i).getCompleteMonth() < month1){
+			i++;
+		}
+		while(i<size &&this.completeOrders.get(i).getCompleteMonth() == month1 && this.completeOrders.get(i).getCompleteYear() == year1 && this.completeOrders.get(i).getCompleteDay() < day1){
+			i++;
+		}
+		while(i<size &&this.completeOrders.get(i).getCompleteYear() < year2){
+			setCustomers.add(completeOrders.get(i).getCustomer());
+			profit += this.completeOrders.get(i).getProfit();
+			income += this.completeOrders.get(i).getPrice();
+			nbOrders ++;
+			i++;
+		}
+		while(i<size &&this.completeOrders.get(i).getCompleteYear() == year2 && this.completeOrders.get(i).getCompleteMonth() < month2){
+			nbOrders ++;
+			setCustomers.add(completeOrders.get(i).getCustomer());
+			profit += this.completeOrders.get(i).getProfit();
+			income += this.completeOrders.get(i).getPrice();
+			i++;
+		}
+		while(i<size &&this.completeOrders.get(i).getCompleteMonth() == month2 && this.completeOrders.get(i).getCompleteYear() == year2 && this.completeOrders.get(i).getCompleteDay() < day2){
+			nbOrders ++;
+			setCustomers.add(completeOrders.get(i).getCustomer());
+			profit += this.completeOrders.get(i).getProfit();
+			income += this.completeOrders.get(i).getPrice();
+			i++;
+>>>>>>> c32b928cf0404279158caa1ec06ae793975b5516
 		}
 		
- 		
 		double[] result = {income, profit, nbOrders, (double) setCustomers.size()};
- 		
- 		return result;
+		
+		
+		return result;
 		
 	}
 	
@@ -405,7 +439,10 @@ public class MyFoodora {
 			this.closeOrder(order2);
 			order2.setCompleteMonth(3);
 			order.setCompleteMonth(3);
+<<<<<<< HEAD
 			this.getListCourier().get(0).setAcceptProbability(0.8);
+=======
+>>>>>>> c32b928cf0404279158caa1ec06ae793975b5516
 			
 		} catch (NoCourierFoundToDeliver e) {
 			// TODO Auto-generated catch block
