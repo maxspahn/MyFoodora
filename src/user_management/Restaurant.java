@@ -61,9 +61,9 @@ public class Restaurant extends User implements Observable{
 	public String toString(){	
 		int x = this.getAdress()[0];
 		int y = this.getAdress()[1];
-		return "ID:"+this.getID()+"/Name:"+this.getName()+"/Username:"+this.getUserName()
-			+"/Password:"+this.getPassWord()+"/Email:"+this.getEmail()+"/Phone:"+this.getPhone()
-			+"/Adress:{"+x+";"+y+"}";
+		return this.getName()
+			+"\n\tEmail:"+this.getEmail()+"\n\tPhone:"+this.getPhone()
+			+"\n\tAdress:{"+x+";"+y+"}\n";
 	}
 	
 	//Set the meal of the week
@@ -121,6 +121,7 @@ public class Restaurant extends User implements Observable{
 		+"and: "+secondItemName);
 		
 	}
+	
 	
 	public void createNewItem(String itemType, String name) throws WrongItemAdded{
 		this.menu.addItem(itemType, name);

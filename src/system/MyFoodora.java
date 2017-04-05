@@ -116,6 +116,17 @@ public class MyFoodora {
 		return income;
 	}		
 	
+	/**Compute total profit of all orders completed in the myFoodora system.
+	 * @return Total profit.
+	 */
+	public double computeTotalProfit(){
+		double profit = 0;
+		for (Order order : this.getCompleteOrders()) {
+			profit += order.getProfit();
+		}
+		return profit;
+	}
+	
 	/** Compute the average price per command.
 	 * @return Average price per command.
 	 */
@@ -390,13 +401,13 @@ public class MyFoodora {
 	public void loadOrders() {
 		try {
 			Order order = new Order(this.getListCustomer().get(6), this.getListRestaurant().get(2));
-			order.AddMealToOrder("classic");
-			order.AddSingleItemToOrder("soup");
+			order.AddMealToOrder("classic", 1);
+			order.AddSingleItemToOrder("soup",1);
 			order.getBill();
 			Order order2 = new Order(this.getListCustomer().get(1), this.getListRestaurant().get(1));
-			order2.AddMealToOrder("basic");
-			order2.AddSingleItemToOrder("pineapple");
-			order2.AddSingleItemToOrder("quiche");
+			order2.AddMealToOrder("basic",1);
+			order2.AddSingleItemToOrder("pineapple",1);
+			order2.AddSingleItemToOrder("quiche",1);
 			order2.getBill();
 			this.getListCourier().get(0).setAcceptProbability(1);
 			this.setCourierToOrder(order);
@@ -431,6 +442,43 @@ public class MyFoodora {
 		if(!found){throw new UserNotFoundException(userName);}
 		return null;
 	}
+	
+	/** Method to login a User that had been registered to the system.
+	 * @param userName Name of the user.
+	 * @param password His password.
+	 * @return The logged user, if the entries were correct, else exception.
+	 * @throws WrongUserNameOrPassWordException
+	 */
+	public User loginUser(String userName, String password) throws WrongUserNameOrPassWordException{
+		User loggedUser = null;
+		try {
+			loggedUser = this.getUser(userName);
+			
+		} catch (UserNotFoundException e) {
+			// TODO Auto-generated catch block
+			System.out.println(e.getMessage());
+		}
+		if(loggedUser != null && loggedUser.getPassWord().equals(password)){
+			return loggedUser;
+		}
+		else {
+			throw new WrongUserNameOrPassWordException();
+		}
+	}
+	
+	/** Put the list of Restaurants in a proper dispaly format.
+	 * @return String with all the restaurants.
+	 */
+	public String ListRestaurantsToString(){
+		String s = "";
+		int i = 1;
+		for (Restaurant restaurant : this.getListRestaurant()) {
+			s += "Nb : " + i + "\t" + restaurant + "\n";
+			i++;
+		}
+		return s;
+	}
+	
 
 	/**
 	 * @return the managerFactory

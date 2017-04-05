@@ -21,7 +21,7 @@ public class TestLotteryFidelityCard {
 		Restaurant rest = myFoodora.getListRestaurant().get(0);
 		try{
 		Order order = new Order(myFoodora.getListCustomer().get(0), rest);
-		order.AddMealToOrder("basic");
+		order.AddMealToOrder("basic",1);
 		order.getCustomer().setFidelityCard("lotteryfidelitycard");
 		order.getBill();
 		myFoodora.getListCourier().get(0).setAcceptProbability(1); //To be sure that the order is always accepted in the test

@@ -160,10 +160,10 @@ public class Customer extends PhysicalUser implements PeopleToNotify{
 	 * @return Order with two arguments: the customer and the name of the restaurant.
 	 * @throws RestaurantNotFoundException If the restaurant username does not exist in MyFoodora system.
 	 */
-	public Order newOrder(String restaurantName) throws RestaurantNotFoundException{
+	public Order newOrder(String restaurantName, String orderName) throws RestaurantNotFoundException{
 		int restaurantIndex = this.findIDRestaurant(restaurantName);
 	
-		return new Order(this, this.getMyFoodora().getListRestaurant().get(restaurantIndex));
+		return new Order(this, this.getMyFoodora().getListRestaurant().get(restaurantIndex), orderName);
 	}
 	
 	/**Find a restaurant by searching its username.

@@ -155,6 +155,22 @@ public class Manager extends PhysicalUser{
 		return this.myFoodora.getListUsers().get(this.findIDUser(userName));
 	}
 	
+	/** Sets the targetPolicy of the system.
+	 * @param targetPolicy Name of the targetPolicy.
+	 */
+	public void setTargetPolicy(String targetPolicy){
+		if(targetPolicy.equalsIgnoreCase("deliveryCost")){
+			this.myFoodora.setTargetPolicy(new TargetProfit_DeliveryCost());
+		}
+		else if(targetPolicy.equalsIgnoreCase("markupPercentage")){
+			this.myFoodora.setTargetPolicy(new TargetProfit_Markup());
+		}
+		else if(targetPolicy.equalsIgnoreCase("serviceFee")){
+			this.myFoodora.setTargetPolicy(new TargetProfit_ServiceFee());
+		}
+		else{System.out.println("The choosen target-Policy does not exist");}
+	}
+	
 	/** Sets the targetProfit.
 	 * @param targetProfit The value that is targeted for the next month.
 	 */
@@ -330,6 +346,10 @@ public class Manager extends PhysicalUser{
 		else{
 			return 0;
 		}
+	}
+	
+	public double computeTotalProfit(){
+		return this.myFoodora.computeTotalProfit();
 	}
 	
 }

@@ -81,7 +81,7 @@ public class ManagerTest {
 		mf.load();
 		
 		try {
-			mf.getListManager().get(0).deactivate("valmontb");
+			mf.getListManager().get(0).disactivate("valmontb");
 		} catch (UserNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -262,8 +262,8 @@ public class ManagerTest {
 		//add a new order done by one of the customers who has already did a command.
 		Order order = new Order(m.getListCustomer().get(1),m.getListRestaurant().get(1));
 		try {
-			order.AddMealToOrder("basic");
-			order.AddSingleItemToOrder("apple pie");
+			order.AddMealToOrder("basic",1);
+			order.AddSingleItemToOrder("apple pie",1);
 			order.getBill();
 			m.setCourierToOrder(order);
 			m.closeOrder(order);

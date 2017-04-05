@@ -40,8 +40,8 @@ public class CustomerFactory extends UserFactory{
 		//Creation of the first customer
 		int[] adress = {0,13};
 		this.createAccount("Alan", "batona", 
-		"jkYt8", "0699887766","alan.baton@gmail.com", adress);
-		Customer customer1 = (Customer) this.login("batona", "jkYt8");
+		"wer123", "0699887766","alan.baton@gmail.com", adress);
+		Customer customer1 = (Customer) this.login("batona", "wer123");
 		customer1.setSurname("Baton");
 		customer1.setBirthdayDate(1,1,1989);
 		customer1.setSpamAgreement(true);

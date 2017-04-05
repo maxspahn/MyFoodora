@@ -177,26 +177,22 @@ public class Menu {
 	 * @return Reference to the meal.
 	 * @throws ItemDoesNotExist
 	 */
-	public Meal getMeal(String mealName) throws ItemDoesNotExist{ 
-		int indexMeal = this.searchIndexMeal(mealName);
+	public Meal getMeal(String mealName) throws ItemDoesNotExist { 
+		int indexMeal;
+		indexMeal = this.searchIndexMeal(mealName);
 		return this.getMeals().get(indexMeal);
+		
 		
 	}
 	
 	/** Returns the singleItem given its name.
 	 * @param singleItemName Name of the singleItem.
 	 * @return Reference to the singleItem.
+	 * @throws ItemDoesNotExist 
 	 */
-	public SingleItem getSingleItem(String singleItemName){
-		try{
-			int indexSingleItemIndex = this.searchIndexSingleItem(singleItemName);
-			return this.getSingleItems().get(indexSingleItemIndex);
-		}
-		
-		catch(ItemDoesNotExist e){
-			System.out.println(e.getMessage());
-		}
-		return null;
+	public SingleItem getSingleItem(String singleItemName) throws ItemDoesNotExist{
+		int indexSingleItemIndex = this.searchIndexSingleItem(singleItemName);
+		return this.getSingleItems().get(indexSingleItemIndex);
 	}
 	
 	/** Assigns a price to a singleItem.
@@ -324,6 +320,20 @@ public class Menu {
 	 */
 	public void setMealFactory(MealFactory mealFactory) {
 		this.mealFactory = mealFactory;
+	}
+	
+	/** Overriding of the default toString method. It displays the title and all the possible items.
+	 * @return String containing the information.
+	 */
+	public String toString(){
+		String s = this.getTitle();
+		for (SingleItem singleItem : this.getSingleItems()) {
+			s += singleItem;
+		}
+		for (Meal meal : this.getMeals()) {
+			s += meal;
+		}
+		return s;
 	}
 
 	

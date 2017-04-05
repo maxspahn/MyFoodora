@@ -29,7 +29,7 @@ public class TestPointFidelityCard {
 		rest.getMenu().addItem("Starter", "camemberg");
 		rest.getMenu().addPriceTag("camemberg", 145);
 		Order order = new Order(myFoodora.getListCustomer().get(0), rest);
-		order.AddSingleItemToOrder("camemberg");
+		order.AddSingleItemToOrder("camemberg",1);
 		order.getCustomer().setFidelityCard("PointFidelityCard");
 		order.getBill();
 		myFoodora.getListCourier().get(0).setAcceptProbability(1); //To be sure that the order is always accepted in the test
@@ -50,6 +50,9 @@ public class TestPointFidelityCard {
 		}
 		catch(FidelityCardDoesNotExistException e){
 			e.getMessage();
+		} catch (ItemDoesNotExist e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 	
@@ -65,7 +68,7 @@ public class TestPointFidelityCard {
 		rest.getMenu().addItem("Starter", "camemberg");
 		rest.getMenu().addPriceTag("camemberg", 1452);
 		Order order = new Order(myFoodora.getListCustomer().get(0), rest);
-		order.AddSingleItemToOrder("camemberg");
+		order.AddSingleItemToOrder("camemberg",1);
 		order.getCustomer().setFidelityCard("PointFidelityCard");
 		order.getBill();
 		myFoodora.getListCourier().get(0).setAcceptProbability(1); //To be sure that the order is always accepted in the test
@@ -75,7 +78,7 @@ public class TestPointFidelityCard {
 		//second order to check is the price is well-computed
 		Restaurant rest2 = myFoodora.getListRestaurant().get(1);
 		Order order2 = new Order(myFoodora.getListCustomer().get(0), rest2);
-		order2.AddSingleItemToOrder("entrecote");
+		order2.AddSingleItemToOrder("entrecote",1);
 		PointFidelityCard card = (PointFidelityCard) myFoodora.getListCustomer().get(0).getFidelityCard();
 
 		order2.getBill();
@@ -96,6 +99,9 @@ public class TestPointFidelityCard {
 		}
 		catch(FidelityCardDoesNotExistException e){
 			e.getMessage();
+		} catch (ItemDoesNotExist e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 	
@@ -124,7 +130,7 @@ public class TestPointFidelityCard {
 		Restaurant rest = myFoodora.getListRestaurant().get(0);
 		try{
 		Order order = new Order(myFoodora.getListCustomer().get(0), rest);
-		order.AddMealToOrder("basic");
+		order.AddMealToOrder("basic",1);
 		order.getCustomer().setFidelityCard("PointFidelityCard");
 		order.getBill();
 		myFoodora.getListCourier().get(0).setAcceptProbability(1); //To be sure that the order is always accepted in the test

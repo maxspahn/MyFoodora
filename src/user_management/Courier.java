@@ -22,7 +22,7 @@ public class Courier extends PhysicalUser{
 	public Courier(String name, String userName, String passWord, String phone,
 			String email, int[] adress) {
 		super(name, userName, passWord, phone, email, adress);
-		this.availability = true;
+		this.availability = false;
 		this.countDeliveredOrder = 0;
 		this.setAcceptProbability(0.9);
 		this.setLocation(this.getAdress());
@@ -47,14 +47,6 @@ public class Courier extends PhysicalUser{
 		return "ID:"+this.getID()+"/Name:"+this.getName()+"/Surname:"+this.getSurname()+"/Username:"+this.getUserName()
 			+"/Password:"+this.getPassWord()+"/Email:"+this.getEmail()+"/Phone:"+this.getPhone()
 			+"/Adress:{"+x+";"+y+"}"+"/Availability"+this.availability+"/DeliveredOrder:"+this.countDeliveredOrder;
-	}	
-	
-	/**Unregister from MyFoodora system.
-	 * 
-	 */
-	public void unRegister(){
-		this.getMyFoodora().getListCourier().remove(this);
-		System.out.println("Your account has been deleted.");
 	}
 
 	/**

@@ -5,7 +5,7 @@ public class SameUserNameException extends Exception{
 	private String message;
 	
 	public SameUserNameException(){
-		this.message  = new String("This user name already exists.");
+		this.setMessage("This user name already exists.");
 	}
 	public String getMessage() {
 		return message;

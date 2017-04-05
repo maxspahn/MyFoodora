@@ -27,6 +27,7 @@ public class Order {
 	private double profit;
 	private int ID;
 	private static int counter;
+	private String name;
 
 	/**Constructor. When creating an order, it is associated to a customer and a restaurant.
 	 * @param customer
@@ -40,21 +41,90 @@ public class Order {
 		this.setRestaurant(restaurant);
 		this.ID = Order.counter+1;
 		Order.counter++;
+		this.setName("Order " + this.ID);
 	}
 	
-	/** Adds an singleItem to the order.
+	public Order(Customer customer, Restaurant restaurant, String name){
+		this.setCustomer(customer);
+		this.setMeals(new ArrayList<Meal>());
+		this.setSingleItems(new ArrayList<SingleItem>());
+		this.setComplete(false);
+		this.setRestaurant(restaurant);
+		this.ID = Order.counter+1;
+		Order.counter++;
+		this.setName(name);
+	}
+	
+	/** Adds singleItem to the order.
 	 * @param singleItemName The name of the item.
+	 * @throws ItemDoesNotExist 
 	 */
-	public void AddSingleItemToOrder(String singleItemName){
-		this.getSingleItems().add(this.getRestaurant().getMenu().getSingleItem(singleItemName));
+	public void AddSingleItemToOrder(String singleItemName, int number) throws ItemDoesNotExist{
+		for (int i = 0; i < number; i++) {
+			this.getSingleItems().add(this.getRestaurant().getMenu().getSingleItem(singleItemName));
+		}
 	}
 	
-	/**Adds an meal to the order.
+	/**Adds meal to the order.
 	 * @param mealName Name of the meal.
 	 * @throws ItemDoesNotExist
 	 */
-	public void AddMealToOrder(String mealName) throws ItemDoesNotExist{
-		this.getMeals().add(this.getRestaurant().getMenu().getMeal(mealName));
+	public void AddMealToOrder(String mealName, int number) throws ItemDoesNotExist{
+		for (int i = 0; i < number; i++) {
+			this.getMeals().add(this.getRestaurant().getMenu().getMeal(mealName));
+		}
+	}
+	
+	/** Adds an item to the order, no matter if singleItem or Meal.
+	 * @param itemName
+	 * @param number
+	 * @throws ItemDoesNotExist
+	 */
+	public void AddItemToOrder(String itemName, int number) throws ItemDoesNotExist {
+		boolean found = false;
+		try {
+			if(this.getRestaurant().getMenu().getMeal(itemName) != null){
+				this.AddMealToOrder(itemName, number);
+				found = true;
+			}
+			else if(this.getRestaurant().getMenu().getSingleItem(itemName) != null){
+				this.AddSingleItemToOrder(itemName, number);
+				found = true;
+			}
+		} catch (ItemDoesNotExist e) {
+			//no message
+		}
+		if(!found){
+			throw new ItemDoesNotExist(itemName);
+		}
+	}
+	
+	/** Adds a number of items to the order, depending of the index given. It is used in user interaction.
+	 * @param index
+	 * @param restaurant
+	 * @param number
+	 * @throws WrongItemAdded
+	 */
+	public void AddItemToOrder(int index, Restaurant restaurant, int number) throws WrongItemAdded{
+		if(index  >=  restaurant.getMenu().getMeals().size() + restaurant.getMenu().getSingleItems().size()){
+			throw new WrongItemAdded();
+		}
+		else if(index  >= restaurant.getMenu().getSingleItems().size()){
+			try {
+				this.AddSingleItemToOrder(restaurant.getMenu().getSingleItems().get(index).getName(), number);
+			} catch (ItemDoesNotExist e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		else {
+			try {
+				this.AddMealToOrder(restaurant.getMenu().getMeals().get(index).getName(), number);
+			} catch (ItemDoesNotExist e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	}
 	
 	/** Gets the price of the order.
@@ -276,6 +346,20 @@ public class Order {
 
 	public int getID() {
 		return ID;
+	}
+
+	/**
+	 * @return the name
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * @param name the name to set
+	 */
+	public void setName(String name) {
+		this.name = name;
 	}
 
 }

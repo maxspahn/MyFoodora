@@ -26,12 +26,17 @@ public class TestIncomeComputation {
 
 		Order order1 = new Order(customer, rest);
 		try {
-			order1.AddMealToOrder("basic");
+			order1.AddMealToOrder("basic",1);
 		} catch (ItemDoesNotExist e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		order1.AddSingleItemToOrder("soup");
+		try {
+			order1.AddSingleItemToOrder("soup",1);
+		} catch (ItemDoesNotExist e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		order1.getBill();
 		
 		myFoodera.getListCourier().get(0).setAcceptProbability(1);

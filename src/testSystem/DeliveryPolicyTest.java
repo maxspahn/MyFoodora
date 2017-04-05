@@ -35,8 +35,8 @@ public class DeliveryPolicyTest {
 		Restaurant rest = m.getListRestaurant().get(0);
 		Order order = new Order(m.getListCustomer().get(0),rest);
 		try {
-			order.AddMealToOrder("basic");
-			order.AddSingleItemToOrder("pineapple");
+			order.AddMealToOrder("basic",1);
+			order.AddSingleItemToOrder("pineapple",1);
 			order.getBill();
 			m.setCourierToOrder(order);
 			m.closeOrder(order);
@@ -70,8 +70,8 @@ public class DeliveryPolicyTest {
 			m.getRestaurantFactory().createAccount("testResto", "testing", "123", "0101001", "haosuteh", adress);
 			Restaurant restTest = (Restaurant) m.getUser("testing");
 			order2 = new Order(m.getListCustomer().get(1), restTest);
-			order2.AddSingleItemToOrder("quiche");
-			order2.AddMealToOrder("exotic");
+			order2.AddSingleItemToOrder("quiche",1);
+			order2.AddMealToOrder("exotic",1);
 			order2.getBill();
 			m.setCourierToOrder(order2);
 			m.closeOrder(order2);
@@ -115,8 +115,8 @@ public class DeliveryPolicyTest {
 		Order order= null;
 		try {
 			order = new Order(m.getListCustomer().get(1), m.getListRestaurant().get(2));
-			order.AddMealToOrder("basic");
-			order.AddSingleItemToOrder("pineapple");
+			order.AddMealToOrder("basic",1);
+			order.AddSingleItemToOrder("pineapple",1);
 			order.getBill();
 			m.setCourierToOrder(order);
 			m.closeOrder(order);
@@ -135,9 +135,10 @@ public class DeliveryPolicyTest {
 		try {
 			m.getCourierFactory().createAccount("newCo", "newOne", "1234", "9234", "maksp@tmaobli.de", adress);
 			m.getListCourier().get(2).setAcceptProbability(1);
+			m.getListCourier().get(2).setAvailability(true);
 			order1 = new Order(m.getListCustomer().get(1), m.getListRestaurant().get(2));
-			order1.AddMealToOrder("basic");
-			order1.AddSingleItemToOrder("pineapple");
+			order1.AddMealToOrder("basic",1);
+			order1.AddSingleItemToOrder("pineapple",1);
 			order1.getBill();
 			m.setCourierToOrder(order1);
 			m.closeOrder(order1);
@@ -146,7 +147,7 @@ public class DeliveryPolicyTest {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		assertTrue(order1.getCourier().getEmail().equals("maksp@tmaobli.de"));
 		
 		
@@ -157,8 +158,8 @@ public class DeliveryPolicyTest {
 			m.getListCourier().get(1).setAcceptProbability(0);
 			m.getListCourier().get(2).setAcceptProbability(0);
 			order2 = new Order(m.getListCustomer().get(1), m.getListRestaurant().get(2));
-			order2.AddMealToOrder("basic");
-			order2.AddSingleItemToOrder("pineapple");
+			order2.AddMealToOrder("basic",1);
+			order2.AddSingleItemToOrder("pineapple",1);
 			order2.getBill();
 			m.setCourierToOrder(order2);
 			m.closeOrder(order2);

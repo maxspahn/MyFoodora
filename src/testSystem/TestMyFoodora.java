@@ -43,7 +43,7 @@ public class TestMyFoodora {
 		
 		try{
 		Order order = new Order(myFoodora.getListCustomer().get(0), myFoodora.getListRestaurant().get(0));
-		order.AddMealToOrder("basic");		
+		order.AddMealToOrder("basic",1);		
 		order.getBill();
 		myFoodora.getListCourier().get(0).setAcceptProbability(1); //To be sure that the order is always accepted in the test			myFoodora.setCourierToOrder(order);
 		myFoodora.closeOrder(order);
@@ -72,7 +72,7 @@ public class TestMyFoodora {
 		myFoodora.load();
 		try{
 			Order order = new Order(myFoodora.getListCustomer().get(0), myFoodora.getListRestaurant().get(0));
-			order.AddMealToOrder("basic");		
+			order.AddMealToOrder("basic",1);		
 			order.getBill();
 			myFoodora.getListCourier().get(0).setAcceptProbability(1); //To be sure that the order is always accepted in the test			myFoodora.setCourierToOrder(order);
 			myFoodora.closeOrder(order);
@@ -102,35 +102,35 @@ public class TestMyFoodora {
 		try{
 			//Order1
 			Order order = new Order(myFoodora.getListCustomer().get(0), myFoodora.getListRestaurant().get(0));
-			order.AddMealToOrder("classic");		
+			order.AddMealToOrder("classic",1);		
 			order.getBill();
 			myFoodora.getListCourier().get(0).setAcceptProbability(1); //To be sure that the order is always accepted in the test			myFoodora.setCourierToOrder(order);
 			myFoodora.closeOrder(order);
 
 			//Order2
 			Order order2 = new Order(myFoodora.getListCustomer().get(0), myFoodora.getListRestaurant().get(0));
-			order2.AddMealToOrder("exotic");		
+			order2.AddMealToOrder("exotic",1);		
 			order2.getBill();
 			myFoodora.getListCourier().get(0).setAcceptProbability(1); //To be sure that the order is always accepted in the test			myFoodora.setCourierToOrder(order);
 			myFoodora.closeOrder(order2);
 			
 			//Order3
 			Order order3 = new Order(myFoodora.getListCustomer().get(0), myFoodora.getListRestaurant().get(0));
-			order3.AddMealToOrder("chef's");		
+			order3.AddMealToOrder("chef's",1);		
 			order3.getBill();
 			myFoodora.getListCourier().get(0).setAcceptProbability(1); //To be sure that the order is always accepted in the test			myFoodora.setCourierToOrder(order);
 			myFoodora.closeOrder(order3);
 			
 			//Order4
 			Order order4 = new Order(myFoodora.getListCustomer().get(0), myFoodora.getListRestaurant().get(0));
-			order.AddMealToOrder("classic");		
+			order.AddMealToOrder("classic",1);		
 			order.getBill();
 			myFoodora.getListCourier().get(0).setAcceptProbability(1); //To be sure that the order is always accepted in the test			myFoodora.setCourierToOrder(order);
 			myFoodora.closeOrder(order4);
 			
 			//Order5
 			Order order5 = new Order(myFoodora.getListCustomer().get(0), myFoodora.getListRestaurant().get(0));
-			order.AddMealToOrder("exotic");		
+			order.AddMealToOrder("exotic",1);		
 			order.getBill();
 			myFoodora.getListCourier().get(0).setAcceptProbability(1); //To be sure that the order is always accepted in the test			myFoodora.setCourierToOrder(order);
 			myFoodora.closeOrder(order5);
