@@ -28,7 +28,9 @@ public class Manager extends PhysicalUser{
 		this.role = "";
 	}
 
-	//getters
+	/**
+	 * @return myFoodora.
+	 */
 	public MyFoodora getMyFoodora() {
 		return myFoodora;
 	}	
@@ -37,16 +39,24 @@ public class Manager extends PhysicalUser{
 		return role;
 	}
 	
-	//setters
+
+	/**
+	 * @param myFoodora MyFoodora.
+	 */
 	public void setMyFoodora(MyFoodora myFoodora){
 		this.myFoodora = myFoodora;
 	}
 
+	/**
+	 * @param role String which contains the role of the manager.
+	 */
 	public void setRole(String role){
 		this.role = role;
 	}
 	
-	//A manager can add any user
+	/**Add a user to the lists of MyFoodora.
+	 * @param user User, the user to be added in the lists.
+	 */
 	public void addUser(User user){
 		this.myFoodora.getManagerFactory().addUserToLists(user);
 	}
@@ -169,15 +179,24 @@ public class Manager extends PhysicalUser{
 		this.myFoodora.setTargetCommands(targetCommands);
 	}
 
-	//set the percentage-fee
+
+	/**Set the service fee percentage.
+	 * @param serviceFee Double service-fee percentage.
+	 */
 	public void setServiceFee(double serviceFee){
 		this.myFoodora.setService_fee(serviceFee);
 	}
-	//set the markup percentage
+
+	/**Set the markup percentage.
+	 * @param markup Double markup percentage.
+	 */
 	public void setMarkup(double markup){
 		this.myFoodora.setMarkup_percentage(markup);
 	}
-	//set the delivery cost
+
+	/**Set the delivery cost.
+	 * @param deliveryCost Double delivery cost.
+	 */
 	public void setDeliveryCost(double deliveryCost){
 		this.myFoodora.setDelivery_cost(deliveryCost);
 	}

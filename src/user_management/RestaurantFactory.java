@@ -2,6 +2,12 @@ package user_management;
 
 import system.MyFoodora;
 
+/** RestaurantFactory class enables creating a new restaurant thanks to a factory pattern. Extends UserFactory class. 
+ * It also provides the method to load five restaurants in MyFoodora system.
+ * @author maxspahn
+ * @author jeremyaugot
+ *
+ */
 public class RestaurantFactory extends UserFactory{
 	
 	public RestaurantFactory(MyFoodora myFoodora){

@@ -1,5 +1,11 @@
 package user_management;
 
+/** Exception which appears when the name of the user does not exist in MyFoodora system.
+ * 
+ * @author maxspahn
+ * @author jeremyaugot
+ *
+ */
 public class UserNotFoundException extends Exception {
 	private String message;
 	

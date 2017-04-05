@@ -81,7 +81,7 @@ public class ManagerTest {
 		mf.load();
 		
 		try {
-			mf.getListManager().get(0).deactivate("valmontb");
+			mf.getListManager().get(0).disactivate("valmontb");
 		} catch (UserNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

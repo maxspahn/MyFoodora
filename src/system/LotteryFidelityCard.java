@@ -5,6 +5,12 @@ import java.util.Date;
 import restaurant.Meal;
 import restaurant.SingleItem;
 
+/**Lottery fidelity card implements the FidelityCard class. A member who has this card will not access to any offer nor gain any point.
+ * Nevertheless he will have a certain probability to win her/his meal for free each day.
+ * @author jeremyaugot
+ * @author maxspahn
+ *
+ */
 public class LotteryFidelityCard implements FidelityCard{
 	
 	private int lastFreeCommandYear;
@@ -48,34 +54,58 @@ public class LotteryFidelityCard implements FidelityCard{
 
 	
 	
+	/**
+	 * @return lastFreeCommandYear Integer.
+	 */
 	protected int getLastFreeCommandYear() {
 		return lastFreeCommandYear;
 	}
 
+	/**
+	 * @param lastFreeCommandYear Integer.
+	 */
 	protected void setLastFreeCommandYear(int lastFreeCommandYear) {
 		this.lastFreeCommandYear = lastFreeCommandYear;
 	}
 
+	/**
+	 * @return Integer lasFreeCommandMonth.
+	 */
 	protected int getLastFreeCommandMonth() {
 		return lastFreeCommandMonth;
 	}
 
+	/**
+	 * @param lastFreeCommandMonth Integer.
+	 */
 	protected void setLastFreeCommandMonth(int lastFreeCommandMonth) {
 		this.lastFreeCommandMonth = lastFreeCommandMonth;
 	}
 
+	/**
+	 * @return Integer lastFreeCommandDay.
+	 */
 	protected int getLastFreeCommandDay() {
 		return lastFreeCommandDay;
 	}
 
+	/**
+	 * @param lastFreeCommandDay Integer.
+	 */
 	protected void setLastFreeCommandDay(int lastFreeCommandDay) {
 		this.lastFreeCommandDay = lastFreeCommandDay;
 	}
 
+	/**
+	 * @return Double probability.
+	 */
 	public double getProbability() {
 		return probability;
 	}
 
+	/**
+	 * @param probability Double.
+	 */
 	public void setProbability(double probability) {
 		this.probability = probability;
 	}

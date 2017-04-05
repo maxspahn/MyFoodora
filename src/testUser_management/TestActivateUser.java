@@ -21,7 +21,7 @@ public class TestActivateUser {
 		
 		assertTrue(myFoodora.getListUsers().get(3).isActivated());
 		try {
-			myFoodora.getListManager().get(1).deactivate("bertrandc");
+			myFoodora.getListManager().get(1).disactivate("bertrandc");
 		} catch (UserNotFoundException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();

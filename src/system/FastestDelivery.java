@@ -4,6 +4,12 @@ import java.util.ArrayList;
 
 import user_management.Courier;
 
+/**Way of allocating a courier to an order, implements the DeliveryPolicy class.
+ * It is a fastest delivery: the courier who is the closer to the restaurant is chosen.
+ * @author jeremyaugot
+ * @author maxspahn
+ *
+ */
 public class FastestDelivery implements DeliveryPolicy {
 
 	public FastestDelivery() {

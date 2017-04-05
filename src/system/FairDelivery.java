@@ -4,6 +4,12 @@ import java.util.ArrayList;
 
 import user_management.Courier;
 
+/**Way of allocating a courier to an order, implements the DeliveryPolicy class.
+ * It is a fair-occupation delivery: the courier with the least number of delivered orders is chosen.
+ * @author jeremyaugot
+ * @author maxspahn
+ *
+ */
 public class FairDelivery implements DeliveryPolicy {
 
 	public FairDelivery() {

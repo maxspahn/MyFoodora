@@ -1,5 +1,10 @@
 package system;
 
+/**Exception which appears when there is no order in a month.
+ * @author jeremyaugot
+ * @author maxspahn
+ *
+ */
 public class NoOrderInMonth extends Exception {
 	
 	private String message;
