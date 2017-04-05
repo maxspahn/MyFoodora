@@ -2,6 +2,12 @@ package user_management;
 
 import system.MyFoodora;
 
+/** ManagerFactory class enables creating a new manager thanks to a factory pattern. Extends UserFactory class. 
+ * It also provides the method to load two managers in MyFoodora system.
+ * @author maxspahn
+ * @author jeremyaugot
+ *
+ */
 public class ManagerFactory extends UserFactory{
 	
 	public ManagerFactory(MyFoodora myFoodora){

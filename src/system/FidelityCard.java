@@ -1,5 +1,10 @@
 package system;
 
+/**A fidelity card gives benefits to the customer.
+ * @author jeremyaugot
+ * @author maxspahn
+ *
+ */
 public interface FidelityCard {
 	
 	/** Compute the price of an order.

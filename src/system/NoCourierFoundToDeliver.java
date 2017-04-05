@@ -1,5 +1,10 @@
 package system;
 
+/**Exception which appears when no courier has been found to deliver an order.
+ * @author jeremyaugot
+ * @author maxspahn
+ *
+ */
 public class NoCourierFoundToDeliver extends Exception{
 	
 	private String message;

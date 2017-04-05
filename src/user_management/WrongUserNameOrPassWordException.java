@@ -1,5 +1,11 @@
 package user_management;
 
+/** Exception which appears when the user cannot connect with this password and username.
+ * 
+ * @author maxspahn
+ * @author jeremyaugot
+ *
+ */
 public class WrongUserNameOrPassWordException extends Exception{
 	private String message;
 	

@@ -2,6 +2,12 @@ package user_management;
 
 import java.util.Date;
 
+/** A physical user has a name, surname, birthdaydate, username, password, phone number, email and an adress.
+ * It extends the User class.
+ * 
+ * @author maxspahn
+ * @author jeremyaugot
+ */
 public class PhysicalUser extends User {
 	private String surname;
 	private Date birthdayDate;
@@ -13,22 +19,39 @@ public class PhysicalUser extends User {
 		this.setBirthdayDate(0,0,0);
 	}
 
-	//getters
+
+	/**
+	 * @return the surname
+	 */
 	public String getSurname() {
 		return surname;
 	}
+
+	/**
+	 * @return the birthdayDate
+	 */
 	public Date getBirthdayDate() {
 		return birthdayDate;
 	}
 
-	//setters
+
+	/**
+	 * @param day Integer
+	 * @param month Integer
+	 * @param year Integer
+	 */
 	public void setBirthdayDate(int day, int month, int year) {
 		Date birthDate = new Date(year - 1900, month -1 , day);
 		this.birthdayDate = birthDate;
-	}	
+	}
+
+
+	/**
+	 * @param surname the surname to set
+	 */
 	public void setSurname(String surname) {
 		this.surname = surname;
-	}
+	}	
 	
 	
 }

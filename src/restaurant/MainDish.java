@@ -2,6 +2,7 @@ package restaurant;
 
 /** Main Dish is a type of SingleItem and extends the class SingleItem.
  * @author maxspahn
+ * @author jeremyaugot
  *
  */
 public class MainDish extends SingleItem{

@@ -3,6 +3,7 @@ package restaurant;
 /** Exception if the user try to access to an item that does not exists.
  * 
  * @author maxspahn
+ * @author jeremyaugot
  *
  */
 public class ItemDoesNotExist extends Exception {

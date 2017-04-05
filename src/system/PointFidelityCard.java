@@ -3,6 +3,12 @@ package system;
 import restaurant.Meal;
 import restaurant.SingleItem;
 
+/**Implements the FidelityCard class. Instead of having the special offer, she/he will gain a point for each 10 euros spent in the restaurant.
+ * Once she/he will reach 100 points she/he will receive a 10% discount on the next order. 
+ * @author jeremyaugot
+ * @author maxspahn
+ *
+ */
 public class PointFidelityCard implements FidelityCard{
 	
 	private int points;

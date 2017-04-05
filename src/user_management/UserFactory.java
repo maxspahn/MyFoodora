@@ -108,7 +108,4 @@ public abstract class UserFactory {
 		return myFoodora;
 	}
 	
-	
-	
-	
 }

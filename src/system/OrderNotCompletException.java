@@ -1,5 +1,10 @@
 package system;
 
+/**Exception which appears when someone tries to save an order which is not complete yet.
+ * @author jeremyaugot
+ * @author maxspahn
+ *
+ */
 public class OrderNotCompletException extends Exception{
 	
 	private String message;
