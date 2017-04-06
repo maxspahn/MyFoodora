@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.TreeMap;
@@ -467,6 +469,40 @@ public class MyFoodora {
 		
 	}
 	
+	
+	/** Sort the list of Restaurants according to their total selling.
+	 * 
+	 */
+	public void sortRestaurant(){
+		Collections.sort(this.getListRestaurant(), new Comparator<Restaurant>() {
+			@Override
+			public int compare(Restaurant rest1 , Restaurant rest2)
+			{
+				if(rest1.getTotalSelling() >= rest2.getTotalSelling()){
+					return -1;
+				}
+				else{ return 1;}
+			}
+		});
+		
+	}
+	
+	/** Sort the list of Couriers according to their number of delivered orders.
+	 * 
+	 */
+	public void sortCourier(){
+		Collections.sort(this.getListCourier(), new Comparator<Courier>() {
+			@Override
+			public int compare(Courier cour1 , Courier cour2)
+			{
+				if(cour1.getCountDeliveredOrder() >= cour2.getCountDeliveredOrder()){
+					return -1;
+				}
+				else{ return 1;}
+			}
+		});
+	}
+	
 	/** Get the user instance by his name.
 	 * @param userName Name of the user to be found.
 	 * @return User object.
@@ -510,23 +546,32 @@ public class MyFoodora {
 	/** Put the list of Restaurants in a proper display format.
 	 * @return String with all the restaurants.
 	 */
-	public String listRestaurantsToString(){
+	public String listRestaurantsToString(User user){
 		String s = "";
 		int i = 1;
 		for (Restaurant restaurant : this.getListRestaurant()) {
-			s += "Nb : " + i + "\t" + restaurant + "\n";
+			s += "Nb : " + i + "\t" + restaurant;
+			if(user instanceof Manager){
+				s += " Total selling : " + restaurant.getTotalSelling();
+			}
+			s += "\n";
 			i++;
 		}
+		
 		return s;
 	}
 	
 	/** Put the list of Courier in a proper display format.
 	 * @return
 	 */
-	public String listCourierToString(){
+	public String listCourierToString(User user){
 		String s = "";
 		for (Courier courier : this.getListCourier()) {
-			s += courier + "\n";
+			s += courier ;
+			if(user instanceof Manager){
+				s += " Delivered Orders : " + courier.getCountDeliveredOrder();
+			}
+			s += "\n";
 		}
 		return s;
 	}

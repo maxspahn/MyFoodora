@@ -243,6 +243,10 @@ public class Launch {
 	 */
 	public void logout(String [] args){
 		if(rightNumberofArguments(args, 1)){
+			if(this.getCurrentUser() == null){
+				System.out.println("You are not logged in, you cannot get logged out");
+				return;
+			}
 			this.setCurrentUser(null);
 			System.out.println("See you next time, you're are logged out");
 		}
@@ -477,25 +481,30 @@ public class Launch {
 			}
 		}
 	}
-	// TODO
+	
+	
+	/** Prints a sorted list of all couriers according to their number of delivered orders.
+	 * Only possible as manager.
+	 * @param args empty
+	 */
 	public void showCourierDeliveries(String [] args){
 		if(rightNumberofArguments(args, 1) && isManager()){
-			System.out.println("to be done");
+			this.getMyFoodora().sortCourier();
+			System.out.println(this.getMyFoodora().listCourierToString(this.getCurrentUser()));
 		}
 	}
 	
-	// TODO
+	/** Prints a sorted list of all the restaurants according to their total selling. 
+	 * If the user is a manager he can see all the selling.
+	 * @param args empty
+	 */
 	public void showRestaurantTop(String [] args){
 		if(rightNumberofArguments(args, 1) && isManager()){
-			System.out.println("to be done");
+			this.getMyFoodora().sortRestaurant();
+			System.out.println(this.getMyFoodora().listRestaurantsToString(this.getCurrentUser()));
 		}
 	}
 	
-	public void showCustomers(String [] args){
-		if(rightNumberofArguments(args, 1) && isManager()){
-			System.out.println(myFoodora.getListCustomer());
-		}
-	}
 	
 	public void showMenuItem(String [] args){
 		if(rightNumberofArguments(args, 2) && isManager()){
@@ -527,7 +536,7 @@ public class Launch {
 	
 	public void showRestaurants(String [] args){
 		if(rightNumberofArguments(args, 1)){
-			System.out.println(this.getMyFoodora().listRestaurantsToString());
+			System.out.println(this.getMyFoodora().listRestaurantsToString(this.getCurrentUser()));
 		}
 	}
 	
@@ -539,7 +548,7 @@ public class Launch {
 	
 	public void showCouriers(String [] args){
 		if(rightNumberofArguments(args, 1) && isManager()){
-			System.out.println(this.getMyFoodora().listCourierToString());
+			System.out.println(this.getMyFoodora().listCourierToString(this.getCurrentUser()));
 		}
 	}
 	
