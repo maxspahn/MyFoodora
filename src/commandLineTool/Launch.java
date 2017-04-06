@@ -63,6 +63,7 @@ public class Launch {
 		commands.add("showTotalProfit \t<startDate> <endDate>");
 		commands.add("runTest \t\t<testScenario-file>");
 		commands.add("help \t\t\t<>");
+		commands.add("showRestaurants \t<>");
 
 		Collections.sort(commands, String.CASE_INSENSITIVE_ORDER);
 	}
@@ -175,7 +176,7 @@ public class Launch {
 			this.endOrder(args);
 			break;
 		case "onduty":
-			this.registerCourier(args);
+			this.onDuty(args);
 			break;
 		case "offduty":
 			this.offDuty(args);
@@ -437,12 +438,18 @@ public class Launch {
 		}
 	}
 	
+	/** A courier can change his status to 'on duty'.
+	 * @param args empty
+	 */
 	public void onDuty(String [] args){
 		if(rightNumberofArguments(args, 1) && isCourier()){
 			((Courier) this.getCurrentUser()).setAvailability(true);
 		}
 	}
 	
+	/** A courier can change his status to 'off duty'.
+	 * @param args empty
+	 */
 	public void offDuty(String [] args){
 		if(rightNumberofArguments(args, 1) && isCourier()){
 			((Courier) this.getCurrentUser()).setAvailability(false);
@@ -472,6 +479,9 @@ public class Launch {
 		}
 	}
 	
+	/** A manager can associate a new card to a user.
+	 * @param args Username, cardname.
+	 */
 	public void associateCard (String [] args){
 		if(rightNumberofArguments(args, 3) && isManager()){
 			try {
