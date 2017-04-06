@@ -263,7 +263,7 @@ public class ManagerTest {
 		Order order = new Order(m.getListCustomer().get(1),m.getListRestaurant().get(1));
 		try {
 			order.AddMealToOrder("basic",1);
-			order.AddSingleItemToOrder("apple pie",1);
+			order.AddSingleItemToOrder("apple_pie",1);
 			order.getBill();
 			m.setCourierToOrder(order);
 			m.closeOrder(order);

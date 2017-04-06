@@ -44,9 +44,13 @@ public class Courier extends PhysicalUser{
 	public String toString(){	
 		int x = this.getAdress()[0];
 		int y = this.getAdress()[1];
-		return "ID:"+this.getID()+"/Name:"+this.getName()+"/Surname:"+this.getSurname()+"/Username:"+this.getUserName()
-			+"/Password:"+this.getPassWord()+"/Email:"+this.getEmail()+"/Phone:"+this.getPhone()
-			+"/Adress:{"+x+";"+y+"}"+"/Availability"+this.availability+"/DeliveredOrder:"+this.countDeliveredOrder;
+		String s = "ID:"+this.getID()+"\t : "+this.getName() + " : "+this.getEmail()+" "+this.getPhone()
+			+" : { "+x+" ; "+y+" }"+" DeliveredOrders : "+this.countDeliveredOrder;
+		if(this.isAvailability()){
+			s += " on Duty";
+		}
+		else{ s += " off Duty";}
+		return s;
 	}
 
 	/**

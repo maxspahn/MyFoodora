@@ -80,7 +80,9 @@ public class Restaurant extends User implements Observable{
 	public String toString(){	
 		int x = this.getAdress()[0];
 		int y = this.getAdress()[1];
-		return "Name:"+this.getName()+" Email: "+this.getEmail()+" Phone: "+this.getPhone()	+" Adress:{ "+x+" ; "+y+" }";
+		return this.getName()
+			+"\n\tEmail:"+this.getEmail()+"\n\tPhone:"+this.getPhone()
+			+"\n\tAdress:{"+x+";"+y+"}\n";
 	}
 	
 	/**Set the meal of the week.
@@ -120,7 +122,6 @@ public class Restaurant extends User implements Observable{
 	public void setMessage(String message){
 		this.changed = true;
 	}
-	
 
 	/** Create a new full meal.
 	 * @param fullMealName String which contains the name of the full meal to create.
@@ -159,11 +160,15 @@ public class Restaurant extends User implements Observable{
 		
 	}
 	
+<<<<<<< HEAD
+	
+=======
 	/** Create a new item.
 	 * @param itemType String which contains the type of the item: a fullMeal, halfMeal, a starter, mainDish or a dessert.
 	 * @param name String which contains the name of the item.
 	 * @throws WrongItemAdded if there is already an item of the same type.
 	 */
+>>>>>>> ab913d12ab165e67de67b2c704ad83c3ad5a32f6
 	public void createNewItem(String itemType, String name) throws WrongItemAdded{
 		this.menu.addItem(itemType, name);
 	}

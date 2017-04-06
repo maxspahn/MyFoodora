@@ -53,28 +53,28 @@ public class Menu {
 		try {
 			this.addItem("Starter", "Soup");
 			this.addPriceTag("soup", 3.10);
-			this.addItem("Starter", "Ceasar Salad");
-			this.addPriceTag("Ceasar Salad", 2.30);
+			this.addItem("Starter", "Ceasar_Salad");
+			this.addPriceTag("Ceasar_Salad", 2.30);
 			this.addItem("Starter", "Quiche");
 			this.addPriceTag("Quiche", 3.00);
-			this.addItem("Starter", "Garlic Bread");
-			this.addPriceTag("Garlic Bread", 2.00);
+			this.addItem("Starter", "Garlic_Bread");
+			this.addPriceTag("Garlic_Bread", 2.00);
 			this.addItem("MainDish", "Tartar"); 
 			this.addPriceTag("Tartar", 9.10);
-			this.addItem("MainDish", "Pizza Fungi");
-			this.addPriceTag("Pizza Fungi", 6.70);
+			this.addItem("MainDish", "Pizza_Fungi");
+			this.addPriceTag("Pizza_Fungi", 6.70);
 			this.addItem("MainDish", "Entrecote");
 			this.addPriceTag("Entrecote", 11.30);
-			this.addItem("MainDish", "Boeuf Bourguignon");
-			this.addPriceTag("Boeuf Bourguignon", 9.80);
-			this.addItem("Dessert", "Mousse au Chocolat");
-			this.addPriceTag("Mousse au Chocolat", 3.00);
-			this.addItem("Dessert", "Apple pie");
-			this.addPriceTag("Apple pie", 2.50);
-			this.addItem("Dessert", "Ice Cream");
-			this.addPriceTag("Ice Cream", 2.00);
-			this.addItem("Dessert", "Fruit Salad");
-			this.addPriceTag("Fruit Salad", 3.10);
+			this.addItem("MainDish", "Boeuf_Bourguignon");
+			this.addPriceTag("Boeuf_Bourguignon", 9.80);
+			this.addItem("Dessert", "Mousse_au_Chocolat");
+			this.addPriceTag("Mousse_au_Chocolat", 3.00);
+			this.addItem("Dessert", "Apple_pie");
+			this.addPriceTag("Apple_pie", 2.50);
+			this.addItem("Dessert", "Ice_Cream");
+			this.addPriceTag("Ice_Cream", 2.00);
+			this.addItem("Dessert", "Fruit_Salad");
+			this.addPriceTag("Fruit_Salad", 3.10);
 			this.addItem("Starter", "Tomatoes");
 			this.addPriceTag("Tomatoes", 2.90);
 			this.addItem("Dessert", "Pineapple");
@@ -92,19 +92,19 @@ public class Menu {
 		
 		try {
 			this.addItem("FullMeal", "Basic");
-			this.addItemToMeal("Basic", "Ceasar Salad");
-			this.addItemToMeal("Basic", "Pizza Fungi");
-			this.addItemToMeal("Basic", "Apple Pie");
+			this.addItemToMeal("Basic", "Ceasar_Salad");
+			this.addItemToMeal("Basic", "Pizza_Fungi");
+			this.addItemToMeal("Basic", "Apple_Pie");
 			this.setMealOfTheWeek("Basic");
 			this.addItem("HalfMeal", "Classic");
-			this.addItemToMeal("Classic", "Garlic Bread");
+			this.addItemToMeal("Classic", "Garlic_Bread");
 			this.addItemToMeal("Classic", "Entrecote");
 			this.addItem("Halfmeal", "Exotic");
 			this.addItemToMeal("exotic"	, "pineapple");
-			this.addItemToMeal("exotic", "pizza fungi");
+			this.addItemToMeal("exotic", "pizza_fungi");
 			this.addItem("halfmeal", "chef's");   
 			this.addItemToMeal("chef's", "quiche");
-			this.addItemToMeal("chef's", "Boeuf Bourguignon");
+			this.addItemToMeal("chef's", "Boeuf_Bourguignon");
 			
 			
 		} catch (WrongItemAdded e) {

@@ -1,6 +1,6 @@
 package system;
 
-/**Allows restaurants and managers to sort the shipped orders according to different criterias: most/least ordered half-meal, most/least ordered item "à la carte".
+/**Allows restaurants and managers to sort the shipped orders according to different criterias: most/least ordered half-meal, most/least ordered item "Ã  la carte".
  * Implements Comparable<SortPolicy>.
  * @author jeremyaugot
  * @author maxspahn

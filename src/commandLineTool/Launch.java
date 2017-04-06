@@ -1,6 +1,8 @@
 package commandLineTool;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -35,8 +37,6 @@ public class Launch {
 		commands.add("addDishRestaurantMenu \t<dishName> <dishCategory> <foodCategory> <unitPrice>");
 		commands.add("createMeal \t\t<mealName>");
 		commands.add("addDish2Meal \t\t<dishName> <mealName>");
-		commands.add("showMeal \t\t<mealName>");
-		commands.add("saveMeal \t\t<mealName>");
 		commands.add("setSpecialOffer \t<mealName>");
 		commands.add("removeFromSpecialOffer \t<mealName>");
 		commands.add("createOrder \t\t<restaurantName> <orderName>");
@@ -48,14 +48,19 @@ public class Launch {
 		commands.add("setDeliveryPolicy \t<delPolicyName>");
 		commands.add("setProfitPolicy \t<ProfitPolicyName>");
 		commands.add("associateCard \t\t<userName> <cardType>");
+		commands.add("showCustomers \t\t<>");
+		commands.add("showCouriers \t\t<>");
 		commands.add("showCourierDeliveries \t<>");
 		commands.add("showRestaurantTop \t<>");
-		commands.add("showCustomers \t\t<>");
+		commands.add("showMeal \t\t<mealName>");
+		commands.add("saveMeal \t\t<mealName>");
 		commands.add("showMenuItem \t\t<restaurant-name>");
 		commands.add("showTotalProfit \t<>");
 		commands.add("showTotalProfit \t<startDate> <endDate>");
 		commands.add("runTest \t\t<testScenario-file>");
 		commands.add("help \t\t\t<>");
+		
+		Collections.sort(commands, String.CASE_INSENSITIVE_ORDER);
 	}
 	
 	public String commandsToString(){
@@ -69,23 +74,20 @@ public class Launch {
 	public static void main(String[] args) {
 		Launch launch = new Launch();
 		String exit = "";
-		System.out.println("Welcome to MyFoodora");
+		System.out.println("Welcome to MyFoodora, type 'help' to get a list of commands, 'q' to exit");
 		while(!exit.equals("q")){
 			if(launch.getCurrentUser() != null){
-				System.out.println("Logged in as " + launch.getCurrentUser().getUserName());
+				System.out.println("Logged in as " + launch.getCurrentUser().getUserName() + "[" + launch.getUserType() + "]");
 			}
 			Scanner scanner = new Scanner(System.in);
 			exit = scanner.nextLine();
 			launch.executeCommand(exit);
 		}
-		System.out.println("MyFoodora shut down");
 	}
 	
 	public void executeCommand(String arg){
-		String [] args = arg.trim().split(" ");
-		for (int i = 0; i < args.length; i++) {
-			args[i] = args[i].replace("\"", "");
-		}
+		String [] args = arg.split(" ");
+		
 		
 		switch (args[0].toLowerCase()) {
 		case "login":
@@ -160,13 +162,20 @@ public class Launch {
 		case "showmenuitem":
 			this.showMenuItem(args);
 			break;
-		case "showTotalProfit":
+		case "showtotalprofit":
 			this.showTotalProfit(args);
 			break;
 		case "help":
 			this.help(args);
 			break;
-
+		case "showrestaurants":
+			this.showRestaurants(args);
+			break;
+		case "q":
+			System.out.println("MyFoodora shut down");
+		case "showcouriers":
+			this.showCouriers(args);
+			break;
 		default:
 			System.out.println("This command does not exist, 'help' for information");;
 		}
@@ -363,7 +372,7 @@ public class Launch {
 	}
 	
 	//modified no date as argument, it is always the actual date
-	/** 
+	/** A customer can end an order.
 	 * @param args
 	 */
 	public void endOrder(String [] args){
@@ -440,11 +449,6 @@ public class Launch {
 		}
 	}
 	
-	public void showCustomers(String [] args){
-		if(rightNumberofArguments(args, 1) && isManager()){
-			System.out.println(myFoodora.getListCustomer());
-		}
-	}
 	
 	public void showMenuItem(String [] args){
 		if(rightNumberofArguments(args, 2) && isManager()){
@@ -471,6 +475,24 @@ public class Launch {
 				System.out.println("Total income between " + args[1] + " and " + args[2] + " : " + profit);
 				
 			}
+		}
+	}
+	
+	public void showRestaurants(String [] args){
+		if(rightNumberofArguments(args, 1)){
+			System.out.println(this.getMyFoodora().listRestaurantsToString());
+		}
+	}
+	
+	public void showCustomers(String [] args){
+		if(rightNumberofArguments(args, 1) && isManager()){
+			System.out.println(this.getMyFoodora().listCustomerToString());
+		}
+	}
+	
+	public void showCouriers(String [] args){
+		if(rightNumberofArguments(args, 1) && isManager()){
+			System.out.println(this.getMyFoodora().listCourierToString());
 		}
 	}
 	
@@ -527,7 +549,7 @@ public class Launch {
 		if(this.getCurrentUser() instanceof Courier){
 			return true;
 		}
-		System.out.println("Permission deinied, only Courier can do this action");
+		System.out.println("Permission denied, only Courier can do this action");
 		return false;
 	}
 	
@@ -539,6 +561,14 @@ public class Launch {
 		}
 		System.out.println("There is no order with that name");
 		return null;
+	}
+	
+	public String getUserType(){
+		if(this.getCurrentUser() instanceof Manager){return "Manager";}
+		else if(this.getCurrentUser() instanceof Restaurant) {return "Restaurant";}
+		else if(this.getCurrentUser() instanceof Courier) {return "Courier";}
+		else if(this.getCurrentUser() instanceof Customer){return "Customer";}
+		else{return "not logged in";}
 	}
 
 	/**

@@ -431,6 +431,11 @@ public class MyFoodora {
 		
 	}
 	
+	/** Get the user instance by his name.
+	 * @param userName Name of the user to be found.
+	 * @return User object.
+	 * @throws UserNotFoundException
+	 */
 	public User getUser(String userName) throws UserNotFoundException{
 		boolean found = false;
 		for (User user : this.getListUsers()) {
@@ -466,15 +471,37 @@ public class MyFoodora {
 		}
 	}
 	
-	/** Put the list of Restaurants in a proper dispaly format.
+	/** Put the list of Restaurants in a proper display format.
 	 * @return String with all the restaurants.
 	 */
-	public String ListRestaurantsToString(){
+	public String listRestaurantsToString(){
 		String s = "";
 		int i = 1;
 		for (Restaurant restaurant : this.getListRestaurant()) {
 			s += "Nb : " + i + "\t" + restaurant + "\n";
 			i++;
+		}
+		return s;
+	}
+	
+	/** Put the list of Courier in a proper display format.
+	 * @return
+	 */
+	public String listCourierToString(){
+		String s = "";
+		for (Courier courier : this.getListCourier()) {
+			s += courier + "\n";
+		}
+		return s;
+	}
+
+	/** Put the list of Customers in a proper display format.
+	 * @return
+	 */
+	public String listCustomerToString(){
+		String s = "";
+		for (Customer customer : this.getListCustomer()) {
+			s += customer + "\n";
 		}
 		return s;
 	}

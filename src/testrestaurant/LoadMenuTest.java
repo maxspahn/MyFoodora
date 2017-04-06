@@ -11,7 +11,7 @@ public class LoadMenuTest {
 	@Test
 	public void LoadSingleItemstest() {
 		Menu menuTest = new Menu("Menu");
-		assertTrue(menuTest.getSingleItems().get(1).getName().equals("Ceasar Salad"));
+		assertTrue(menuTest.getSingleItems().get(1).getName().equals("Ceasar_Salad"));
 	}
 
 	@Test
