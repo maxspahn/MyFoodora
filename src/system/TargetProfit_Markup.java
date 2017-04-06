@@ -1,10 +1,12 @@
 package system;
 
+import java.io.Serializable;
+
 /** Implementation of TargetPolicy to compute and set the markupPercentage according to a targetProfit and given values for serviceFee and deliveryCost.
  * @author maxspahn
  * @author jeremyaugot
  */
-public class TargetProfit_Markup implements TargetPolicy  {
+public class TargetProfit_Markup implements TargetPolicy, Serializable  {
 
 	public TargetProfit_Markup() {
 		// TODO Auto-generated constructor stub

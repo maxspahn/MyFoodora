@@ -1,10 +1,12 @@
 package restaurant;
 
+import java.io.Serializable;
+
 /** SingleItem provides information about the price, the type, the name and the id of singleItem.
  * @author maxspahn
  * @author jeremyaugot
  */
-public abstract class SingleItem {
+public abstract class SingleItem implements Serializable{
 	
 	private double price;
 	private static int counter = 1;

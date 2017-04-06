@@ -1,5 +1,6 @@
 package restaurant;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**The class provides the listing of singleItems and Meals that one Restaurant offers. The creation of items is done in this class.
@@ -9,7 +10,7 @@ import java.util.ArrayList;
  * @author jeremyaugot
  *
  */
-public class Menu {
+public class Menu implements Serializable{
 	
 	private ArrayList<SingleItem> singleItems = new ArrayList<>();
 	private ArrayList<Meal> meals = new ArrayList<>();

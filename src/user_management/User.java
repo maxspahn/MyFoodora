@@ -1,13 +1,14 @@
 package user_management;
 
 import system.MyFoodora;
+import java.io.Serializable;
 
 /** A user has an ID, a name, a username, a password, a phone, an email, an adress. He can be activated or deactivated. 
  * A user has access to MyFoodora.
  * @author maxspahn
  * @author jeremyaugot
  */
-public abstract class User {
+public abstract class User implements Serializable{
 	private int ID;
 	private static int counter; //static counter to avoid 2 users with the same ID
 	private String name;

@@ -1,12 +1,14 @@
 package restaurant;
 
+import java.io.Serializable;
+
 /** Starter implementation. Attention the name is incorrectly spelled!
  * 
  * @author jeremyaugot
  * @author maxspahn
  *
  */
-public class Starter extends SingleItem{
+public class Starter extends SingleItem implements Serializable{
 	
 	/** Constructor. 
 	 * @param name Name of the starter.

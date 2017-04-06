@@ -1,5 +1,6 @@
 package user_management;
 
+import java.io.Serializable;
 import java.util.TreeSet;
 
 import restaurant.*;
@@ -14,7 +15,7 @@ import system.SingleItemSort;
  * @author jeremyaugot
  *
  */
-public class Restaurant extends User implements Observable{
+public class Restaurant extends User implements Observable, Serializable{
 	//list of all the products (single items and meals) of the restaurant
 	private Menu menu;  
 	private double discount; //Discount for the meal of the week

@@ -1,5 +1,6 @@
 package system;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import user_management.Courier;
@@ -10,7 +11,7 @@ import user_management.Courier;
  * @author maxspahn
  *
  */
-public class FastestDelivery implements DeliveryPolicy {
+public class FastestDelivery implements DeliveryPolicy, Serializable {
 
 	public FastestDelivery() {
 		// TODO Auto-generated constructor stub

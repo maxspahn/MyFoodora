@@ -1,5 +1,6 @@
 package user_management;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /** A physical user has a name, surname, birthdaydate, username, password, phone number, email and an adress.
@@ -8,7 +9,7 @@ import java.util.Date;
  * @author maxspahn
  * @author jeremyaugot
  */
-public class PhysicalUser extends User {
+public class PhysicalUser extends User implements Serializable {
 	private String surname;
 	private Date birthdayDate;
 	

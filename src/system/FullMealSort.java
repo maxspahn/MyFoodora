@@ -1,5 +1,7 @@
 package system;
 
+import java.io.Serializable;
+
 import restaurant.FullMeal;
 
 /**Sort the list of full meals according to the chosen sort policy. Extends the SortPolicy class. 
@@ -7,7 +9,7 @@ import restaurant.FullMeal;
  * @author maxspahn
  *
  */
-public class FullMealSort extends SortPolicy {
+public class FullMealSort extends SortPolicy implements Serializable {
 	
 	private FullMeal fullMeal;
 

@@ -1,5 +1,7 @@
 package system;
 
+import java.io.Serializable;
+
 import restaurant.HalfMeal;
 
 /**Sort the list of half meals according to the chosen sort policy. Extends the SortPolicy class. 
@@ -7,7 +9,7 @@ import restaurant.HalfMeal;
  * @author maxspahn
  *
  */
-public class HalfMealSort extends SortPolicy{
+public class HalfMealSort extends SortPolicy implements Serializable{
 	
 	private HalfMeal halfMeal;
 

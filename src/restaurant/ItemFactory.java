@@ -1,12 +1,14 @@
 package restaurant;
 
+import java.io.Serializable;
+
 /** ItemFactory is part of the FactoryPattern to create items.
  * Every ItemFactory must provide a function to create a meal or a singleItem. One of them returns null.
  * 
  * @author maxspahn
  * @author jeremyaugot
  */
-public abstract class ItemFactory {
+public abstract class ItemFactory implements Serializable {
 
 	/** Create a new meal.
 	 * @param mealType String which contains the type of the meal.

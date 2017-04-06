@@ -1,5 +1,6 @@
 package system;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import user_management.Courier;
@@ -10,7 +11,7 @@ import user_management.Courier;
  * @author maxspahn
  *
  */
-public class FairDelivery implements DeliveryPolicy {
+public class FairDelivery implements DeliveryPolicy, Serializable {
 
 	public FairDelivery() {
 		// TODO Auto-generated constructor stub

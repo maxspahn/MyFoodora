@@ -1,5 +1,7 @@
 package user_management;
 
+import java.io.Serializable;
+
 import system.Order;
 
 /** Implementation of Courier, extends the PhysicalUser class.
@@ -9,7 +11,7 @@ import system.Order;
  *
  */
 
-public class Courier extends PhysicalUser{
+public class Courier extends PhysicalUser implements Serializable{
 	private boolean availability; //False if he/she is already delivering a product
 	private int countDeliveredOrder;	
 	private double acceptProbability;

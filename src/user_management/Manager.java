@@ -1,5 +1,6 @@
 package user_management;
 
+import java.io.Serializable;
 import java.util.*;
 
 import system.*;
@@ -10,7 +11,7 @@ import system.*;
  * @author maxspahn
  * @author jeremyaugot
  */
-public class Manager extends PhysicalUser{
+public class Manager extends PhysicalUser implements Serializable{
 	private MyFoodora myFoodora;
 	private String role;
 	

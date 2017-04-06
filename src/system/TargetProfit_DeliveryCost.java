@@ -1,10 +1,12 @@
 package system;
 
+import java.io.Serializable;
+
 /** Implementation of TargetPolicy to compute and set the deliveryCost according to a targetProfit and given values for markupPercentage and serviceFee.
  * @author maxspahn
  * @author jeremyaugot
  */
-public class TargetProfit_DeliveryCost implements TargetPolicy{
+public class TargetProfit_DeliveryCost implements TargetPolicy, Serializable{
 
 	/** default Constructor.
 	 * 

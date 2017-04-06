@@ -1,5 +1,6 @@
 package restaurant;
 
+import java.io.Serializable;
 
 /** Meal is the superClass of every possible combination of items, that are supposed to be a kind of meal (i.e. FullMeal, HalfMeal) 
  * A Meal-object always stores information about its status (glutenFree, vegetarian, mealOfTheWeek, discount, complete). 
@@ -10,7 +11,7 @@ package restaurant;
  * @author maxspahn
  * @author jeremyaugot
  */
-public abstract class Meal{	
+public abstract class Meal implements Serializable{	
 
 	private static int counter = 1;
 	private int id;

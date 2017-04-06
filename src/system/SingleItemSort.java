@@ -1,5 +1,7 @@
 package system;
 
+import java.io.Serializable;
+
 import restaurant.SingleItem;
 
 /**Sort the list of single items according to the chosen sort policy. Extends the SortPolicy class. 
@@ -7,7 +9,7 @@ import restaurant.SingleItem;
  * @author maxspahn
  *
  */
-public class SingleItemSort extends SortPolicy{
+public class SingleItemSort extends SortPolicy implements Serializable{
 	
 	private SingleItem singleItem;
 

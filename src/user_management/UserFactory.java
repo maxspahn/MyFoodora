@@ -1,5 +1,7 @@
 package user_management;
 
+import java.io.Serializable;
+
 import system.MyFoodora;
 
 /** Abstract UserFactory, part of the Factory-Pattern to create users.
@@ -7,7 +9,7 @@ import system.MyFoodora;
  * @author jeremyaugot
  *
  */
-public abstract class UserFactory {
+public abstract class UserFactory implements Serializable{
 	
 	private MyFoodora myFoodora;
 	

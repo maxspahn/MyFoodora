@@ -1,5 +1,7 @@
 package system;
 
+import java.io.Serializable;
+
 import restaurant.Meal;
 import restaurant.SingleItem;
 
@@ -10,7 +12,7 @@ import restaurant.SingleItem;
  * @author jeremyaugot
  *
  */
-public class BasicFidelityCard implements FidelityCard{
+public class BasicFidelityCard implements FidelityCard, Serializable{
 
 
 	/** BasicFidelityCard provides a simple computation of the price + specialidscount for the meal of the week.

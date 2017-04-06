@@ -1,10 +1,12 @@
 package restaurant;
 
+import java.io.Serializable;
+
 /** HalfMeal is one type of meal, it extends the abstract Meal Class.
  * @author maxspahn
  *
  */
-public class HalfMeal extends Meal{
+public class HalfMeal extends Meal implements Serializable{
 
 	public HalfMeal(String name) {
 		super(name);

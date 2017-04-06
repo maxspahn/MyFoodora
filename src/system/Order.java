@@ -1,5 +1,6 @@
 package system;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -12,7 +13,7 @@ import user_management.*;
  * @author jeremyaugot
  *
  */
-public class Order {
+public class Order implements Serializable{
 	
 	private Customer customer;
 	private Courier courier;

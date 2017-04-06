@@ -2,6 +2,7 @@ package user_management;
 
 import system.*;
 import java.util.ArrayList;
+import java.io.Serializable;
 
 /** Implementation of Customer, extends the PhysicalUser class. Implements the PeopleToNotify interface.
  * A customer can receive notifications sent by restaurants thanks to an observer pattern. 
@@ -9,7 +10,7 @@ import java.util.ArrayList;
  * @author jeremyaugot
  *
  */
-public class Customer extends PhysicalUser implements PeopleToNotify{
+public class Customer extends PhysicalUser implements PeopleToNotify, Serializable{
 	private boolean spamAgreement;
 	private FidelityCard fidelityCard;
 	private ArrayList<String> notifications;  //Contains all the unread notifications

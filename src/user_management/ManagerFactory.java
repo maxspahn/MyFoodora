@@ -1,5 +1,7 @@
 package user_management;
 
+import java.io.Serializable;
+
 import system.MyFoodora;
 
 /** ManagerFactory class enables creating a new manager thanks to a factory pattern. Extends UserFactory class. 
@@ -8,7 +10,7 @@ import system.MyFoodora;
  * @author jeremyaugot
  *
  */
-public class ManagerFactory extends UserFactory{
+public class ManagerFactory extends UserFactory implements Serializable{
 	
 	public ManagerFactory(MyFoodora myFoodora){
 		super(myFoodora);

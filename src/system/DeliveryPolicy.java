@@ -9,7 +9,7 @@ import user_management.*;
  * @author jeremyaugot
  *
  */
-public interface DeliveryPolicy {
+public interface DeliveryPolicy{
 	
 
 	// Takes an order as impute and returns the courier that is the nearest according the 

@@ -1,5 +1,6 @@
 package system;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import restaurant.Meal;
@@ -11,7 +12,7 @@ import restaurant.SingleItem;
  * @author maxspahn
  *
  */
-public class LotteryFidelityCard implements FidelityCard{
+public class LotteryFidelityCard implements FidelityCard, Serializable{
 	
 	private int lastFreeCommandYear;
 	private int lastFreeCommandMonth;

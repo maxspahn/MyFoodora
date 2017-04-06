@@ -1,9 +1,12 @@
 package system;
 
 import java.io.FileInputStream;
+import java.io.Serializable;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 import java.util.Date;
@@ -22,8 +25,7 @@ import restaurant.*;
  * @author jeremyaugot
  *
  */
-public class MyFoodora {
-	
+public class MyFoodora implements Serializable{
 	private ManagerFactory managerFactory;
 	private CustomerFactory customerFactory;
 	private CourierFactory courierFactory;
@@ -52,54 +54,56 @@ public class MyFoodora {
 		
 	/** Constructor. Creates all the lists and sets the following default values: service_fee = 2, delivery_cost = 3, markUp_percentage = 0.1,
 	 * targetProfit = 0, targetCommands = 0.
+	 * @throws ClassNotFoundException 
 	 * 
 	 */
 	public MyFoodora(){
 		try{
-		FileInputStream database = new FileInputStream("MyFoodoraDatabases.txt");
+		FileInputStream database = new FileInputStream("MyFoodoraDatas.txt");
 		ObjectInputStream in = new ObjectInputStream(database);
-		this.listCustomer = (ArrayList<Customer>) in.readObject();
-		this.listCourier = (ArrayList<Courier>) in.readObject();
-		this.listRestaurant = (ArrayList<Restaurant>) in.readObject();
-		this.listManager = (ArrayList<Manager>) in.readObject();
-		this.listUsers = (ArrayList<User>) in.readObject();
-		this.completeOrders = (ArrayList<Order>) in.readObject();
-		this.deliverdSingleItems = (TreeSet<SingleItemSort>) in.readObject();
-		this.deliveredFullMeals = (TreeSet<FullMealSort>) in.readObject();
-		this.deliveredHalfMeals = (TreeSet<HalfMealSort>) in.readObject();
-		this.targetPolicy = (TargetPolicy) in.readObject();
-		this.deliveryPolicy = (DeliveryPolicy) in.readObject();
-		this.service_fee = (Double) in.readObject();
-		this.markup_percentage = (Double) in.readObject();
-		this.delivery_cost = (Double) in.readObject();
-		this.targetProfit = (Double) in.readObject();
-		this.targetCommands = (Integer) in.readInt();
-
+		this.listCustomer = (ArrayList<Customer>)in.readObject();
+		this.listCourier = (ArrayList<Courier>)in.readObject();
+		this.listRestaurant = (ArrayList<Restaurant>)in.readObject();
+		this.listManager = (ArrayList<Manager>)in.readObject();
+		this.listUsers = (ArrayList<User>)in.readObject();
+		this.completeOrders	= (ArrayList<Order>)in.readObject();
+		this.service_fee = (Double)in.readObject();
+		this.delivery_cost = (Double)in.readObject();
+		this.markup_percentage = (Double)in.readObject();
+		this.targetProfit = (Double)in.readObject();
+		this.targetCommands = (Integer)in.readObject();
+		this.deliveryPolicy = (DeliveryPolicy)in.readObject();
+		this.targetPolicy = (TargetPolicy)in.readObject();
+		this.deliverdSingleItems = (TreeSet<SingleItemSort>)in.readObject();
+		this.deliveredFullMeals = (TreeSet<FullMealSort>)in.readObject();
+		this.deliveredHalfMeals = (TreeSet<HalfMealSort>)in.readObject();
 		}
 		catch(FileNotFoundException e){
-		this.setListUsers(new ArrayList<User>());
-		this.listCourier = new ArrayList<Courier>();
-		this.listRestaurant = new ArrayList<Restaurant>();
-		this.listManager = new ArrayList<Manager>();
-		this.listCustomer = new ArrayList<Customer>();
-		this.setDeliveryPolicy(new FastestDelivery());
-		this.setCompleteOrders(new ArrayList<Order>());
-		this.setService_fee(2.00);
-		this.setDelivery_cost(3.0);
-		this.setMarkup_percentage(0.1);
-		this.setTargetPolicy(new TargetProfit_DeliveryCost());
-		this.setTargetProfit(0);
-		this.setTargetCommands(0);
-		this.setDeliverdSingleItems(new TreeSet<SingleItemSort>());
-		this.setDeliveredFullMeals(new TreeSet<FullMealSort>());
-		this.setDeliveredHalfMeals(new TreeSet<HalfMealSort>());
+			this.listCustomer = new ArrayList<Customer>();
+			this.listCourier = new ArrayList<Courier>();
+			this.listRestaurant = new ArrayList<Restaurant>();
+			this.listManager = new ArrayList<Manager>();
+			this.setListUsers(new ArrayList<User>());
+			this.setCompleteOrders(new ArrayList<Order>());
+			this.setService_fee(2.00);
+			this.setDelivery_cost(3.0);
+			this.setMarkup_percentage(0.1);
+			this.setTargetProfit(0);
+			this.setTargetCommands(0);
+			this.setDeliveryPolicy(new FastestDelivery());
+			this.setTargetPolicy(new TargetProfit_DeliveryCost());
+			this.setDeliverdSingleItems(new TreeSet<SingleItemSort>());
+			this.setDeliveredFullMeals(new TreeSet<FullMealSort>());
+			this.setDeliveredHalfMeals(new TreeSet<HalfMealSort>());
+			
 		}
 		catch(IOException e){
-			e.getMessage();
+			e.printStackTrace();
 		}
-		catch(ClassNotFoundException e){
-			e.getMessage();
+		catch (ClassNotFoundException e){
+			e.printStackTrace();
 		}
+
 		finally{
 			this.courierFactory = new CourierFactory(this);
 			this.managerFactory = new ManagerFactory(this);
@@ -823,6 +827,5 @@ public class MyFoodora {
 	public void setTargetPolicy(TargetPolicy targetPolicy) {
 		this.targetPolicy = targetPolicy;
 	}
-
-
+	
 }

@@ -1,5 +1,7 @@
 package user_management;
 
+import java.io.Serializable;
+
 import system.MyFoodora;
 
 /** RestaurantFactory class enables creating a new restaurant thanks to a factory pattern. Extends UserFactory class. 
@@ -8,7 +10,7 @@ import system.MyFoodora;
  * @author jeremyaugot
  *
  */
-public class RestaurantFactory extends UserFactory{
+public class RestaurantFactory extends UserFactory implements Serializable{
 	
 	public RestaurantFactory(MyFoodora myFoodora){
 		super(myFoodora);

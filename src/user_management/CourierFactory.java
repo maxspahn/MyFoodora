@@ -1,5 +1,7 @@
 package user_management;
 
+import java.io.Serializable;
+
 import system.MyFoodora;
 
 /** CourierFactory class enables creating a new courier thanks to a factory pattern. Extends UserFactory class. 
@@ -8,7 +10,7 @@ import system.MyFoodora;
  * @author jeremyaugot
  *
  */
-public class CourierFactory extends UserFactory{
+public class CourierFactory extends UserFactory implements Serializable{
 	
 	public CourierFactory(MyFoodora myFoodora) {
 		super(myFoodora);

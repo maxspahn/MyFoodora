@@ -20,11 +20,12 @@ public class Scenario {
 	public static void main(String[] args) {
 		
 		Scenario sc = new Scenario();
-		MyFoodora myFoodora = new MyFoodora();
+		MyFoodora myFoodora;
+		myFoodora = new MyFoodora();
 		myFoodora.load();
 		//sc.registerUser(myFoodora);
 		//sc.loginUser(myFoodora);
-		sc.orderMeal(myFoodora);
+		sc.orderMeal(myFoodora);	
 		
 	}
 

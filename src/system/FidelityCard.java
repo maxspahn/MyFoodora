@@ -1,11 +1,12 @@
 package system;
 
+
 /**A fidelity card gives benefits to the customer.
  * @author jeremyaugot
  * @author maxspahn
  *
  */
-public interface FidelityCard {
+public interface FidelityCard{
 	
 	/** Compute the price of an order.
 	 * @param order Order to be evaluated.

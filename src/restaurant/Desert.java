@@ -1,12 +1,14 @@
 package restaurant;
 
+import java.io.Serializable;
+
 /** Desert implementation. Attention the name is incorrectly spelled!
  * 
  * @author jeremyaugot
  * @author maxspahn
  *
  */
-public class Desert extends SingleItem{
+public class Desert extends SingleItem implements Serializable{
 
 	/** Constructor.
 	 * @param name The name of the dessert.

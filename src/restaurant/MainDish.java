@@ -1,11 +1,13 @@
 package restaurant;
 
+import java.io.Serializable;
+
 /** Main Dish is a type of SingleItem and extends the class SingleItem.
  * @author maxspahn
  * @author jeremyaugot
  *
  */
-public class MainDish extends SingleItem{
+public class MainDish extends SingleItem implements Serializable{
 
 	/**Constructor.
 	 * 

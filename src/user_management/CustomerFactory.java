@@ -1,5 +1,7 @@
 package user_management;
 
+import java.io.Serializable;
+
 import system.MyFoodora;
 
 /** CustomerFactory class enables creating a new customer thanks to a factory pattern. Extends UserFactory class. 
@@ -8,7 +10,7 @@ import system.MyFoodora;
  * @author jeremyaugot
  *
  */
-public class CustomerFactory extends UserFactory{
+public class CustomerFactory extends UserFactory implements Serializable{
 	
 	public CustomerFactory(MyFoodora myFoodora) {
 		super(myFoodora);

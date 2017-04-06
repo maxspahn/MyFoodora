@@ -1,5 +1,7 @@
 package system;
 
+import java.io.Serializable;
+
 import restaurant.Meal;
 import restaurant.SingleItem;
 
@@ -9,7 +11,7 @@ import restaurant.SingleItem;
  * @author maxspahn
  *
  */
-public class PointFidelityCard implements FidelityCard{
+public class PointFidelityCard implements FidelityCard, Serializable{
 	
 	private int points;
 

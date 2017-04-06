@@ -1,10 +1,12 @@
 package restaurant;
 
+import java.io.Serializable;
+
 /** MealFactory is part of the abstract factory pattern to add items to the menu. You can create meals depending on their name.
  * @author maxspahn
  * @author jeremyaugot
  */
-public class MealFactory extends ItemFactory{
+public class MealFactory extends ItemFactory implements Serializable{
 
 	public MealFactory() {
 		// TODO Auto-generated constructor stub

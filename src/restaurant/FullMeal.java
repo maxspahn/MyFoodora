@@ -1,12 +1,14 @@
 package restaurant;
 
+import java.io.Serializable;
+
 /** FullMeal is an extension to the Meal class.
  * 
  * @author maxspahn
  * @author jeremyaugot
  *
  */
-public class FullMeal extends Meal{
+public class FullMeal extends Meal implements Serializable{
 	
 
 	public FullMeal(String name) {

@@ -1,10 +1,12 @@
 package restaurant;
 
+import java.io.Serializable;
+
 /** SingleItemFactory is part of the abstract factory pattern to add items to the menu. You can create singleItems depending on their name.
  * @author maxspahn
  * @author jeremyaugot
  */
-public class SingleItemFactory extends ItemFactory{
+public class SingleItemFactory extends ItemFactory implements Serializable{
 
 	/** Default constructor.
 	 * 
