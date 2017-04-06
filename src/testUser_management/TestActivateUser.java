@@ -11,8 +11,16 @@ import user_management.ManagerFactory;
 import user_management.RestaurantFactory;
 import user_management.UserNotFoundException;
 
+/**Test to activate a user.
+ * @author jeremyaugot
+ * @author maxspahn
+ *
+ */
 public class TestActivateUser {
 
+	/**Test to activate a user: check if he/she is added to the lists he belongs to.
+	 * 
+	 */
 	@Test
 	public void test() {
 		

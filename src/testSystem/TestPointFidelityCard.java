@@ -17,8 +17,16 @@ import system.PointFidelityCard;
 import user_management.FidelityCardDoesNotExistException;
 import user_management.Restaurant;
 
+/**Test the PointFidelityCard class.
+ * @author jeremyaugot
+ * @author maxspahn
+ *
+ */
 public class TestPointFidelityCard {
 
+	/**Test if the number of points is well computed, knowing that a customer can win 1 point each 10€ spent.
+	 * 
+	 */
 	@Test
 	public void PointTest() {
 		
@@ -56,6 +64,9 @@ public class TestPointFidelityCard {
 		}
 	}
 	
+	/**Test if the price of an order is well computed, knowing that the customer can have a discount when his/her number of point reaches 100.
+	 * 
+	 */
 	@Test 
 	public void PriceTest(){
 		MyFoodora myFoodora = new MyFoodora();
@@ -105,6 +116,9 @@ public class TestPointFidelityCard {
 		}
 	}
 	
+	/**Test if having more than 100 points does not change the price of former orders which are already completed. 
+	 * 
+	 */
 	@Test
 	public void DoesNotChangeFormerOrderPriceTest(){
 		try{
@@ -122,6 +136,9 @@ public class TestPointFidelityCard {
 	}
 	}
 	
+	/**Test if the user of a point fidelity card does not have the discount of 10% on the meal of the week.
+	 * 
+	 */
 	@Test
 	public void MealOfTheWeekTest(){
 		MyFoodora myFoodora = new MyFoodora();

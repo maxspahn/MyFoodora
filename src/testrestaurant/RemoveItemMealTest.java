@@ -9,8 +9,16 @@ import restaurant.Menu;
 import restaurant.WrongItemAdded;
 import restaurant.WrongItemRemoved;
 
+/**Test to remove an item from a meal.
+ * @author jeremyaugot
+ * @author maxspahn
+ *
+ */
 public class RemoveItemMealTest {
 
+	/**Test to remove an item from a full meal.
+	 * 
+	 */
 	@Test
 	public void removeItemTest() {
 		Menu menuTest = new Menu("Menu");

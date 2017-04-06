@@ -8,8 +8,16 @@ import restaurant.ItemDoesNotExist;
 import restaurant.Menu;
 import restaurant.WrongItemAdded;
 
+/**Test the Meal class.
+ * @author jeremyaugot
+ * @author maxspahn
+ *
+ */
 public class MealTest {
 
+	/**Test if the factory pattern works by creating new meals.
+	 * 
+	 */
 	@Test
 	public void testFactoryMeal() {
 		Menu menuTest = new Menu("Menu");
@@ -31,6 +39,9 @@ public class MealTest {
 		assertTrue(menuTest.getMeals().get(4).getDesert().getName().equals("cake"));
 	}
 	
+	/**Test to add an item which does not exist in a meal.
+	 * 
+	 */
 	@Test
 	public void testAddItemDoesNotExistToMeal(){
 		Menu menuTest = new Menu("Menu");
@@ -49,6 +60,9 @@ public class MealTest {
 		}
 	}
 	
+	/**Test to add an item to a meal which does not exist.
+	 * 
+	 */
 	@Test
 	public void testAddItemToMealDoesNotExist(){
 		Menu menuTest = new Menu("Menu");

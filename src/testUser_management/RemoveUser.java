@@ -11,8 +11,16 @@ import user_management.SameUserNameException;
 import user_management.User;
 import user_management.UserNotFoundException;
 
+/**Test to remove a user from MyFoodora system.
+ * @author jeremyaugot
+ * @author maxspahn
+ *
+ */
 public class RemoveUser {
 
+	/**Test to remove a user from MyFoodora system: check if the user if well removed from the lists.
+	 * 
+	 */
 	@Test
 	public void test() {
 		

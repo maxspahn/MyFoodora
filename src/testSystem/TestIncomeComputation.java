@@ -10,8 +10,17 @@ import restaurant.ItemDoesNotExist;
 import system.*;
 import user_management.*;
 
+/**Test the income computation done in MyFoodora.
+ * @author jeremyaugot
+ * @author maxspahn
+ *
+ */
 public class TestIncomeComputation {
  
+	/**Test the order process. Test if the price, the profit are well computed. 
+	 * Test if, when done, the attribute "isComplete" is true.
+	 * 
+	 */
 	@Test
 	public void testOrderProcessing() {
 		MyFoodora myFoodera = new MyFoodora();

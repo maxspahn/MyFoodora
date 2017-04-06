@@ -1,5 +1,9 @@
 package system;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
 
 import java.util.Date;
@@ -51,6 +55,28 @@ public class MyFoodora {
 	 * 
 	 */
 	public MyFoodora(){
+		try{
+		FileInputStream database = new FileInputStream("MyFoodoraDatabases.txt");
+		ObjectInputStream in = new ObjectInputStream(database);
+		this.listCustomer = (ArrayList<Customer>) in.readObject();
+		this.listCourier = (ArrayList<Courier>) in.readObject();
+		this.listRestaurant = (ArrayList<Restaurant>) in.readObject();
+		this.listManager = (ArrayList<Manager>) in.readObject();
+		this.listUsers = (ArrayList<User>) in.readObject();
+		this.completeOrders = (ArrayList<Order>) in.readObject();
+		this.deliverdSingleItems = (TreeSet<SingleItemSort>) in.readObject();
+		this.deliveredFullMeals = (TreeSet<FullMealSort>) in.readObject();
+		this.deliveredHalfMeals = (TreeSet<HalfMealSort>) in.readObject();
+		this.targetPolicy = (TargetPolicy) in.readObject();
+		this.deliveryPolicy = (DeliveryPolicy) in.readObject();
+		this.service_fee = (Double) in.readObject();
+		this.markup_percentage = (Double) in.readObject();
+		this.delivery_cost = (Double) in.readObject();
+		this.targetProfit = (Double) in.readObject();
+		this.targetCommands = (Integer) in.readInt();
+
+		}
+		catch(FileNotFoundException e){
 		this.setListUsers(new ArrayList<User>());
 		this.listCourier = new ArrayList<Courier>();
 		this.listRestaurant = new ArrayList<Restaurant>();
@@ -62,15 +88,24 @@ public class MyFoodora {
 		this.setDelivery_cost(3.0);
 		this.setMarkup_percentage(0.1);
 		this.setTargetPolicy(new TargetProfit_DeliveryCost());
-		this.courierFactory = new CourierFactory(this);
-		this.managerFactory = new ManagerFactory(this);
-		this.customerFactory = new CustomerFactory(this);
-		this.restaurantFactory = new RestaurantFactory(this);
 		this.setTargetProfit(0);
 		this.setTargetCommands(0);
 		this.setDeliverdSingleItems(new TreeSet<SingleItemSort>());
 		this.setDeliveredFullMeals(new TreeSet<FullMealSort>());
 		this.setDeliveredHalfMeals(new TreeSet<HalfMealSort>());
+		}
+		catch(IOException e){
+			e.getMessage();
+		}
+		catch(ClassNotFoundException e){
+			e.getMessage();
+		}
+		finally{
+			this.courierFactory = new CourierFactory(this);
+			this.managerFactory = new ManagerFactory(this);
+			this.customerFactory = new CustomerFactory(this);
+			this.restaurantFactory = new RestaurantFactory(this);
+		}
 	}
 	
 	/**
@@ -78,11 +113,12 @@ public class MyFoodora {
 	 * 
 	 */
 	public void load(){
+		if(this.getListCustomer().size()==0){ //There is no database at this moment
 		this.getCourierFactory().load();
 		this.getCustomerFactory().load();
 		this.getRestaurantFactory().load();
 		this.getManagerFactory().load();
-		this.loadOrders();
+		this.loadOrders();}
 	}
 		
 	

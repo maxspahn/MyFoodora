@@ -1,10 +1,14 @@
 package commandLineTool;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Scanner;
+import java.util.TreeSet;
 
 import restaurant.ItemDoesNotExist;
 import restaurant.WrongItemAdded;
@@ -37,6 +41,8 @@ public class Launch {
 		commands.add("addDishRestaurantMenu \t<dishName> <dishCategory> <foodCategory> <unitPrice>");
 		commands.add("createMeal \t\t<mealName>");
 		commands.add("addDish2Meal \t\t<dishName> <mealName>");
+		commands.add("showMeal \t\t<mealName>");
+		commands.add("saveMeal \t\t<mealName>");
 		commands.add("setSpecialOffer \t<mealName>");
 		commands.add("removeFromSpecialOffer \t<mealName>");
 		commands.add("createOrder \t\t<restaurantName> <orderName>");
@@ -48,19 +54,52 @@ public class Launch {
 		commands.add("setDeliveryPolicy \t<delPolicyName>");
 		commands.add("setProfitPolicy \t<ProfitPolicyName>");
 		commands.add("associateCard \t\t<userName> <cardType>");
-		commands.add("showCustomers \t\t<>");
 		commands.add("showCouriers \t\t<>");
 		commands.add("showCourierDeliveries \t<>");
 		commands.add("showRestaurantTop \t<>");
-		commands.add("showMeal \t\t<mealName>");
-		commands.add("saveMeal \t\t<mealName>");
+		commands.add("showCustomers \t\t<>");
 		commands.add("showMenuItem \t\t<restaurant-name>");
 		commands.add("showTotalProfit \t<>");
 		commands.add("showTotalProfit \t<startDate> <endDate>");
 		commands.add("runTest \t\t<testScenario-file>");
 		commands.add("help \t\t\t<>");
-		
+
 		Collections.sort(commands, String.CASE_INSENSITIVE_ORDER);
+	}
+	
+	public void serializeDatas(){
+		try{
+			System.out.println("All the databases have been serialized and saved in 'MyFoodoraDatas.txt'.");
+			//Creation of a new file
+			FileOutputStream datafile = new FileOutputStream("MyFoodoraDatas.txt");
+			//Creation of an ObjectOutputStream to serialize
+			ObjectOutputStream out = new ObjectOutputStream(datafile);
+			//Serialize all the attributes of myFoodora
+			out.writeObject(this.myFoodora.getListCustomer());
+			out.writeObject(this.myFoodora.getListCourier());
+			out.writeObject(this.myFoodora.getListRestaurant());
+			out.writeObject(this.myFoodora.getListManager());
+			out.writeObject(this.myFoodora.getListUsers());
+			out.writeObject(this.myFoodora.getCompleteOrders());
+			out.writeObject(this.myFoodora.getDeliverdSingleItems());
+			out.writeObject(this.myFoodora.getDeliveredFullMeals());
+			out.writeObject(this.myFoodora.getDeliveredHalfMeals());
+			out.writeObject(this.myFoodora.getTargetPolicy());
+			out.writeObject(this.myFoodora.getDeliveryPolicy());
+			out.writeObject(this.myFoodora.getService_fee());
+			out.writeObject(this.myFoodora.getMarkup_percentage());
+			out.writeObject(this.myFoodora.getDelivery_cost());
+			out.writeObject(this.myFoodora.getTargetProfit());
+			out.writeObject(this.myFoodora.getTargetCommands());
+			out.close();
+			datafile.close();
+			
+			}
+			catch(FileNotFoundException e){
+				e.getMessage();
+			}catch(IOException e){
+				e.getMessage();
+			}
 	}
 	
 	public String commandsToString(){
@@ -83,6 +122,9 @@ public class Launch {
 			exit = scanner.nextLine();
 			launch.executeCommand(exit);
 		}
+		//Before shutting down MyFoodora, all the data need to be serialized
+		launch.serializeDatas();
+		System.out.println("MyFoodora shut down");
 	}
 	
 	public void executeCommand(String arg){
@@ -449,6 +491,11 @@ public class Launch {
 		}
 	}
 	
+	public void showCustomers(String [] args){
+		if(rightNumberofArguments(args, 1) && isManager()){
+			System.out.println(myFoodora.getListCustomer());
+		}
+	}
 	
 	public void showMenuItem(String [] args){
 		if(rightNumberofArguments(args, 2) && isManager()){

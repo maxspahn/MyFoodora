@@ -9,8 +9,16 @@ import system.MyFoodora;
 import system.TargetProfit_Markup;
 import system.TargetProfit_ServiceFee;
 
+/**Test the TargetPolicy class.
+ * @author jeremyaugot
+ * @author maxspahn
+ *
+ */
 public class TargetPolicyTest {
 
+	/**Test the delivery cost target. Test the method changeFeesAccordingToPolicy.
+	 * 
+	 */
 	@Test
 	public void testDeliveryCostTarget() {
 		MyFoodora m = new MyFoodora();
@@ -40,6 +48,9 @@ public class TargetPolicyTest {
 		
 	}
 	
+	/**Test the markup target. Test the method changeFeesAccordingToPolicy.
+	 * 
+	 */
 	@Test
 	public void testMarkUpTarget(){
 		MyFoodora m = new MyFoodora();
@@ -69,6 +80,9 @@ public class TargetPolicyTest {
 		assertTrue(test == m.getMarkup_percentage());
 	}
 	
+	/**Test the service fee target. Test the method changeFeesAccordingToPolicy.
+	 * 
+	 */
 	@Test
 	public void serviceFeeTarget(){
 		MyFoodora m = new MyFoodora();

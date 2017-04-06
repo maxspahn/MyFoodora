@@ -16,8 +16,16 @@ import system.Order;
 import system.OrderNotCompletException;
 import user_management.FidelityCardDoesNotExistException;
 
+/**Test the MyFoodora class.
+ * @author jeremyaugot
+ * @author maxspahn
+ *
+ */
 public class TestMyFoodora {
 
+	/**Test if the total income is well computed.
+	 * 
+	 */
 	@Test
 	public void TotalIncometest() {
 		MyFoodora myFoodora = new MyFoodora();
@@ -27,6 +35,9 @@ public class TestMyFoodora {
 		assertTrue(totalIncome==0.95*(2+11.3)+3.1+0.9*(2.3+6.7+2.5)+3.1+3);
 	}
 	
+	/**Test if the average price per order is well computed.
+	 * 
+	 */
 	@Test
 	public void AveragePricePerOrderTest(){
 		MyFoodora myFoodora = new MyFoodora();
@@ -36,6 +47,9 @@ public class TestMyFoodora {
 		
 	}
 	
+	/**Test if the profit for a given month is well computed.
+	 * 
+	 */
 	@Test
 	public void ProfitMonthTest(){
 		MyFoodora myFoodora = new MyFoodora();
@@ -66,6 +80,9 @@ public class TestMyFoodora {
 		
 	}
 	
+	/**Test if, when completed, an order is added to the complete-orders-list.
+	 * 
+	 */
 	@Test
 	public void addOrderToCompleteOrderTest(){
 		MyFoodora myFoodora = new MyFoodora();
@@ -87,6 +104,9 @@ public class TestMyFoodora {
 			}
 	}
 	
+	/**Test if the number of half meal is right.
+	 * 
+	 */
 	@Test
 	public void HalfMealCountTest(){
 		MyFoodora myFoodora = new MyFoodora();
@@ -95,6 +115,9 @@ public class TestMyFoodora {
 		assertTrue(count==1);
 	}
 	
+	/**Test if the half meal list can be sorted according to the number of ordered half meals.
+	 * 
+	 */
 	@Test
 	public void SortedHalfMealTest(){
 		MyFoodora myFoodora = new MyFoodora();
