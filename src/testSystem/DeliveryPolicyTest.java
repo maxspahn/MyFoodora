@@ -14,8 +14,16 @@ import user_management.Restaurant;
 import user_management.SameUserNameException;
 import user_management.UserNotFoundException;
 
+/**Test the DeliveryPolicy class.
+ * @author jeremyaugot
+ * @author maxspahn
+ *
+ */
 public class DeliveryPolicyTest {
 
+	/**Test the fastest delivery policy: if the courier the closer from the restaurant is contacted first.
+	 * 
+	 */
 	@Test
 	public void testFastestDelivery() {
 		MyFoodora m = new MyFoodora();
@@ -97,6 +105,9 @@ public class DeliveryPolicyTest {
 		
 	}
 	
+	/**Test the fair delivery policy: if the courier with the least number of delivered orders is contacted first.
+	 * 
+	 */
 	@Test
 	public void testFairDelivery(){
 		MyFoodora m = new MyFoodora();

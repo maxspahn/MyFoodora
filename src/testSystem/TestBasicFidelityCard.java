@@ -6,8 +6,16 @@ import org.junit.Test;
 
 import system.*;
 
+/**Test the BasicFidelityCard class.
+ * @author jeremyaugot
+ * @author maxspahn
+ *
+ */
 public class TestBasicFidelityCard {
 
+	/**Test if the price of the meal named "Classic" is well computed, taking into account the 5% discount.
+	 * 
+	 */
 	@Test
 	public void ClassicPricetest() {
 		MyFoodora myFoodora = new MyFoodora();
@@ -18,6 +26,9 @@ public class TestBasicFidelityCard {
 		assertTrue(price==computedPrice);
 	}
 	 
+	/**Test if the price of the meal of the week is well computed, taking into account the 10% discount.
+	 * 
+	 */
 	@Test
 	public void MealOfTheWeekTest(){
 		MyFoodora myFoodora = new MyFoodora();

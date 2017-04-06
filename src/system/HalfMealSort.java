@@ -2,7 +2,7 @@ package system;
 
 import restaurant.HalfMeal;
 
-/**Sort the list a half meals according to the chosen sort policy. Extends the SortPolicy class. 
+/**Sort the list of half meals according to the chosen sort policy. Extends the SortPolicy class. 
  * @author jeremyaugot
  * @author maxspahn
  *

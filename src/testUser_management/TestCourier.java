@@ -7,8 +7,16 @@ import org.junit.Test;
 import user_management.Courier;
 import user_management.Customer;
 
+/**Test the Courier class.
+ * @author jeremyaugot
+ * @author maxspahn
+ *
+ */
 public class TestCourier {
 
+	/**Test if 2 couriers can have the same ID, and if the adress is correct.
+	 * 
+	 */
 	@Test
 	public void test() {
 		int[] coords = {4,-2};

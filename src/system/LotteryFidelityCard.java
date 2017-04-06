@@ -5,7 +5,7 @@ import java.util.Date;
 import restaurant.Meal;
 import restaurant.SingleItem;
 
-/**Lottery fidelity card implements the FidelityCard class. A member who has this card will not access to any offer nor gain any point.
+/**Implements the FidelityCard class. A member who has this card will not access to any offer nor gain any point.
  * Nevertheless he will have a certain probability to win her/his meal for free each day.
  * @author jeremyaugot
  * @author maxspahn

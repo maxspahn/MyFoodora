@@ -15,7 +15,7 @@ public abstract class SingleItem {
 	
 	
 
-	/** Costructor. Default values are not-glutenFree, not vegetarian.
+	/** Constructor. Default values are not-glutenFree, not vegetarian.
 	 * @param name The name of the new Item.
 	 */
 	public SingleItem(String name) {

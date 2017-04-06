@@ -17,9 +17,21 @@ import user_management.User;
 import user_management.UserNotFoundException;
 import user_management.WrongUserNameOrPassWordException;
 
+/**Test the Manager class.
+ * @author jeremyaugot
+ * @author maxspahn
+ *
+ */
+/**
+ * @author miche
+ *
+ */
 public class ManagerTest {
 	
 
+	/**Test the creation of a manager, and if he/she is added to the lists.
+	 * 
+	 */
 	@Test
 	public void testManagerCreation() {
 		int [] coord = {12,12};
@@ -56,6 +68,9 @@ public class ManagerTest {
 			
 	}
 	
+	/**Test if a new user is added to the lists he bolongs to.
+	 * 
+	 */
 	@Test
 	public void testAddUser(){
 		MyFoodora myFoodora = new MyFoodora();
@@ -75,6 +90,9 @@ public class ManagerTest {
 		assertTrue(myFoodora.getListRestaurant().get(5).getName().equals("chez moi"));
  	}
 	
+	/**Test to activate a user.
+	 * 
+	 */
 	@Test
 	public void activateUser(){
 		MyFoodora mf = new MyFoodora();
@@ -107,6 +125,9 @@ public class ManagerTest {
 		
 	}
 	
+	/**Test to change the fees in MyFoodora system thanks to the manager's command.
+	 * 
+	 */
 	@Test
 	public void setFees(){
 		MyFoodora mf = new MyFoodora();
@@ -125,6 +146,9 @@ public class ManagerTest {
 		
 	}
 	
+	/**Test if the most and least selling restaurants are well determinated.
+	 * 
+	 */
 	@Test
 	public void bestAndWorst(){
 		MyFoodora m = new MyFoodora();
@@ -146,6 +170,9 @@ public class ManagerTest {
 		assertTrue(manager.leastActiveCourier().getUserName().equals("varam"));
 	}
 	
+	/**Test to set the delivery cost according to the target policy.
+	 * 
+	 */
 	@Test
 	public void setFeesTargetPolicy_DeliveryCost(){
 		MyFoodora m = new MyFoodora();
@@ -170,6 +197,9 @@ public class ManagerTest {
 		
 	}
 	
+	/**Test to set the markup percentage according to the target policy.
+	 * 
+	 */
 	@Test
 	public void setFeesTargetPolicy_MarkUp(){
 		MyFoodora m = new MyFoodora();
@@ -194,6 +224,9 @@ public class ManagerTest {
 		
 	}
 	
+	/**Test to set the service fee according to the target policy.
+	 * 
+	 */
 	@Test
 	public void setFeesTargetPolicy_ServiceFee(){
 		MyFoodora m = new MyFoodora();
@@ -221,6 +254,10 @@ public class ManagerTest {
 		
 	}
 	
+	
+	/**Test to set the delivery policy.
+	 * 
+	 */
 	@Test
 	public void TestSetdeliveryPolicy(){
 		MyFoodora m = new MyFoodora();
@@ -242,6 +279,10 @@ public class ManagerTest {
 		assertTrue(m.getDeliveryPolicy().toString().equalsIgnoreCase("fastestDelivery"));
 	}
 	
+	
+	/**Test if the incomes are well computed: total income over a period, per customer, profit.
+	 * 
+	 */
 	@Test
 	public void testComputationsIncome(){
 		MyFoodora m = new MyFoodora();
