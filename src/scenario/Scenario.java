@@ -121,7 +121,7 @@ public class Scenario {
 			
 		System.out.println("Hello, " + currentUser.getName() + ", you decided to order on MyFoodora");
 		System.out.println("Please choose one of the restaurant below, by typing their number, 'enter' to see the list");
-		System.out.println(myFoodora.listRestaurantsToString());
+		System.out.println(myFoodora.listRestaurantsToString(currentUser));
 		scanner.nextLine();
 
 		int choosenRest = -1;

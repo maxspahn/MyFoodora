@@ -56,7 +56,7 @@ public class MealTest {
 		catch (ArrayIndexOutOfBoundsException e){
 			assertTrue(true);
 		} catch (ItemDoesNotExist e) {
-			e.printStackTrace();
+			assertTrue(true);
 		}
 	}
 	

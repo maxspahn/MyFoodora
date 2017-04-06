@@ -519,6 +519,7 @@ public class Launch {
 	}
 	
 	
+	
 	public void showMenuItem(String [] args){
 		if(rightNumberofArguments(args, 2) && isManager()){
 			System.out.println(((Restaurant) this.getCurrentUser()).getMenu());
@@ -556,6 +557,12 @@ public class Launch {
 	public void showCouriers(String [] args){
 		if(rightNumberofArguments(args, 1) && isManager()){
 			System.out.println(this.getMyFoodora().listCourierToString(this.getCurrentUser()));
+		}
+	}
+	
+	public void showCustomers(String [] args){
+		if(rightNumberofArguments(args, 1) && isManager()){
+			System.out.println(this.getMyFoodora().listCustomerToString());
 		}
 	}
 	
