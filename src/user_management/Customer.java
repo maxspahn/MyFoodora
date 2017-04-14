@@ -59,9 +59,6 @@ public class Customer extends PhysicalUser implements PeopleToNotify, Serializab
 	 * @param name String which contains the name of the chosen fidelity card.
 	 */
 	public void setFidelityCard(String name) throws FidelityCardDoesNotExistException {
-		//If the current fidelity card is a point fidelity card, the points are lost 
-		if (this.fidelityCard instanceof PointFidelityCard){
-			System.out.println("You lost the points on your point fidelity card");
 		if (name.equalsIgnoreCase("basic fidelity card")||name.equalsIgnoreCase("basicfidelitycard")){
 			if (this.fidelityCard instanceof BasicFidelityCard){
 				System.out.println("You already have a basic fidelity card.");
@@ -70,38 +67,25 @@ public class Customer extends PhysicalUser implements PeopleToNotify, Serializab
 				this.fidelityCard = new BasicFidelityCard();
 			}
 		}
-		
-		else if (name.equalsIgnoreCase("lottery fidelity card")||name.equalsIgnoreCase("lotteryfidelitycard")){
-			System.out.println("a");
-			if (this.fidelityCard instanceof LotteryFidelityCard){
-				System.out.println("You already have a lottery fidelity card.");
-			}
-			else{
-				this.fidelityCard = new LotteryFidelityCard();
-			}
-		}
-		}
-		
-		else if (name.equalsIgnoreCase("point fidelity card")||name.equalsIgnoreCase("pointfidelitycard")){
-			if (this.fidelityCard instanceof PointFidelityCard){
+		else if(name.equalsIgnoreCase("point fidelity card")||name.equalsIgnoreCase("pointfidelitycard")){
+			if(this.fidelityCard instanceof PointFidelityCard){
 				System.out.println("You already have a point fidelity card.");
 			}
 			else{
 				this.fidelityCard = new PointFidelityCard();
 			}
 		}
-		
-		else if (name.equalsIgnoreCase("lottery fidelity card")||name.equalsIgnoreCase("lotteryfidelitycard")){
-			if (this.fidelityCard instanceof LotteryFidelityCard){
+		else if(name.equalsIgnoreCase("lottery fidelity card")||name.equalsIgnoreCase("lotteryfidelitycard")){
+			if(this.fidelityCard instanceof LotteryFidelityCard){
 				System.out.println("You already have a lottery fidelity card.");
 			}
 			else{
 				this.fidelityCard = new LotteryFidelityCard();
 			}
-		}
-		else{
+		}else{
 			throw new FidelityCardDoesNotExistException();
 		}
+		
 	}
 	
 	/**

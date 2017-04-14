@@ -91,7 +91,7 @@ public abstract class UserFactory implements Serializable{
 	/**Method to check if the userName already exists.
 	 * 
 	 * @param userName User to be checked.
-	 * @return True if the user has been registered in the system.
+	 * @return True if the user has already been registered in the system.
 	 */
 	public boolean checkExistenceUserName(String userName){
 		boolean alreadyExist = false;
