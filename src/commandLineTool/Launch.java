@@ -1,7 +1,9 @@
 package commandLineTool;
 
+import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
@@ -64,6 +66,7 @@ public class Launch {
 		commands.add("runTest \t\t<testScenario-file>");
 		commands.add("help \t\t\t<>");
 		commands.add("showRestaurants \t<>");
+		commands.add("registerManager \t<name> <userName> <adress> <password>");
 
 		Collections.sort(commands, String.CASE_INSENSITIVE_ORDER);
 	}
@@ -130,6 +133,8 @@ public class Launch {
 		launch.serializeDatas();
 		System.out.println("MyFoodora shut down");
 	}
+	
+	
 	
 	public void executeCommand(String arg){
 		String [] args = arg.split(" ");
@@ -222,6 +227,12 @@ public class Launch {
 		case "showcouriers":
 			this.showCouriers(args);
 			break;
+		case "runtest" :
+			this.runTest(args);
+			break;
+		case "registermanager" :
+			this.registerManager(args);
+			break;
 		default:
 			System.out.println("This command does not exist, 'help' for information");;
 		}
@@ -257,14 +268,31 @@ public class Launch {
 	}
 	
 	/** Register a new restaurant.
-	 * @param args name, adress, username, password
+	 * @param args name, address, username, password.
 	 */
 	public void registerRestaurant(String [] args ){
 		if(rightNumberofArguments(args, 5)){
 			String [] ad = args[2].split(",");
-			int [] adress = {Integer.parseInt(ad[0], Integer.parseInt(ad[1]))};
+			int a = Integer.parseInt(ad[0]);
+			int b = Integer.parseInt(ad[1]);
+			int [] adress = {a,b};
 			try {
 				this.myFoodora.getRestaurantFactory().createAccount(args[1], args[3], args[4], "", "", adress);
+			} catch (SameUserNameException e) {
+				System.out.println(e.getMessage());
+			}
+		}
+	}
+	
+	/** A manager can register other managers to the system.
+	 * @param args name, username, password, address.
+	 */
+	public void registerManager(String [] args){
+		if(rightNumberofArguments(args, 5) && this.isManager()){
+			String [] ad = args[3].split(",");
+			int [] adress = {Integer.parseInt(ad[0]), Integer.parseInt(ad[1])};
+			try {
+				this.getMyFoodora().getManagerFactory().createAccount(args[1], args[2], args[4], "", "", adress);
 			} catch (SameUserNameException e) {
 				System.out.println(e.getMessage());
 			}
@@ -460,6 +488,10 @@ public class Launch {
 	}
 	
 	// Set the courier to an order is done by the system not by the restaurant
+	/**
+	 * Find a deliverer for a given order.
+	 * @param args 
+	 */
 	public void findDeliverer(String [] args){
 		if(rightNumberofArguments(args, 2) && isManager()){
 			try {
@@ -470,12 +502,18 @@ public class Launch {
 		}
 	}
 	
+	/** Set the delivery policy for the system.
+	 * @param args Name of the policy.
+	 */
 	public void setDeliveryPolicy(String [] args){
 		if(rightNumberofArguments(args, 2) && isManager()){
 			((Manager) this.getCurrentUser()).setDeliveryPolicy(args[1]);
 		}
 	}
 	
+	/** Set the profit policy for the system.
+	 * @param args Name of the profit policy.
+	 */
 	public void setProfitPolicy(String [] args){
 		if(rightNumberofArguments(args, 2) && isManager()){
 			((Manager) this.getCurrentUser()).setTargetPolicy(args[1]);
@@ -520,12 +558,23 @@ public class Launch {
 	
 	
 	
+	/** Show the menu of a given restaurant.
+	 * @param args Name of the restaurant.
+	 */
 	public void showMenuItem(String [] args){
-		if(rightNumberofArguments(args, 2) && isManager()){
-			System.out.println(((Restaurant) this.getCurrentUser()).getMenu());
+		if(rightNumberofArguments(args, 2)){
+			try {
+				System.out.println(((Restaurant) this.getMyFoodora().getUser(args[1])).getMenu());
+			} catch (UserNotFoundException e) {
+				System.out.println(e.getMessage());
+			}
 		}
 	}
 	
+	/** Show the total profit of the system for a given time period if dates are given.
+	 * If no dates are given the all time profit is printed.
+	 * @param args empty or the dates limiting the time period.
+	 */
 	public void showTotalProfit(String [] args){
 		if(rightNumberofArguments(args, 1, 3) && isManager()){
 			if(args.length == 1){
@@ -548,33 +597,74 @@ public class Launch {
 		}
 	}
 	
+	/** Show all available restaurants.
+	 * @param args
+	 */
 	public void showRestaurants(String [] args){
 		if(rightNumberofArguments(args, 1)){
 			System.out.println(this.getMyFoodora().listRestaurantsToString(this.getCurrentUser()));
 		}
 	}
 	
+	/** A manager can see all registered couriers.
+	 * @param args
+	 */
 	public void showCouriers(String [] args){
 		if(rightNumberofArguments(args, 1) && isManager()){
 			System.out.println(this.getMyFoodora().listCourierToString(this.getCurrentUser()));
 		}
 	}
 	
+	/** A manager can see all registered clients.
+	 * @param args
+	 */
 	public void showCustomers(String [] args){
 		if(rightNumberofArguments(args, 1) && isManager()){
 			System.out.println(this.getMyFoodora().listCustomerToString());
 		}
 	}
 	
+	/** Prints all available commands.
+	 * @param args
+	 */
 	public void help(String [] args){
 		if(rightNumberofArguments(args, 1)){
 			System.out.println(this.commandsToString());
 		}
 	}
 	
+	/** Running a test with a certain number of commands that are executed from the given file.
+	 * @param fileName Name of the file to be executed.
+	 */
+	public void runTest(String[] args){
+		if(rightNumberofArguments(args, 2)){
+			String fileName = args[1];
+			try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
+			    String line;
+			    while ((line = br.readLine()) != null) {
+			    	System.out.println(line);
+			    	if(!line.equals("")){
+			    		this.executeCommand(line);
+			    	}
+			    }
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
 	
 	
 	
+	
+	/** Checks if the right number of arguments was given to a command.
+	 * @param args String array of arguments.
+	 * @param length Cerrect length for the specific command.
+	 * @return True if array length is correct.
+	 */
 	public boolean rightNumberofArguments(String [] args, int length){
 		if(args.length != length){
 			System.out.println("Wrong number of inputs");
@@ -583,6 +673,12 @@ public class Launch {
 		return true;
 	}
 	
+	/** Overload of the previous functions to check when two number of arguments are possible.
+	 * @param args String array of arguments.
+	 * @param length Correct length for the specific command.
+	 * @param length2 Second correct length for the specific command.
+	 * @return True if array length is correct.
+	 */
 	public boolean rightNumberofArguments(String [] args, int length, int length2){
 		if(args.length == length || args.length == length2){
 			return true;
@@ -591,6 +687,9 @@ public class Launch {
 		return false;
 	}
 	
+	/** Checks if the current user is a manager.
+	 * @return
+	 */
 	public boolean isManager(){
 		if(this.getCurrentUser() instanceof Manager){
 			return true;
@@ -599,6 +698,9 @@ public class Launch {
 		return false;
 	}
 	
+	/** Checks if the current user is a restaurant.
+	 * @return
+	 */
 	public boolean isRestaurant(){
 		if(this.getCurrentUser() instanceof Restaurant){
 			return true;
@@ -607,6 +709,9 @@ public class Launch {
 		return false;
 	}
 	
+	/** Checks if the current user is a customer.
+	 * @return
+	 */
 	public boolean isCustomer(){
 		if(this.getCurrentUser() instanceof Customer){
 			return true;
@@ -615,6 +720,9 @@ public class Launch {
 		return false;
 	}
 	
+	/** Checks if the current user is a courier.
+	 * @return
+	 */
 	public boolean isCourier(){
 		if(this.getCurrentUser() instanceof Courier){
 			return true;
@@ -623,6 +731,10 @@ public class Launch {
 		return false;
 	}
 	
+	/** Searching an order by name in the list of orders.
+	 * @param orderName
+	 * @return Order object corresponding to the order name.
+	 */
 	public Order getOrder(String orderName){
 		for (Order order : myOrders) {
 			if(order.getName().equalsIgnoreCase(orderName)){
@@ -633,6 +745,9 @@ public class Launch {
 		return null;
 	}
 	
+	/** Get the user type to display it in the clui.
+	 * @return
+	 */
 	public String getUserType(){
 		if(this.getCurrentUser() instanceof Manager){return "Manager";}
 		else if(this.getCurrentUser() instanceof Restaurant) {return "Restaurant";}
