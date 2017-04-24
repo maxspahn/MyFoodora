@@ -15,9 +15,10 @@ public class TargetProfit_Markup implements TargetPolicy, Serializable  {
 	/**
 	 * @param value1 service_fee.
 	 * @param value2 delivery_cost.
+	 * @throws TargetCannotBeFullfilled 
 	 */
 	@Override
-	public void setTargetPolicy(MyFoodora myFoodora, double value1,	double value2) {
+	public void setTargetPolicy(MyFoodora myFoodora, double value1,	double value2) throws TargetCannotBeFullfilled {
 		double markup = -1;
 		if(myFoodora.getTargetProfit() == 0){
 			myFoodora.setTargetProfit(myFoodora.computeValuesLastMonth()[1]);
@@ -35,7 +36,7 @@ public class TargetProfit_Markup implements TargetPolicy, Serializable  {
 		}
 		
 		if(markup <= 0){
-			System.out.println("The target cannot be fullfilled with the values given, the fees have not been changed");
+			throw new TargetCannotBeFullfilled();
 		}
 		else{
 			myFoodora.setDelivery_cost(value2);

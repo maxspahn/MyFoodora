@@ -13,6 +13,6 @@ public interface TargetPolicy {
 	 * @param value1 depending on the policy : if TargetProfit_Markup : value1 = service_fee else value1 = markup_percentage.
 	 * @param value2 depending on the policy : if TargetProfit_DeliveryCost : value2 = service_fee else value2 = delivery_cost.
 	 */
-	public void setTargetPolicy(MyFoodora myFoodora, double value1, double value2);
+	public void setTargetPolicy(MyFoodora myFoodora, double value1, double value2) throws TargetCannotBeFullfilled;
 
 }

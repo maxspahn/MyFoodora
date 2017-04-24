@@ -9,6 +9,7 @@ import org.junit.Test;
 import system.MyFoodora;
 import system.Order;
 import system.OrderNotCompletException;
+import system.TargetCannotBeFullfilled;
 import user_management.Manager;
 import user_management.ManagerFactory;
 import user_management.Restaurant;
@@ -185,14 +186,22 @@ public class ManagerTest {
 		}
 		
 		//Testing without given targetValues, it takes the last month values
-		manager.setDeliveryCostAccordingTargetPolicy(0.5, 2);
+		try {
+			manager.setDeliveryCostAccordingTargetPolicy(0.5, 2);
+		} catch (TargetCannotBeFullfilled e) {
+			System.out.println(e.getMessage());
+		}
 		assertTrue(m.getDelivery_cost() == 9.44);
 
 		
 		//Testing with given targetValues
 		manager.setTargetCommands(10);
 		manager.setTargetProfit(100);
-		manager.setDeliveryCostAccordingTargetPolicy(0.5, 2);
+		try {
+			manager.setDeliveryCostAccordingTargetPolicy(0.5, 2);
+		} catch (TargetCannotBeFullfilled e) {
+			System.out.println(e.getMessage());
+		}
 		assertTrue(m.getDelivery_cost() == 0.05);	
 		
 	}
@@ -212,14 +221,22 @@ public class ManagerTest {
 		}
 		
 		//Testing without given targetValues, it takes the last month values
-		manager.setMarkupAccordingTargetPolicy(2, 3);
+		try {
+			manager.setMarkupAccordingTargetPolicy(2, 3);
+		} catch (TargetCannotBeFullfilled e) {
+			System.out.println(e.getMessage());
+		}
 		assertTrue(m.getMarkup_percentage() == 0.1);
 
 		
 		//Testing with given targetValues
 		manager.setTargetCommands(10);
 		manager.setTargetProfit(100);
-		manager.setMarkupAccordingTargetPolicy(2, 3);
+		try {
+			manager.setMarkupAccordingTargetPolicy(2, 3);
+		} catch (TargetCannotBeFullfilled e) {
+			System.out.println(e.getMessage());
+		}
 		assertTrue(m.getMarkup_percentage() == 0.68);	
 		
 	}
@@ -240,14 +257,22 @@ public class ManagerTest {
 		
 		//Testing without given targetValues, it takes the last month values
 		// In this case no positive could be computed, so the fees stay unchanged
-		manager.setServiceFeeAccordingTargetPolicy(0.4, 3);
+		try {
+			manager.setServiceFeeAccordingTargetPolicy(0.4, 3);
+		} catch (TargetCannotBeFullfilled e) {
+			System.out.println(e.getMessage());
+		}
 		assertTrue(m.getService_fee() == 2);
 
 		
 		//Testing with given targetValues
 		manager.setTargetCommands(10);
 		manager.setTargetProfit(100);
-		manager.setServiceFeeAccordingTargetPolicy(0.4, 3);		
+		try {
+			manager.setServiceFeeAccordingTargetPolicy(0.4, 3);
+		} catch (TargetCannotBeFullfilled e) {
+			System.out.println(e.getMessage());
+		}		
 		assertTrue(m.getService_fee() == 6.56);
 		
 		

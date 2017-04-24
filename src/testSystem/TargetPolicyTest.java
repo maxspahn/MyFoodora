@@ -6,6 +6,7 @@ import org.junit.Test;
 
 
 import system.MyFoodora;
+import system.TargetCannotBeFullfilled;
 import system.TargetProfit_Markup;
 import system.TargetProfit_ServiceFee;
 
@@ -36,12 +37,20 @@ public class TargetPolicyTest {
 		double average = m.getAveragePricePerCommand();
 
 		// not possible to compute positive values
-		m.changeFeesAccordingToPolicy(markup, service);
+		try {
+			m.changeFeesAccordingToPolicy(markup, service);
+		} catch (TargetCannotBeFullfilled e) {
+			System.out.println(e.getMessage());
+		}
 		assertTrue(m.getDelivery_cost() == 3.0);
 		
 		// possible to compute positive values
 		markup = 0.5;
-		m.changeFeesAccordingToPolicy(markup, service);		
+		try {
+			m.changeFeesAccordingToPolicy(markup, service);
+		} catch (TargetCannotBeFullfilled e) {
+			System.out.println(e.getMessage());
+		}		
 		double test = ((double) Math.round(100* (average * m.getMarkup_percentage() + m.getService_fee() - profit/targetCommands))/100);
 		assertTrue(test == m.getDelivery_cost());
 		
@@ -70,12 +79,20 @@ public class TargetPolicyTest {
 		double average = m.getAveragePricePerCommand();
 		
 		// not possible to compute positive values
-		m.changeFeesAccordingToPolicy(service, delivery);
+		try {
+			m.changeFeesAccordingToPolicy(service, delivery);
+		} catch (TargetCannotBeFullfilled e) {
+			System.out.println(e.getMessage());
+		}
 		assertTrue(m.getMarkup_percentage() == 0.1);
 		
 		// possible to compute positive values
 		service = 0.5;
-		m.changeFeesAccordingToPolicy(service, delivery);
+		try {
+			m.changeFeesAccordingToPolicy(service, delivery);
+		} catch (TargetCannotBeFullfilled e) {
+			System.out.println(e.getMessage());
+		}
 		double test = ((double) Math.round(100*(profit/targetCommands + delivery - service)/average))/100;
 		assertTrue(test == m.getMarkup_percentage());
 	}
@@ -102,12 +119,20 @@ public class TargetPolicyTest {
 		double average = m.getAveragePricePerCommand();
 		
 		// not possible to compute positive values
-		m.changeFeesAccordingToPolicy(markup, delivery);
+		try {
+			m.changeFeesAccordingToPolicy(markup, delivery);
+		} catch (TargetCannotBeFullfilled e) {
+			System.out.println(e.getMessage());
+		}
 		assertTrue(m.getDelivery_cost() == 3.0);
 		
 		// possible to compute positive values
 		delivery = 10;
-		m.changeFeesAccordingToPolicy(markup, delivery);
+		try {
+			m.changeFeesAccordingToPolicy(markup, delivery);
+		} catch (TargetCannotBeFullfilled e) {
+			System.out.println(e.getMessage());
+		}
 		double test = ((double) Math.round(100*(profit/targetCommands + delivery - average * markup)))/100;
 		assertTrue(test == m.getService_fee());
 	}

@@ -221,8 +221,9 @@ public class Manager extends PhysicalUser implements Serializable{
 	/** Sets the fees, service fees are computed according to the targetProfit.
 	 * @param markup_percentage
 	 * @param delivery_cost
+	 * @throws TargetCannotBeFullfilled 
 	 */
-	public void setServiceFeeAccordingTargetPolicy(double markup_percentage, double delivery_cost){
+	public void setServiceFeeAccordingTargetPolicy(double markup_percentage, double delivery_cost) throws TargetCannotBeFullfilled{
 		this.myFoodora.setTargetPolicy(new TargetProfit_ServiceFee());
 		this.myFoodora.changeFeesAccordingToPolicy(markup_percentage, delivery_cost);
 	}
@@ -230,8 +231,9 @@ public class Manager extends PhysicalUser implements Serializable{
 	/** Sets the fees, markup_percentage is computed according to the targetProfit.
 	 * @param service_fee
 	 * @param delivery_cost
+	 * @throws TargetCannotBeFullfilled 
 	 */
-	public void setMarkupAccordingTargetPolicy(double service_fee, double delivery_cost){
+	public void setMarkupAccordingTargetPolicy(double service_fee, double delivery_cost) throws TargetCannotBeFullfilled{
 		this.myFoodora.setTargetPolicy(new TargetProfit_Markup());
 		this.myFoodora.changeFeesAccordingToPolicy(service_fee, delivery_cost);
 	}
@@ -239,8 +241,9 @@ public class Manager extends PhysicalUser implements Serializable{
 	/** Sets the fees, delivery_cost is computed according to the targetProfit.
 	 * @param markup_percentage
 	 * @param service_fee
+	 * @throws TargetCannotBeFullfilled 
 	 */
-	public void setDeliveryCostAccordingTargetPolicy(double markup_percentage, double service_fee){
+	public void setDeliveryCostAccordingTargetPolicy(double markup_percentage, double service_fee) throws TargetCannotBeFullfilled{
 		this.myFoodora.setTargetPolicy(new TargetProfit_DeliveryCost());		
 		this.myFoodora.changeFeesAccordingToPolicy(markup_percentage, service_fee);
 		}

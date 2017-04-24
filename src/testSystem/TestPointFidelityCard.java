@@ -4,10 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import restaurant.FullMeal;
 import restaurant.ItemDoesNotExist;
-import restaurant.MainDish;
-import restaurant.SingleItem;
 import restaurant.WrongItemAdded;
 import system.MyFoodora;
 import system.NoCourierFoundToDeliver;
@@ -24,7 +21,7 @@ import user_management.Restaurant;
  */
 public class TestPointFidelityCard {
 
-	/**Test if the number of points is well computed, knowing that a customer can win 1 point each 10€ spent.
+	/**Test if the number of points is well computed, knowing that a customer can win 1 point each 10ï¿½ spent.
 	 * 
 	 */
 	@Test

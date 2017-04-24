@@ -131,9 +131,10 @@ public class MyFoodora implements Serializable{
 	/**Set fees according to the current targetPolicy, you give two values. Their meaning depends on the targetpolicy.
 	 * @param value1 Depending on the target policy: if MarkUp : value1 = service_fee, else value1 = markup_percentage
 	 * @param value2 Depending on the target policy: if DeliveryCost : value2 = service_fee, else value2 = delivery_cost
+	 * @throws TargetCannotBeFullfilled 
 	 * @throws OrderNotCompletException
 	 */
-	public void changeFeesAccordingToPolicy(double value1, double value2){
+	public void changeFeesAccordingToPolicy(double value1, double value2) throws TargetCannotBeFullfilled{
 		this.targetPolicy.setTargetPolicy(this, value1, value2);
 	}
 	
