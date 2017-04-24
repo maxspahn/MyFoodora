@@ -80,11 +80,11 @@ public abstract class Meal implements Serializable{
 	 */
 	public String toString(){
 		String s = new String();
-		s = this.getName() + " consists of:\n";
-		if(this.getStarter() != null) { s += "Starter : " + this.getStarter().getName() + "\n";}
-		if(this.getMainDish() != null) {s += "MainDish : " + this.getMainDish().getName() + "\n";}
-		if(this.getDesert() != null) {s += "Dessert : " + this.getDesert().getName() + "\n";}
-		s += "Price : " + this.getPrice() + " Complete : " + this.isComplete;
+		s = this.getName()+" (";
+		if(this.getStarter() != null) { s += "Starter : " + this.getStarter().getName() + " ";}
+		if(this.getMainDish() != null) {s += "MainDish : " + this.getMainDish().getName() + " ";}
+		if(this.getDesert() != null) {s += "Dessert : " + this.getDesert().getName() + " ";}
+		s+=")"+" - "+this.getPrice()+"€";
 		return s;
 		
 	}

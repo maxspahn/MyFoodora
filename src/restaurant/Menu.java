@@ -17,12 +17,18 @@ public class Menu implements Serializable{
 	private String title;
 	private SingleItemFactory singleItemFactory;
 	private MealFactory mealFactory;
+	private ArrayList<Starter> starters;
+	private ArrayList<MainDish> mainDishes;
+	private ArrayList<Desert> desserts;
 	
 	/**Constructor. Includes the creation of the ItemFactories. The default items are loaded.
 	 * 
 	 */
 	public Menu(){
-		this.setTitle("Title");
+		this.starters = new ArrayList<Starter>();
+		this.mainDishes = new ArrayList<MainDish>();
+		this.desserts = new ArrayList<Desert>();
+		this.setTitle("Menu");
 		this.setMealFactory(new MealFactory());
 		this.setSingleItemFactory(new SingleItemFactory());
 		this.load();
@@ -33,6 +39,10 @@ public class Menu implements Serializable{
 	 * 
 	 */
 	public Menu(String title) {
+		this.starters = new ArrayList<Starter>();
+		this.mainDishes = new ArrayList<MainDish>();
+		this.desserts = new ArrayList<Desert>();
+		this.setTitle("Menu");
 		this.setTitle(title);
 		this.setMealFactory(new MealFactory());
 		this.setSingleItemFactory(new SingleItemFactory());
@@ -142,7 +152,7 @@ public class Menu implements Serializable{
 	 */
 	public int searchIndexSingleItem(String singleItemName) throws ItemDoesNotExist{
 		int indexSingleItem = -1;
-
+		
 		for (int i = 0; i < this.singleItems.size(); i++) {
 			if(this.singleItems.get(i).getName().equalsIgnoreCase(singleItemName)){
 				indexSingleItem = i;
@@ -216,8 +226,20 @@ public class Menu implements Serializable{
 	 * @throws WrongItemAdded
 	 */
 	public void addItem(String itemType, String name) throws WrongItemAdded{
-		if(itemType.equalsIgnoreCase("Starter") || itemType.equalsIgnoreCase("mainDish") || itemType.equalsIgnoreCase("dessert")){
-			this.getSingleItems().add(this.getSingleItemFactory().createSingleItem(itemType, name));
+		if(itemType.equalsIgnoreCase("Starter")){
+			SingleItem singleItem = this.getSingleItemFactory().createSingleItem(itemType, name);
+			this.getSingleItems().add(singleItem);
+			this.starters.add((Starter) singleItem);
+		}
+		else if(itemType.equalsIgnoreCase("mainDish")){
+			SingleItem singleItem = this.getSingleItemFactory().createSingleItem(itemType, name);
+			this.getSingleItems().add(singleItem);
+			this.mainDishes.add((MainDish) singleItem);
+		}
+		else if(itemType.equalsIgnoreCase("dessert")){
+			SingleItem singleItem = this.getSingleItemFactory().createSingleItem(itemType, name);
+			this.getSingleItems().add(singleItem);
+			this.desserts.add((Desert) singleItem);
 		}
 		else if(itemType.equalsIgnoreCase("FullMeal") || itemType.equalsIgnoreCase("HalfMeal")){
 			this.getMeals().add(this.getMealFactory().createMeal(itemType, name));
@@ -327,14 +349,47 @@ public class Menu implements Serializable{
 	 * @return String containing the information.
 	 */
 	public String toString(){
-		String s = this.getTitle();
+		String s = "------"+this.getTitle()+"------\r\n\r\n";
+		//Display single items
+		s+="-Single Items:"+"\r\n";
+		if(this.singleItems.size()==0){
+			s+= "There is no single item.\r\n";
+		}
+		else{
 		for (SingleItem singleItem : this.getSingleItems()) {
-			s += singleItem;
+			s += singleItem+"\r\n";
+		}}
+		//Display meals
+		s+= "\r\n-Meals:"+"\r\n";
+		if(this.meals.size()==0){
+			s+= "There is no meal.\r\n";
 		}
+		else{
 		for (Meal meal : this.getMeals()) {
-			s += meal;
-		}
+			s += meal+"\r\n";
+		}}
 		return s;
+	}
+
+	/**
+	 * @return the starters
+	 */
+	public ArrayList<Starter> getStarters() {
+		return starters;
+	}
+
+	/**
+	 * @return the mainDishes
+	 */
+	public ArrayList<MainDish> getMainDishes() {
+		return mainDishes;
+	}
+
+	/**
+	 * @return the desserts
+	 */
+	public ArrayList<Desert> getDesserts() {
+		return desserts;
 	}
 	
 }

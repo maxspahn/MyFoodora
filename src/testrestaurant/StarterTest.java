@@ -60,4 +60,12 @@ public class StarterTest {
 		assertTrue(startertest.getId()!=startertest2.getId());
 	}
 
+	/**Test if the starter list is well created.
+	 * 
+	 */
+	@Test
+	public void testListMainDish() {
+		Menu menu = new Menu("Menu");
+		assertTrue(menu.getStarters().get(2).getName().equals("Quiche"));
+	}
 }

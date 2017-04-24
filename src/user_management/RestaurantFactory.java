@@ -44,8 +44,8 @@ public class RestaurantFactory extends UserFactory implements Serializable{
 			//Creation of the first restaurant
 			int[] adress = {12,-3};
 			this.createAccount("The Five Fields", "fiveFields", 
-			"j/890", "0178560531","thefivefields@gmail.com", adress);
-			Restaurant restaurant1 = (Restaurant) this.login("fiveFields", "j/890");
+			"5fs", "0178560531","thefivefields@gmail.com", adress);
+			Restaurant restaurant1 = (Restaurant) this.login("fiveFields", "5fs");
 			
 			//Creation of the second restaurant
 			int[] adress2 = {-67,-9};

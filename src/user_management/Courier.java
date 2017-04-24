@@ -46,8 +46,8 @@ public class Courier extends PhysicalUser implements Serializable{
 	public String toString(){	
 		int x = this.getAdress()[0];
 		int y = this.getAdress()[1];
-		String s = "ID:"+this.getID()+"\t : "+this.getName() + " : "+this.getEmail()+" "+this.getPhone()
-			+" : { "+x+" ; "+y+" }";
+		String s = "ID"+this.getID()+"\t : "+this.getName()+" "+this.getSurname() +", Username : "+this.getUserName()+ ", "+this.getEmail()+", "+this.getPhone()
+			+", Adress: { "+x+" ; "+y+" },";
 		if(this.isAvailability()){
 			s += " on Duty";
 		}

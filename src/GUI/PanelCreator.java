@@ -1,6 +1,7 @@
 package GUI;
 
 import java.util.Stack;
+import user_management.*;
 
 import javax.swing.JFrame;
 
@@ -17,9 +18,17 @@ public class PanelCreator extends JFrame{
 	private PanelRegisterCourier panelRegisterCourier;
 	private PanelRegisterRestaurant panelRegisterRestaurant;
 	private PanelCustomer panelCustomer;
+	private PanelCustomerOrder panelCustomerOrder;
+	private PanelRestaurant panelRestaurant;
+	private PanelAddSingleItem panelAddSingleItem;
+	private PanelCreateMeal panelCreateMeal;
+	private PanelManager panelManager;
+	private PanelChooseDate panelChooseDate;
 	
 	//JMenuBars
 	private MenuBarCustomer menuBarCustomer;
+	private MenuBarRestaurant menuBarRestaurant;
+	private MenuBarManager menuBarManager;
 	
 	private Stack activatedPanels;
 	
@@ -83,16 +92,123 @@ public class PanelCreator extends JFrame{
 	
 	public void createCustomerPanel(){
 		this.menuBarCustomer = new MenuBarCustomer();
-		this.panelCustomer = new PanelCustomer();
+		this.panelCustomer = new PanelCustomer(this.launch.getMyFoodora());
 		//Add listeners to the buttons of panelCustomer
-		this.panelCustomer.getOrder().addActionListener(launch.new OrderListener());
+		this.panelCustomer.getChoose().addActionListener(launch.new ChooseListener());
 		this.panelCustomer.getLogout().addActionListener(launch.new LogoutListener());
+		this.panelCustomer.getShow().addActionListener(launch.new ShowListener());
 		
 		//Add listeners to the buttons of menuBarCustomer
 		this.menuBarCustomer.getBasicFidelityCardItem().addActionListener(launch.new  BasicFidelityCardListener());
 		this.menuBarCustomer.getPointFidelityCardItem().addActionListener(launch.new PointFidelityCardListener());
 		this.menuBarCustomer.getLotteryFidelityCardItem().addActionListener(launch.new LotteryFidelityCardListener());
+		this.menuBarCustomer.getShowFeatures().addActionListener(launch.new ShowFeaturesListener());
+		this.menuBarCustomer.getReadNotifications().addActionListener(launch.new ReadNotificationsListener());
+		this.menuBarCustomer.getYesOffers().addActionListener(launch.new YesOffersListener());
+		this.menuBarCustomer.getNoOffers().addActionListener(launch.new NoOffersListener());
+		this.menuBarCustomer.getContactEmail().addActionListener(launch.new ContactEmailListener());
+		this.menuBarCustomer.getContactPhone().addActionListener(launch.new ContactPhoneListener());
+		this.menuBarCustomer.getContactLetter().addActionListener(launch.new ContactLetterListener());
+		this.menuBarCustomer.getHistoryOfOrders().addActionListener(launch.new HistoryOfOrdersListener());
+		this.menuBarCustomer.getGetProfile().addActionListener(launch.new ProfileListener());
+		this.menuBarCustomer.getSetEmail().addActionListener(launch.new SetEmailListener());
+		this.menuBarCustomer.getSetPhone().addActionListener(launch.new SetPhoneListener());
+		this.menuBarCustomer.getSetAdress().addActionListener(launch.new SetAdressListener());
 		this.panelCustomer.setVisible(false);
+	}
+	
+	public void createCustomerOrderPanel(){
+		this.panelCustomerOrder = new PanelCustomerOrder(this.launch.getMyFoodora().getListRestaurant().get(0));
+		this.panelCustomerOrder.getBack().addActionListener(launch.new BackListener());
+		this.panelCustomerOrder.getShowItem().addActionListener(launch.new ShowItemListener());
+		this.panelCustomerOrder.getShowMeal().addActionListener(launch.new ShowMealListener());
+		this.panelCustomerOrder.getChooseItem().addActionListener(launch.new ChooseItemListener());
+		this.panelCustomerOrder.getChooseMeal().addActionListener(launch.new ChooseMealListener());
+		this.panelCustomerOrder.getRemoveSomething().addActionListener(launch.new RemoveSomethingListener());
+		this.panelCustomerOrder.getPay().addActionListener(launch.new PayListener());
+		this.panelCustomerOrder.setVisible(false);
+	}
+	
+	public void createRestaurantPanel(){
+		this.menuBarRestaurant = new MenuBarRestaurant();
+		this.panelRestaurant = new PanelRestaurant();
+		this.panelRestaurant.setVisible(false);
+		//Add listeners to the buttons of panelRestaurant
+		this.panelRestaurant.getLogout().addActionListener(launch.new LogoutListener());
+		this.panelRestaurant.getOkActionSetMenu().addActionListener(launch.new OkActionSetMenu());
+		
+		//Add listeners to the buttons of menuBarRestaurant
+		this.menuBarRestaurant.getSetEmail().addActionListener(launch.new SetEmailListener());
+		this.menuBarRestaurant.getSetPhone().addActionListener(launch.new SetPhoneListener());
+		this.menuBarRestaurant.getSetAdress().addActionListener(launch.new SetAdressListener());
+		this.menuBarRestaurant.getGetMyMenu().addActionListener(launch.new GetMyMenuListener());
+		this.menuBarRestaurant.getGetCurrentGenericDiscount().addActionListener(launch.new GetCurrentGenericDiscountListener());
+		this.menuBarRestaurant.getGetCurrentSpecialDiscount().addActionListener(launch.new GetCurrentSpecialDiscountListener());
+		this.menuBarRestaurant.getSetNewSpecialDiscount().addActionListener(launch.new SetNewSpecialDiscountListener());
+		this.menuBarRestaurant.getGetMyProfile().addActionListener(launch.new ProfileListener());
+		this.menuBarRestaurant.getHistorySoldSingleItems().addActionListener(launch.new HistorySoldSingleItemsListener());
+		
+	}
+	
+	public void createAddSingleItemPanel(){
+		this.panelAddSingleItem = new PanelAddSingleItem();
+		this.panelAddSingleItem.setVisible(false);
+		this.panelAddSingleItem.getBack().addActionListener(launch.new BackListener());
+		this.panelAddSingleItem.getOkSingleItem().addActionListener(launch.new OkSingleItemListener());
+	}
+	
+	public void createCreateMealPanel(){
+		this.panelCreateMeal = new PanelCreateMeal(this.launch.getMyFoodora().getListRestaurant().get(0));
+		this.panelCreateMeal.setVisible(false);
+		this.panelCreateMeal.getBack().addActionListener(launch.new BackListener());
+		this.panelCreateMeal.getShowStarter().addActionListener(launch.new ShowStarterListener());
+		this.panelCreateMeal.getShowMainDish().addActionListener(launch.new ShowMainDishListener());
+		this.panelCreateMeal.getShowDessert().addActionListener(launch.new ShowDessertListener());
+		this.panelCreateMeal.getCreate().addActionListener(launch.new CreateListener());
+	}
+	
+	public void createManagerPanel(){
+		this.menuBarManager = new MenuBarManager();
+		this.panelManager = new PanelManager();
+		this.panelManager.setVisible(false);
+		
+		//Add listeners to the panelManager
+		this.panelManager.getLogout().addActionListener(launch.new LogoutListener());
+		this.panelManager.getChoosePolicy().addActionListener(launch.new ChoosePolicyListener());
+		this.panelManager.getChooseUser().addActionListener(launch.new ChooseUserListener());
+		
+		//Add the listeners to the menuBarManager
+		this.menuBarManager.getSetEmail().addActionListener(launch.new SetEmailListener());
+		this.menuBarManager.getSetPhone().addActionListener(launch.new SetPhoneListener());
+		this.menuBarManager.getSetAdress().addActionListener(launch.new SetAdressListener());
+		this.menuBarManager.getGetProfile().addActionListener(launch.new ProfileListener());
+		this.menuBarManager.getShowAllUsers().addActionListener(launch.new ShowAllUsersListener());
+		this.menuBarManager.getShowCustomers().addActionListener(launch.new ShowCustomersListener());
+		this.menuBarManager.getShowRestaurants().addActionListener(launch.new ShowRestaurantsListener());
+		this.menuBarManager.getShowCouriers().addActionListener(launch.new ShowCouriersListener());
+		this.menuBarManager.getShowManagers().addActionListener(launch.new ShowManagersListener());
+		this.menuBarManager.getMostSellingRestaurant().addActionListener(launch.new MostSellingRestaurantListener());
+		this.menuBarManager.getLeastSellingRestaurant().addActionListener(launch.new LeastSellingRestaurantListener());
+		this.menuBarManager.getMostActiveCourier().addActionListener(launch.new MostActiveCourierListener());
+		this.menuBarManager.getLeastActiveCourier().addActionListener(launch.new LeastActiveCourierListener());
+		this.menuBarManager.getGetServiceFeePercentage().addActionListener(launch.new GetServiceFeePercentageListener());
+		this.menuBarManager.getGetDeliveryCost().addActionListener(launch.new GetDeliveryCostListener());
+		this.menuBarManager.getGetMarkupPercentage().addActionListener(launch.new GetMarkupPercentageListener());
+		this.menuBarManager.getSetServiceFeePercentage().addActionListener(launch.new SetServiceFeePercentageListener());
+		this.menuBarManager.getSetDeliveryCost().addActionListener(launch.new SetDeliveryCostListener());
+		this.menuBarManager.getSetMarkupPercentage().addActionListener(launch.new GetMarkupPercentageListener());
+		this.menuBarManager.getGetDeliveryPolicy().addActionListener(launch.new GetDeliveryPolicyListener());
+		this.menuBarManager.getSetDeliveryPolicy().addActionListener(launch.new SetDeliveryPolicyLiistener());
+		this.menuBarManager.getTotalIncome().addActionListener(launch.new GetTotalIncomeListener());
+		this.menuBarManager.getTotalIncomePerCustomer().addActionListener(launch.new GetTotalIncomePerCustomerListener());
+		this.menuBarManager.getProfit().addActionListener(launch.new GetProfitListener());
+	}
+	
+	public void createChooseDatePanel(){
+		this.panelChooseDate = new PanelChooseDate("");
+		this.panelChooseDate.setVisible(false);
+		this.panelChooseDate.getOkDate().addActionListener(launch.new OkDateListener());
+		this.panelChooseDate.getBack().addActionListener(launch.new BackListener());
 	}
 	
 	public void addLoginPanel(){
@@ -132,10 +248,51 @@ public class PanelCreator extends JFrame{
 	}
 	
 	public void addCustomerPanel(){
+		this.menuBarCustomer.setVisible(true);
 		setJMenuBar(this.menuBarCustomer);
 		this.panelCustomer.setVisible(true);
 		add(this.panelCustomer);
 		this.activatedPanels.add(this.panelCustomer);
+	}
+	
+	public void addCustomerOrderPanel(){
+		add(this.panelCustomerOrder);
+		this.panelCustomerOrder.setVisible(true);
+		this.activatedPanels.add(this.panelCustomerOrder);
+	}
+	
+	public void addRestaurantPanel(){
+		this.menuBarRestaurant.setVisible(true);
+		setJMenuBar(this.menuBarRestaurant);
+		this.panelRestaurant.setVisible(true);
+		add(this.panelRestaurant);
+		this.activatedPanels.add(this.panelRestaurant);
+	}
+	
+	public void addAddSingleItemPanel(){
+		add(this.panelAddSingleItem);
+		this.panelAddSingleItem.setVisible(true);
+		this.activatedPanels.add(this.panelAddSingleItem);
+	}
+	
+	public void addCreateMealPanel(){
+		add(this.panelCreateMeal);
+		this.panelCreateMeal.setVisible(true);
+		this.activatedPanels.add(this.panelCreateMeal);
+	}
+	
+	public void addManagerPanel(){
+		this.menuBarManager.setVisible(true);
+		setJMenuBar(this.menuBarManager);
+		this.panelManager.setVisible(true);
+		add(this.panelManager);
+		this.activatedPanels.add(this.panelManager);
+	}
+	
+	public void addChooseDatePanel(){
+		this.panelChooseDate.setVisible(true);
+		add(this.panelChooseDate);
+		this.activatedPanels.add(this.panelChooseDate);
 	}
 	
 	public void createAllPanels(){
@@ -147,7 +304,12 @@ public class PanelCreator extends JFrame{
 		this.createRegisterRestaurantPanel();
 		this.createRegisterCourierPanel();
 		this.createCustomerPanel();
-		
+		this.createCustomerOrderPanel();
+		this.createRestaurantPanel();
+		this.createAddSingleItemPanel();
+		this.createCreateMealPanel();
+		this.createManagerPanel();
+		this.createChooseDatePanel();
 	}
 	
 
@@ -220,6 +382,63 @@ public class PanelCreator extends JFrame{
 	public MenuBarCustomer getMenuBarCustomer() {
 		return menuBarCustomer;
 	}
-		
+
+	/**
+	 * @return the panelCustomerOrder
+	 */
+	public PanelCustomerOrder getPanelCustomerOrder() {
+		return panelCustomerOrder;
+	}
+
+	/**
+	 * @return the panelRestaurant
+	 */
+	public PanelRestaurant getPanelRestaurant() {
+		return panelRestaurant;
+	}
+
+	/**
+	 * @return the menuBarRestaurant
+	 */
+	public MenuBarRestaurant getMenuBarRestaurant() {
+		return menuBarRestaurant;
+	}
+
+	/**
+	 * @return the panelAddSingleItem
+	 */
+	public PanelAddSingleItem getPanelAddSingleItem() {
+		return panelAddSingleItem;
+	}
+
+	/**
+	 * @return the panelCreateMeal
+	 */
+	public PanelCreateMeal getPanelCreateMeal() {
+		return panelCreateMeal;
+	}
+
+	/**
+	 * @return the panelManager
+	 */
+	public PanelManager getPanelManager() {
+		return panelManager;
+	}
+
+	/**
+	 * @return the menuBarManager
+	 */
+	public MenuBarManager getMenuBarManager() {
+		return menuBarManager;
+	}
+
+	/**
+	 * @return the panelChooseDate
+	 */
+	public PanelChooseDate getPanelChooseDate() {
+		return panelChooseDate;
+	}
 	
+	
+			
 }
