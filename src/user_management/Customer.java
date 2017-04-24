@@ -38,7 +38,7 @@ public class Customer extends PhysicalUser implements PeopleToNotify, Serializab
 	 * @return A string containing all the received notifications.
 	 */
 	public String getNotifications(){
-		String notificationString = this.contactForOffers+"\r\n"+this.notifications.get(0)+"\r\n";
+		String notificationString = "Received by "+this.contactForOffers+":"+"\r\n"+this.notifications.get(0)+"\r\n";
 		if (this.notificationNumber>0){
 		for (int i = 1; i < this.notifications.size(); i++) {
 			String newNotification = this.notifications.get(i)+"\r\n";
@@ -109,9 +109,9 @@ public class Customer extends PhysicalUser implements PeopleToNotify, Serializab
 	public String toString(){	
 		int x = this.getAdress()[0];
 		int y = this.getAdress()[1];
-		return "ID:"+this.getID()+"\t : "+this.getName()+", "+this.getSurname()+" Username : "+this.getUserName()
-			+" "+this.getEmail()+" "+this.getPhone()
-			+"/Adress : { "+x+" ; "+y+" }"+" SpamAgreement : "+this.spamAgreement+" FidelityCard : "+this.fidelityCard;
+		return "ID"+this.getID()+"\t : "+this.getName()+" "+this.getSurname()+", Username : "+this.getUserName()
+			+", "+this.getEmail()+", "+this.getPhone()
+			+", Adress : { "+x+" ; "+y+" }"+", SpamAgreement : "+this.spamAgreement+", FidelityCard : "+this.fidelityCard;
 	}
 
 	@Override

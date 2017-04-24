@@ -111,5 +111,9 @@ public class LotteryFidelityCard implements FidelityCard, Serializable{
 		this.probability = probability;
 	}
 
+	@Override
+	public String toString(){
+		return "Lottery fidility card";
+	}
 
 }

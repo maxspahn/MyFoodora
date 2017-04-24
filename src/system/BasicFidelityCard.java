@@ -37,5 +37,10 @@ public class BasicFidelityCard implements FidelityCard, Serializable{
 		}
 		return price;
 	}
+	
+	@Override
+	public String toString(){
+		return "Basic fidility card";
+	}
 
 }

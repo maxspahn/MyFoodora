@@ -23,7 +23,10 @@ public class MenuBarCustomer extends JMenuBar{
 	private JMenuItem contactPhone;
 	private JMenuItem contactLetter;
 	private JMenuItem historyOfOrders;
-	private JMenuItem profile;
+	private JMenuItem getProfile;
+	private JMenuItem setEmail;
+	private JMenuItem setPhone;
+	private JMenuItem setAdress;
 	private JLabel text;
 	
 	public MenuBarCustomer(){
@@ -80,8 +83,17 @@ public class MenuBarCustomer extends JMenuBar{
 		historyOfOrdersMenu.add(this.historyOfOrders);
 		
 		//Creation of the items of the profileMenu
-		this.profile = new JMenuItem("Get my profile");
-		profileMenu.add(this.profile);
+		this.getProfile = new JMenuItem("Get my profile");
+		
+		JMenu setProfile = new JMenu("Set my profile");
+		this.setEmail = new JMenuItem("Set my email");
+		this.setPhone = new JMenuItem("Set my phone");
+		this.setAdress = new JMenuItem("Set my adress");
+		setProfile.add(this.setEmail);
+		setProfile.add(this.setPhone);
+		setProfile.add(this.setAdress);
+		profileMenu.add(this.getProfile);
+		profileMenu.add(setProfile);
 		
 		//frame.setJMenuBar(menuBar);
 		setVisible(true);
@@ -189,8 +201,8 @@ public class MenuBarCustomer extends JMenuBar{
 	/**
 	 * @return the profile
 	 */
-	public JMenuItem getProfile() {
-		return profile;
+	public JMenuItem getGetProfile() {
+		return getProfile;
 	}
 
 
@@ -201,4 +213,28 @@ public class MenuBarCustomer extends JMenuBar{
 		return text;
 	}
 
+
+	/**
+	 * @return the setEmail
+	 */
+	public JMenuItem getSetEmail() {
+		return setEmail;
+	}
+
+
+	/**
+	 * @return the setPhone
+	 */
+	public JMenuItem getSetPhone() {
+		return setPhone;
+	}
+
+
+	/**
+	 * @return the setAdress
+	 */
+	public JMenuItem getSetAdress() {
+		return setAdress;
+	}
+	
 }

@@ -61,4 +61,15 @@ public class DessertTest {
 		assertTrue(dessertTest.getId()!=dessertTest2.getId());
 	}
 	
+	/**Test if the dessert list is well created.
+	 * 
+	 */
+	@Test
+	public void testListDessert() {
+		Menu menu = new Menu("Menu");
+		assertTrue(menu.getDesserts().get(2).getName().equals("Ice_Cream"));
+	}
+	
+	
+	
 }

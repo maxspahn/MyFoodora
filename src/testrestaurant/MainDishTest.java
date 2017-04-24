@@ -59,5 +59,14 @@ public class MainDishTest {
 		MainDish dessertTest2 = new MainDish("quiche");
 		assertTrue(dessertTest.getId()!=dessertTest2.getId());
 	}
+	
+	/**Test if the main dish list is well created.
+	 * 
+	 */
+	@Test
+	public void testListMainDish() {
+		Menu menu = new Menu("Menu");
+		assertTrue(menu.getMainDishes().get(2).getName().equals("Entrecote"));
+	}
 
 }

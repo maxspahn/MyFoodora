@@ -81,7 +81,7 @@ public class Restaurant extends User implements Observable, Serializable{
 	public String toString(){	
 		int x = this.getAdress()[0];
 		int y = this.getAdress()[1];
-		return "Name:"+this.getName()+" Email: "+this.getEmail()+" Phone: "+this.getPhone()	+" Adress:{ "+x+" ; "+y+" }";
+		return "ID"+this.getID()+"\t : "+this.getName()+", Username : "+this.getUserName()+", "+this.getEmail()+", "+this.getPhone()+", Adress:{ "+x+" ; "+y+" }";
 	}
 	
 	/**Set the meal of the week.

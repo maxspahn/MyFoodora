@@ -66,6 +66,29 @@ public class Order implements Serializable{
 		}
 	}
 	
+	/**Remove an item from the order.
+	 * @param itemName String which contains the name of the item to remove.
+	 * @throws ItemDoesNotExist if the item does not exist.
+	 * @throws ItemNotInOrderException if the item is not in the order.
+	 */
+	public void RemoveItemFromOrder(String itemName) throws ItemDoesNotExist, ItemNotInOrderException{
+		boolean singleItemFound = false;
+		boolean mealFound = false;
+		for (int i = 0; i < this.singleItems.size(); i++) {
+			if(this.singleItems.get(i).getName().equalsIgnoreCase(itemName)){
+				singleItemFound = true;
+			}
+		}
+		for (int j = 0; j < this.meals.size(); j++) {
+			if(meals.get(j).getName().equalsIgnoreCase(itemName)){
+				mealFound = true;
+
+			}
+		}
+		if(singleItemFound){this.singleItems.remove(this.restaurant.getMenu().getSingleItem(itemName));}
+		else if(mealFound){this.meals.remove(this.restaurant.getMenu().getMeal(itemName));}
+		else{throw new ItemNotInOrderException();}
+	}
 	/**Adds meal to the order.
 	 * @param mealName Name of the meal.
 	 * @throws ItemDoesNotExist

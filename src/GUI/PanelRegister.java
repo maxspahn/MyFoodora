@@ -125,5 +125,4 @@ public class PanelRegister extends JPanel{
 		return passwordPanel;
 	}
 	
-	
 }

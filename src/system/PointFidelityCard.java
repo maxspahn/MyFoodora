@@ -51,4 +51,8 @@ public class PointFidelityCard implements FidelityCard, Serializable{
 		this.points = points;
 	}
 
+	@Override
+	public String toString(){
+		return "Point fidility card";
+	}
 }

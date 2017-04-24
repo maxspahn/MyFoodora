@@ -131,9 +131,9 @@ public class Manager extends PhysicalUser implements Serializable{
 	public String toString(){	
 		int x = this.getAdress()[0];
 		int y = this.getAdress()[1];
-		return "ID:"+this.getID()+"/Name:"+this.getName()+"/Surname:"+this.getSurname()+"/Username:"+this.getUserName()
-			+"/Password:"+this.getPassWord()+"/Email:"+this.getEmail()+"/Phone:"+this.getPhone()
-			+"/Adress:{"+x+";"+y+"}"+"/Role:"+this.getRole();
+		return "ID"+this.getID()+"\t : "+this.getName()+" "+this.getSurname()+", Username : "+this.getUserName()
+		+", "+this.getEmail()+", "+this.getPhone()
+			+", Adress:{"+x+";"+y+"}"+", Role:"+this.getRole();
 	}
 	
 	
