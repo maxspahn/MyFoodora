@@ -1,3 +1,6 @@
 bin/*
 report/auxFile/*
 report/*.pdf
+*ucls
+*orig
+*bak
