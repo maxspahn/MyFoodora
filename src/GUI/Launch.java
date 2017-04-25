@@ -25,9 +25,6 @@ public class Launch{
 	private String orderedItems;
 	
 	public Launch(){
-		Dimension dimension = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-		int height = (int)dimension.getHeight();
-		int width  = (int)dimension.getWidth();
 		this.panelCreator = new PanelCreator(this);
 		this.myFoodora = new MyFoodora();
 		this.myFoodora.load();

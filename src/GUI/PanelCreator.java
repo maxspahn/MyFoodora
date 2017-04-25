@@ -12,7 +12,7 @@ import com.sun.javafx.geom.Rectangle;
 public class PanelCreator{
 	Launch launch;
 	
-	JFrame frame;
+	private JFrame frame;
 	//Panels
 	private PanelFirstPage panelFirstPage;
 	private PanelLogin panelLogin;
@@ -37,6 +37,10 @@ public class PanelCreator{
 	private MenuBarCourier menuBarCourier;
 	
 	private Stack activatedPanels;
+
+	private int coeffHeight;
+
+	private int coeffWidth;
 	
 	
 	public PanelCreator(Launch launch){
@@ -46,12 +50,16 @@ public class PanelCreator{
 		//Create frame according to the screen size
 		GraphicsEnvironment gEnv = GraphicsEnvironment.getLocalGraphicsEnvironment(); 
 		GraphicsDevice defaultDevice = gEnv.getDefaultScreenDevice();
+		int height = defaultDevice.getDefaultConfiguration().getBounds().height;
+		int width = defaultDevice.getDefaultConfiguration().getBounds().width;
+		this.coeffHeight = height/1824;
+		this.coeffWidth = width/2736;
 		this.frame = new JFrame(defaultDevice.getDefaultConfiguration());
 		frame.setVisible(true);
 	}
 
 	public void createFirstPagePanel(){
-		this.panelFirstPage = new PanelFirstPage();
+		this.panelFirstPage = new PanelFirstPage(coeffHeight,coeffWidth);
 		this.panelFirstPage.getLogin().addActionListener(launch.new LoginListener());
 		this.panelFirstPage.getRegister().addActionListener(launch.new RegisterListener());
 		this.activatedPanels.add(this.panelFirstPage);

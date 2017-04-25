@@ -13,22 +13,22 @@ public class PanelFirstPage extends JPanel{
 	private JButton register;
 	private ImageIcon iconWelcome;
 	
-	public PanelFirstPage(){
+	public PanelFirstPage(double coeffHeight, double coeffWidth){
 		setBackground(Color.white);
 		setLayout(null);
 		
 		//Welcome message
 		this.iconWelcome = new ImageIcon("WelcomeToMyFoodora.png");
 		JLabel labelWelcome = new JLabel("",iconWelcome,JLabel.CENTER);
-		labelWelcome.setBounds(700, 400, 1300, 200);
+		labelWelcome.setBounds((int)(700*coeffWidth), (int)(400*coeffHeight), (int)(1300*coeffWidth), (int)(200*coeffHeight));
 		add(labelWelcome);
 		setVisible(true);
 		
 		//Buttons
 		this.login = new JButton("Login");
-		this.login.setBounds(1200, 900, 300, 150);
+		this.login.setBounds((int)(1200*coeffWidth), (int)(900*coeffHeight), (int)(300*coeffWidth), (int)(150*coeffHeight));
 		this.register = new JButton("Register");
-		this.register.setBounds(1200, 1200, 300, 150);
+		this.register.setBounds((int)(1200*coeffWidth), (int)(1200*coeffHeight), (int)(300*coeffWidth), (int)(150*coeffHeight));
 		
 		add(this.login);
 		add(this.register);
