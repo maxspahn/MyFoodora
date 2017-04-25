@@ -377,7 +377,8 @@ public class Launch {
 	public void addDish2Meal(String [] args){
 		if(rightNumberofArguments(args, 3) && isRestaurant()){
 			try {
-				((Restaurant) this.getCurrentUser()).getMenu().addItemToMeal(args[2], args[1]);
+				System.out.println(((Restaurant) this.getCurrentUser()).getMenu());
+				((Restaurant) this.getCurrentUser()).getMenu().addItemToMeal(args[1], args[2]);
 			} catch (WrongItemAdded | ItemDoesNotExist e) {
 				System.out.println(e.getMessage());
 			}
@@ -442,7 +443,7 @@ public class Launch {
 	public void addItem2Order(String [] args){
 		if(rightNumberofArguments(args, 3) && isCustomer()){
 			try {
-				this.getOrder(args[2]).AddItemToOrder(args[1], 1);
+				this.getOrder(args[1]).AddItemToOrder(args[2], 1);
 			} catch (ItemDoesNotExist e) {
 				System.out.println(e.getMessage());
 			}
@@ -637,8 +638,14 @@ public class Launch {
 	 * @param fileName Name of the file to be executed.
 	 */
 	public void runTest(String[] args){
-		if(rightNumberofArguments(args, 2)){
-			String fileName = args[1];
+		String fileName = "";
+		if(args.length == 1){
+			fileName = "testScenario1.txt";
+		}
+		if(rightNumberofArguments(args, 2, 1)){
+			if(args.length == 2){
+				fileName = args[1];
+			}
 			try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
 			    String line;
 			    while ((line = br.readLine()) != null) {
@@ -654,6 +661,9 @@ public class Launch {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		}
+		if(args.length ==1){
+			
 		}
 	}
 	

@@ -111,12 +111,14 @@ public class Order implements Serializable{
 				this.AddMealToOrder(itemName, number);
 				found = true;
 			}
-			else if(this.getRestaurant().getMenu().getSingleItem(itemName) != null){
-				this.AddSingleItemToOrder(itemName, number);
-				found = true;
-			}
-		} catch (ItemDoesNotExist e) {
-			//no message
+		}
+		catch (ItemDoesNotExist e){
+			try{
+				if(this.getRestaurant().getMenu().getSingleItem(itemName) != null){
+					this.AddSingleItemToOrder(itemName, number);
+					found = true;
+				}
+			} catch (ItemDoesNotExist f){}
 		}
 		if(!found){
 			throw new ItemDoesNotExist(itemName);
@@ -188,7 +190,7 @@ public class Order implements Serializable{
 	 **/
 	public String toString(){
 		String s = new String();
-		s += "Order from Customer : " + this.getCustomer().getUserName() + " in restaurant : " + this.getRestaurant().getName();
+		s += "Order " + this.getName() + " from Customer : " + this.getCustomer().getUserName() + " in restaurant : " + this.getRestaurant().getName();
 		if(this.isComplete()){
 			s += "\nCompleted on : " + this.completeDay + "/" + this.completeMonth + "/" + this.completeYear + " done by : " + this.getCourier().getUserName();
 		}

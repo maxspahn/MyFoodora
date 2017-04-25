@@ -160,7 +160,7 @@ public class Customer extends PhysicalUser implements PeopleToNotify, Serializab
 		int index = -1;
 		ArrayList<Restaurant> listRestaurants = this.getMyFoodora().getListRestaurant();
 		for (int i = 0; i < listRestaurants.size(); i++) {
-			if (listRestaurants.get(i).getName().equalsIgnoreCase(restaurantName)){
+			if (listRestaurants.get(i).getUserName().equalsIgnoreCase(restaurantName)){
 				index = i;
 			}
 		}
