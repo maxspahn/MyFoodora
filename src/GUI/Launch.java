@@ -1,5 +1,7 @@
 package GUI;
 
+import java.awt.Dimension;
+import java.awt.GraphicsConfiguration;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import java.awt.event.ActionEvent;
@@ -38,6 +40,9 @@ public class Launch{
 		currentPanel.setVisible(false);
 		if(firstPanel instanceof PanelManager){
 			panelCreator.getMenuBarManager().setVisible(true);
+		}
+		else if(firstPanel instanceof PanelFirstPage){
+			panelCreator.getMenuBarCourier().setVisible(false);
 		}
 		firstPanel.setVisible(true);
 		activatedPanels.add(firstPanel);}
@@ -88,6 +93,11 @@ public class Launch{
 					panelLogin.setVisible(false);
 					panelCreator.addManagerPanel();
 					panelCreator.getPanelManager().getText().setText("Welcome "+man.getName()+" "+man.getSurname());
+				}else{
+					Courier cour = (Courier)currentUser;
+					panelLogin.setVisible(false);
+					panelCreator.addCourierPanel();
+					panelCreator.getPanelCourier().getText().setText("Welcome "+cour.getName()+" "+cour.getSurname());
 				}
 			} catch (WrongUserNameOrPassWordException e1) {
 				new Error("Error login","Unfortunately your username or your password is wrong.");
@@ -417,7 +427,7 @@ public class Launch{
 		public void actionPerformed(ActionEvent e) {
 			currentUser = null;
 			backToFirstPage();
-			panelCreator.setJMenuBar(null);
+			panelCreator.getFrame().setJMenuBar(null);
 			if(currentUser instanceof Customer){
 			panelCreator.getMenuBarCustomer().setVisible(false);}
 			else if(currentUser instanceof Restaurant){
@@ -425,6 +435,8 @@ public class Launch{
 			}
 			else if(currentUser instanceof Manager){
 				panelCreator.getMenuBarManager().setVisible(false);
+			}else{
+				panelCreator.getMenuBarCourier().setVisible(false);
 			}
 			}
 	}
@@ -520,7 +532,7 @@ public class Launch{
 			}else if(cust.getFidelityCard() instanceof PointFidelityCard){
 				PointFidelityCard card = (PointFidelityCard) cust.getFidelityCard();
 				panelCreator.getPanelCustomer().getText().setText("<html>You cannot access to special offers provided by the restaurants."
-						+ "Instead, you will earn 1 point each 10ï¿½ spent. Once you have reached 100 points you will have 10% discount on the next order.<br>"
+						+ "Instead, you will earn 1 point each 10€ spent. Once you have reached 100 points you will have 10% discount on the next order.<br>"
 						+ "You have "+card.getPoints()+" points.");
 			}else{
 				panelCreator.getPanelCustomer().getText().setText("You have a certain probability to gain a meal for free each day.");
@@ -687,6 +699,13 @@ public class Launch{
 				display += name + " " + man.getSurname()+"<br>"+userName+password+adress+email+phone;
 				display +="Role: "+man.getRole()+"<html>";
 				panelCreator.getPanelManager().getText().setText(display);
+			}else{
+				Courier cour = (Courier)currentUser;
+				display+=name+" "+cour.getSurname()+"<br>"+userName+password+adress+email+phone;
+				display+="Number of delivered orders: "+cour.getCountDeliveredOrder()+"<br>";
+				if(cour.isAvailability()){display+="ON duty<html>";}
+				else{display+="OFF duty<html>";}
+				panelCreator.getPanelCourier().getText().setText(display);
 			}
 		}
 	}
@@ -704,7 +723,7 @@ public class Launch{
 				panelCreator.getPanelCustomer().getText().setText("Your new email is: "+newEmail+".");}
 				else if(currentUser instanceof Restaurant){panelCreator.getPanelRestaurant().getText().setText("Your new email is: "+newEmail+".");}
 				else if(currentUser instanceof Manager){panelCreator.getPanelManager().getText().setText("Your new email is: "+newEmail+".");
-			}
+				}else{panelCreator.getPanelCourier().getText().setText("Your new email is: "+newEmail+".");}
 		}}
 	}
 	}
@@ -722,7 +741,7 @@ public class Launch{
 				panelCreator.getPanelCustomer().getText().setText("Your new phone number is: "+newPhone+".");}
 				else if(currentUser instanceof Manager){panelCreator.getPanelManager().getText().setText("Your new phone number is: "+newPhone+".");}
 				else if(currentUser instanceof Restaurant){panelCreator.getPanelRestaurant().getText().setText("Your new phone number is: "+newPhone+".");
-			}
+			}else{panelCreator.getPanelCourier().getText().setText("Your new phone number is: "+newPhone+".");}
 		}}
 	}
 	}
@@ -741,7 +760,10 @@ public class Launch{
 			panelCreator.getPanelCustomer().getText().setText("Your new adress is: {"+newX+","+newY+"}.");}
 			else if(currentUser instanceof Manager){panelCreator.getPanelManager().getText().setText("Your new adress is: {"+newX+","+newY+"}.");}
 			else if(currentUser instanceof Restaurant){panelCreator.getPanelRestaurant().getText().setText("Your new adress is: {"+newX+","+newY+"}.");}
-			}catch(NumberFormatException e1){
+			else{panelCreator.getPanelCourier().getText().setText("Your new position is: {"+newX+","+newY+"}.");
+			((Courier)currentUser).setLocation(newAdress);}
+			}
+			catch(NumberFormatException e1){
 				new Error("Adress Error","The adress coordinates must be integers.");
 			}
 		}
@@ -960,12 +982,12 @@ public class Launch{
 			Restaurant rest = (Restaurant) currentUser;
 			if(selectedIndex==0){ //Add a single item
 				panelCreator.getPanelRestaurant().setVisible(false);
-				panelCreator.getJMenuBar().setVisible(false);
+				panelCreator.getFrame().getJMenuBar().setVisible(false);
 				panelCreator.addAddSingleItemPanel();
 			}
 			else if(selectedIndex==1){ //Create a meal
 				panelCreator.getPanelRestaurant().setVisible(false);
-				panelCreator.getJMenuBar().setVisible(false);
+				panelCreator.getFrame().getJMenuBar().setVisible(false);
 				panelCreator.addCreateMealPanel();
 			}
 			else if(selectedIndex==2){  //Remove a single item
@@ -1104,7 +1126,7 @@ public class Launch{
 	public void displayFeaturesItem(SingleItem item){
 		String display = "<html>";
 		display += "Name: "+item.getName()+"<br>";
-		display += "Price: "+item.getPrice()+"ï¿½<br>";
+		display += "Price: "+item.getPrice()+"€<br>";
 		display += "Is vegetarian: ";
 		if(item.isVegetarian()){display += "Yes<br>";}
 		else{display += "No<br>";}
@@ -1247,7 +1269,7 @@ public class Launch{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			Restaurant rest = ((Manager)currentUser).mostSellingRestaurant();
-			String display = "<html>The most selling restaurant is "+rest.getName()+" with a total selling of "+rest.getTotalSelling()+"ï¿½.<html>";
+			String display = "<html>The most selling restaurant is "+rest.getName()+" with a total selling of "+rest.getTotalSelling()+"€.<html>";
 			panelCreator.getPanelManager().getText().setText(display);
 		}
 	}
@@ -1256,7 +1278,7 @@ public class Launch{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			Restaurant rest = ((Manager)currentUser).leastSellingRestaurant();
-			String display = "<html>The least selling restaurant is "+rest.getName()+" with a total selling of "+rest.getTotalSelling()+"ï¿½.<html>";
+			String display = "<html>The least selling restaurant is "+rest.getName()+" with a total selling of "+rest.getTotalSelling()+"€.<html>";
 			panelCreator.getPanelManager().getText().setText(display);
 		}
 	}
@@ -1421,7 +1443,7 @@ public class Launch{
 			if(panelCreator.getPanelChooseDate().getAction().equalsIgnoreCase("totalIncome")){
 				try {
 					double[] result = ((Manager)currentUser).computeTotalIncomeAndProfitOverPeriod(day1, month1, year1, day2, month2, year2);
-					panelCreator.getPanelManager().getText().setText("The total income between the dates "+day1+"/"+month1+"/"+year1+" and "+day2+"/"+month2+"/"+year2+" is: "+result[0]+"ï¿½.");
+					panelCreator.getPanelManager().getText().setText("The total income between the dates "+day1+"/"+month1+"/"+year1+" and "+day2+"/"+month2+"/"+year2+" is: "+result[0]+"€.");
 				} catch (OrderNotCompletException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -1429,7 +1451,7 @@ public class Launch{
 			}else if (panelCreator.getPanelChooseDate().getAction().equalsIgnoreCase("totalIncomePerCustomer")){
 				try {
 					double result = ((Manager)currentUser).computeIncomePerCustomerOverPeriod(day1, month1, year1, day2, month2, year2);
-					panelCreator.getPanelManager().getText().setText("The total income per customer between the dates "+day1+"/"+month1+"/"+year1+" and "+day2+"/"+month2+"/"+year2+" is: "+result+"ï¿½.");
+					panelCreator.getPanelManager().getText().setText("The total income per customer between the dates "+day1+"/"+month1+"/"+year1+" and "+day2+"/"+month2+"/"+year2+" is: "+result+"€.");
 				} catch (OrderNotCompletException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -1437,7 +1459,7 @@ public class Launch{
 			}else if(panelCreator.getPanelChooseDate().getAction().equalsIgnoreCase("profit")){
 				try {
 					double[] result = ((Manager)currentUser).computeTotalIncomeAndProfitOverPeriod(day1, month1, year1, day2, month2, year2);
-					panelCreator.getPanelManager().getText().setText("The profit between the dates "+day1+"/"+month1+"/"+year1+" and "+day2+"/"+month2+"/"+year2+" is: "+result[1]+"ï¿½.");
+					panelCreator.getPanelManager().getText().setText("The profit between the dates "+day1+"/"+month1+"/"+year1+" and "+day2+"/"+month2+"/"+year2+" is: "+result[1]+"€.");
 				} catch (OrderNotCompletException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -1496,6 +1518,8 @@ public class Launch{
 				panel.getText().setText("The computed service-fee percentage is: "+serviceFee+".");
 				}catch(NumberFormatException e1){
 					new Error("Fee Error", "The fees have to be double.");
+				} catch (TargetCannotBeFullfilled e1) {
+					panel.getText().setText(e1.getMessage());
 				}
 			}else if(choice==3){
 				try{
@@ -1508,6 +1532,8 @@ public class Launch{
 					panel.getText().setText("The computed markup percentage is: "+markup+".");
 					}catch(NumberFormatException e1){
 						new Error("Fee Error", "The fees have to be double.");
+					}catch (TargetCannotBeFullfilled e1) {
+						panel.getText().setText(e1.getMessage());
 					}
 			}else if(choice==4){
 				try{
@@ -1520,6 +1546,8 @@ public class Launch{
 					panel.getText().setText("The computed delivery cost is: "+delivery+".");
 					}catch(NumberFormatException e1){
 						new Error("Fee Error", "The fees have to be double.");
+					}catch (TargetCannotBeFullfilled e1) {
+						panel.getText().setText(e1.getMessage());
 					}
 			}
 		}
@@ -1533,7 +1561,7 @@ public class Launch{
 			Manager man = (Manager)currentUser;
 			if (choice==0){
 				panel.setVisible(false);
-				panelCreator.getJMenuBar().setVisible(false);
+				panelCreator.getFrame().getJMenuBar().setVisible(false);
 				panelCreator.addRegisterPanel();
 			}else if(choice==1){
 				int size = myFoodora.getListUsers().size();
@@ -1607,6 +1635,57 @@ public class Launch{
 		}
 	}
 	
+	public class OnDutyListener implements ActionListener{
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			Courier cour = (Courier)currentUser;
+			if(cour.isAvailability()){panelCreator.getPanelCourier().getText().setText("You already have an ON-duty status.");}
+			else{
+				cour.setAvailability(true);
+				panelCreator.getPanelCourier().getText().setText("You now have an ON-duty status.");
+			}
+		}
+	}
+	
+	public class OffDutyListener implements ActionListener{
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			Courier cour = (Courier)currentUser;
+			if(!cour.isAvailability()){panelCreator.getPanelCourier().getText().setText("You already have an OFF-duty status.");}
+			else{
+				cour.setAvailability(false);
+				panelCreator.getPanelCourier().getText().setText("You now have an OFF-duty status.");
+		}
+	}
+	}
+	
+	public class GetAvailabilityStatusListener implements ActionListener{
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			Courier cour = (Courier)currentUser;
+			if(cour.isAvailability()){panelCreator.getPanelCourier().getText().setText("You have an ON-duty status");}
+			else{panelCreator.getPanelCourier().getText().setText("You have an OFF-duty status");}
+		}
+	}
+	
+	public class UnregisterListener implements ActionListener{
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			myFoodora.getListUsers().remove(currentUser);
+			myFoodora.getListCourier().remove(currentUser);
+			currentUser = null;
+			backToFirstPage();
+			new MessageShowText("You are now unregistered from the myFoodora system","Unregister Message");
+		}
+	}
+	
+	public class DeliverOrderListener implements ActionListener{
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			new MessageShowText("You have no order to deliver yet", "Order Message");
+		}
+	}
+	
 	
 	/**
 	 * @return the panelCreator
@@ -1627,11 +1706,6 @@ public class Launch{
 	public static void main(String[] args) {
 		Launch launch = new Launch();
 		launch.getPanelCreator().createAllPanels();
-		GraphicsEnvironment gEnv = GraphicsEnvironment.getLocalGraphicsEnvironment();
-		GraphicsDevice dDev = gEnv.getDefaultScreenDevice();
-		
-		int w = (int)dDev.getDefaultConfiguration().getBounds().getWidth();
-		System.out.println(w);
 		
 	}
 }

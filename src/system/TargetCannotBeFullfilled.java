@@ -1,7 +1,5 @@
 package system;
 
-import java.io.IOException;
-
 public class TargetCannotBeFullfilled extends IOException{
 	
 	private String message;

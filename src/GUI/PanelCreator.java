@@ -1,14 +1,18 @@
 package GUI;
 
+import java.awt.Dimension;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
 import java.util.Stack;
-import user_management.*;
 
 import javax.swing.JFrame;
 
-import GUI.Launch.RegisterManagerListener;
+import com.sun.javafx.geom.Rectangle;
 
-public class PanelCreator extends JFrame{
+public class PanelCreator{
 	Launch launch;
+	
+	JFrame frame;
 	//Panels
 	private PanelFirstPage panelFirstPage;
 	private PanelLogin panelLogin;
@@ -24,11 +28,13 @@ public class PanelCreator extends JFrame{
 	private PanelCreateMeal panelCreateMeal;
 	private PanelManager panelManager;
 	private PanelChooseDate panelChooseDate;
+	private PanelCourier panelCourier;
 	
 	//JMenuBars
 	private MenuBarCustomer menuBarCustomer;
 	private MenuBarRestaurant menuBarRestaurant;
 	private MenuBarManager menuBarManager;
+	private MenuBarCourier menuBarCourier;
 	
 	private Stack activatedPanels;
 	
@@ -36,8 +42,12 @@ public class PanelCreator extends JFrame{
 	public PanelCreator(Launch launch){
 		this.launch = launch;
 		this.activatedPanels = new Stack();
-		pack();
-		setVisible(true);
+		
+		//Create frame according to the screen size
+		GraphicsEnvironment gEnv = GraphicsEnvironment.getLocalGraphicsEnvironment(); 
+		GraphicsDevice defaultDevice = gEnv.getDefaultScreenDevice();
+		this.frame = new JFrame(defaultDevice.getDefaultConfiguration());
+		frame.setVisible(true);
 	}
 
 	public void createFirstPagePanel(){
@@ -45,7 +55,8 @@ public class PanelCreator extends JFrame{
 		this.panelFirstPage.getLogin().addActionListener(launch.new LoginListener());
 		this.panelFirstPage.getRegister().addActionListener(launch.new RegisterListener());
 		this.activatedPanels.add(this.panelFirstPage);
-		add(this.panelFirstPage);
+		frame.add(this.panelFirstPage);
+		this.panelFirstPage.setVisible(true);
 	}
 	
 	public void createLoginPanel(){
@@ -211,88 +222,116 @@ public class PanelCreator extends JFrame{
 		this.panelChooseDate.getBack().addActionListener(launch.new BackListener());
 	}
 	
+	public void createCourierPanel(){
+		this.panelCourier = new PanelCourier();
+		this.panelCourier.setVisible(false);
+		this.menuBarCourier = new MenuBarCourier();
+		
+		//Add listeners to the panelCourier
+		this.panelCourier.getLogout().addActionListener(launch.new LogoutListener());
+		this.panelCourier.getDeliverOrder().addActionListener(launch.new DeliverOrderListener());
+		
+		//Add listeners to the menuBarCourier
+		this.menuBarCourier.getGetProfile().addActionListener(launch.new ProfileListener());
+		this.menuBarCourier.getSetEmail().addActionListener(launch.new SetEmailListener());
+		this.menuBarCourier.getSetPhone().addActionListener(launch.new SetPhoneListener());
+		this.menuBarCourier.getSetAdress().addActionListener(launch.new SetAdressListener());
+		this.menuBarCourier.getOnDuty().addActionListener(launch.new OnDutyListener());
+		this.menuBarCourier.getOffDuty().addActionListener(launch.new OffDutyListener());
+		this.menuBarCourier.getGetAvailabilityStatus().addActionListener(launch.new GetAvailabilityStatusListener());
+		this.menuBarCourier.getUnregister().addActionListener(launch.new UnregisterListener());
+	}
+	
 	public void addLoginPanel(){
-		add(this.panelLogin);
+		frame.add(this.panelLogin);
 		this.panelLogin.setVisible(true);
 		this.activatedPanels.add(this.panelLogin);
 	}
 	
 	public void addRegisterPanel(){
-		add(this.panelRegister);
+		frame.add(this.panelRegister);
 		this.panelRegister.setVisible(true);
 		this.activatedPanels.add(this.panelRegister);
 	}
 	
 	public void addRegisterManagerPanel(){
-		add(this.panelRegisterManager);
+		frame.add(this.panelRegisterManager);
 		this.panelRegisterManager.setVisible(true);
 		this.activatedPanels.add(this.panelRegisterManager);
 	}
 	
 	public void addRegisterCustomerPanel(){
-		add(this.panelRegisterCustomer);
+		frame.add(this.panelRegisterCustomer);
 		this.panelRegisterCustomer.setVisible(true);
 		this.activatedPanels.add(this.panelRegisterCustomer);
 	}
 	
 	public void addRegisterRestaurantPanel(){
-		add(this.panelRegisterRestaurant);
+		frame.add(this.panelRegisterRestaurant);
 		this.panelRegisterRestaurant.setVisible(true);
 		this.activatedPanels.add(this.panelRegisterRestaurant);
 	}
 	
 	public void addRegisterCourierPanel(){
-		add(this.panelRegisterCourier);
+		frame.add(this.panelRegisterCourier);
 		this.panelRegisterCourier.setVisible(true);
 		this.activatedPanels.add(this.panelRegisterCourier);
 	}
 	
 	public void addCustomerPanel(){
 		this.menuBarCustomer.setVisible(true);
-		setJMenuBar(this.menuBarCustomer);
+		frame.setJMenuBar(this.menuBarCustomer);
 		this.panelCustomer.setVisible(true);
-		add(this.panelCustomer);
+		frame.add(this.panelCustomer);
 		this.activatedPanels.add(this.panelCustomer);
 	}
 	
 	public void addCustomerOrderPanel(){
-		add(this.panelCustomerOrder);
+		frame.add(this.panelCustomerOrder);
 		this.panelCustomerOrder.setVisible(true);
 		this.activatedPanels.add(this.panelCustomerOrder);
 	}
 	
 	public void addRestaurantPanel(){
 		this.menuBarRestaurant.setVisible(true);
-		setJMenuBar(this.menuBarRestaurant);
+		frame.setJMenuBar(this.menuBarRestaurant);
 		this.panelRestaurant.setVisible(true);
-		add(this.panelRestaurant);
+		frame.add(this.panelRestaurant);
 		this.activatedPanels.add(this.panelRestaurant);
 	}
 	
 	public void addAddSingleItemPanel(){
-		add(this.panelAddSingleItem);
+		frame.add(this.panelAddSingleItem);
 		this.panelAddSingleItem.setVisible(true);
 		this.activatedPanels.add(this.panelAddSingleItem);
 	}
 	
 	public void addCreateMealPanel(){
-		add(this.panelCreateMeal);
+		frame.add(this.panelCreateMeal);
 		this.panelCreateMeal.setVisible(true);
 		this.activatedPanels.add(this.panelCreateMeal);
 	}
 	
 	public void addManagerPanel(){
 		this.menuBarManager.setVisible(true);
-		setJMenuBar(this.menuBarManager);
+		frame.setJMenuBar(this.menuBarManager);
 		this.panelManager.setVisible(true);
-		add(this.panelManager);
+		frame.add(this.panelManager);
 		this.activatedPanels.add(this.panelManager);
 	}
 	
 	public void addChooseDatePanel(){
 		this.panelChooseDate.setVisible(true);
-		add(this.panelChooseDate);
+		frame.add(this.panelChooseDate);
 		this.activatedPanels.add(this.panelChooseDate);
+	}
+	
+	public void addCourierPanel(){
+		this.menuBarCourier.setVisible(true);
+		frame.setJMenuBar(this.menuBarCourier);
+		this.panelCourier.setVisible(true);
+		frame.add(this.panelCourier);
+		this.activatedPanels.add(this.panelCourier);
 	}
 	
 	public void createAllPanels(){
@@ -310,6 +349,7 @@ public class PanelCreator extends JFrame{
 		this.createCreateMealPanel();
 		this.createManagerPanel();
 		this.createChooseDatePanel();
+		this.createCourierPanel();
 	}
 	
 
@@ -438,7 +478,26 @@ public class PanelCreator extends JFrame{
 	public PanelChooseDate getPanelChooseDate() {
 		return panelChooseDate;
 	}
-	
-	
+
+	/**
+	 * @return the panelCourier
+	 */
+	public PanelCourier getPanelCourier() {
+		return panelCourier;
+	}
+
+	/**
+	 * @return the menuBarCourier
+	 */
+	public MenuBarCourier getMenuBarCourier() {
+		return menuBarCourier;
+	}
+
+	/**
+	 * @return the frame
+	 */
+	public JFrame getFrame() {
+		return frame;
+	}
 			
 }

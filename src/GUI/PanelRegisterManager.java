@@ -1,6 +1,9 @@
 package GUI;
 
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -161,5 +164,4 @@ public class PanelRegisterManager extends PanelRegister{
 	public JButton getRegister() {
 		return register;
 	}
-		
 }
