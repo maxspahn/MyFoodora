@@ -37,9 +37,9 @@ public class PanelCreator{
 	
 	private Stack activatedPanels;
 
-	private int coeffHeight;
+	private double coeffHeight;
 
-	private int coeffWidth;
+	private double coeffWidth;
 	
 	
 	public PanelCreator(Launch launch){
@@ -51,8 +51,8 @@ public class PanelCreator{
 		GraphicsDevice defaultDevice = gEnv.getDefaultScreenDevice();
 		int height = defaultDevice.getDefaultConfiguration().getBounds().height;
 		int width = defaultDevice.getDefaultConfiguration().getBounds().width;
-		this.coeffHeight = height/1824;
-		this.coeffWidth = width/2736;
+		this.coeffHeight = height/1824.0;
+		this.coeffWidth = width/2736.0;
 		this.frame = new JFrame(defaultDevice.getDefaultConfiguration());
 		frame.setVisible(true);
 	}
@@ -67,42 +67,42 @@ public class PanelCreator{
 	}
 	
 	public void createLoginPanel(){
-		this.panelLogin = new PanelLogin();
+		this.panelLogin = new PanelLogin(coeffHeight,coeffWidth);
 		this.panelLogin.getOkLogin().addActionListener(launch.new OkLoginListener());
 		this.panelLogin.getBack().addActionListener(launch.new BackListener());
 		this.panelLogin.setVisible(false);
 	}
 	
 	public void createRegisterPanel(){
-		this.panelRegister = new PanelRegister();
+		this.panelRegister = new PanelRegister(coeffHeight,coeffWidth);
 		this.panelRegister.getBack().addActionListener(launch.new BackListener());
 		this.panelRegister.getNext().addActionListener(launch.new NextListener());
 		this.panelRegister.setVisible(false);
 	}
 	
 	public void createRegisterManagerPanel(){
-		this.panelRegisterManager = new PanelRegisterManager();
+		this.panelRegisterManager = new PanelRegisterManager(coeffHeight,coeffWidth);
 		this.panelRegisterManager.getBack().addActionListener(launch.new BackListener());
 		this.panelRegisterManager.getRegister().addActionListener(launch.new RegisterManagerListener());
 		this.panelRegisterManager.setVisible(false);
 	}
 	
 	public void createRegisterCustomerPanel(){
-		this.panelRegisterCustomer = new PanelRegisterCustomer();
+		this.panelRegisterCustomer = new PanelRegisterCustomer(coeffHeight,coeffWidth);
 		this.panelRegisterCustomer.getBack().addActionListener(launch.new BackListener());
 		this.panelRegisterCustomer.getRegister().addActionListener(launch.new RegisterCustomerListener());
 		this.panelRegisterCustomer.setVisible(false);
 	}
 	
 	public void createRegisterRestaurantPanel(){
-		this.panelRegisterRestaurant = new PanelRegisterRestaurant();
+		this.panelRegisterRestaurant = new PanelRegisterRestaurant(coeffHeight,coeffWidth);
 		this.panelRegisterRestaurant.getBack().addActionListener(launch.new BackListener());
 		this.panelRegisterRestaurant.getRegister().addActionListener(launch.new RegisterRestaurantListener());
 		this.panelRegisterRestaurant.setVisible(false);
 	}
 	
 	public void createRegisterCourierPanel(){
-		this.panelRegisterCourier = new PanelRegisterCourier();
+		this.panelRegisterCourier = new PanelRegisterCourier(coeffHeight,coeffWidth);
 		this.panelRegisterCourier.getBack().addActionListener(launch.new BackListener());
 		this.panelRegisterCourier.getRegister().addActionListener(launch.new RegisterCourierListener());
 		this.panelRegisterCourier.setVisible(false);
@@ -110,7 +110,7 @@ public class PanelCreator{
 	
 	public void createCustomerPanel(){
 		this.menuBarCustomer = new MenuBarCustomer();
-		this.panelCustomer = new PanelCustomer(this.launch.getMyFoodora());
+		this.panelCustomer = new PanelCustomer(this.launch.getMyFoodora(),coeffHeight,coeffWidth);
 		//Add listeners to the buttons of panelCustomer
 		this.panelCustomer.getChoose().addActionListener(launch.new ChooseListener());
 		this.panelCustomer.getLogout().addActionListener(launch.new LogoutListener());
@@ -136,7 +136,7 @@ public class PanelCreator{
 	}
 	
 	public void createCustomerOrderPanel(){
-		this.panelCustomerOrder = new PanelCustomerOrder(this.launch.getMyFoodora().getListRestaurant().get(0));
+		this.panelCustomerOrder = new PanelCustomerOrder(this.launch.getMyFoodora().getListRestaurant().get(0),coeffHeight,coeffWidth);
 		this.panelCustomerOrder.getBack().addActionListener(launch.new BackListener());
 		this.panelCustomerOrder.getShowItem().addActionListener(launch.new ShowItemListener());
 		this.panelCustomerOrder.getShowMeal().addActionListener(launch.new ShowMealListener());
@@ -149,7 +149,7 @@ public class PanelCreator{
 	
 	public void createRestaurantPanel(){
 		this.menuBarRestaurant = new MenuBarRestaurant();
-		this.panelRestaurant = new PanelRestaurant();
+		this.panelRestaurant = new PanelRestaurant(coeffHeight,coeffWidth);
 		this.panelRestaurant.setVisible(false);
 		//Add listeners to the buttons of panelRestaurant
 		this.panelRestaurant.getLogout().addActionListener(launch.new LogoutListener());
@@ -169,14 +169,14 @@ public class PanelCreator{
 	}
 	
 	public void createAddSingleItemPanel(){
-		this.panelAddSingleItem = new PanelAddSingleItem();
+		this.panelAddSingleItem = new PanelAddSingleItem(coeffHeight,coeffWidth);
 		this.panelAddSingleItem.setVisible(false);
 		this.panelAddSingleItem.getBack().addActionListener(launch.new BackListener());
 		this.panelAddSingleItem.getOkSingleItem().addActionListener(launch.new OkSingleItemListener());
 	}
 	
 	public void createCreateMealPanel(){
-		this.panelCreateMeal = new PanelCreateMeal(this.launch.getMyFoodora().getListRestaurant().get(0));
+		this.panelCreateMeal = new PanelCreateMeal(this.launch.getMyFoodora().getListRestaurant().get(0),coeffHeight,coeffWidth);
 		this.panelCreateMeal.setVisible(false);
 		this.panelCreateMeal.getBack().addActionListener(launch.new BackListener());
 		this.panelCreateMeal.getShowStarter().addActionListener(launch.new ShowStarterListener());
@@ -187,7 +187,7 @@ public class PanelCreator{
 	
 	public void createManagerPanel(){
 		this.menuBarManager = new MenuBarManager();
-		this.panelManager = new PanelManager();
+		this.panelManager = new PanelManager(coeffHeight,coeffWidth);
 		this.panelManager.setVisible(false);
 		
 		//Add listeners to the panelManager
@@ -223,14 +223,14 @@ public class PanelCreator{
 	}
 	
 	public void createChooseDatePanel(){
-		this.panelChooseDate = new PanelChooseDate("");
+		this.panelChooseDate = new PanelChooseDate("",coeffHeight,coeffWidth);
 		this.panelChooseDate.setVisible(false);
 		this.panelChooseDate.getOkDate().addActionListener(launch.new OkDateListener());
 		this.panelChooseDate.getBack().addActionListener(launch.new BackListener());
 	}
 	
 	public void createCourierPanel(){
-		this.panelCourier = new PanelCourier();
+		this.panelCourier = new PanelCourier(coeffHeight,coeffWidth);
 		this.panelCourier.setVisible(false);
 		this.menuBarCourier = new MenuBarCourier();
 		

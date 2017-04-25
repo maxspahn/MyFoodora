@@ -20,13 +20,13 @@ public class PanelManager extends JPanel{
 	private JList<String> actionsPolicyList;
 	private JList<String> actionsUsersList;
 
-	public PanelManager(){
+	public PanelManager(double coeffHeight, double coeffWidth){
 		setLayout(null);
 		
 		//Display "MyFoodora"
 		ImageIcon myFoodoraIcon = new ImageIcon("MyFoodora.png");
 		JLabel myFoodoraLabel = new JLabel("",myFoodoraIcon,JLabel.CENTER);
-		myFoodoraLabel.setBounds(2200, 100, 500, 200);
+		myFoodoraLabel.setBounds((int)(2200 * coeffWidth),(int)(100 * coeffHeight),(int)(500 * coeffWidth),(int)(200 * coeffHeight));
 		add(myFoodoraLabel);
 				
 		//Creation of the area where the text is put
@@ -35,20 +35,20 @@ public class PanelManager extends JPanel{
 		this.text = new JLabel();
 		textPanel.add(this.text);
 		textPanel.setBackground(Color.white);
-		textPanel.setBounds(15, 15, 2100, 1620);
+		textPanel.setBounds((int)(15 * coeffWidth),(int)(15 * coeffHeight),(int)(2100 * coeffWidth),(int)(1620 * coeffHeight));
 		add(textPanel);
 		
 		//Buttons
 		this.logout = new JButton("Logout");
-		this.logout.setBounds(2350, 1400, 200, 100);
+		this.logout.setBounds((int)(2350 * coeffWidth),(int)(1400 * coeffHeight),(int)(200 * coeffWidth),(int)(100 * coeffHeight));
 		add(this.logout);
 		
 		this.choosePolicy = new JButton("Choose");
-		this.choosePolicy.setBounds(2400, 720, 100, 50);
+		this.choosePolicy.setBounds((int)(2400 * coeffWidth),(int)(720 * coeffHeight),(int)(100 * coeffWidth),(int)(50 * coeffHeight));
 		add(this.choosePolicy);
 		
 		this.chooseUser = new JButton("Choose");
-		this.chooseUser.setBounds(2400, 1220, 100, 50);
+		this.chooseUser.setBounds((int)(2400 * coeffWidth),(int)(1220 * coeffHeight),(int)(100 * coeffWidth),(int)(50 * coeffHeight));
 		add(this.chooseUser);
 		
 		//Target policy
@@ -56,7 +56,7 @@ public class PanelManager extends JPanel{
 		this.actionsPolicyList = new JList<String>(actionsPolicy);
 		JScrollPane targetPolicyPanel = new JScrollPane(actionsPolicyList);
 		targetPolicyPanel.setBorder(BorderFactory.createTitledBorder("TARGET POLICY"));
-		targetPolicyPanel.setBounds(2300, 400, 300, 300);
+		targetPolicyPanel.setBounds((int)(2300 * coeffWidth),(int)(400 * coeffHeight),(int)(300 * coeffWidth),(int)(300 * coeffHeight));
 		add(targetPolicyPanel);		
 		
 		//Users
@@ -64,17 +64,11 @@ public class PanelManager extends JPanel{
 		this.actionsUsersList = new JList<String>(actionsUsers);
 		JScrollPane UsersPanel = new JScrollPane(actionsUsersList);
 		UsersPanel.setBorder(BorderFactory.createTitledBorder("USERS"));
-		UsersPanel.setBounds(2300, 900, 300, 300);
+		UsersPanel.setBounds((int)(2300 * coeffWidth),(int)(900 * coeffHeight),(int)(300 * coeffWidth),(int)(300 * coeffHeight));
 		add(UsersPanel);
 	}
 
-	public static void main(String[] args) {
-		PanelManager panel = new PanelManager();
-		JFrame frame = new JFrame();
-		frame.add(panel);
-		frame.pack();
-		frame.setVisible(true);
-	}
+	
 
 	/**
 	 * @return the text

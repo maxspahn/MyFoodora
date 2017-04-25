@@ -17,14 +17,14 @@ public class PanelLogin extends JPanel{
 	private JButton okLogin;
 	private JButton back;
 	
-	public PanelLogin(){
+	public PanelLogin(double coeffHeight, double coeffWidth){
 	setLayout(null);
 	setBackground(Color.white);
 	
 	//Login message
 	this.iconLogin = new ImageIcon("Login.png");
 	JLabel labelLogin = new JLabel("",iconLogin,JLabel.CENTER);
-	labelLogin.setBounds(700, 400, 1300, 200);
+	labelLogin.setBounds((int)(700 * coeffWidth),(int)(400 * coeffHeight),(int)(1300 * coeffWidth),(int)(200 * coeffHeight));
 			
 	//Text field to put the username
 	JPanel userNamePanel = new JPanel();
@@ -32,7 +32,7 @@ public class PanelLogin extends JPanel{
 	this.textFieldUserName = new JTextField("",20);
 	this.textFieldUserName.setBackground(Color.lightGray);
 	userNamePanel.add(this.textFieldUserName);
-	userNamePanel.setBounds(1200,900, 300, 60);
+	userNamePanel.setBounds((int)(1200 * coeffWidth),(int)(900 * coeffHeight),(int)(300 * coeffWidth),(int)(60 * coeffHeight));
 					
 	//Text field to put the password
 	JPanel passwordPanel = new JPanel();
@@ -40,15 +40,15 @@ public class PanelLogin extends JPanel{
 	this.textFieldPassword = new JTextField("",20);
 	this.textFieldPassword.setBackground(Color.lightGray);
 	passwordPanel.add(textFieldPassword);
-	passwordPanel.setBounds(1200,1000, 300, 60);
+	passwordPanel.setBounds((int)(1200 * coeffWidth),(int)(1000 * coeffHeight),(int)(300 * coeffWidth),(int)(60 * coeffHeight));
 			
 	//Button "ok"
 	this.okLogin = new JButton("OK");
-	this.okLogin.setBounds(1300,1100, 100, 60);
+	this.okLogin.setBounds((int)(1300 * coeffWidth),(int)(1100 * coeffHeight),(int)(100 * coeffWidth),(int)(60 * coeffHeight));
 		
 	//Button "Back"
 	this.back = new JButton("Back");
-	this.back.setBounds(10,10, 100, 40);
+	this.back.setBounds((int)(10 * coeffWidth),(int)(10 * coeffHeight),(int)(100 * coeffWidth),(int)(40 * coeffHeight));
 	
 
 	add(labelLogin);

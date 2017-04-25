@@ -34,14 +34,14 @@ public class PanelCustomerOrder extends JPanel{
 	private JList<String> mealNamelist;
 
 	
-	public PanelCustomerOrder(Restaurant restaurant){
+	public PanelCustomerOrder(Restaurant restaurant, double coeffHeight, double coeffWidth){
 		this.chosenRestaurant = restaurant;
 		setLayout(null);
 		
 		//Display a registration message
 		this.myFoodoraIcon = new ImageIcon("MyFoodora.png");
 		JLabel myFoodoraLabel = new JLabel("",myFoodoraIcon,JLabel.CENTER);
-		myFoodoraLabel.setBounds(2200, 100, 500, 200);
+		myFoodoraLabel.setBounds((int)(2200 * coeffWidth),(int)(100 * coeffHeight),(int)(500 * coeffWidth),(int)(200 * coeffHeight));
 		add(myFoodoraLabel);
 				
 		//Creation of the area where the text is put
@@ -50,7 +50,7 @@ public class PanelCustomerOrder extends JPanel{
 		this.textCustomerPanel = new JLabel();
 		textPanelCust.add(this.textCustomerPanel);
 		textPanelCust.setBackground(Color.white);
-		textPanelCust.setBounds(15, 15, 1010, 1620);
+		textPanelCust.setBounds((int)(15 * coeffWidth),(int)(15 * coeffHeight),(int)(1010 * coeffWidth),(int)(1620 * coeffHeight));
 		add(textPanelCust);
 		
 		//Creation of the area where the summary of the order is put
@@ -59,36 +59,36 @@ public class PanelCustomerOrder extends JPanel{
 		this.textOrderPanel = new JLabel();
 		textPanelOrd.add(this.textOrderPanel);
 		textPanelOrd.setBackground(Color.white);
-		textPanelOrd.setBounds(1100, 15, 1010, 1500);
+		textPanelOrd.setBounds((int)(1100 * coeffWidth),(int)(15 * coeffHeight),(int)(1010 * coeffWidth),(int)(1500 * coeffHeight));
 		add(textPanelOrd);
 		
 		//Buttons
 		this.chooseItem = new JButton("Choose");
-		this.chooseItem.setBounds(2470, 710, 100, 50);
+		this.chooseItem.setBounds((int)(2470 * coeffWidth),(int)(710 * coeffHeight),(int)(100 * coeffWidth),(int)(50 * coeffHeight));
 		add(this.chooseItem);
 		
 		this.showItem = new JButton("Show");
-		this.showItem.setBounds(2330,710, 100, 50);
+		this.showItem.setBounds((int)(2330 * coeffWidth),(int)(710 * coeffHeight),(int)(100 * coeffWidth),(int)(50 * coeffHeight));
 		add(this.showItem);
 		
 		this.chooseMeal = new JButton("Choose");
-		this.chooseMeal.setBounds(2470, 1310, 100, 50);
+		this.chooseMeal.setBounds((int)(2470 * coeffWidth),(int)(1310 * coeffHeight),(int)(100 * coeffWidth),(int)(50 * coeffHeight));
 		add(this.chooseMeal);
 		
 		this.showMeal = new JButton("Show");
-		this.showMeal.setBounds(2330,1310, 100, 50);
+		this.showMeal.setBounds((int)(2330 * coeffWidth),(int)(1310 * coeffHeight),(int)(100 * coeffWidth),(int)(50 * coeffHeight));
 		add(this.showMeal);
 		
 		this.removeSomething = new JButton("Remove something");
-		this.removeSomething.setBounds(1400,1550, 200, 50);
+		this.removeSomething.setBounds((int)(1400 * coeffWidth),(int)(1550 * coeffHeight),(int)(200 * coeffWidth),(int)(50 * coeffHeight));
 		add(this.removeSomething);
 		
 		this.back = new JButton("Back");
-		this.back.setBounds(2600,1600, 100, 50);
+		this.back.setBounds((int)(2600 * coeffWidth),(int)(1600 * coeffHeight),(int)(100 * coeffWidth),(int)(50 * coeffHeight));
 		add(this.back);
 		
 		this.pay = new JButton("Pay");
-		this.pay.setBounds(1700,1550, 100, 50);
+		this.pay.setBounds((int)(1700 * coeffWidth),(int)(1550 * coeffHeight),(int)(100 * coeffWidth),(int)(50 * coeffHeight));
 		add(this.pay);
 		
 		
@@ -105,7 +105,7 @@ public class PanelCustomerOrder extends JPanel{
 		this.itemNamelist = new JList<String>(singleItemsList);
 		JScrollPane singleItemsPanel = new JScrollPane(this.itemNamelist);
 		singleItemsPanel.setBorder(BorderFactory.createTitledBorder("Single Items"));
-		singleItemsPanel.setBounds(2300, 400, 300, 300);
+		singleItemsPanel.setBounds((int)(2300 * coeffWidth),(int)(400 * coeffHeight),(int)(300 * coeffWidth),(int)(300 * coeffHeight));
 		add(singleItemsPanel);		
 		
 		//List of meals
@@ -120,12 +120,12 @@ public class PanelCustomerOrder extends JPanel{
 		this.mealNamelist = new JList<String>(mealsList);
 		JScrollPane mealsPanel = new JScrollPane(this.mealNamelist);
 		mealsPanel.setBorder(BorderFactory.createTitledBorder("Meals"));
-		mealsPanel.setBounds(2300, 1000, 300, 300);
+		mealsPanel.setBounds((int)(2300 * coeffWidth),(int)(1000 * coeffHeight),(int)(300 * coeffWidth),(int)(300 * coeffHeight));
 		add(mealsPanel);
 		
 		//Name of the chosen restaurant
 		this.restaurantName = new JLabel(this.chosenRestaurant.getName());
-		this.restaurantName.setBounds(2310, 360, 300, 20);
+		this.restaurantName.setBounds((int)(2310 * coeffWidth),(int)(360 * coeffHeight),(int)(300 * coeffWidth),(int)(20 * coeffHeight));
 		add(this.restaurantName);
 	}
 	
@@ -241,13 +241,5 @@ public class PanelCustomerOrder extends JPanel{
 		return pay;
 	}
 
-	public static void main(String[] args) {
-		MyFoodora myFoodora = new MyFoodora();
-		myFoodora.load();
-		PanelCustomerOrder panel = new PanelCustomerOrder(myFoodora.getListRestaurant().get(0));
-		JFrame frame = new JFrame();
-		frame.add(panel);
-		frame.pack();
-		frame.setVisible(true);
-	}
+	
 }

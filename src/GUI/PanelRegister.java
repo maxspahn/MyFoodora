@@ -21,20 +21,20 @@ public class PanelRegister extends JPanel{
 	private JPanel userNamePanel;
 	private JPanel passwordPanel;
 	
-	public PanelRegister(){
+	public PanelRegister(double coeffHeight, double coeffWidth){
 		setLayout(null);
 		setBackground(Color.white);
 		
 		//Display a registration message
 		this.iconRegistration = new ImageIcon("Registration.png");
 		JLabel labelRegistration = new JLabel("",iconRegistration,JLabel.CENTER);
-		labelRegistration.setBounds(700, 400, 1300, 200);
+		labelRegistration.setBounds((int)(700 * coeffWidth),(int)(400 * coeffHeight),(int)(1300 * coeffWidth),(int)(200 * coeffHeight));
 		add(labelRegistration);
 		
 		//Choice of the kind of users
 		String[] users = {"Customer","Courier","Manager","Restaurant"};
 		this.userComboBox = new JComboBox<String>(users);
-		this.userComboBox.setBounds(1200, 900, 300, 40);
+		this.userComboBox.setBounds((int)(1200 * coeffWidth),(int)(900 * coeffHeight),(int)(300 * coeffWidth),(int)(40 * coeffHeight));
 		
 		//Display the text field to put the username
 		this.userNamePanel = new JPanel();
@@ -42,7 +42,7 @@ public class PanelRegister extends JPanel{
 		this.textFieldUserName = new JTextField("",20);
 		this.textFieldUserName.setBackground(Color.lightGray);
 		this.userNamePanel.add(textFieldUserName);
-		this.userNamePanel.setBounds(1200,1000, 300, 60);
+		this.userNamePanel.setBounds((int)(1200 * coeffWidth),(int)(1000 * coeffHeight),(int)(300 * coeffWidth),(int)(60 * coeffHeight));
 		
 		//Display the text field to put the password
 		this.passwordPanel = new JPanel();
@@ -50,15 +50,15 @@ public class PanelRegister extends JPanel{
 		this.textFieldPassword = new JTextField("",20);
 		this.textFieldPassword.setBackground(Color.lightGray);
 		this.passwordPanel.add(textFieldPassword);
-		this.passwordPanel.setBounds(1200,1100, 300, 60);
+		this.passwordPanel.setBounds((int)(1200 * coeffWidth),(int)(1100 * coeffHeight),(int)(300 * coeffWidth),(int)(60 * coeffHeight));
 		
 		//Button "Back"
 		this.back = new JButton("Back");
-		this.back.setBounds(10,10, 100, 40);
+		this.back.setBounds((int)(10 * coeffWidth),(int)(10 * coeffHeight),(int)(100 * coeffWidth),(int)(40 * coeffHeight));
 				
 		//Button "Next"
 		this.next = new JButton("Next");
-		this.next.setBounds(1300,1200, 100, 60);
+		this.next.setBounds((int)(1300 * coeffWidth),(int)(1200 * coeffHeight),(int)(100 * coeffWidth),(int)(60 * coeffHeight));
 		
 		add(this.userComboBox);
 		add(userNamePanel);

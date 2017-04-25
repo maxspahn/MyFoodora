@@ -28,14 +28,14 @@ public class PanelCustomer extends JPanel{
 	private Restaurant[] activatedRestaurantList;
 
 	
-	public PanelCustomer(MyFoodora myFoodora){
+	public PanelCustomer(MyFoodora myFoodora, double coeffHeight, double coeffWidth){
 		this.myFoodora = myFoodora;
 		setLayout(null);
 		
 		//Display "MyFoodora"
 		this.myFoodoraIcon = new ImageIcon("MyFoodora.png");
 		JLabel myFoodoraLabel = new JLabel("",myFoodoraIcon,JLabel.CENTER);
-		myFoodoraLabel.setBounds(2200, 100, 500, 200);
+		myFoodoraLabel.setBounds((int)(2200 * coeffWidth),(int)(100 * coeffHeight),(int)(500 * coeffWidth),(int)(200 * coeffHeight));
 		add(myFoodoraLabel);
 				
 		//Creation of the area where the text is put
@@ -44,20 +44,20 @@ public class PanelCustomer extends JPanel{
 		this.text = new JLabel();
 		textPanel.add(this.text);
 		textPanel.setBackground(Color.white);
-		textPanel.setBounds(15, 15, 2100, 1620);
+		textPanel.setBounds((int)(15 * coeffWidth),(int)(15 * coeffHeight),(int)(2100 * coeffWidth),(int)(1620 * coeffHeight));
 		add(textPanel);
 		
 		//Buttons
 		this.choose = new JButton("Choose");
-		this.choose.setBounds(2400, 780, 100, 50);
+		this.choose.setBounds((int)(2400 * coeffWidth),(int)(780 * coeffHeight),(int)(100 * coeffWidth),(int)(50 * coeffHeight));
 		add(this.choose);
 		
 		this.show = new JButton("Show");
-		this.show.setBounds(2400,710, 100, 50);
+		this.show.setBounds((int)(2400 * coeffWidth),(int)(710 * coeffHeight),(int)(100 * coeffWidth),(int)(50 * coeffHeight));
 		add(this.show);
 		
 		this.logout = new JButton("Logout");
-		this.logout.setBounds(2350, 1400, 200, 100);
+		this.logout.setBounds((int)(2350 * coeffWidth),(int)(1400 * coeffHeight),(int)(200 * coeffWidth),(int)(100 * coeffHeight));
 		add(this.logout);
 		
 		//List of the restaurants
@@ -78,19 +78,10 @@ public class PanelCustomer extends JPanel{
 		this.activatedRestaurantNamelist = new JList<String>(rest);
 		JScrollPane restaurantsPanel = new JScrollPane(this.activatedRestaurantNamelist);
 		restaurantsPanel.setBorder(BorderFactory.createTitledBorder("ORDER"));
-		restaurantsPanel.setBounds(2300, 400, 300, 300);
+		restaurantsPanel.setBounds((int)(2300 * coeffWidth),(int)(400 * coeffHeight),(int)(300 * coeffWidth),(int)(300 * coeffHeight));
 		add(restaurantsPanel);		
 	}
 	
-	public static void main(String[] args) {
-		MyFoodora myFoodora = new MyFoodora();
-		myFoodora.load();
-		PanelCustomer panel = new PanelCustomer(myFoodora);
-		JFrame frame = new JFrame();
-		frame.add(panel);
-		frame.pack();
-		frame.setVisible(true);
-	}
 
 	/**
 	 * @return the text

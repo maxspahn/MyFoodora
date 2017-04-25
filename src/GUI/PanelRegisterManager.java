@@ -23,7 +23,8 @@ public class PanelRegisterManager extends PanelRegister{
 	private JTextField textFieldRole;
 	private JButton register;
 
-	public PanelRegisterManager(){
+	public PanelRegisterManager(double coeffHeight, double coeffWidth){
+		super(coeffHeight,coeffWidth);
 		setLayout(null);
 		setBackground(Color.white);
 		
@@ -33,7 +34,7 @@ public class PanelRegisterManager extends PanelRegister{
 		this.textFieldFirstName = new JTextField("",20);
 		this.textFieldFirstName.setBackground(Color.lightGray);
 		firstNamePanel.add(textFieldFirstName);
-		firstNamePanel.setBounds(1200,700, 300, 60);
+		firstNamePanel.setBounds((int)(1200 * coeffWidth),(int)(700 * coeffHeight),(int)(300 * coeffWidth),(int)(60 * coeffHeight));
 				
 		//Display the text field to put the last name
 		JPanel lastNamePanel = new JPanel();
@@ -41,7 +42,7 @@ public class PanelRegisterManager extends PanelRegister{
 		this.textFieldLastName = new JTextField("",20);
 		this.textFieldLastName.setBackground(Color.lightGray);
 		lastNamePanel.add(textFieldLastName);
-		lastNamePanel.setBounds(1200,800, 300, 60);
+		lastNamePanel.setBounds((int)(1200 * coeffWidth),(int)(800 * coeffHeight),(int)(300 * coeffWidth),(int)(60 * coeffHeight));
 		
 		//Display the text field to put the adress
 		JPanel adressPanel = new JPanel();
@@ -56,7 +57,7 @@ public class PanelRegisterManager extends PanelRegister{
 		this.textFieldAdressY.setBackground(Color.lightGray);
 		adressPanel.add(yLabel);
 		adressPanel.add(textFieldAdressY);
-		adressPanel.setBounds(1200,900, 300, 60);
+		adressPanel.setBounds((int)(1200 * coeffWidth),(int)(900 * coeffHeight),(int)(300 * coeffWidth),(int)(60 * coeffHeight));
 		
 		//Display the text field to put the email
 		JPanel emailPanel = new JPanel();
@@ -64,7 +65,7 @@ public class PanelRegisterManager extends PanelRegister{
 		this.textFieldEmail = new JTextField("",40);
 		this.textFieldEmail.setBackground(Color.lightGray);
 		emailPanel.add(textFieldEmail);
-		emailPanel.setBounds(1100,1000, 500, 60);
+		emailPanel.setBounds((int)(1100 * coeffWidth),(int)(1000 * coeffHeight),(int)(500 * coeffWidth),(int)(60 * coeffHeight));
 				
 		//Display the text field to put the phone number
 		JPanel phonePanel = new JPanel();
@@ -72,7 +73,7 @@ public class PanelRegisterManager extends PanelRegister{
 		this.textFieldPhone = new JTextField("",20);
 		this.textFieldPhone.setBackground(Color.lightGray);
 		phonePanel.add(textFieldPhone);
-		phonePanel.setBounds(1200,1100, 300, 60);
+		phonePanel.setBounds((int)(1200 * coeffWidth),(int)(1100 * coeffHeight),(int)(300 * coeffWidth),(int)(60 * coeffHeight));
 		
 		//Display the text field to put the role
 		JPanel rolePanel = new JPanel();
@@ -80,11 +81,11 @@ public class PanelRegisterManager extends PanelRegister{
 		this.textFieldRole = new JTextField("",20);
 		this.textFieldRole.setBackground(Color.lightGray);
 		rolePanel.add(textFieldRole);
-		rolePanel.setBounds(1200,1200, 300, 60);
+		rolePanel.setBounds((int)(1200 * coeffWidth),(int)(1200 * coeffHeight),(int)(300 * coeffWidth),(int)(60 * coeffHeight));
 		
 		//Button "Register"
 		this.register = new JButton("Register");
-		this.register.setBounds(1300,1400, 100, 60);
+		this.register.setBounds((int)(1300 * coeffWidth),(int)(1400 * coeffHeight),(int)(100 * coeffWidth),(int)(60 * coeffHeight));
 	
 		this.getUserNamePanel().setVisible(false);
 		this.getPasswordPanel().setVisible(false);
@@ -100,15 +101,6 @@ public class PanelRegisterManager extends PanelRegister{
 		setVisible(true);
 	}
 	
-	public static void main(String[] args) {
-		PanelRegisterManager panel = new PanelRegisterManager();
-		JFrame frame = new JFrame();
-		frame.add(panel);
-		frame.pack();
-		frame.setVisible(true);
-		
-	}
-
 	/**
 	 * @return the textFieldFirstName
 	 */

@@ -15,13 +15,13 @@ public class PanelCourier extends JPanel{
 	private JButton logout;
 	private JButton deliverOrder;
 
-	public PanelCourier(){
+	public PanelCourier(double coeffHeight, double coeffWidth){
 		setLayout(null);
 		
 		//Display "MyFoodora"
 		ImageIcon myFoodoraIcon = new ImageIcon("MyFoodora.png");
 		JLabel myFoodoraLabel = new JLabel("",myFoodoraIcon,JLabel.CENTER);
-		myFoodoraLabel.setBounds(2200, 100, 500, 200);
+		myFoodoraLabel.setBounds((int)(2200 * coeffWidth),(int)(100 * coeffHeight),(int)(500 * coeffWidth),(int)(200 * coeffHeight));
 		add(myFoodoraLabel);
 				
 		//Creation of the area where the text is put
@@ -30,26 +30,20 @@ public class PanelCourier extends JPanel{
 		this.text = new JLabel();
 		textPanel.add(this.text);
 		textPanel.setBackground(Color.white);
-		textPanel.setBounds(15, 15, 2100, 1620);
+		textPanel.setBounds((int)(15 * coeffWidth),(int)(15 * coeffHeight),(int)(2100 * coeffWidth),(int)(1620 * coeffHeight));
 		add(textPanel);
 		
 		//Buttons
 		this.logout = new JButton("Logout");
-		this.logout.setBounds(2350, 1400, 200, 100);
+		this.logout.setBounds((int)(2350 * coeffWidth),(int)(1400 * coeffHeight),(int)(200 * coeffWidth),(int)(100 * coeffHeight));
 		add(this.logout);
 		
 		this.deliverOrder = new JButton("Deliver an order");
-		this.deliverOrder.setBounds(2350, 800, 200, 100);
+		this.deliverOrder.setBounds((int)(2350 * coeffWidth),(int)(800 * coeffHeight),(int)(200 * coeffWidth),(int)(100 * coeffHeight));
 		add(this.deliverOrder);
 
 	}
-	public static void main(String[] args) {
-		PanelCourier panel = new PanelCourier();
-		JFrame frame = new JFrame();
-		frame.add(panel);
-		frame.pack();
-		frame.setVisible(true);
-	}
+	
 	/**
 	 * @return the text
 	 */

@@ -21,13 +21,13 @@ public class PanelRestaurant extends JPanel{
 	private JButton okActionSetMenu;
 	private JButton logout;
 	
-	public PanelRestaurant(){
+	public PanelRestaurant(double coeffHeight, double coeffWidth){
 		setLayout(null);
 		
 		//Display "MyFoodora"
 		this.myFoodoraIcon = new ImageIcon("MyFoodora.png");
 		JLabel myFoodoraLabel = new JLabel("",myFoodoraIcon,JLabel.CENTER);
-		myFoodoraLabel.setBounds(2200, 100, 500, 200);
+		myFoodoraLabel.setBounds((int)(2200 * coeffWidth),(int)(100 * coeffHeight),(int)(500 * coeffWidth),(int)(200 * coeffHeight));
 		add(myFoodoraLabel);
 				
 		//Creation of the area where the text is put
@@ -36,7 +36,7 @@ public class PanelRestaurant extends JPanel{
 		this.text = new JLabel();
 		textPanel.add(this.text);
 		textPanel.setBackground(Color.white);
-		textPanel.setBounds(15, 15, 2100, 1620);
+		textPanel.setBounds((int)(15 * coeffWidth),(int)(15 * coeffHeight),(int)(2100 * coeffWidth),(int)(1620 * coeffHeight));
 		add(textPanel);
 		
 		//Edit Menu		
@@ -46,26 +46,20 @@ public class PanelRestaurant extends JPanel{
 		JScrollPane editMenuPanel = new JScrollPane(this.actionsToEditMenu);
 		editMenuPanel.setBorder(BorderFactory.createTitledBorder("SET MY MENU"));
 		editMenuPanel.setBackground(Color.white);
-		editMenuPanel.setBounds(2300, 400, 300, 300);
+		editMenuPanel.setBounds((int)(2300 * coeffWidth),(int)(400 * coeffHeight),(int)(300 * coeffWidth),(int)(300 * coeffHeight));
 		add(editMenuPanel);
 		
 		//Buttons
 		this.okActionSetMenu = new JButton("OK");
-		this.okActionSetMenu.setBounds(2400, 780, 100, 50);
+		this.okActionSetMenu.setBounds((int)(2400 * coeffWidth),(int)(780 * coeffHeight),(int)(100 * coeffWidth),(int)(50 * coeffHeight));
 		add(this.okActionSetMenu);
 		
 		this.logout = new JButton("Logout");
-		this.logout.setBounds(2350, 1400, 200, 100);
+		this.logout.setBounds((int)(2350 * coeffWidth),(int)(1400 * coeffHeight),(int)(200 * coeffWidth),(int)(100 * coeffHeight));
 		add(this.logout);
 	}
 	
-	public static void main(String[] args) {
-		PanelRestaurant panel = new PanelRestaurant();
-		JFrame frame = new JFrame();
-		frame.add(panel);
-		frame.pack();
-		frame.setVisible(true);
-	}
+	
 
 	/**
 	 * @return the text

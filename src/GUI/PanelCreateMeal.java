@@ -27,13 +27,13 @@ public class PanelCreateMeal extends JPanel{
 	private JButton back;
 	private JLabel menuPanel;
 
-	public PanelCreateMeal(Restaurant rest){
+	public PanelCreateMeal(Restaurant rest, double coeffHeight, double coeffWidth){
 		setLayout(null);
 		
 		//Display a meal creation message
 		ImageIcon iconRegistration = new ImageIcon("MealCreation.png");
 		JLabel label = new JLabel("",iconRegistration,JLabel.CENTER);
-		label.setBounds(700, 200, 1300, 200);
+		label.setBounds((int)(700 * coeffWidth),(int)(200 * coeffHeight),(int)(1300 * coeffWidth),(int)(200 * coeffHeight));
 		
 		//Creation of the area where the text is put
 		JPanel textPanelRest = new JPanel();
@@ -41,7 +41,7 @@ public class PanelCreateMeal extends JPanel{
 		this.textCreateMealPanel = new JLabel();
 		textPanelRest.add(this.textCreateMealPanel);
 		textPanelRest.setBackground(Color.white);
-		textPanelRest.setBounds(100, 600, 700, 1000);
+		textPanelRest.setBounds((int)(100 * coeffWidth),(int)(600 * coeffHeight),(int)(700 * coeffWidth),(int)(1000 * coeffHeight));
 		
 		//Choice of a starter
 		ArrayList<Starter> starters = rest.getMenu().getStarters();
@@ -54,7 +54,7 @@ public class PanelCreateMeal extends JPanel{
 		
 		JPanel starterPanel = new JPanel();
 		starterPanel.add(this.starterComboBox);
-		starterPanel.setBounds(1200, 900, 200, 60);
+		starterPanel.setBounds((int)(1200 * coeffWidth),(int)(900 * coeffHeight),(int)(200 * coeffWidth),(int)(60 * coeffHeight));
 		starterPanel.setBackground(Color.white);
 		starterPanel.setBorder(BorderFactory.createTitledBorder("List of starters"));
 		
@@ -69,7 +69,7 @@ public class PanelCreateMeal extends JPanel{
 		
 		JPanel mainDishPanel = new JPanel();
 		mainDishPanel.add(this.mainDishComboBox);
-		mainDishPanel.setBounds(1550, 900, 200, 60);
+		mainDishPanel.setBounds((int)(1550 * coeffWidth),(int)(900 * coeffHeight),(int)(200 * coeffWidth),(int)(60 * coeffHeight));
 		mainDishPanel.setBackground(Color.white);
 		mainDishPanel.setBorder(BorderFactory.createTitledBorder("List of main dishes"));
 		
@@ -84,26 +84,26 @@ public class PanelCreateMeal extends JPanel{
 		
 		JPanel dessertPanel = new JPanel();
 		dessertPanel.add(this.dessertComboBox);
-		dessertPanel.setBounds(1900, 900, 200, 60);
+		dessertPanel.setBounds((int)(1900 * coeffWidth),(int)(900 * coeffHeight),(int)(200 * coeffWidth),(int)(60 * coeffHeight));
 		dessertPanel.setBackground(Color.white);
 		dessertPanel.setBorder(BorderFactory.createTitledBorder("List of desserts"));
 		
 		//Buttons
 		this.showStarter = new JButton("Show");
-		this.showStarter.setBounds(1250,1000, 100, 50);
+		this.showStarter.setBounds((int)(1250 * coeffWidth),(int)(1000 * coeffHeight),(int)(100 * coeffWidth),(int)(50 * coeffHeight));
 		
 		this.showMainDish = new JButton("Show");
-		this.showMainDish.setBounds(1600,1000, 100, 50);
+		this.showMainDish.setBounds((int)(1600 * coeffWidth),(int)(1000 * coeffHeight),(int)(100 * coeffWidth),(int)(50 * coeffHeight));
 		
 		this.showDessert = new JButton("Show");
-		this.showDessert.setBounds(1950,1000, 100, 50);
+		this.showDessert.setBounds((int)(1950 * coeffWidth),(int)(1000 * coeffHeight),(int)(100 * coeffWidth),(int)(50 * coeffHeight));
 		
 		this.create = new JButton("Create");
-		this.create.setBounds(1600,1200, 100, 50);
+		this.create.setBounds((int)(1600 * coeffWidth),(int)(1200 * coeffHeight),(int)(100 * coeffWidth),(int)(50 * coeffHeight));
 		
 		//Button "Back"
 		this.back = new JButton("Back");
-		this.back.setBounds(10,10, 100, 40);
+		this.back.setBounds((int)(10 * coeffWidth),(int)(10 * coeffHeight),(int)(100 * coeffWidth),(int)(40 * coeffHeight));
 		
 		add(label);
 		add(textPanelRest);
@@ -118,15 +118,7 @@ public class PanelCreateMeal extends JPanel{
 	
 	}
 	
-	public static void main(String[] args) {
-		MyFoodora myFoodora = new MyFoodora();
-		myFoodora.load();
-		PanelCreateMeal panel = new PanelCreateMeal(myFoodora.getListRestaurant().get(0));
-		JFrame frame = new JFrame();
-		frame.add(panel);
-		frame.pack();
-		frame.setVisible(true);
-	}
+	
 
 	/**
 	 * @return the textCreateMealPanel
