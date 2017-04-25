@@ -1,6 +1,6 @@
 package system;
 
-public class TargetCannotBeFullfilled extends IOException{
+public class TargetCannotBeFullfilled extends Exception{
 	
 	private String message;
 

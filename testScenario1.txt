@@ -38,3 +38,11 @@ addItem2Order myOrder localSpecial
 endOrder myOrder
 
 logout
+
+login sparrowj blackPearl
+
+showTotalProfit
+
+showTotalProfit 01/03/2017 01/05/2017
+
+logout

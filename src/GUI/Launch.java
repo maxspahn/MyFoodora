@@ -1,6 +1,7 @@
 package GUI;
 
 import java.awt.Dimension;
+
 import java.awt.GraphicsConfiguration;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
@@ -532,7 +533,7 @@ public class Launch{
 			}else if(cust.getFidelityCard() instanceof PointFidelityCard){
 				PointFidelityCard card = (PointFidelityCard) cust.getFidelityCard();
 				panelCreator.getPanelCustomer().getText().setText("<html>You cannot access to special offers provided by the restaurants."
-						+ "Instead, you will earn 1 point each 10€ spent. Once you have reached 100 points you will have 10% discount on the next order.<br>"
+						+ "Instead, you will earn 1 point each 10ï¿½ spent. Once you have reached 100 points you will have 10% discount on the next order.<br>"
 						+ "You have "+card.getPoints()+" points.");
 			}else{
 				panelCreator.getPanelCustomer().getText().setText("You have a certain probability to gain a meal for free each day.");
@@ -1126,7 +1127,7 @@ public class Launch{
 	public void displayFeaturesItem(SingleItem item){
 		String display = "<html>";
 		display += "Name: "+item.getName()+"<br>";
-		display += "Price: "+item.getPrice()+"€<br>";
+		display += "Price: "+item.getPrice()+"ï¿½<br>";
 		display += "Is vegetarian: ";
 		if(item.isVegetarian()){display += "Yes<br>";}
 		else{display += "No<br>";}
@@ -1269,7 +1270,7 @@ public class Launch{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			Restaurant rest = ((Manager)currentUser).mostSellingRestaurant();
-			String display = "<html>The most selling restaurant is "+rest.getName()+" with a total selling of "+rest.getTotalSelling()+"€.<html>";
+			String display = "<html>The most selling restaurant is "+rest.getName()+" with a total selling of "+rest.getTotalSelling()+"ï¿½.<html>";
 			panelCreator.getPanelManager().getText().setText(display);
 		}
 	}
@@ -1278,7 +1279,7 @@ public class Launch{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			Restaurant rest = ((Manager)currentUser).leastSellingRestaurant();
-			String display = "<html>The least selling restaurant is "+rest.getName()+" with a total selling of "+rest.getTotalSelling()+"€.<html>";
+			String display = "<html>The least selling restaurant is "+rest.getName()+" with a total selling of "+rest.getTotalSelling()+"ï¿½.<html>";
 			panelCreator.getPanelManager().getText().setText(display);
 		}
 	}
@@ -1443,7 +1444,7 @@ public class Launch{
 			if(panelCreator.getPanelChooseDate().getAction().equalsIgnoreCase("totalIncome")){
 				try {
 					double[] result = ((Manager)currentUser).computeTotalIncomeAndProfitOverPeriod(day1, month1, year1, day2, month2, year2);
-					panelCreator.getPanelManager().getText().setText("The total income between the dates "+day1+"/"+month1+"/"+year1+" and "+day2+"/"+month2+"/"+year2+" is: "+result[0]+"€.");
+					panelCreator.getPanelManager().getText().setText("The total income between the dates "+day1+"/"+month1+"/"+year1+" and "+day2+"/"+month2+"/"+year2+" is: "+result[0]+"ï¿½.");
 				} catch (OrderNotCompletException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -1451,7 +1452,7 @@ public class Launch{
 			}else if (panelCreator.getPanelChooseDate().getAction().equalsIgnoreCase("totalIncomePerCustomer")){
 				try {
 					double result = ((Manager)currentUser).computeIncomePerCustomerOverPeriod(day1, month1, year1, day2, month2, year2);
-					panelCreator.getPanelManager().getText().setText("The total income per customer between the dates "+day1+"/"+month1+"/"+year1+" and "+day2+"/"+month2+"/"+year2+" is: "+result+"€.");
+					panelCreator.getPanelManager().getText().setText("The total income per customer between the dates "+day1+"/"+month1+"/"+year1+" and "+day2+"/"+month2+"/"+year2+" is: "+result+"ï¿½.");
 				} catch (OrderNotCompletException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -1459,7 +1460,7 @@ public class Launch{
 			}else if(panelCreator.getPanelChooseDate().getAction().equalsIgnoreCase("profit")){
 				try {
 					double[] result = ((Manager)currentUser).computeTotalIncomeAndProfitOverPeriod(day1, month1, year1, day2, month2, year2);
-					panelCreator.getPanelManager().getText().setText("The profit between the dates "+day1+"/"+month1+"/"+year1+" and "+day2+"/"+month2+"/"+year2+" is: "+result[1]+"€.");
+					panelCreator.getPanelManager().getText().setText("The profit between the dates "+day1+"/"+month1+"/"+year1+" and "+day2+"/"+month2+"/"+year2+" is: "+result[1]+"ï¿½.");
 				} catch (OrderNotCompletException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

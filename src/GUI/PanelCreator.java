@@ -7,7 +7,6 @@ import java.util.Stack;
 
 import javax.swing.JFrame;
 
-import com.sun.javafx.geom.Rectangle;
 
 public class PanelCreator{
 	Launch launch;
