@@ -1,11 +1,10 @@
 package system;
 
 public class TargetCannotBeFullfilled extends Exception{
-	
 	private String message;
-
-	public TargetCannotBeFullfilled() {
-		this.setMessage("The target cannot be fullfilled with the values given, the fees have not been changed");
+	
+	public TargetCannotBeFullfilled(){
+		this.setMessage("There is no value of the fee which can fulfill the target policy");
 	}
 
 	/**
