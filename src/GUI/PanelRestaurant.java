@@ -27,7 +27,7 @@ public class PanelRestaurant extends JPanel{
 		//Display "MyFoodora"
 		this.myFoodoraIcon = new ImageIcon("MyFoodora.png");
 		JLabel myFoodoraLabel = new JLabel("",myFoodoraIcon,JLabel.CENTER);
-		myFoodoraLabel.setBounds((int)(2200 * coeffWidth),(int)(100 * coeffHeight),(int)(500 * coeffWidth),(int)(200 * coeffHeight));
+		myFoodoraLabel.setBounds((int)(2100 * coeffWidth),(int)(100 * coeffHeight),(int)(700 * coeffWidth),(int)(300 * coeffHeight));
 		add(myFoodoraLabel);
 				
 		//Creation of the area where the text is put
@@ -46,12 +46,12 @@ public class PanelRestaurant extends JPanel{
 		JScrollPane editMenuPanel = new JScrollPane(this.actionsToEditMenu);
 		editMenuPanel.setBorder(BorderFactory.createTitledBorder("SET MY MENU"));
 		editMenuPanel.setBackground(Color.white);
-		editMenuPanel.setBounds((int)(2300 * coeffWidth),(int)(400 * coeffHeight),(int)(300 * coeffWidth),(int)(300 * coeffHeight));
+		editMenuPanel.setBounds((int)(2200 * coeffWidth),(int)(400 * coeffHeight),(int)(500 * coeffWidth),(int)(300 * coeffHeight));
 		add(editMenuPanel);
 		
 		//Buttons
 		this.okActionSetMenu = new JButton("OK");
-		this.okActionSetMenu.setBounds((int)(2400 * coeffWidth),(int)(780 * coeffHeight),(int)(100 * coeffWidth),(int)(50 * coeffHeight));
+		this.okActionSetMenu.setBounds((int)(2390 * coeffWidth),(int)(780 * coeffHeight),(int)(120 * coeffWidth),(int)(50 * coeffHeight));
 		add(this.okActionSetMenu);
 		
 		this.logout = new JButton("Logout");

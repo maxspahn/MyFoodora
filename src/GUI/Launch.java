@@ -964,15 +964,14 @@ public class Launch{
 		public void actionPerformed(ActionEvent arg0) {
 			String display = "<html>";
 			TreeSet<SingleItemSort> singleItems = (TreeSet<SingleItemSort>) ((Restaurant)currentUser).getDeliverdSingleItems().clone();
+			ArrayList<SingleItemSort> bzejnzd = new ArrayList<SingleItemSort>(((Restaurant)currentUser).getDeliverdSingleItems());
+			System.out.println(bzejnzd.get(0));
 			while(singleItems.size()!=0){
 				SingleItemSort singleItemSort = singleItems.pollFirst();
 				display += singleItemSort.getSingleItem()+" has been sold "+singleItemSort.getCount()+" times.<br>";
 			}
 			display+="<html>";
 			panelCreator.getPanelRestaurant().getText().setText(display);
-			System.out.println(((Restaurant)currentUser).getDeliverdSingleItems().size());
-			while(((Restaurant)currentUser).getDeliverdSingleItems().size()!=0){
-			System.out.println(((Restaurant)currentUser).getDeliverdSingleItems().pollFirst().getSingleItem().getName());}
 		}
 	}
 	
@@ -1444,7 +1443,7 @@ public class Launch{
 			if(panelCreator.getPanelChooseDate().getAction().equalsIgnoreCase("totalIncome")){
 				try {
 					double[] result = ((Manager)currentUser).computeTotalIncomeAndProfitOverPeriod(day1, month1, year1, day2, month2, year2);
-					panelCreator.getPanelManager().getText().setText("The total income between the dates "+day1+"/"+month1+"/"+year1+" and "+day2+"/"+month2+"/"+year2+" is: "+result[0]+"ï¿½.");
+					panelCreator.getPanelManager().getText().setText("The total income between the dates "+day1+"/"+month1+"/"+year1+" and "+day2+"/"+month2+"/"+year2+" is: "+result[0]+"€.");
 				} catch (OrderNotCompletException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -1452,7 +1451,7 @@ public class Launch{
 			}else if (panelCreator.getPanelChooseDate().getAction().equalsIgnoreCase("totalIncomePerCustomer")){
 				try {
 					double result = ((Manager)currentUser).computeIncomePerCustomerOverPeriod(day1, month1, year1, day2, month2, year2);
-					panelCreator.getPanelManager().getText().setText("The total income per customer between the dates "+day1+"/"+month1+"/"+year1+" and "+day2+"/"+month2+"/"+year2+" is: "+result+"ï¿½.");
+					panelCreator.getPanelManager().getText().setText("The total income per customer between the dates "+day1+"/"+month1+"/"+year1+" and "+day2+"/"+month2+"/"+year2+" is: "+result+"€.");
 				} catch (OrderNotCompletException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -1460,7 +1459,7 @@ public class Launch{
 			}else if(panelCreator.getPanelChooseDate().getAction().equalsIgnoreCase("profit")){
 				try {
 					double[] result = ((Manager)currentUser).computeTotalIncomeAndProfitOverPeriod(day1, month1, year1, day2, month2, year2);
-					panelCreator.getPanelManager().getText().setText("The profit between the dates "+day1+"/"+month1+"/"+year1+" and "+day2+"/"+month2+"/"+year2+" is: "+result[1]+"ï¿½.");
+					panelCreator.getPanelManager().getText().setText("The profit between the dates "+day1+"/"+month1+"/"+year1+" and "+day2+"/"+month2+"/"+year2+" is: "+result[1]+"€.");
 				} catch (OrderNotCompletException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

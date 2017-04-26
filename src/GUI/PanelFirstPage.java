@@ -20,7 +20,7 @@ public class PanelFirstPage extends JPanel{
 		//Welcome message
 		this.iconWelcome = new ImageIcon("WelcomeToMyFoodora.png");
 		JLabel labelWelcome = new JLabel("",iconWelcome,JLabel.CENTER);
-		labelWelcome.setBounds((int)(700*coeffWidth), (int)(400*coeffHeight), (int)(1300*coeffWidth), (int)(200*coeffHeight));
+		labelWelcome.setBounds((int)(550*coeffWidth), (int)(400*coeffHeight), (int)(1600*coeffWidth), (int)(200*coeffHeight));
 		add(labelWelcome);
 		setVisible(true);
 		

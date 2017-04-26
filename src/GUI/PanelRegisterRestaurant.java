@@ -29,7 +29,7 @@ public class PanelRegisterRestaurant extends PanelRegister{
 		this.textFieldName = new JTextField("",20);
 		this.textFieldName.setBackground(Color.lightGray);
 		namePanel.add(textFieldName);
-		namePanel.setBounds((int)(1200 * coeffWidth),(int)(800 * coeffHeight),(int)(300 * coeffWidth),(int)(60 * coeffHeight));
+		namePanel.setBounds((int)(1150 * coeffWidth),(int)(800 * coeffHeight),(int)(400 * coeffWidth),(int)(80 * coeffHeight));
 		
 		//Display the text field to put the adress
 		JPanel adressPanel = new JPanel();
@@ -44,7 +44,7 @@ public class PanelRegisterRestaurant extends PanelRegister{
 		this.textFieldAdressY.setBackground(Color.lightGray);
 		adressPanel.add(yLabel);
 		adressPanel.add(textFieldAdressY);
-		adressPanel.setBounds((int)(1200 * coeffWidth),(int)(900 * coeffHeight),(int)(300 * coeffWidth),(int)(60 * coeffHeight));
+		adressPanel.setBounds((int)(1100 * coeffWidth),(int)(900 * coeffHeight),(int)(500 * coeffWidth),(int)(80 * coeffHeight));
 		
 		//Display the text field to put the email
 		JPanel emailPanel = new JPanel();
@@ -52,7 +52,7 @@ public class PanelRegisterRestaurant extends PanelRegister{
 		this.textFieldEmail = new JTextField("",40);
 		this.textFieldEmail.setBackground(Color.lightGray);
 		emailPanel.add(textFieldEmail);
-		emailPanel.setBounds((int)(1100 * coeffWidth),(int)(1000 * coeffHeight),(int)(500 * coeffWidth),(int)(60 * coeffHeight));
+		emailPanel.setBounds((int)(1050 * coeffWidth),(int)(1000 * coeffHeight),(int)(600 * coeffWidth),(int)(80 * coeffHeight));
 				
 		//Display the text field to put the phone number
 		JPanel phonePanel = new JPanel();
@@ -60,11 +60,11 @@ public class PanelRegisterRestaurant extends PanelRegister{
 		this.textFieldPhone = new JTextField("",20);
 		this.textFieldPhone.setBackground(Color.lightGray);
 		phonePanel.add(textFieldPhone);
-		phonePanel.setBounds((int)(1200 * coeffWidth),(int)(1100 * coeffHeight),(int)(300 * coeffWidth),(int)(60 * coeffHeight));
+		phonePanel.setBounds((int)(1150 * coeffWidth),(int)(1100 * coeffHeight),(int)(400 * coeffWidth),(int)(80 * coeffHeight));
 		
 		//Button "Register"
 		this.register = new JButton("Register");
-		this.register.setBounds((int)(1300 * coeffWidth),(int)(1300 * coeffHeight),(int)(100 * coeffWidth),(int)(60 * coeffHeight));
+		this.register.setBounds((int)(1290 * coeffWidth),(int)(1300 * coeffHeight),(int)(120 * coeffWidth),(int)(60 * coeffHeight));
 	
 		this.getUserNamePanel().setVisible(false);
 		this.getPasswordPanel().setVisible(false);

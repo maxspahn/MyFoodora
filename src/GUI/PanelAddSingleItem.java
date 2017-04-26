@@ -27,13 +27,13 @@ public class PanelAddSingleItem extends JPanel{
 		//Display a item creation message
 		ImageIcon iconRegistration = new ImageIcon("SingleItemCreation.png");
 		JLabel label = new JLabel("",iconRegistration,JLabel.CENTER);
-		label.setBounds((int)(700 * coeffWidth),(int)(400 * coeffHeight),(int)(1300 * coeffWidth),(int)(200 * coeffHeight));
+		label.setBounds((int)(550 * coeffWidth),(int)(400 * coeffHeight),(int)(1600 * coeffWidth),(int)(200 * coeffHeight));
 		add(label);
 		
 		//Choice of the kind of single item
 		String[] types = {"Starter","Main Dish","Dessert"};
 		this.typeComboBox = new JComboBox<String>(types);
-		this.typeComboBox.setBounds((int)(1200 * coeffWidth),(int)(900 * coeffHeight),(int)(300 * coeffWidth),(int)(40 * coeffHeight));
+		this.typeComboBox.setBounds((int)(1150 * coeffWidth),(int)(900 * coeffHeight),(int)(400 * coeffWidth),(int)(50 * coeffHeight));
 		this.typeComboBox.setBackground(Color.white);
 		
 		//Display the text field to put the name
@@ -42,7 +42,7 @@ public class PanelAddSingleItem extends JPanel{
 		this.textFieldName = new JTextField("",20);
 		this.textFieldName.setBackground(Color.lightGray);
 		namePanel.add(textFieldName);
-		namePanel.setBounds((int)(1200 * coeffWidth),(int)(1000 * coeffHeight),(int)(300 * coeffWidth),(int)(60 * coeffHeight));
+		namePanel.setBounds((int)(1150 * coeffWidth),(int)(1000 * coeffHeight),(int)(400 * coeffWidth),(int)(80 * coeffHeight));
 		namePanel.setBackground(Color.white);
 		
 		//Display the text field to put the price
@@ -51,24 +51,24 @@ public class PanelAddSingleItem extends JPanel{
 		this.textFieldPrice = new JTextField("",20);
 		this.textFieldPrice.setBackground(Color.lightGray);
 		pricePanel.add(textFieldPrice);
-		pricePanel.setBounds((int)(1200 * coeffWidth),(int)(1100 * coeffHeight),(int)(300 * coeffWidth),(int)(60 * coeffHeight));
+		pricePanel.setBounds((int)(1150 * coeffWidth),(int)(1100 * coeffHeight),(int)(400 * coeffWidth),(int)(80 * coeffHeight));
 		pricePanel.setBackground(Color.white);
 		
 		//Display the choice of the vegetarian
 		this.checkBoxVegetarian = new JCheckBox("This single item is vegetarian");
-		this.checkBoxVegetarian.setBounds((int)(1200 * coeffWidth),(int)(1250 * coeffHeight),(int)(300 * coeffWidth),(int)(30 * coeffHeight));
+		this.checkBoxVegetarian.setBounds((int)(1150 * coeffWidth),(int)(1250 * coeffHeight),(int)(400 * coeffWidth),(int)(40 * coeffHeight));
 		
 		//Display the choice of the vegetarian
 		this.checkBoxGluten = new JCheckBox("This single item is gluten-free");
-		this.checkBoxGluten.setBounds((int)(1200 * coeffWidth),(int)(1300 * coeffHeight),(int)(300 * coeffWidth),(int)(30 * coeffHeight));
+		this.checkBoxGluten.setBounds((int)(1150 * coeffWidth),(int)(1300 * coeffHeight),(int)(400 * coeffWidth),(int)(40 * coeffHeight));
 		
 		//Button "Back"
 		this.back = new JButton("Back");
-		this.back.setBounds((int)(10 * coeffWidth),(int)(10 * coeffHeight),(int)(100 * coeffWidth),(int)(40 * coeffHeight));
+		this.back.setBounds((int)(10 * coeffWidth),(int)(10 * coeffHeight),(int)(120 * coeffWidth),(int)(50 * coeffHeight));
 		
 		//Button "Ok"
 		this.OkSingleItem = new JButton("OK");
-		this.OkSingleItem.setBounds((int)(1300 * coeffWidth),(int)(1400 * coeffHeight),(int)(100 * coeffWidth),(int)(60 * coeffHeight));
+		this.OkSingleItem.setBounds((int)(1290 * coeffWidth),(int)(1400 * coeffHeight),(int)(120 * coeffWidth),(int)(60 * coeffHeight));
 		
 		
 		add(typeComboBox);

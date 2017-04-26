@@ -41,7 +41,7 @@ public class PanelCustomerOrder extends JPanel{
 		//Display a registration message
 		this.myFoodoraIcon = new ImageIcon("MyFoodora.png");
 		JLabel myFoodoraLabel = new JLabel("",myFoodoraIcon,JLabel.CENTER);
-		myFoodoraLabel.setBounds((int)(2200 * coeffWidth),(int)(100 * coeffHeight),(int)(500 * coeffWidth),(int)(200 * coeffHeight));
+		myFoodoraLabel.setBounds((int)(2100 * coeffWidth),(int)(100 * coeffHeight),(int)(700 * coeffWidth),(int)(300 * coeffHeight));
 		add(myFoodoraLabel);
 				
 		//Creation of the area where the text is put
@@ -64,31 +64,31 @@ public class PanelCustomerOrder extends JPanel{
 		
 		//Buttons
 		this.chooseItem = new JButton("Choose");
-		this.chooseItem.setBounds((int)(2470 * coeffWidth),(int)(710 * coeffHeight),(int)(100 * coeffWidth),(int)(50 * coeffHeight));
+		this.chooseItem.setBounds((int)(2470 * coeffWidth),(int)(710 * coeffHeight),(int)(180 * coeffWidth),(int)(50 * coeffHeight));
 		add(this.chooseItem);
 		
 		this.showItem = new JButton("Show");
-		this.showItem.setBounds((int)(2330 * coeffWidth),(int)(710 * coeffHeight),(int)(100 * coeffWidth),(int)(50 * coeffHeight));
+		this.showItem.setBounds((int)(2250 * coeffWidth),(int)(710 * coeffHeight),(int)(180 * coeffWidth),(int)(50 * coeffHeight));
 		add(this.showItem);
 		
 		this.chooseMeal = new JButton("Choose");
-		this.chooseMeal.setBounds((int)(2470 * coeffWidth),(int)(1310 * coeffHeight),(int)(100 * coeffWidth),(int)(50 * coeffHeight));
+		this.chooseMeal.setBounds((int)(2470 * coeffWidth),(int)(1310 * coeffHeight),(int)(180 * coeffWidth),(int)(50 * coeffHeight));
 		add(this.chooseMeal);
 		
 		this.showMeal = new JButton("Show");
-		this.showMeal.setBounds((int)(2330 * coeffWidth),(int)(1310 * coeffHeight),(int)(100 * coeffWidth),(int)(50 * coeffHeight));
+		this.showMeal.setBounds((int)(2250 * coeffWidth),(int)(1310 * coeffHeight),(int)(180 * coeffWidth),(int)(50 * coeffHeight));
 		add(this.showMeal);
 		
 		this.removeSomething = new JButton("Remove something");
-		this.removeSomething.setBounds((int)(1400 * coeffWidth),(int)(1550 * coeffHeight),(int)(200 * coeffWidth),(int)(50 * coeffHeight));
+		this.removeSomething.setBounds((int)(1350 * coeffWidth),(int)(1550 * coeffHeight),(int)(300 * coeffWidth),(int)(50 * coeffHeight));
 		add(this.removeSomething);
 		
 		this.back = new JButton("Back");
-		this.back.setBounds((int)(2600 * coeffWidth),(int)(1600 * coeffHeight),(int)(100 * coeffWidth),(int)(50 * coeffHeight));
+		this.back.setBounds((int)(2590 * coeffWidth),(int)(1600 * coeffHeight),(int)(120 * coeffWidth),(int)(50 * coeffHeight));
 		add(this.back);
 		
 		this.pay = new JButton("Pay");
-		this.pay.setBounds((int)(1700 * coeffWidth),(int)(1550 * coeffHeight),(int)(100 * coeffWidth),(int)(50 * coeffHeight));
+		this.pay.setBounds((int)(1750 * coeffWidth),(int)(1550 * coeffHeight),(int)(120 * coeffWidth),(int)(50 * coeffHeight));
 		add(this.pay);
 		
 		
@@ -105,7 +105,7 @@ public class PanelCustomerOrder extends JPanel{
 		this.itemNamelist = new JList<String>(singleItemsList);
 		JScrollPane singleItemsPanel = new JScrollPane(this.itemNamelist);
 		singleItemsPanel.setBorder(BorderFactory.createTitledBorder("Single Items"));
-		singleItemsPanel.setBounds((int)(2300 * coeffWidth),(int)(400 * coeffHeight),(int)(300 * coeffWidth),(int)(300 * coeffHeight));
+		singleItemsPanel.setBounds((int)(2200 * coeffWidth),(int)(400 * coeffHeight),(int)(500 * coeffWidth),(int)(300 * coeffHeight));
 		add(singleItemsPanel);		
 		
 		//List of meals
@@ -120,7 +120,7 @@ public class PanelCustomerOrder extends JPanel{
 		this.mealNamelist = new JList<String>(mealsList);
 		JScrollPane mealsPanel = new JScrollPane(this.mealNamelist);
 		mealsPanel.setBorder(BorderFactory.createTitledBorder("Meals"));
-		mealsPanel.setBounds((int)(2300 * coeffWidth),(int)(1000 * coeffHeight),(int)(300 * coeffWidth),(int)(300 * coeffHeight));
+		mealsPanel.setBounds((int)(2200 * coeffWidth),(int)(1000 * coeffHeight),(int)(500 * coeffWidth),(int)(300 * coeffHeight));
 		add(mealsPanel);
 		
 		//Name of the chosen restaurant

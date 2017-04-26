@@ -28,16 +28,17 @@ public class PanelChooseDate extends JPanel{
 		this.action = action;
 		setLayout(null);
 		
-		//Login message
+		//Fees message
 		ImageIcon icon = new ImageIcon("Fees.png");
 		JLabel label = new JLabel("",icon,JLabel.CENTER);
-		label.setBounds((int)(700 * coeffWidth),(int)(400 * coeffHeight),(int)(1300 * coeffWidth),(int)(200 * coeffHeight));
+		label.setBounds((int)(550 * coeffWidth),(int)(400 * coeffHeight),(int)(1600 * coeffWidth),(int)(200 * coeffHeight));
 		add(label);
 		
 		//Panel day1
 		JPanel day1Panel = new JPanel();
 		day1Panel.setBorder(BorderFactory.createTitledBorder("Day 1"));
-		day1Panel.setBounds((int)(1100 * coeffWidth),(int)(900 * coeffHeight),(int)(100 * coeffWidth),(int)(60 * coeffHeight));
+		day1Panel.setBounds((int)(1070 * coeffWidth),(int)(900 * coeffHeight),(int)(160 * coeffWidth),(int)(80 * coeffHeight));
+		day1Panel.setBackground(Color.white);	
 		
 		//Choice of the day of first date
 		String[] day1 = new String[30];
@@ -51,8 +52,9 @@ public class PanelChooseDate extends JPanel{
 		//Panel month1
 		JPanel month1Panel = new JPanel();
 		month1Panel.setBorder(BorderFactory.createTitledBorder("Month 1"));
-		month1Panel.setBounds((int)(1100 * coeffWidth),(int)(1000 * coeffHeight),(int)(100 * coeffWidth),(int)(60 * coeffHeight));
-				
+		month1Panel.setBounds((int)(1070 * coeffWidth),(int)(1000 * coeffHeight),(int)(160 * coeffWidth),(int)(80 * coeffHeight));
+		month1Panel.setBackground(Color.white);	
+		
 		//Choice of the month of first date
 		String[] month1 = new String[12];
 		for (int i = 0; i < month1.length; i++) {
@@ -65,8 +67,9 @@ public class PanelChooseDate extends JPanel{
 		//Panel year1
 		JPanel year1Panel = new JPanel();
 		year1Panel.setBorder(BorderFactory.createTitledBorder("Year 1"));
-		year1Panel.setBounds((int)(1100 * coeffWidth),(int)(1100 * coeffHeight),(int)(100 * coeffWidth),(int)(60 * coeffHeight));
-				
+		year1Panel.setBounds((int)(1070 * coeffWidth),(int)(1100 * coeffHeight),(int)(160 * coeffWidth),(int)(80 * coeffHeight));
+		year1Panel.setBackground(Color.white);	
+		
 		//Choice of the year of first date
 		String[] year1 = {""+2014,""+2015,""+2016,""+2017};
 		this.year1ComboBox = new JComboBox<String>(year1);
@@ -75,8 +78,8 @@ public class PanelChooseDate extends JPanel{
 		//Panel day2
 		JPanel day2Panel = new JPanel();
 		day2Panel.setBorder(BorderFactory.createTitledBorder("Day 2"));
-		day2Panel.setBounds((int)(1400 * coeffWidth),(int)(900 * coeffHeight),(int)(100 * coeffWidth),(int)(60 * coeffHeight));
-
+		day2Panel.setBounds((int)(1430 * coeffWidth),(int)(900 * coeffHeight),(int)(160 * coeffWidth),(int)(80 * coeffHeight));
+		day2Panel.setBackground(Color.white);	
 				
 		//Choice of the day of second date
 		String[] day2 = new String[30];
@@ -90,8 +93,9 @@ public class PanelChooseDate extends JPanel{
 		//Panel month1
 		JPanel month2Panel = new JPanel();
 		month2Panel.setBorder(BorderFactory.createTitledBorder("Month 2"));
-		month2Panel.setBounds((int)(1400 * coeffWidth),(int)(1000 * coeffHeight),(int)(100 * coeffWidth),(int)(60 * coeffHeight));
-				
+		month2Panel.setBounds((int)(1430 * coeffWidth),(int)(1000 * coeffHeight),(int)(160 * coeffWidth),(int)(80 * coeffHeight));
+		month2Panel.setBackground(Color.white);	
+		
 		//Choice of the month of second date
 		String[] month2 = new String[12];
 		for (int i = 0; i < month1.length; i++) {
@@ -104,8 +108,9 @@ public class PanelChooseDate extends JPanel{
 		//Panel year1
 		JPanel year2Panel = new JPanel();
 		year2Panel.setBorder(BorderFactory.createTitledBorder("Year 2"));
-		year2Panel.setBounds((int)(1400 * coeffWidth),(int)(1100 * coeffHeight),(int)(100 * coeffWidth),(int)(60 * coeffHeight));
-				
+		year2Panel.setBounds((int)(1430 * coeffWidth),(int)(1100 * coeffHeight),(int)(160 * coeffWidth),(int)(80 * coeffHeight));
+		year2Panel.setBackground(Color.white);	
+		
 		//Choice of the year of first date
 		String[] year2 = {""+2014,""+2015,""+2016,""+2017};
 		this.year2ComboBox = new JComboBox<String>(year2);
@@ -121,11 +126,11 @@ public class PanelChooseDate extends JPanel{
 		
 		//Button "OK"
 		this.OkDate = new JButton("OK");
-		this.OkDate.setBounds((int)(1250 * coeffWidth),(int)(1300 * coeffHeight),(int)(100 * coeffWidth),(int)(60 * coeffHeight));
+		this.OkDate.setBounds((int)(1240 * coeffWidth),(int)(1300 * coeffHeight),(int)(120 * coeffWidth),(int)(60 * coeffHeight));
 		add(this.OkDate);
 		
 		this.back = new JButton("Back");
-		this.back.setBounds((int)(10 * coeffWidth),(int)(10 * coeffHeight),(int)(100 * coeffWidth),(int)(40 * coeffHeight));
+		this.back.setBounds((int)(10 * coeffWidth),(int)(10 * coeffHeight),(int)(120 * coeffWidth),(int)(50 * coeffHeight));
 		add(this.back);
 	}
 	

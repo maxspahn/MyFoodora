@@ -21,7 +21,7 @@ public class PanelCourier extends JPanel{
 		//Display "MyFoodora"
 		ImageIcon myFoodoraIcon = new ImageIcon("MyFoodora.png");
 		JLabel myFoodoraLabel = new JLabel("",myFoodoraIcon,JLabel.CENTER);
-		myFoodoraLabel.setBounds((int)(2200 * coeffWidth),(int)(100 * coeffHeight),(int)(500 * coeffWidth),(int)(200 * coeffHeight));
+		myFoodoraLabel.setBounds((int)(2100 * coeffWidth),(int)(100 * coeffHeight),(int)(700 * coeffWidth),(int)(300 * coeffHeight));
 		add(myFoodoraLabel);
 				
 		//Creation of the area where the text is put
@@ -39,7 +39,7 @@ public class PanelCourier extends JPanel{
 		add(this.logout);
 		
 		this.deliverOrder = new JButton("Deliver an order");
-		this.deliverOrder.setBounds((int)(2350 * coeffWidth),(int)(800 * coeffHeight),(int)(200 * coeffWidth),(int)(100 * coeffHeight));
+		this.deliverOrder.setBounds((int)(2300 * coeffWidth),(int)(800 * coeffHeight),(int)(300 * coeffWidth),(int)(100 * coeffHeight));
 		add(this.deliverOrder);
 
 	}

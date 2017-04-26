@@ -26,7 +26,7 @@ public class PanelManager extends JPanel{
 		//Display "MyFoodora"
 		ImageIcon myFoodoraIcon = new ImageIcon("MyFoodora.png");
 		JLabel myFoodoraLabel = new JLabel("",myFoodoraIcon,JLabel.CENTER);
-		myFoodoraLabel.setBounds((int)(2200 * coeffWidth),(int)(100 * coeffHeight),(int)(500 * coeffWidth),(int)(200 * coeffHeight));
+		myFoodoraLabel.setBounds((int)(2100 * coeffWidth),(int)(100 * coeffHeight),(int)(700 * coeffWidth),(int)(300 * coeffHeight));
 		add(myFoodoraLabel);
 				
 		//Creation of the area where the text is put
@@ -44,11 +44,11 @@ public class PanelManager extends JPanel{
 		add(this.logout);
 		
 		this.choosePolicy = new JButton("Choose");
-		this.choosePolicy.setBounds((int)(2400 * coeffWidth),(int)(720 * coeffHeight),(int)(100 * coeffWidth),(int)(50 * coeffHeight));
+		this.choosePolicy.setBounds((int)(2360 * coeffWidth),(int)(720 * coeffHeight),(int)(180 * coeffWidth),(int)(50 * coeffHeight));
 		add(this.choosePolicy);
 		
 		this.chooseUser = new JButton("Choose");
-		this.chooseUser.setBounds((int)(2400 * coeffWidth),(int)(1220 * coeffHeight),(int)(100 * coeffWidth),(int)(50 * coeffHeight));
+		this.chooseUser.setBounds((int)(2360 * coeffWidth),(int)(1220 * coeffHeight),(int)(180 * coeffWidth),(int)(50 * coeffHeight));
 		add(this.chooseUser);
 		
 		//Target policy
@@ -56,7 +56,7 @@ public class PanelManager extends JPanel{
 		this.actionsPolicyList = new JList<String>(actionsPolicy);
 		JScrollPane targetPolicyPanel = new JScrollPane(actionsPolicyList);
 		targetPolicyPanel.setBorder(BorderFactory.createTitledBorder("TARGET POLICY"));
-		targetPolicyPanel.setBounds((int)(2300 * coeffWidth),(int)(400 * coeffHeight),(int)(300 * coeffWidth),(int)(300 * coeffHeight));
+		targetPolicyPanel.setBounds((int)(2200 * coeffWidth),(int)(400 * coeffHeight),(int)(500 * coeffWidth),(int)(300 * coeffHeight));
 		add(targetPolicyPanel);		
 		
 		//Users
@@ -64,7 +64,7 @@ public class PanelManager extends JPanel{
 		this.actionsUsersList = new JList<String>(actionsUsers);
 		JScrollPane UsersPanel = new JScrollPane(actionsUsersList);
 		UsersPanel.setBorder(BorderFactory.createTitledBorder("USERS"));
-		UsersPanel.setBounds((int)(2300 * coeffWidth),(int)(900 * coeffHeight),(int)(300 * coeffWidth),(int)(300 * coeffHeight));
+		UsersPanel.setBounds((int)(2200 * coeffWidth),(int)(900 * coeffHeight),(int)(500 * coeffWidth),(int)(300 * coeffHeight));
 		add(UsersPanel);
 	}
 

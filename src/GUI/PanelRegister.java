@@ -28,7 +28,7 @@ public class PanelRegister extends JPanel{
 		//Display a registration message
 		this.iconRegistration = new ImageIcon("Registration.png");
 		JLabel labelRegistration = new JLabel("",iconRegistration,JLabel.CENTER);
-		labelRegistration.setBounds((int)(700 * coeffWidth),(int)(400 * coeffHeight),(int)(1300 * coeffWidth),(int)(200 * coeffHeight));
+		labelRegistration.setBounds((int)(550 * coeffWidth),(int)(400 * coeffHeight),(int)(1600 * coeffWidth),(int)(200 * coeffHeight));
 		add(labelRegistration);
 		
 		//Choice of the kind of users
@@ -42,7 +42,7 @@ public class PanelRegister extends JPanel{
 		this.textFieldUserName = new JTextField("",20);
 		this.textFieldUserName.setBackground(Color.lightGray);
 		this.userNamePanel.add(textFieldUserName);
-		this.userNamePanel.setBounds((int)(1150 * coeffWidth),(int)(1000 * coeffHeight),(int)(400 * coeffWidth),(int)(70 * coeffHeight));
+		this.userNamePanel.setBounds((int)(1150 * coeffWidth),(int)(1000 * coeffHeight),(int)(400 * coeffWidth),(int)(80 * coeffHeight));
 		
 		//Display the text field to put the password
 		this.passwordPanel = new JPanel();
@@ -50,7 +50,7 @@ public class PanelRegister extends JPanel{
 		this.textFieldPassword = new JTextField("",20);
 		this.textFieldPassword.setBackground(Color.lightGray);
 		this.passwordPanel.add(textFieldPassword);
-		this.passwordPanel.setBounds((int)(1150 * coeffWidth),(int)(1120 * coeffHeight),(int)(400 * coeffWidth),(int)(70 * coeffHeight));
+		this.passwordPanel.setBounds((int)(1150 * coeffWidth),(int)(1120 * coeffHeight),(int)(400 * coeffWidth),(int)(80 * coeffHeight));
 		
 		//Button "Back"
 		this.back = new JButton("Back");

@@ -35,7 +35,7 @@ public class PanelCustomer extends JPanel{
 		//Display "MyFoodora"
 		this.myFoodoraIcon = new ImageIcon("MyFoodora.png");
 		JLabel myFoodoraLabel = new JLabel("",myFoodoraIcon,JLabel.CENTER);
-		myFoodoraLabel.setBounds((int)(2200 * coeffWidth),(int)(100 * coeffHeight),(int)(500 * coeffWidth),(int)(200 * coeffHeight));
+		myFoodoraLabel.setBounds((int)(2100 * coeffWidth),(int)(100 * coeffHeight),(int)(700 * coeffWidth),(int)(300 * coeffHeight));
 		add(myFoodoraLabel);
 				
 		//Creation of the area where the text is put
@@ -49,11 +49,11 @@ public class PanelCustomer extends JPanel{
 		
 		//Buttons
 		this.choose = new JButton("Choose");
-		this.choose.setBounds((int)(2400 * coeffWidth),(int)(780 * coeffHeight),(int)(100 * coeffWidth),(int)(50 * coeffHeight));
+		this.choose.setBounds((int)(2360 * coeffWidth),(int)(780 * coeffHeight),(int)(180 * coeffWidth),(int)(50 * coeffHeight));
 		add(this.choose);
 		
 		this.show = new JButton("Show");
-		this.show.setBounds((int)(2400 * coeffWidth),(int)(710 * coeffHeight),(int)(100 * coeffWidth),(int)(50 * coeffHeight));
+		this.show.setBounds((int)(2360 * coeffWidth),(int)(710 * coeffHeight),(int)(180 * coeffWidth),(int)(50 * coeffHeight));
 		add(this.show);
 		
 		this.logout = new JButton("Logout");
@@ -78,7 +78,7 @@ public class PanelCustomer extends JPanel{
 		this.activatedRestaurantNamelist = new JList<String>(rest);
 		JScrollPane restaurantsPanel = new JScrollPane(this.activatedRestaurantNamelist);
 		restaurantsPanel.setBorder(BorderFactory.createTitledBorder("ORDER"));
-		restaurantsPanel.setBounds((int)(2300 * coeffWidth),(int)(400 * coeffHeight),(int)(300 * coeffWidth),(int)(300 * coeffHeight));
+		restaurantsPanel.setBounds((int)(2200 * coeffWidth),(int)(400 * coeffHeight),(int)(500 * coeffWidth),(int)(300 * coeffHeight));
 		add(restaurantsPanel);		
 	}
 	

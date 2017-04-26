@@ -24,7 +24,7 @@ public class PanelLogin extends JPanel{
 	//Login message
 	this.iconLogin = new ImageIcon("Login.png");
 	JLabel labelLogin = new JLabel("",iconLogin,JLabel.CENTER);
-	labelLogin.setBounds((int)(700 * coeffWidth),(int)(400 * coeffHeight),(int)(1300 * coeffWidth),(int)(200 * coeffHeight));
+	labelLogin.setBounds((int)(550 * coeffWidth),(int)(400 * coeffHeight),(int)(1600 * coeffWidth),(int)(200 * coeffHeight));
 			
 	//Text field to put the username
 	JPanel userNamePanel = new JPanel();

@@ -33,7 +33,7 @@ public class PanelCreateMeal extends JPanel{
 		//Display a meal creation message
 		ImageIcon iconRegistration = new ImageIcon("MealCreation.png");
 		JLabel label = new JLabel("",iconRegistration,JLabel.CENTER);
-		label.setBounds((int)(700 * coeffWidth),(int)(200 * coeffHeight),(int)(1300 * coeffWidth),(int)(200 * coeffHeight));
+		label.setBounds((int)(550 * coeffWidth),(int)(200 * coeffHeight),(int)(1600 * coeffWidth),(int)(200 * coeffHeight));
 		
 		//Creation of the area where the text is put
 		JPanel textPanelRest = new JPanel();
@@ -54,7 +54,7 @@ public class PanelCreateMeal extends JPanel{
 		
 		JPanel starterPanel = new JPanel();
 		starterPanel.add(this.starterComboBox);
-		starterPanel.setBounds((int)(1200 * coeffWidth),(int)(900 * coeffHeight),(int)(200 * coeffWidth),(int)(60 * coeffHeight));
+		starterPanel.setBounds((int)(1150 * coeffWidth),(int)(900 * coeffHeight),(int)(300 * coeffWidth),(int)(80 * coeffHeight));
 		starterPanel.setBackground(Color.white);
 		starterPanel.setBorder(BorderFactory.createTitledBorder("List of starters"));
 		
@@ -69,7 +69,7 @@ public class PanelCreateMeal extends JPanel{
 		
 		JPanel mainDishPanel = new JPanel();
 		mainDishPanel.add(this.mainDishComboBox);
-		mainDishPanel.setBounds((int)(1550 * coeffWidth),(int)(900 * coeffHeight),(int)(200 * coeffWidth),(int)(60 * coeffHeight));
+		mainDishPanel.setBounds((int)(1550 * coeffWidth),(int)(900 * coeffHeight),(int)(300 * coeffWidth),(int)(80 * coeffHeight));
 		mainDishPanel.setBackground(Color.white);
 		mainDishPanel.setBorder(BorderFactory.createTitledBorder("List of main dishes"));
 		
@@ -84,26 +84,26 @@ public class PanelCreateMeal extends JPanel{
 		
 		JPanel dessertPanel = new JPanel();
 		dessertPanel.add(this.dessertComboBox);
-		dessertPanel.setBounds((int)(1900 * coeffWidth),(int)(900 * coeffHeight),(int)(200 * coeffWidth),(int)(60 * coeffHeight));
+		dessertPanel.setBounds((int)(1950 * coeffWidth),(int)(900 * coeffHeight),(int)(300 * coeffWidth),(int)(60 * coeffHeight));
 		dessertPanel.setBackground(Color.white);
 		dessertPanel.setBorder(BorderFactory.createTitledBorder("List of desserts"));
 		
 		//Buttons
 		this.showStarter = new JButton("Show");
-		this.showStarter.setBounds((int)(1250 * coeffWidth),(int)(1000 * coeffHeight),(int)(100 * coeffWidth),(int)(50 * coeffHeight));
+		this.showStarter.setBounds((int)(1210 * coeffWidth),(int)(1000 * coeffHeight),(int)(180 * coeffWidth),(int)(50 * coeffHeight));
 		
 		this.showMainDish = new JButton("Show");
-		this.showMainDish.setBounds((int)(1600 * coeffWidth),(int)(1000 * coeffHeight),(int)(100 * coeffWidth),(int)(50 * coeffHeight));
+		this.showMainDish.setBounds((int)(1610 * coeffWidth),(int)(1000 * coeffHeight),(int)(180 * coeffWidth),(int)(50 * coeffHeight));
 		
 		this.showDessert = new JButton("Show");
-		this.showDessert.setBounds((int)(1950 * coeffWidth),(int)(1000 * coeffHeight),(int)(100 * coeffWidth),(int)(50 * coeffHeight));
+		this.showDessert.setBounds((int)(2010 * coeffWidth),(int)(1000 * coeffHeight),(int)(180 * coeffWidth),(int)(50 * coeffHeight));
 		
 		this.create = new JButton("Create");
-		this.create.setBounds((int)(1600 * coeffWidth),(int)(1200 * coeffHeight),(int)(100 * coeffWidth),(int)(50 * coeffHeight));
+		this.create.setBounds((int)(1610 * coeffWidth),(int)(1200 * coeffHeight),(int)(180 * coeffWidth),(int)(50 * coeffHeight));
 		
 		//Button "Back"
 		this.back = new JButton("Back");
-		this.back.setBounds((int)(10 * coeffWidth),(int)(10 * coeffHeight),(int)(100 * coeffWidth),(int)(40 * coeffHeight));
+		this.back.setBounds((int)(10 * coeffWidth),(int)(10 * coeffHeight),(int)(120 * coeffWidth),(int)(50 * coeffHeight));
 		
 		add(label);
 		add(textPanelRest);

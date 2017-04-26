@@ -165,7 +165,7 @@ public class PanelCreator{
 		this.menuBarRestaurant.getSetNewSpecialDiscount().addActionListener(launch.new SetNewSpecialDiscountListener());
 		this.menuBarRestaurant.getGetMyProfile().addActionListener(launch.new ProfileListener());
 		this.menuBarRestaurant.getHistorySoldSingleItems().addActionListener(launch.new HistorySoldSingleItemsListener());
-		
+
 	}
 	
 	public void createAddSingleItemPanel(){
