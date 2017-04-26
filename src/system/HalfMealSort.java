@@ -35,5 +35,13 @@ public class HalfMealSort extends SortPolicy implements Serializable{
 	public void setHalfMeal(HalfMeal halfMeal) {
 		this.halfMeal = halfMeal;
 	}
-
+	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	public String toString(){
+		String s = new String();
+		s = this.getHalfMeal().toString() + " count: " + this.getCount();
+		return s;
+	}
 }

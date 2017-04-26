@@ -44,5 +44,13 @@ public class FullMealSort extends SortPolicy implements Serializable {
 		this.fullMeal = fullMeal;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	public String toString(){
+		String s = new String();
+		s = this.getFullMeal().toString() + " count: " + this.getCount();
+		return s;
+	}
 
 }

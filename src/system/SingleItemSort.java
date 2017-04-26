@@ -44,6 +44,15 @@ public class SingleItemSort extends SortPolicy implements Serializable{
 		this.singleItem = singleItem;
 	}
 	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	public String toString(){
+		String s = new String();
+		s = this.getSingleItem().toString() + " count: " + this.getCount();
+		return s;
+	}
+	
 	
 
 }
