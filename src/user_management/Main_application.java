@@ -15,6 +15,7 @@ public class Main_application {
 		Restaurant rest = myFoodora.getListRestaurant().get(1);
 		Menu menu = new Menu("Menu");
 		System.out.println(rest.getDeliverdSingleItems());
+		rest.getMenu().getItemFactoryProducer().getFactory("meal");
 	}
 	
 }

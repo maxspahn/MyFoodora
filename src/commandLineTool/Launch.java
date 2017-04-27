@@ -17,6 +17,10 @@ import restaurant.WrongItemAdded;
 import system.*;
 import user_management.*;
 
+/**
+ * @author maxspahn
+ *
+ */
 public class Launch {
 	
 	private User currentUser;
@@ -59,7 +63,8 @@ public class Launch {
 		commands.add("showCouriers \t\t<>");
 		commands.add("showCourierDeliveries \t<>");
 		commands.add("showRestaurantTop \t<>");
-		commands.add("showCustomers \t\t<>");
+		commands.add("showCouriersTop \t\t<>");
+		commands.add("showCustomers \t<>");
 		commands.add("showMenuItem \t\t<restaurant-name>");
 		commands.add("showTotalProfit \t<>");
 		commands.add("showTotalProfit \t<startDate> <endDate>");
@@ -67,6 +72,10 @@ public class Launch {
 		commands.add("help \t\t\t<>");
 		commands.add("showRestaurants \t<>");
 		commands.add("registerManager \t<name> <userName> <adress> <password>");
+		commands.add("showFees \t\t<>");
+		commands.add("setFeesPolicy \t\t<value1> <value2>");
+		commands.add("setTarget \t\t<targetCommands> <targetProfit>");
+		commands.add("showTarget \t\t<>");
 
 		Collections.sort(commands, String.CASE_INSENSITIVE_ORDER);
 	}
@@ -232,6 +241,21 @@ public class Launch {
 			break;
 		case "registermanager" :
 			this.registerManager(args);
+			break;
+		case "showfees" :
+			this.showFees(args);
+			break;
+		case "setfeespolicy" :
+			this.setFeesAccordingToPolicy(args);
+			break;
+		case "settarget" :
+			this.setTarget(args);
+			break;
+		case "showtarget" :
+			this.showTarget(args);
+			break;
+		case "showcourierstop" :
+			this.showCouriersTop(args);
 			break;
 		default:
 			System.out.println("This command does not exist, 'help' for information");;
@@ -534,7 +558,6 @@ public class Launch {
 		}
 	}
 	
-	
 	/** Prints a sorted list of all couriers according to their number of delivered orders.
 	 * Only possible as manager.
 	 * @param args empty
@@ -554,6 +577,16 @@ public class Launch {
 		if(rightNumberofArguments(args, 1) && isManager()){
 			this.getMyFoodora().sortRestaurant();
 			System.out.println(this.getMyFoodora().listRestaurantsToString(this.getCurrentUser()));
+		}
+	}
+	
+	/** A manager can see a sorted list of all couriers depending on their number of deliveries.
+	 * @param args empty
+	 */
+	public void showCouriersTop(String [] args){
+		if(rightNumberofArguments(args, 1) && isManager()){
+			this.getMyFoodora().sortCourier();
+			System.out.println(this.getMyFoodora().listCourierToString(this.getCurrentUser()));
 		}
 	}
 	
@@ -623,6 +656,52 @@ public class Launch {
 		if(rightNumberofArguments(args, 1) && isManager()){
 			System.out.println(this.getMyFoodora().listCustomerToString());
 		}
+	}	
+	
+	/** A manager can see all the fees that are globally used to calculate the profit.
+	 * @param args
+	 */
+	public void showFees(String [] args){
+		if(rightNumberofArguments(args, 1) && isManager()){
+			System.out.println("DeliveryCost: " + this.getMyFoodora().getDelivery_cost());
+			System.out.println("ServiceFee: " + this.getMyFoodora().getService_fee());
+			System.out.println("Markup-percentage: " + this.getMyFoodora().getMarkup_percentage());
+		}
+	}
+	
+	/** A manager can set a target for the future profits.
+	 * @param args Number of commands, profit.
+	 */
+	public void setTarget(String [] args){
+		if(rightNumberofArguments(args, 3) && isManager()){
+			this.getMyFoodora().setTargetCommands(Integer.parseInt(args[1]));
+			this.getMyFoodora().setTargetProfit(Double.parseDouble(args[2]));
+		}
+	}
+	
+	/** A manager can see the current profit target.
+	 * @param args empty
+	 */
+	public void showTarget(String [] args){
+		if(rightNumberofArguments(args, 1) && isManager()){
+			System.out.println("Number of commands: " + this.getMyFoodora().getTargetCommands());
+			System.out.println("Target Profit: " + this.getMyFoodora().getTargetProfit());
+		}
+	}
+	
+	/** A manager can change the fees according to the current policy.
+	 * @param args Values of two fees.
+	 */
+	public void setFeesAccordingToPolicy(String []  args){
+		if(rightNumberofArguments(args, 3) && isManager()){
+			try {
+				this.getMyFoodora().changeFeesAccordingToPolicy(Double.parseDouble(args[1]), Double.parseDouble(args[2]));
+			} catch (NumberFormatException | TargetCannotBeFullfilled e) {
+				System.out.println(e.getMessage());
+			}
+		}
+		String [] s = {"showFees"};
+		this.showFees(s);
 	}
 	
 	/** Prints all available commands.

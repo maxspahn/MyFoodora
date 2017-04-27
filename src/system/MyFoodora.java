@@ -314,7 +314,6 @@ public class MyFoodora implements Serializable{
 		double nbOrders = 0;
 		HashSet<Customer> setCustomers =new HashSet<>();
  		
- 		System.out.println("dates " + day1 + "/" + month1 + "/" + year1 + " through " + day2 + "/" + month2 + "/" + year2);
  		int i = 0;
 		int size = this.completeOrders.size();
 		
