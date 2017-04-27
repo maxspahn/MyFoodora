@@ -3,16 +3,6 @@
 \usepackage{./src/custom}
 
 \begin{document}
-% title (fold)
-\begin{center}
-{\LARGE \bfseries
- Title \\[0.3cm]
-}
-{\large
-  \textsc{CentraleSupélec} --- Max Spahn, Jeremy Augot --- P2018\\[0.7cm]
-}
-\end{center}
-% title (end)
 \begin{comment}
 Introduction
 	Recap project 
@@ -51,7 +41,9 @@ Annexe
 	Video of the GUI
 \end{comment}
 
-{\hypersetup{linkcolor=black} \tableofcontents}
+{\hypersetup{linkcolor=black} 
+\input{./src/titlepage.tex}
+\tableofcontents}
 \newpage
 \input{./src/intro.tex}
 \newpage
