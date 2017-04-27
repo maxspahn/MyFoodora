@@ -15,11 +15,10 @@ public class Menu implements Serializable{
 	private ArrayList<SingleItem> singleItems = new ArrayList<>();
 	private ArrayList<Meal> meals = new ArrayList<>();
 	private String title;
-	private SingleItemFactory singleItemFactory;
-	private MealFactory mealFactory;
 	private ArrayList<Starter> starters;
 	private ArrayList<MainDish> mainDishes;
 	private ArrayList<Desert> desserts;
+	private ItemFactoryProducer itemFactoryProducer;
 	
 	/**Constructor. Includes the creation of the ItemFactories. The default items are loaded.
 	 * 
@@ -29,8 +28,8 @@ public class Menu implements Serializable{
 		this.mainDishes = new ArrayList<MainDish>();
 		this.desserts = new ArrayList<Desert>();
 		this.setTitle("Menu");
-		this.setMealFactory(new MealFactory());
-		this.setSingleItemFactory(new SingleItemFactory());
+		this.setItemFactoryProducer(new ItemFactoryProducer());
+		
 		this.load();
 	}
 
@@ -44,8 +43,7 @@ public class Menu implements Serializable{
 		this.desserts = new ArrayList<Desert>();
 		this.setTitle("Menu");
 		this.setTitle(title);
-		this.setMealFactory(new MealFactory());
-		this.setSingleItemFactory(new SingleItemFactory());
+		this.setItemFactoryProducer(new ItemFactoryProducer());
 		this.load();
 	}
 	
@@ -227,22 +225,23 @@ public class Menu implements Serializable{
 	 */
 	public void addItem(String itemType, String name) throws WrongItemAdded{
 		if(itemType.equalsIgnoreCase("Starter")){
-			SingleItem singleItem = this.getSingleItemFactory().createSingleItem(itemType, name);
+			this.getItemFactoryProducer().getFactory("singleItem");
+			SingleItem singleItem = this.getItemFactoryProducer().getFactory("singleItem").createSingleItem(itemType, name);
 			this.getSingleItems().add(singleItem);
 			this.starters.add((Starter) singleItem);
 		}
 		else if(itemType.equalsIgnoreCase("mainDish")){
-			SingleItem singleItem = this.getSingleItemFactory().createSingleItem(itemType, name);
+			SingleItem singleItem = this.getItemFactoryProducer().getFactory("singleItem").createSingleItem(itemType, name);
 			this.getSingleItems().add(singleItem);
 			this.mainDishes.add((MainDish) singleItem);
 		}
 		else if(itemType.equalsIgnoreCase("dessert")){
-			SingleItem singleItem = this.getSingleItemFactory().createSingleItem(itemType, name);
+			SingleItem singleItem = this.getItemFactoryProducer().getFactory("singleItem").createSingleItem(itemType, name);
 			this.getSingleItems().add(singleItem);
 			this.desserts.add((Desert) singleItem);
 		}
 		else if(itemType.equalsIgnoreCase("FullMeal") || itemType.equalsIgnoreCase("HalfMeal")){
-			this.getMeals().add(this.getMealFactory().createMeal(itemType, name));
+			this.getMeals().add(this.getItemFactoryProducer().getFactory("meal").createMeal(itemType, name));
 		}
 		else{
 			throw new WrongItemAdded();
@@ -317,33 +316,7 @@ public class Menu implements Serializable{
 		this.title = title;
 	}
 
-	/**
-	 * @return the singleItemFactory
-	 */
-	public SingleItemFactory getSingleItemFactory() {
-		return singleItemFactory;
-	}
 
-	/**
-	 * @param singleItemFactory the singleItemFactory to set
-	 */
-	public void setSingleItemFactory(SingleItemFactory singleItemFactory) {
-		this.singleItemFactory = singleItemFactory;
-	}
-
-	/**
-	 * @return the mealFactory
-	 */
-	public MealFactory getMealFactory() {
-		return mealFactory;
-	}
-
-	/**
-	 * @param mealFactory the mealFactory to set
-	 */
-	public void setMealFactory(MealFactory mealFactory) {
-		this.mealFactory = mealFactory;
-	}
 	
 	/** Overriding of the default toString method. It displays the title and all the possible items.
 	 * @return String containing the information.
@@ -390,6 +363,20 @@ public class Menu implements Serializable{
 	 */
 	public ArrayList<Desert> getDesserts() {
 		return desserts;
+	}
+
+	/**
+	 * @return the itemFactoryProducer
+	 */
+	public ItemFactoryProducer getItemFactoryProducer() {
+		return itemFactoryProducer;
+	}
+
+	/**
+	 * @param itemFactoryProducer the itemFactoryProducer to set
+	 */
+	public void setItemFactoryProducer(ItemFactoryProducer itemFactoryProducer) {
+		this.itemFactoryProducer = itemFactoryProducer;
 	}
 	
 }
