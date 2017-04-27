@@ -1,0 +1,28 @@
+\section{JUnit-Tests}
+This part is at least as important as the code itself. Indeed, it is impossible to write a computer program without making mistakes. They can be found and corrected only by running tests. In our software, we chose to use JUnit-Tests.
+
+\subsection{Why use JUnit-Tests?}
+\label{sub:why_use_JUnih-Tests}
+
+Using JUnit is much more convenient than writing tests in a main method, for several reasons: JUnit-tests allow to check \textit{independently} whether each unit of code works or does not. Moreover, while tests made in main methods are non-reproductible and hard to understand, JUnit-Tests can be \textit{documented} and therefore explained, and they can be executed whenever required (totally \textit{reproductible}). This means that every change in the existing code can be checked by simply running the tests which already exist.
+
+\subsection{Test organisation}
+\label{sub:test_organisation}
+
+In order to have efficient tests, we chose to separate the writing of the code and the tests: one of us wrote some parts of the program and the other one tested it. Doing so enables findind much more errors because the tester does not know how the code works but is only aware of the desired results. Thus, some tests the code writer would have never thought to do can be implemented.
+Furthermore, all the tests have been distributed so that those which test the same package are put together:
+\begin{itemize}
+	\item{\textbf{testrestaurant}} Contains all the tests of the \textit{restaurant} package.
+	\item{\textbf{testSystem}} Contains all the tests of the  \textit{system} package.
+	\item{\textbf{test\_Usermanagement}} Contains all the tests of the \textit{user\_management} package.
+\end{itemize}
+Each package holds classes, and each of them contains the tests of one class. For instance, the class called \textit{TestMyFoodora} in the package \textit{testSystem} holds all the tests of the class \textit{MyFoodora}.  
+Note that there is no test for the packages \textit{commandLineTool}, \textit{GUI} and \textit{scenario}. The reasons are as follows:
+\begin{itemize}
+	\item{\textit{commandLineTool}} package contains the Command-Line User Interface. It is not possible to test it with JUnit-Tests because running it needs to input command lines in the console. Nevertheless, it can be tested thanks to the command line "runtest" which runs an input file or a default file if no input file is given.
+	\item{\textit{GUI}} package contains the Graphical User Interface. We did not find a way to test it other than doing it by hand by using the mouse.
+	\item{\textit{scenario}} package contains scenarios which test the software.
+\end{itemize}
+
+\subsection{Problems solved}
+\label{sub:problems_solved}
