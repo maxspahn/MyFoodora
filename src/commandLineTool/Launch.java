@@ -258,10 +258,10 @@ public class Launch {
 			this.showCouriersTop(args);
 			break;
 		default:
-			System.out.println("This command does not exist, 'help' for information");;
+			System.out.println("This command does not exist, 'help' for information");
 		}
 		
-		}
+	}
 	
 	/** Logs in a user, the current user is then set to the user given.
 	 * @param args Name and password.
