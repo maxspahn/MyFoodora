@@ -1,11 +1,15 @@
 package restaurant;
 
-public class ItemFactoryProducer {
+import java.io.Serializable;
+
+public class ItemFactoryProducer implements Serializable{
+	
 	
 	private MealFactory mealFactory;
 	private SingleItemFactory singleItemFactory;
 	
 	public ItemFactoryProducer(){
+		super();
 		this.mealFactory = new MealFactory();
 		this.singleItemFactory = new SingleItemFactory();
 	}
