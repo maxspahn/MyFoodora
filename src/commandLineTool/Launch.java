@@ -234,6 +234,7 @@ public class Launch {
 			break;
 		case "q":
 			System.out.println("MyFoodora shut down");
+			break;
 		case "showcouriers":
 			this.showCouriers(args);
 			break;
