@@ -59,9 +59,9 @@ public class MyFoodora implements Serializable{
 	 * @throws ClassNotFoundException 
 	 * 
 	 */
-	public MyFoodora(){
+	public MyFoodora(String fileName){
 		try{
-		FileInputStream database = new FileInputStream("MyFoodoraDatas.txt");
+		FileInputStream database = new FileInputStream(fileName);
 		ObjectInputStream in = new ObjectInputStream(database);
 		this.listCustomer = (ArrayList<Customer>)in.readObject();
 		this.listCourier = (ArrayList<Courier>)in.readObject();
@@ -112,6 +112,29 @@ public class MyFoodora implements Serializable{
 			this.customerFactory = new CustomerFactory(this);
 			this.restaurantFactory = new RestaurantFactory(this);
 		}
+	}
+	
+	public MyFoodora(){
+		this.listCustomer = new ArrayList<Customer>();
+		this.listCourier = new ArrayList<Courier>();
+		this.listRestaurant = new ArrayList<Restaurant>();
+		this.listManager = new ArrayList<Manager>();
+		this.setListUsers(new ArrayList<User>());
+		this.setCompleteOrders(new ArrayList<Order>());
+		this.setService_fee(2.00);
+		this.setDelivery_cost(3.0);
+		this.setMarkup_percentage(0.1);
+		this.setTargetProfit(0);
+		this.setTargetCommands(0);
+		this.setDeliveryPolicy(new FastestDelivery());
+		this.setTargetPolicy(new TargetProfit_DeliveryCost());
+		this.setDeliverdSingleItems(new TreeSet<SingleItemSort>());
+		this.setDeliveredFullMeals(new TreeSet<FullMealSort>());
+		this.setDeliveredHalfMeals(new TreeSet<HalfMealSort>());
+		this.courierFactory = new CourierFactory(this);
+		this.managerFactory = new ManagerFactory(this);
+		this.customerFactory = new CustomerFactory(this);
+		this.restaurantFactory = new RestaurantFactory(this);
 	}
 	
 	/**
@@ -456,8 +479,8 @@ public class MyFoodora implements Serializable{
 			this.closeOrder(order);
 			this.setCourierToOrder(order2);
 			this.closeOrder(order2);
-			order2.setCompleteMonth(3);
-			order.setCompleteMonth(3);
+			order2.setCompleteMonth(4);
+			order.setCompleteMonth(4);
 			this.getListCourier().get(0).setAcceptProbability(0.8);
 			
 		} catch (NoCourierFoundToDeliver e) {

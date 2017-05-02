@@ -23,7 +23,7 @@ public class TargetPolicyTest {
 	@Test
 	public void testDeliveryCostTarget() {
 		MyFoodora m = new MyFoodora();
-		m.load();		
+		m.load();
 		
 		int profit = 30;
 		int targetCommands = 3;

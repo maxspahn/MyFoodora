@@ -9,7 +9,7 @@ interface. The use of this feature is explained in this part of the report.
 
 The different required commands were easy to define since the whole system that had been build 
 previously was about to be used in the interface. In the package \textsc{commandLineTool} we 
-stored all functions in the \textsc{Launch}-class. We decided not to use a pattern separating
+stored all functions in \textsc{Launch}. We decided not to use a pattern separating
 visual functions from back-end functions, because we are convinced that it was not necessary for a
 project of such a small size and it would not justify the additional work time that it might 
 cost.
@@ -47,7 +47,26 @@ contain a list series of commands. To execute those commands one has to run the 
 several test-Scenarios without changing the program. Hence, the user can load multiple 
 preexisting restaurants with the test-file \textit{my\textunderscore foodora.ini}.
 The main scenario is stored in \textit{testScenario1.txt}. If you run the command
-\textit{runTest} without any argument this text Case is automatically used as the default test
+\textit{runTest} without any argument this test-case is automatically used as the default test
 file.
+
+\paragraph{Explanation of the two test-files}
+\label{par:explanation_of_the_two_test_files}
+
+\textsc{my\textunderscore foordora.ini}
+\begin{itemize}
+	\item login as manager
+	\item register two managers
+	\item logout
+	\item register five restaurants, two couriers, seven customers
+	\item login as restaurant ``chezmarie''
+	\item add dish to the menu of ``chezmarie''
+	\item logout
+\end{itemize}
+
+\textsc{testScenario1.txt}
+\begin{itemize}
+	\item 
+\end{itemize}
 
 

@@ -191,6 +191,7 @@ public class ManagerTest {
 		} catch (TargetCannotBeFullfilled e) {
 			System.out.println(e.getMessage());
 		}
+		System.out.println(m.getDelivery_cost());
 		assertTrue(m.getDelivery_cost() == 9.44);
 
 		
@@ -340,11 +341,11 @@ public class ManagerTest {
 		
 		try {
 			//test if the new order was added
-			assertTrue(m.getIncomeForMonth(4, 2017)== 12.85);
+			assertTrue(m.getIncomeForMonth(5, 2017)== 12.85);
 			//test if the computation takes into account if there was twice the same customer
 			assertTrue(manager.computeIncomePerCustomerOverPeriod(1, 3, 2017, 31, 4, 2017) == (m.getIncomeForMonth(3, 2017) + m.getIncomeForMonth(4, 2017))/2);
 			//test value in the future should be 0
-			assertTrue(manager.computeIncomePerCustomerOverPeriod(01, 05, 2017, 31, 5, 2017)==0);
+			assertTrue(manager.computeIncomePerCustomerOverPeriod(01, 06, 2017, 31, 6, 2017)==0);
 		} catch (OrderNotCompletException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

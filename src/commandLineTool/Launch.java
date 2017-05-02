@@ -29,7 +29,7 @@ public class Launch {
 	private ArrayList<String> commands;
 	
 	public Launch(){
-		myFoodora = new MyFoodora();
+		myFoodora = new MyFoodora("MyFoodoraDatas.txt");
 		myFoodora.load();
 		currentUser = null;
 		myOrders = new ArrayList<Order>();
