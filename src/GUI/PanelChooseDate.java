@@ -12,6 +12,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+/**The class PanelChooseDate creates the panel used to choose the dates for computing the earnings,  it is only visible by a restaurant. It extends JPanel.
+ * @author jeremyaugot
+ * @author maxspahn
+ *
+ */
 public class PanelChooseDate extends JPanel{
 	
 	private JComboBox<String> day1ComboBox;

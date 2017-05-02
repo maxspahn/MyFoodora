@@ -7,7 +7,11 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-
+/**The class PanelFirstPage creates the first panel visible by everyone. It allows to choose between "Login" and "Register". It extends JPanel.
+ * @author jeremyaugot
+ * @author maxspahn
+ *
+ */
 public class PanelFirstPage extends JPanel{
 	private JButton login;
 	private JButton register;

@@ -5,6 +5,11 @@ import javax.swing.JOptionPane;
 
 import user_management.Restaurant;
 
+/**The MessageList class display a question message, with a given title and message, and the list to display, containing the elements to choose. It extends JFrame.
+ * @author jeremyaugot
+ * @author maxspahn
+ *
+ */
 public class MessageList extends JFrame{
 	
 private String choice;

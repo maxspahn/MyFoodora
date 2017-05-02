@@ -129,9 +129,6 @@ public class FullMealTest {
 			assertTrue(false);
 		} catch (WrongItemAdded e) {
 			assertTrue(true);
-		}
-		
-		
+		}		
 	}
-
 }

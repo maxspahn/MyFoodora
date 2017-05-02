@@ -10,6 +10,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+/**The class PanelRegisterRestaurant creates the panel used to register as a new restaurant, it is visible by those who want to be restaurant. It extends JPanel.
+ * @author jeremyaugot
+ * @author maxspahn
+ *
+ */
 public class PanelRegisterRestaurant extends PanelRegister{
 	private JTextField textFieldName;
 	private JTextField textFieldAdressX;

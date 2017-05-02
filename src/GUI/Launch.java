@@ -18,6 +18,13 @@ import javax.swing.JPanel;
 import system.*;
 import user_management.*;
 
+/**This class is the core of the GUI, it contains all the listeners of the buttons of each panel. 
+ * It is composed of inner classes, each one implements ActionListener.
+ * It stores the current user and the order he/she is making.
+ * @author jeremyaugot
+ * @author maxspahn
+ *
+ */
 public class Launch{
 	private PanelCreator panelCreator;
 	private MyFoodora myFoodora;
@@ -25,6 +32,9 @@ public class Launch{
 	private Order currentOrder;
 	private String orderedItems;
 	
+	/**Constructor which create a new panelCreator, myFoodora and loads everything.
+	 * 
+	 */
 	public Launch(){
 		this.panelCreator = new PanelCreator(this);
 		this.myFoodora = new MyFoodora();
@@ -32,6 +42,9 @@ public class Launch{
 		this.orderedItems = "<html>";
 	}
 	
+	/**Method used several times in the listeners to go back to the first page of the GUI.
+	 * 
+	 */
 	public void backToFirstPage(){
 		Stack activatedPanels = panelCreator.getActivatedPanels();
 		if(activatedPanels.size()>2){
@@ -49,6 +62,11 @@ public class Launch{
 		activatedPanels.add(firstPanel);}
 	}
 	
+	/**Listener of the button "Login" of the panelFirstPage. Allows to go to panelLogin.
+	 * @author jeremyaugot
+	 * @author maxspahn
+	 *
+	 */
 	public class LoginListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
@@ -56,6 +74,12 @@ public class Launch{
 			panelCreator.addLoginPanel();			
 		}
 	}
+	
+	/**Listener of the button "Register" of the panelFirstPage. Allows to go to panelRegister.
+	 * @author jeremyaugot
+	 * @author maxspahn
+	 *
+	 */
 	public class RegisterListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -65,6 +89,11 @@ public class Launch{
 		}
 	}
 	
+	/**Listener of the button "Login" of the panelLogin. Allows to go to the panel of the chosen user.
+	 * @author jeremyaugot
+	 * @author maxspahn
+	 *
+	 */
 	public class OkLoginListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
@@ -106,6 +135,11 @@ public class Launch{
 		}
 	}
 	
+	/**Listener of the button "Back" which exists on almost all panels, allows to go to the previous activated panel.
+	 * @author jeremyaugot
+	 * @author maxspahn
+	 *
+	 */
 	public class BackListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -136,6 +170,11 @@ public class Launch{
 		}
 	}
 
+	/**Listener of the button "Next" of the panelRegister. Allows to go to the panelRegister of the chosen user.
+	 * @author jeremyaugot
+	 * @author maxspahn
+	 *
+	 */
 	public class NextListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
@@ -180,6 +219,11 @@ public class Launch{
 		}
 	}
 	
+	/**Listener of the button "Register" of the panelRegisterManager. Allows to save the account and return to panelFirstPage.
+	 * @author jeremyaugot
+	 * @author maxspahn
+	 *
+	 */
 	public class RegisterManagerListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
@@ -239,6 +283,11 @@ public class Launch{
 		
 	}
 	
+	/**Listener of the button "Register" of the panelRegisterCustomer. Allows to save the account and return to panelFirstPage.
+	 * @author jeremyaugot
+	 * @author maxspahn
+	 *
+	 */
 	public class RegisterCustomerListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
@@ -312,6 +361,11 @@ public class Launch{
 		}
 	}
 	
+	/**Listener of the button "Register" of the panelRegisterRestaurant. Allows to save the account and return to panelFirstPage.
+	 * @author jeremyaugot
+	 * @author maxspahn
+	 *
+	 */
 	public class RegisterRestaurantListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
@@ -354,6 +408,11 @@ public class Launch{
 		}		
 	}
 	
+	/**Listener of the button "Register" of the panelRegisterCourier. Allows to save the account and return to panelFirstPage.
+	 * @author jeremyaugot
+	 * @author maxspahn
+	 *
+	 */
 	public class RegisterCourierListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
@@ -408,6 +467,11 @@ public class Launch{
 		}
 	}
 	
+	/**Listener of the button "Choose" of the panelCustomer. Allows to choose a restaurant to make and order and go to the panelCustomerOrder.
+	 * @author jeremyaugot
+	 * @author maxspahn
+	 *
+	 */
 	public class ChooseListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
@@ -423,6 +487,11 @@ public class Launch{
 		}
 	}
 	
+	/**Listener of the button "Logout" which exists on every user panel. Allows to go back to the panelFirstPage.
+	 * @author jeremyaugot
+	 * @author maxspahn
+	 *
+	 */
 	public class LogoutListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -442,7 +511,11 @@ public class Launch{
 			}
 	}
 	
-	
+	/**Listener of the button "Show" of the panelCustomer. Allows to show the features of a restaurant (adress, menu).
+	 * @author jeremyaugot
+	 * @author maxspahn
+	 *
+	 */
 	public class ShowListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
@@ -467,6 +540,11 @@ public class Launch{
 		}
 	}
 	
+	/**Listener of the button "change to basic fidelity card" of the menuBardCustomer. Allows to change the fidelity card to a basic one.
+	 * @author jeremyaugot
+	 * @author maxspahn
+	 *
+	 */
 	public class BasicFidelityCardListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
@@ -486,6 +564,11 @@ public class Launch{
 		}
 	}
 	
+	/**Listener of the button "change to point fidelity card" of the menuBardCustomer. Allows to change the fidelity card to a point one.
+	 * @author jeremyaugot
+	 * @author maxspahn
+	 *
+	 */
 	public class PointFidelityCardListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -505,6 +588,11 @@ public class Launch{
 		}
 	}
 	
+	/**Listener of the button "change to lottery fidelity card" of the menuBardCustomer. Allows to change the fidelity card to a lottery one.
+	 * @author jeremyaugot
+	 * @author maxspahn
+	 *
+	 */
 	public class LotteryFidelityCardListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -524,6 +612,11 @@ public class Launch{
 		}
 	}
 	
+	/**Listener of the button "Show features" of the menuBardCustomer. Allows to display the features of the current fidelity card.
+	 * @author jeremyaugot
+	 * @author maxspahn
+	 *
+	 */
 	public class ShowFeaturesListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
@@ -541,6 +634,11 @@ public class Launch{
 		}
 	}
 	
+	/**Listener of the button "read notifications" of the menuBardCustomer. Allows to read the notifications received by the customer.
+	 * @author jeremyaugot
+	 * @author maxspahn
+	 *
+	 */
 	public class ReadNotificationsListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
@@ -555,6 +653,11 @@ public class Launch{
 		}
 	}
 	
+	/**Listener of the button "Yes" of the menuBardCustomer. Allows to change the spamAgreement of the customer to "True".
+	 * @author jeremyaugot
+	 * @author maxspahn
+	 *
+	 */
 	public class YesOffersListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
@@ -568,6 +671,11 @@ public class Launch{
 		}
 	}
 	
+	/**Listener of the button "No" of the menuBardCustomer. Allows to change the spamAgreement of the customer to "False".
+	 * @author jeremyaugot
+	 * @author maxspahn
+	 *
+	 */
 	public class NoOffersListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -582,6 +690,11 @@ public class Launch{
 		}
 	}
 	
+	/**Listener of the button "change to email" of the menuBardCustomer. Allows to the way to contact the customer to email.
+	 * @author jeremyaugot
+	 * @author maxspahn
+	 *
+	 */
 	public class ContactEmailListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
@@ -603,6 +716,11 @@ public class Launch{
 		}
 	}
 	
+	/**Listener of the button "change to phone" of the menuBardCustomer. Allows to the way to contact the customer to phone.
+	 * @author jeremyaugot
+	 * @author maxspahn
+	 *
+	 */
 	public class ContactPhoneListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
@@ -623,6 +741,11 @@ public class Launch{
 			}
 	}
 	
+	/**Listener of the button "change to letter" of the menuBardCustomer. Allows to the way to contact the customer to letter.
+	 * @author jeremyaugot
+	 * @author maxspahn
+	 *
+	 */
 	public class ContactLetterListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
@@ -641,6 +764,11 @@ public class Launch{
 		}
 	}
 	
+	/**Listener of the button "get history of orders" of the menuBardCustomer. Allows to display the history of orders made by the customer.
+	 * @author jeremyaugot
+	 * @author maxspahn
+	 *
+	 */
 	public class HistoryOfOrdersListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -671,6 +799,11 @@ public class Launch{
 		}
 	}
 	
+	/**Listener of the button "get profile" of the menuBardCustomer. Allows to display the profile of the customer (name, username, adress, email...).
+	 * @author jeremyaugot
+	 * @author maxspahn
+	 *
+	 */
 	public class ProfileListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
@@ -711,6 +844,11 @@ public class Launch{
 		}
 	}
 	
+	/**Listener of the button "set my email" of the menuBardCustomer. Allows to define a new email for the customer.
+	 * @author jeremyaugot
+	 * @author maxspahn
+	 *
+	 */
 	public class SetEmailListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {		
@@ -729,6 +867,11 @@ public class Launch{
 	}
 	}
 	
+	/**Listener of the button "set my phone" of the menuBardCustomer. Allows to define a new phone number for the customer.
+	 * @author jeremyaugot
+	 * @author maxspahn
+	 *
+	 */
 	public class SetPhoneListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -747,6 +890,11 @@ public class Launch{
 	}
 	}
 	
+	/**Listener of the button "set my letter" of the menuBardCustomer. Allows to define a new adress for the customer.
+	 * @author jeremyaugot
+	 * @author maxspahn
+	 *
+	 */
 	public class SetAdressListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -769,7 +917,11 @@ public class Launch{
 			}
 		}
 	}
-	
+	/**Listener of the button "show" of the panelCustomerOrder. Allows to display the features of the chosen item.
+	 * @author jeremyaugot
+	 * @author maxspahn
+	 *
+	 */
 	public class ShowItemListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
@@ -787,6 +939,11 @@ public class Launch{
 		}
 	}
 	
+	/**Listener of the button "show" of the panelCustomerOrder. Allows to display the features of the chosen meal.
+	 * @author jeremyaugot
+	 * @author maxspahn
+	 *
+	 */
 	public class ShowMealListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
@@ -804,6 +961,11 @@ public class Launch{
 		}
 	}
 	
+	/**Listener of the button "choose" of the panelCustomerOrder. Allows to add the chosen item to the order.
+	 * @author jeremyaugot
+	 * @author maxspahn
+	 *
+	 */
 	public class ChooseItemListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
@@ -822,6 +984,11 @@ public class Launch{
 		}
 	}
 	
+	/**Listener of the button "choose" of the panelCustomerOrder. Allows to add the chosen meal to the order.
+	 * @author jeremyaugot
+	 * @author maxspahn
+	 *
+	 */
 	public class ChooseMealListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
@@ -840,6 +1007,11 @@ public class Launch{
 		}
 	}
 	
+	/**Listener of the button "Remove something" of the panelCustomerOrder. Allows to  remove something from the order.
+	 * @author jeremyaugot
+	 * @author maxspahn
+	 *
+	 */
 	public class RemoveSomethingListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
@@ -872,6 +1044,11 @@ public class Launch{
 		}		
 	}
 	
+	/**Listener of the button "pay" of the panelCustomerOrder. Allows to get the bill of the order and finish it.
+	 * @author jeremyaugot
+	 * @author maxspahn
+	 *
+	 */
 	public class PayListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
@@ -913,6 +1090,11 @@ public class Launch{
 		}
 	}
 	
+	/**Listener of the button "get my menu" of the menuBarRestaurant. Allows to display the current menu of the restaurant.
+	 * @author jeremyaugot
+	 * @author maxspahn
+	 *
+	 */
 	public class GetMyMenuListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
@@ -932,6 +1114,11 @@ public class Launch{
 		}
 	}
 	
+	/**Listener of the button "get current generic discount" of the menuBarRestaurant. Allows to display the current generic discount of the restaurant.
+	 * @author jeremyaugot
+	 * @author maxspahn
+	 *
+	 */
 	public class GetCurrentGenericDiscountListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
@@ -939,6 +1126,11 @@ public class Launch{
 		}
 	}
 	
+	/**Listener of the button "get current special discount" of the menuBarRestaurant. Allows to display the current special discount of the restaurant.
+	 * @author jeremyaugot
+	 * @author maxspahn
+	 *
+	 */
 	public class GetCurrentSpecialDiscountListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
@@ -947,6 +1139,11 @@ public class Launch{
 		}
 	}
 	
+	/**Listener of the button "set new specific discount" of the menuBarRestaurant. Allows to set a new special discount of the restaurant.
+	 * @author jeremyaugot
+	 * @author maxspahn
+	 *
+	 */
 	public class SetNewSpecialDiscountListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -959,22 +1156,68 @@ public class Launch{
 		}
 	}
 	
+	/**Listener of the button "history of sold single items" of the menuBarRestaurant. Allows to display the history of sold single items.
+	 * @author jeremyaugot
+	 * @author maxspahn
+	 *
+	 */
 	public class HistorySoldSingleItemsListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			String display = "<html>";
-			TreeSet<SingleItemSort> singleItems = (TreeSet<SingleItemSort>) ((Restaurant)currentUser).getDeliverdSingleItems().clone();
-			ArrayList<SingleItemSort> bzejnzd = new ArrayList<SingleItemSort>(((Restaurant)currentUser).getDeliverdSingleItems());
-			System.out.println(bzejnzd.get(0));
-			while(singleItems.size()!=0){
-				SingleItemSort singleItemSort = singleItems.pollFirst();
-				display += singleItemSort.getSingleItem()+" has been sold "+singleItemSort.getCount()+" times.<br>";
+			ArrayList<SingleItemSort> singleItems = new ArrayList<SingleItemSort>(((Restaurant)currentUser).getDeliverdSingleItems());
+			for (int i = 0; i < singleItems.size(); i++) {
+				SingleItemSort singleItemSort = singleItems.get(i);
+				display += singleItemSort+"<br>";
 			}
 			display+="<html>";
 			panelCreator.getPanelRestaurant().getText().setText(display);
 		}
 	}
 	
+	/**Listener of the button "history of sold full meals" of the menuBarRestaurant. Allows to display the history of sold full meals.
+	 * @author jeremyaugot
+	 * @author maxspahn
+	 *
+	 */
+	public class HistorySoldFullMealsListener implements ActionListener{
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			String display = "<html>";
+			ArrayList<FullMealSort>  fullMeals = new ArrayList<FullMealSort>(((Restaurant)currentUser).getDeliveredFullMeals());
+			for (int i = 0; i < fullMeals.size(); i++) {
+				FullMealSort fullMealSort = fullMeals.get(i);
+				display += fullMealSort+"<br>";
+			}
+			display+="<html>";
+			panelCreator.getPanelRestaurant().getText().setText(display);
+		}
+	}
+	
+	/**Listener of the button "history of sold half meals" of the menuBarRestaurant. Allows to display the history of sold half meals.
+	 * @author jeremyaugot
+	 * @author maxspahn
+	 *
+	 */
+	public class HistorySoldHalfMealsListener implements ActionListener{
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			String display = "<html>";
+			ArrayList<HalfMealSort>  halfMeals = new ArrayList<HalfMealSort>(((Restaurant)currentUser).getDeliveredHalfMeals());
+			for (int i = 0; i < halfMeals.size(); i++) {
+				HalfMealSort halfMealSort = halfMeals.get(i);
+				display += halfMealSort+"<br>";
+			}
+			display+="<html>";
+			panelCreator.getPanelRestaurant().getText().setText(display);
+		}
+	}
+	
+	/**Listener of the button "ok" of the panelRestaurant. Allows to execute the action chosen in the list.
+	 * @author jeremyaugot
+	 * @author maxspahn
+	 *
+	 */
 	public class OkActionSetMenu implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
@@ -1057,6 +1300,11 @@ public class Launch{
 		}
 	}
 	
+	/**Listener of the button "ok" of the panelAddSingleItem. Allows to create a new single item.
+	 * @author jeremyaugot
+	 * @author maxspahn
+	 *
+	 */
 	public class OkSingleItemListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
@@ -1090,6 +1338,11 @@ public class Launch{
 		}}
 	}
 	
+	/**Listener of the button "show" of the panelCreateMeal. Allows to show the features of a starter.
+	 * @author jeremyaugot
+	 * @author maxspahn
+	 *
+	 */
 	public class ShowStarterListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
@@ -1101,6 +1354,11 @@ public class Launch{
 		}
 	}
 	
+	/**Listener of the button "show" of the panelCreateMeal. Allows to show the features of a main dish.
+	 * @author jeremyaugot
+	 * @author maxspahn
+	 *
+	 */
 	public class ShowMainDishListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
@@ -1112,6 +1370,11 @@ public class Launch{
 		}
 	}
 	
+	/**Listener of the button "show" of the panelCreateMeal. Allows to show the features of a dessert.
+	 * @author jeremyaugot
+	 * @author maxspahn
+	 *
+	 */
 	public class ShowDessertListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -1123,6 +1386,9 @@ public class Launch{
 	}
 	}
 	
+	/**Method which displays the features of a single item on the panelCreateMeal.
+	 * @param item SingleItem to be displayed.
+	 */
 	public void displayFeaturesItem(SingleItem item){
 		String display = "<html>";
 		display += "Name: "+item.getName()+"<br>";
@@ -1137,6 +1403,11 @@ public class Launch{
 		panelCreator.getPanelCreateMeal().getTextCreateMealPanel().setText(display);
 	}
 	
+	/**Listener of the button "create" of the panelCreateMeal. Allows to create a new meal with the chosen single items.
+	 * @author jeremyaugot
+	 * @author maxspahn
+	 *
+	 */
 	public class CreateListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
@@ -1193,6 +1464,9 @@ public class Launch{
 			}
 		}
 		
+		/**Method which creates a meal and go back to the panelRestaurant.
+		 * @param mealName String which contains the name of the meal which has been created.
+		 */
 		public void back(String mealName){
 			JPanel currentPanel = (JPanel) panelCreator.getActivatedPanels().pop();
 			JPanel lastPanel = (JPanel) panelCreator.getActivatedPanels().pop();
@@ -1205,6 +1479,11 @@ public class Launch{
 		}
 	}
 	
+	/**Listener of the button "show all users" of the menuBarManager. Allows to display the list of all the users.
+	 * @author jeremyaugot
+	 * @author maxspahn
+	 *
+	 */
 	public class ShowAllUsersListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
@@ -1217,6 +1496,11 @@ public class Launch{
 		}
 	}
 	
+	/**Listener of the button "show all customers" of the menuBarManager. Allows to display the list of all the customers.
+	 * @author jeremyaugot
+	 * @author maxspahn
+	 *
+	 */
 	public class ShowCustomersListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -1229,6 +1513,11 @@ public class Launch{
 		}
 	}
 	
+	/**Listener of the button "show all restaurants" of the menuBarManager. Allows to display the list of all the restaurants.
+	 * @author jeremyaugot
+	 * @author maxspahn
+	 *
+	 */
 	public class ShowRestaurantsListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -1241,6 +1530,11 @@ public class Launch{
 		}
 	}
 	
+	/**Listener of the button "show all couriers" of the menuBarManager. Allows to display the list of all the couriers.
+	 * @author jeremyaugot
+	 * @author maxspahn
+	 *
+	 */
 	public class ShowCouriersListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -1253,6 +1547,11 @@ public class Launch{
 		}
 	}
 	
+	/**Listener of the button "show all managers" of the menuBarManager. Allows to display the list of all the managers.
+	 * @author jeremyaugot
+	 * @author maxspahn
+	 *
+	 */
 	public class ShowManagersListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -1265,6 +1564,11 @@ public class Launch{
 		}
 	}
 	
+	/**Listener of the button "get most selling restaurant" of the menuBarManager. Allows to display the most selling restaurant.
+	 * @author jeremyaugot
+	 * @author maxspahn
+	 *
+	 */
 	public class MostSellingRestaurantListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -1274,6 +1578,11 @@ public class Launch{
 		}
 	}
 	
+	/**Listener of the button "get least selling restaurant" of the menuBarManager. Allows to display the least selling restaurant.
+	 * @author jeremyaugot
+	 * @author maxspahn
+	 *
+	 */
 	public class LeastSellingRestaurantListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -1283,6 +1592,11 @@ public class Launch{
 		}
 	}
 	
+	/**Listener of the button "get most active courier" of the menuBarManager. Allows to display the most active courier.
+	 * @author jeremyaugot
+	 * @author maxspahn
+	 *
+	 */
 	public class MostActiveCourierListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -1292,6 +1606,11 @@ public class Launch{
 		}
 	}
 	
+	/**Listener of the button "get least active courier" of the menuBarManager. Allows to display the least active courier.
+	 * @author jeremyaugot
+	 * @author maxspahn
+	 *
+	 */
 	public class LeastActiveCourierListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -1301,6 +1620,11 @@ public class Launch{
 		}
 	}
 	
+	/**Listener of the button "get service-fee percentage" of the menuBarManager. Allows to display the service-fee percentage.
+	 * @author jeremyaugot
+	 * @author maxspahn
+	 *
+	 */
 	public class GetServiceFeePercentageListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
@@ -1309,6 +1633,11 @@ public class Launch{
 		}
 	}
 	
+	/**Listener of the button "get markup percentage" of the menuBarManager. Allows to display the markup percentage.
+	 * @author jeremyaugot
+	 * @author maxspahn
+	 *
+	 */
 	public class GetMarkupPercentageListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
@@ -1317,6 +1646,11 @@ public class Launch{
 		}
 	}
 	
+	/**Listener of the button "get delivery cost" of the menuBarManager. Allows to display the delivery cost.
+	 * @author jeremyaugot
+	 * @author maxspahn
+	 *
+	 */
 	public class GetDeliveryCostListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
@@ -1325,6 +1659,11 @@ public class Launch{
 		}
 	}
 	
+	/**Listener of the button "set service-fee percentage" of the menuBarManager. Allows to set a new service-fee percentage.
+	 * @author jeremyaugot
+	 * @author maxspahn
+	 *
+	 */
 	public class SetServiceFeePercentageListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
@@ -1339,6 +1678,11 @@ public class Launch{
 		}
 	}
 	
+	/**Listener of the button "set markup percentage" of the menuBarManager. Allows to set a new markup percentage.
+	 * @author jeremyaugot
+	 * @author maxspahn
+	 *
+	 */
 	public class SetMarkupPercentageListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
@@ -1353,6 +1697,11 @@ public class Launch{
 		}
 	}
 	
+	/**Listener of the button "set delivery cost" of the menuBarManager. Allows to set a new delivery cost.
+	 * @author jeremyaugot
+	 * @author maxspahn
+	 *
+	 */
 	public class SetDeliveryCostListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
@@ -1367,6 +1716,11 @@ public class Launch{
 		}
 	}
 	
+	/**Listener of the button "get current delivery policy" of the menuBarManager. Allows to display the current delivery policy.
+	 * @author jeremyaugot
+	 * @author maxspahn
+	 *
+	 */
 	public class GetDeliveryPolicyListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
@@ -1375,6 +1729,11 @@ public class Launch{
 		}	
 	}
 	
+	/**Listener of the button "set new delivery policy" of the menuBarManager. Allows to set a new delivery policy.
+	 * @author jeremyaugot
+	 * @author maxspahn
+	 *
+	 */
 	public class SetDeliveryPolicyLiistener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -1399,6 +1758,11 @@ public class Launch{
 		}
 	}
 	
+	/**Listener of the button "get total income over a time period" of the menuBarManager. Allows to display the total income over a time period.
+	 * @author jeremyaugot
+	 * @author maxspahn
+	 *
+	 */
 	public class GetTotalIncomeListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
@@ -1409,6 +1773,11 @@ public class Launch{
 		}
 	}
 	
+	/**Listener of the button "get income per customer over a time period" of the menuBarManager. Allows to display the income per customer over a time period.
+	 * @author jeremyaugot
+	 * @author maxspahn
+	 *
+	 */
 	public class GetTotalIncomePerCustomerListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -1419,6 +1788,11 @@ public class Launch{
 		}
 	}
 	
+	/**Listener of the button "get profit" of the menuBarManager. Allows to display the profit over a time period.
+	 * @author jeremyaugot
+	 * @author maxspahn
+	 *
+	 */
 	public class GetProfitListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
@@ -1428,6 +1802,11 @@ public class Launch{
 			panelCreator.getMenuBarManager().setVisible(false);
 		}
 	}
+	/**Listener of the button "ok" of the panelChooseDate. Allows to choose to dates for computing the earnings and go back to the panelRestaurant.
+	 * @author jeremyaugot
+	 * @author maxspahn
+	 *
+	 */
 	public class OkDateListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -1471,6 +1850,11 @@ public class Launch{
 		}
 	}
 	
+	/**Listener of the first button "choose" of the panelManager. Allows to execute the action of the list "Target policy" which is chosen.
+	 * @author jeremyaugot
+	 * @author maxspahn
+	 *
+	 */
 	public class ChoosePolicyListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -1553,6 +1937,11 @@ public class Launch{
 		}
 	}
 	
+	/**Listener of the second button "choose" of the panelManager. Allows to execute the action of the list "Users" which is chosen.
+	 * @author jeremyaugot
+	 * @author maxspahn
+	 *
+	 */
 	public class ChooseUserListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -1635,6 +2024,11 @@ public class Launch{
 		}
 	}
 	
+	/**Listener of the button "ON duty" of the menuBarCourier. Allows to change the availability to ON duty.
+	 * @author jeremyaugot
+	 * @author maxspahn
+	 *
+	 */
 	public class OnDutyListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
@@ -1647,6 +2041,11 @@ public class Launch{
 		}
 	}
 	
+	/**Listener of the button "OFF duty" of the menuBarCourier. Allows to change the availability to OFF duty.
+	 * @author jeremyaugot
+	 * @author maxspahn
+	 *
+	 */
 	public class OffDutyListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -1659,6 +2058,11 @@ public class Launch{
 	}
 	}
 	
+	/**Listener of the button "get availability" of the menuBarCourier. Allows to get the current availability of the courier.
+	 * @author jeremyaugot
+	 * @author maxspahn
+	 *
+	 */
 	public class GetAvailabilityStatusListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -1668,6 +2072,11 @@ public class Launch{
 		}
 	}
 	
+	/**Listener of the button "Unregister" of the menuBarCourier. Allows to unregister the courier.
+	 * @author jeremyaugot
+	 * @author maxspahn
+	 *
+	 */
 	public class UnregisterListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -1679,6 +2088,11 @@ public class Launch{
 		}
 	}
 	
+	/**Listener of the button "Deliver an order" of the panelCourier. Allows to accept of refuse to deliver an order.
+	 * @author jeremyaugot
+	 * @author maxspahn
+	 *
+	 */
 	public class DeliverOrderListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {

@@ -10,6 +10,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+/**The class PanelRegisterCourier creates the panel used to register as a new courier, it is visible by those who want to be courier. It extends JPanel.
+ * @author jeremyaugot
+ * @author maxspahn
+ *
+ */
 public class PanelRegisterCourier extends PanelRegister{
 	
 	private JTextField textFieldFirstName;

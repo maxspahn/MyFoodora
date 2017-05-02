@@ -13,6 +13,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+/**The class PanelRegisterManager creates the panel used to register as a new manager, it is visible by those who want to be manager. It extends JPanel.
+ * @author jeremyaugot
+ * @author maxspahn
+ *
+ */
 public class PanelRegisterManager extends PanelRegister{
 	private JTextField textFieldFirstName;
 	private JTextField textFieldLastName;

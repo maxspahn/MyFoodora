@@ -13,6 +13,11 @@ import javax.swing.JScrollPane;
 
 import system.MyFoodora;
 
+/**The class PanelRestaurant creates the panel visible by the restaurants. It extends JPanel.
+ * @author jeremyaugot
+ * @author maxspahn
+ *
+ */
 public class PanelRestaurant extends JPanel{
 	
 	private ImageIcon myFoodoraIcon;

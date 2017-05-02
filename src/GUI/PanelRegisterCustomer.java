@@ -12,6 +12,11 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
+/**The class PanelRegisterCustomer creates the panel used to register as a new customer, it is visible by those who want to be customer. It extends JPanel.
+ * @author jeremyaugot
+ * @author maxspahn
+ *
+ */
 public class PanelRegisterCustomer extends PanelRegister{
 	private JTextField textFieldFirstName;
 	private JTextField textFieldLastName;

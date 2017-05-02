@@ -26,3 +26,39 @@ Note that there is no test for the packages \textit{commandLineTool}, \textit{GU
 
 \subsection{Problems solved}
 \label{sub:problems_solved}
+
+\begin{comment}
+copy paste errors
+
+
+use of exception in tests to test if the exception is thrown as excepted (for example: testDesertAndStarter)
+
+round problem: how was it solved ? Don't remember, maybe problems in computation
+\end{comment}
+Several errors have been solved thanks to JUnit-Tests, as follows:
+\begin{itemize}
+	\item{\textit{testAddItemToMealDoesNotExist}} in the class \textit{MealTest} showed that there was no exception handled when a user tried to add an item to a meal which does not exist. That is why a throw of the excpetion \textit{WrongItemAdded} has been added to the method \textit{Menu.addItem}, which is caught later in the program and therefore allows to display a message without stopping the program.
+	\item{\textit{testDifferentID}} showed that every meal or single item had the same IDs. A static counter has been added to the attributes of \textit{Meal} and \textit{SingleItem}, which is incremented each time a new instance is created.
+	\item{\textit{tests of the fidelity card setting}} in the class \textit{TestCustomer} showed that it was possible to set a new fidelity card only if the old one was a point fidelity card. Indeed, in the method \textit{Customer.setFidelityCard}, there was:
+\lstinputlisting[firstline=5,lastline=17]{./Code/src/Code/FidelityCardCode.java}
+As showed in the previous code, there was a \textit{if condition} to display the message \textit{"You will lose all your points."}, but inadvertently all the conditions \textit{name.equalsIgnoreCase(...)} were put inside the first \textit{if}, not outside.
+	\item{} copy-paste errors have been corrected thanks to JUnit-Tests as well.
+\end{itemize}
+Note that the choice of using exceptions is very useful in JUnit-Tests to check when a case is expected to fail. Indeed, instead of having tests which voluntarily fail, the tests can succeed if the exception is caught. For instance:
+\lstinputlisting[firstline=45,lastline=62]{./../src/testrestaurant/MealTest.java}
+
+
+\subsection{Use of the plugin \textit{EclEmma}}
+\label{sub:use_of_the_plugin_EclEmma}
+
+In order to know how much of the program had been tested by the JUnit-Tests, we used a plugin called \textit{EclEmma}. For each test executed, it gives the percentage of the program which has been tested for each package, as illustrated in the figure ....................................................................................................
+.........................................................................................................................................................................
+
+Moreover, after running the JUnit-Tests with this plugin, all the code lines are highlighted in green, yellow or red as illustrated in the figure
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\linewidth]{./ima/testlinecolor.jpg}
+	\caption{Highlighting of the code line after the tests with the plugin}
+	\label{fig:restaurant-factory-pattern}
+\end{figure}
+The lines are highlighted in green when the code executes them, and in red if it does not. A line is yellow if some of the conditions have been missed: in the previous figure, 1 of the 2 conditions has been missed. Indeed, \textit{indexCourier} is different from -1 so the false-case has been checked but not the true one. \textbf{This highlighting is very useful because thanks to it, it is possible to know what tests have not been implemented yet.}

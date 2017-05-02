@@ -5,6 +5,11 @@ import javax.swing.JOptionPane;
 
 import system.Order;
 
+/**The MessageRemoveSomething class display a question message, with a given order containing the lists of the chosen single items and meals. It extends JFrame.
+ * @author jeremyaugot
+ * @author maxspahn
+ *
+ */
 public class MessageRemoveSomething extends JFrame{
 	private String choice;
 	

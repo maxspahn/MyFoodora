@@ -8,6 +8,12 @@ import java.util.Stack;
 import javax.swing.JFrame;
 
 
+/**The class PanelCreator is the second most important class of the GUI. It creates the frame and all the panels and menu bars. 
+ * For each panel and menu bars, it associates each button with a listener of the Launch class.
+ * @author jeremyaugot
+ * @author maxspahn
+ *
+ */
 public class PanelCreator{
 	Launch launch;
 	
@@ -42,6 +48,9 @@ public class PanelCreator{
 	private double coeffWidth;
 	
 	
+	/**Constructor
+	 * @param launch Launch containing the main and the definition of all the listeners.
+	 */
 	public PanelCreator(Launch launch){
 		this.launch = launch;
 		this.activatedPanels = new Stack();
@@ -57,6 +66,9 @@ public class PanelCreator{
 		frame.setVisible(true);
 	}
 
+	/**Method which creates the panelFirstPage. It associates each button of the panel with the listeners defined in launch.
+	 * 
+	 */
 	public void createFirstPagePanel(){
 		this.panelFirstPage = new PanelFirstPage(coeffHeight,coeffWidth);
 		this.panelFirstPage.getLogin().addActionListener(launch.new LoginListener());
@@ -66,6 +78,9 @@ public class PanelCreator{
 		this.panelFirstPage.setVisible(true);
 	}
 	
+	/**Method which creates the panelLogin. It associates each button of the panel with the listeners defined in launch.
+	 * 
+	 */
 	public void createLoginPanel(){
 		this.panelLogin = new PanelLogin(coeffHeight,coeffWidth);
 		this.panelLogin.getOkLogin().addActionListener(launch.new OkLoginListener());
@@ -73,6 +88,9 @@ public class PanelCreator{
 		this.panelLogin.setVisible(false);
 	}
 	
+	/**Method which creates the panelRegister. It associates each button of the panel with the listeners defined in launch.
+	 * 
+	 */
 	public void createRegisterPanel(){
 		this.panelRegister = new PanelRegister(coeffHeight,coeffWidth);
 		this.panelRegister.getBack().addActionListener(launch.new BackListener());
@@ -80,6 +98,9 @@ public class PanelCreator{
 		this.panelRegister.setVisible(false);
 	}
 	
+	/**Method which creates the panelRegisterManager. It associates each button of the panel with the listeners defined in launch.
+	 * 
+	 */
 	public void createRegisterManagerPanel(){
 		this.panelRegisterManager = new PanelRegisterManager(coeffHeight,coeffWidth);
 		this.panelRegisterManager.getBack().addActionListener(launch.new BackListener());
@@ -87,6 +108,9 @@ public class PanelCreator{
 		this.panelRegisterManager.setVisible(false);
 	}
 	
+	/**Method which creates the panelRegisterCustomer. It associates each button of the panel with the listeners defined in launch.
+	 * 
+	 */
 	public void createRegisterCustomerPanel(){
 		this.panelRegisterCustomer = new PanelRegisterCustomer(coeffHeight,coeffWidth);
 		this.panelRegisterCustomer.getBack().addActionListener(launch.new BackListener());
@@ -94,6 +118,9 @@ public class PanelCreator{
 		this.panelRegisterCustomer.setVisible(false);
 	}
 	
+	/**Method which creates the panelRegisterRestaurant. It associates each button of the panel with the listeners defined in launch.
+	 * 
+	 */
 	public void createRegisterRestaurantPanel(){
 		this.panelRegisterRestaurant = new PanelRegisterRestaurant(coeffHeight,coeffWidth);
 		this.panelRegisterRestaurant.getBack().addActionListener(launch.new BackListener());
@@ -101,6 +128,9 @@ public class PanelCreator{
 		this.panelRegisterRestaurant.setVisible(false);
 	}
 	
+	/**Method which creates the panelRegisterCourier. It associates each button of the panel with the listeners defined in launch.
+	 * 
+	 */
 	public void createRegisterCourierPanel(){
 		this.panelRegisterCourier = new PanelRegisterCourier(coeffHeight,coeffWidth);
 		this.panelRegisterCourier.getBack().addActionListener(launch.new BackListener());
@@ -108,6 +138,9 @@ public class PanelCreator{
 		this.panelRegisterCourier.setVisible(false);
 	}
 	
+	/**Method which creates the panelCustomer and the menuBarCustomer. It associates each button of the panel and the menu bar with the listeners defined in launch.
+	 * 
+	 */
 	public void createCustomerPanel(){
 		this.menuBarCustomer = new MenuBarCustomer();
 		this.panelCustomer = new PanelCustomer(this.launch.getMyFoodora(),coeffHeight,coeffWidth);
@@ -135,6 +168,9 @@ public class PanelCreator{
 		this.panelCustomer.setVisible(false);
 	}
 	
+	/**Method which creates the panelCustomerOrder. It associates each button of the panel with the listeners defined in launch.
+	 * 
+	 */
 	public void createCustomerOrderPanel(){
 		this.panelCustomerOrder = new PanelCustomerOrder(this.launch.getMyFoodora().getListRestaurant().get(0),coeffHeight,coeffWidth);
 		this.panelCustomerOrder.getBack().addActionListener(launch.new BackListener());
@@ -147,6 +183,9 @@ public class PanelCreator{
 		this.panelCustomerOrder.setVisible(false);
 	}
 	
+	/**Method which creates the panelRestaurant and the menuBarRestaurant. It associates each button of the panel and the menu bar with the listeners defined in launch.
+	 * 
+	 */
 	public void createRestaurantPanel(){
 		this.menuBarRestaurant = new MenuBarRestaurant();
 		this.panelRestaurant = new PanelRestaurant(coeffHeight,coeffWidth);
@@ -165,9 +204,13 @@ public class PanelCreator{
 		this.menuBarRestaurant.getSetNewSpecialDiscount().addActionListener(launch.new SetNewSpecialDiscountListener());
 		this.menuBarRestaurant.getGetMyProfile().addActionListener(launch.new ProfileListener());
 		this.menuBarRestaurant.getHistorySoldSingleItems().addActionListener(launch.new HistorySoldSingleItemsListener());
-
+		this.menuBarRestaurant.getHistorySoldFullMeals().addActionListener(launch.new HistorySoldFullMealsListener());
+		this.menuBarRestaurant.getHistorySoldHalfMeals().addActionListener(launch.new HistorySoldHalfMealsListener());
 	}
 	
+	/**Method which creates the panelAddSingleItem. It associates each button of the panel with the listeners defined in launch.
+	 * 
+	 */
 	public void createAddSingleItemPanel(){
 		this.panelAddSingleItem = new PanelAddSingleItem(coeffHeight,coeffWidth);
 		this.panelAddSingleItem.setVisible(false);
@@ -175,6 +218,9 @@ public class PanelCreator{
 		this.panelAddSingleItem.getOkSingleItem().addActionListener(launch.new OkSingleItemListener());
 	}
 	
+	/**Method which creates the panelCreateMeal. It associates each button of the panel with the listeners defined in launch.
+	 * 
+	 */
 	public void createCreateMealPanel(){
 		this.panelCreateMeal = new PanelCreateMeal(this.launch.getMyFoodora().getListRestaurant().get(0),coeffHeight,coeffWidth);
 		this.panelCreateMeal.setVisible(false);
@@ -185,6 +231,9 @@ public class PanelCreator{
 		this.panelCreateMeal.getCreate().addActionListener(launch.new CreateListener());
 	}
 	
+	/**Method which creates the panelCustomer and the menuBarCustomer. It associates each button of the panel and the menu bar with the listeners defined in launch.
+	 * 
+	 */
 	public void createManagerPanel(){
 		this.menuBarManager = new MenuBarManager();
 		this.panelManager = new PanelManager(coeffHeight,coeffWidth);
@@ -222,6 +271,9 @@ public class PanelCreator{
 		this.menuBarManager.getProfit().addActionListener(launch.new GetProfitListener());
 	}
 	
+	/**Method which creates the panelChooseDate. It associates each button of the panel with the listeners defined in launch.
+	 * 
+	 */
 	public void createChooseDatePanel(){
 		this.panelChooseDate = new PanelChooseDate("",coeffHeight,coeffWidth);
 		this.panelChooseDate.setVisible(false);
@@ -229,6 +281,9 @@ public class PanelCreator{
 		this.panelChooseDate.getBack().addActionListener(launch.new BackListener());
 	}
 	
+	/**Method which creates the panelCourier and the menuBarCourier. It associates each button of the panel and the menu bar with the listeners defined in launch.
+	 * 
+	 */
 	public void createCourierPanel(){
 		this.panelCourier = new PanelCourier(coeffHeight,coeffWidth);
 		this.panelCourier.setVisible(false);
@@ -249,42 +304,63 @@ public class PanelCreator{
 		this.menuBarCourier.getUnregister().addActionListener(launch.new UnregisterListener());
 	}
 	
+	/**Add the panelLogin to the frame.
+	 * 
+	 */
 	public void addLoginPanel(){
 		frame.add(this.panelLogin);
 		this.panelLogin.setVisible(true);
 		this.activatedPanels.add(this.panelLogin);
 	}
 	
+	/**Add the panelRegister to the frame.
+	 * 
+	 */
 	public void addRegisterPanel(){
 		frame.add(this.panelRegister);
 		this.panelRegister.setVisible(true);
 		this.activatedPanels.add(this.panelRegister);
 	}
 	
+	/**Add the panelRegisterManager to the frame.
+	 * 
+	 */
 	public void addRegisterManagerPanel(){
 		frame.add(this.panelRegisterManager);
 		this.panelRegisterManager.setVisible(true);
 		this.activatedPanels.add(this.panelRegisterManager);
 	}
 	
+	/**Add the panelRegisterCustomer to the frame.
+	 * 
+	 */
 	public void addRegisterCustomerPanel(){
 		frame.add(this.panelRegisterCustomer);
 		this.panelRegisterCustomer.setVisible(true);
 		this.activatedPanels.add(this.panelRegisterCustomer);
 	}
 	
+	/**Add the panelRegisterRestaurant to the frame.
+	 * 
+	 */
 	public void addRegisterRestaurantPanel(){
 		frame.add(this.panelRegisterRestaurant);
 		this.panelRegisterRestaurant.setVisible(true);
 		this.activatedPanels.add(this.panelRegisterRestaurant);
 	}
 	
+	/**Add the panelRegisterCourier to the frame.
+	 * 
+	 */
 	public void addRegisterCourierPanel(){
 		frame.add(this.panelRegisterCourier);
 		this.panelRegisterCourier.setVisible(true);
 		this.activatedPanels.add(this.panelRegisterCourier);
 	}
 	
+	/**Add the panelCustomer and the menuBarCustomer to the frame.
+	 * 
+	 */
 	public void addCustomerPanel(){
 		this.menuBarCustomer.setVisible(true);
 		frame.setJMenuBar(this.menuBarCustomer);
@@ -293,12 +369,18 @@ public class PanelCreator{
 		this.activatedPanels.add(this.panelCustomer);
 	}
 	
+	/**Add the panelCustomerOrder to the frame.
+	 * 
+	 */
 	public void addCustomerOrderPanel(){
 		frame.add(this.panelCustomerOrder);
 		this.panelCustomerOrder.setVisible(true);
 		this.activatedPanels.add(this.panelCustomerOrder);
 	}
 	
+	/**Add the panelRestaurant and the menuBarRestaurant to the frame.
+	 * 
+	 */
 	public void addRestaurantPanel(){
 		this.menuBarRestaurant.setVisible(true);
 		frame.setJMenuBar(this.menuBarRestaurant);
@@ -307,18 +389,27 @@ public class PanelCreator{
 		this.activatedPanels.add(this.panelRestaurant);
 	}
 	
+	/**Add the panelAddSingleItem to the frame.
+	 * 
+	 */
 	public void addAddSingleItemPanel(){
 		frame.add(this.panelAddSingleItem);
 		this.panelAddSingleItem.setVisible(true);
 		this.activatedPanels.add(this.panelAddSingleItem);
 	}
 	
+	/**Add the panelCreateMeal to the frame.
+	 * 
+	 */
 	public void addCreateMealPanel(){
 		frame.add(this.panelCreateMeal);
 		this.panelCreateMeal.setVisible(true);
 		this.activatedPanels.add(this.panelCreateMeal);
 	}
 	
+	/**Add the panelManager and the menuBarManager to the frame.
+	 * 
+	 */
 	public void addManagerPanel(){
 		this.menuBarManager.setVisible(true);
 		frame.setJMenuBar(this.menuBarManager);
@@ -327,12 +418,18 @@ public class PanelCreator{
 		this.activatedPanels.add(this.panelManager);
 	}
 	
+	/**Add the panelChooseDate to the frame.
+	 * 
+	 */
 	public void addChooseDatePanel(){
 		this.panelChooseDate.setVisible(true);
 		frame.add(this.panelChooseDate);
 		this.activatedPanels.add(this.panelChooseDate);
 	}
 	
+	/**Add the panelCourier and the menuBarCourier to the frame.
+	 * 
+	 */
 	public void addCourierPanel(){
 		this.menuBarCourier.setVisible(true);
 		frame.setJMenuBar(this.menuBarCourier);
@@ -341,6 +438,9 @@ public class PanelCreator{
 		this.activatedPanels.add(this.panelCourier);
 	}
 	
+	/**Method which creates all the panels by invoking the previous methods of PanelCreator.
+	 * 
+	 */
 	public void createAllPanels(){
 		this.createFirstPagePanel();
 		this.createLoginPanel();

@@ -4,10 +4,14 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
+/**The class MenuBarRestaurant creates the menu bar displayed on the restaurant panel. It extends JManuBar.
+ * @author jeremyaugot
+ * @author maxspahn
+ *
+ */
 public class MenuBarRestaurant extends JMenuBar{
 	private JMenuItem getMyMenu;
 	private JMenuItem getCurrentGenericDiscount;
-	private JMenuItem setNewGenericDiscount;
 	private JMenuItem getCurrentSpecialDiscount;
 	private JMenuItem setNewSpecialDiscount;
 	private JMenuItem historySoldSingleItems;
@@ -39,11 +43,9 @@ public class MenuBarRestaurant extends JMenuBar{
 		JMenu genericDiscount = new JMenu("Generic discount");
 		JMenu specialDiscount = new JMenu("Special discount");
 		this.getCurrentGenericDiscount = new JMenuItem("Get current generic discount");
-		this.setNewGenericDiscount = new JMenuItem("Set new generic discount");
 		this.getCurrentSpecialDiscount = new JMenuItem("Get current special discount");
 		this.setNewSpecialDiscount = new JMenuItem("Set new special discount");
 		genericDiscount.add(this.getCurrentGenericDiscount);
-		genericDiscount.add(this.setNewGenericDiscount);
 		specialDiscount.add(this.getCurrentSpecialDiscount);
 		specialDiscount.add(this.setNewSpecialDiscount);
 		discountsMenu.add(genericDiscount);
@@ -85,13 +87,6 @@ public class MenuBarRestaurant extends JMenuBar{
 	 */
 	public JMenuItem getGetCurrentGenericDiscount() {
 		return getCurrentGenericDiscount;
-	}
-
-	/**
-	 * @return the setNewGenericDiscount
-	 */
-	public JMenuItem getSetNewGenericDiscount() {
-		return setNewGenericDiscount;
 	}
 
 	/**

@@ -12,6 +12,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+/**The class PanelAddSingleItem creates the panel used to add a new single item to the menu, it is only visible by a restaurant. It extends JPanel.
+ * @author jeremyaugot
+ * @author maxspahn
+ *
+ */
 public class PanelAddSingleItem extends JPanel{
 	private JComboBox<String> typeComboBox;
 	private JTextField textFieldName;
