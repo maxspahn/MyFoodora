@@ -1,0 +1,53 @@
+\section{Command-line-user-interface}
+\label{sec:command_line_user_interface}
+
+A useful program needs an user interaction and the first approach is usually a command line 
+interface. The use of this feature is explained in this part of the report.
+
+\subsection{Structure and Handling arguments}
+\label{sub:structure_and_handling_arguments}
+
+The different required commands were easy to define since the whole system that had been build 
+previously was about to be used in the interface. In the package \textsc{commandLineTool} we 
+stored all functions in the \textsc{Launch}-class. We decided not to use a pattern separating
+visual functions from back-end functions, because we are convinced that it was not necessary for a
+project of such a small size and it would not justify the additional work time that it might 
+cost.
+
+One major problem we encountered in the process was the treatment of the input arguments because 
+the number varies depending on the command. When the user does type a command he creates a 
+\textsc{String} that is temporarily stored by the program. The next step is the separation of 
+the different arguments in a array of Strings. It was required to use quotation marks for the 
+arguments in order to avoid that arguments with white spaces, such as restaurant names,  are cut
+into multiple arguments.
+We considered this processing not convincing because the user is consequently forced to put 
+quotation marks around every argument, although it is only useful in very few cases. Hence, 
+our implementation does avoid the use of arguments with white spaces, by for example working 
+exclusively with the Usenet. This choice is arguably a bit ``dirty'' but allows to better 
+imitate the traditional command line syntax known from \textsc{UNIX} and improves the efficiency 
+while using the tool.
+
+The input of dates and addresses was also an issue because the format is to be chosen. If the 
+following format is not respected, the command does not work like it should.
+\begin{enumerate}
+	\item \textbf{Address: } x-coordinate,y-coordinate
+	\item \textbf{Dates: } dd/mm/yyyy
+\end{enumerate}
+
+\subsection{Use and Testing}
+\label{sub:use_and_testing}
+
+To launch the tool you have to open the file \textsc{src/commandLineTool/Launch.java} and execute
+it. The main method starts the interaction loop, in which the user can type the commands. To get
+a list of all available commands one has to type \textsc{help}. 
+
+Since it is very time intensive to test all the tool, we created test-files that
+contain a list series of commands. To execute those commands one has to run the command 
+\textit{runTest <fileName>}. By adding the fileName as an argument, it is possible to create 
+several test-Scenarios without changing the program. Hence, the user can load multiple 
+preexisting restaurants with the test-file \textit{my\textunderscore foodora.ini}.
+The main scenario is stored in \textit{testScenario1.txt}. If you run the command
+\textit{runTest} without any argument this text Case is automatically used as the default test
+file.
+
+

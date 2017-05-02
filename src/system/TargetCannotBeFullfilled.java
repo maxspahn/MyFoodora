@@ -1,5 +1,7 @@
 package system;
 
+import java.io.Serializable;
+
 public class TargetCannotBeFullfilled extends Exception{
 	private String message;
 	

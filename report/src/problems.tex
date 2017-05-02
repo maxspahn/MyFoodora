@@ -1,0 +1,23 @@
+\section{Coding problems and their solutions}
+\label{sec:coding_problems_and_their_solutions}
+
+\subsection{Allocate a \textsc{Courier} to an order}
+\label{sub:allocate_a_courier_to_an_order}
+
+Beside the use of the Strategy-pattern to choose between the different delivery policy, there were
+some other important choices for the implementation of this feature. The \textsc{allocate} method 
+is written in the two different implementations of the Delivery interface. Since the system is 
+just used locally by one user at a time, it was not possible to create a interaction of ordering
+by a customer and the accepting of the delivery by a courier. In order to imitate some this 
+behaviour we worked with a accepting-probability for the courier, which can be set in the core of
+the \textsc{MyFoodoar} system. 
+
+The fact that a courier can reject the delivery of an order caused a problem when allocating the 
+courier to the order. We solved this problem with a \textit{while-loop} that only ends when
+a courier is found who is available and accept the order. In order to avoid that one courier who
+has rejected an order does not get the same order once again, he is added to a temporary list of
+couriers. We find this problem while testing the code with the \textit{JUnit-Tests}. The tests 
+also revealed an error in the allocating algorithme. Before we did not check if the choosen 
+courier was \textit{On-Duty}.
+
+\lstinputlisting[firstline=20, lastline=35]{../../src/system/FairDelivery.java} 

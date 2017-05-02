@@ -68,7 +68,7 @@ public class Launch {
 		commands.add("showCustomers \t<>");
 		commands.add("showMenuItem \t\t<restaurant-name>");
 		commands.add("showTotalProfit \t<>");
-		commands.add("showTotalProfit \t<startDate> <endDate>");
+		commands.add("showTotalProfit \t<startDate> <endDate> : format dd/mm/yyyy");
 		commands.add("runTest \t\t<testScenario-file>");
 		commands.add("help \t\t\t<>");
 		commands.add("showRestaurants \t<>");
@@ -131,6 +131,7 @@ public class Launch {
 		Launch launch = new Launch();
 		String exit = "";
 		System.out.println("Welcome to MyFoodora, type 'help' to get a list of commands, 'q' to exit");
+		System.out.println("Type \"help\" to get a list of the available commands");
 		while(!exit.equals("q")){
 			if(launch.getCurrentUser() != null){
 				System.out.println("Logged in as " + launch.getCurrentUser().getUserName() + "[" + launch.getUserType() + "]");
@@ -234,6 +235,7 @@ public class Launch {
 			break;
 		case "q":
 			System.out.println("MyFoodora shut down");
+			break;
 		case "showcouriers":
 			this.showCouriers(args);
 			break;
@@ -259,10 +261,10 @@ public class Launch {
 			this.showCouriersTop(args);
 			break;
 		default:
-			System.out.println("This command does not exist, 'help' for information");;
+			System.out.println("This command does not exist, 'help' for information");
 		}
 		
-		}
+	}
 	
 	/** Logs in a user, the current user is then set to the user given.
 	 * @param args Name and password.
