@@ -19,6 +19,7 @@ import user_management.*;
 
 /**
  * @author maxspahn
+ * @author jeremyaugot
  *
  */
 public class Launch {

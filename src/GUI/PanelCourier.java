@@ -9,6 +9,11 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+/**The class PanelCourier creates the panel visible by the couriers. It extends JPanel.
+ * @author jeremyaugot
+ * @author maxspahn
+ *
+ */
 public class PanelCourier extends JPanel{
 
 	private JLabel text;

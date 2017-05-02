@@ -16,6 +16,11 @@ import user_management.*;
 
 import system.*;
 
+/**The class PanelCustomer creates the panel visible by the customers. It extends JPanel.
+ * @author jeremyaugot
+ * @author maxspahn
+ *
+ */
 public class PanelCustomer extends JPanel{
 	private MyFoodora myFoodora;
 	

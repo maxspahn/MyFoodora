@@ -11,6 +11,11 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+/**The class PanelManager creates the panel visible by the managers. It extends JPanel.
+ * @author jeremyaugot
+ * @author maxspahn
+ *
+ */
 public class PanelManager extends JPanel{
 	
 	private JLabel text;

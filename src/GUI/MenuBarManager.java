@@ -5,6 +5,11 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
+/**The class MenuBarManager creates the menu bar displayed on the manager panel. It extends JManuBar.
+ * @author jeremyaugot
+ * @author maxspahn
+ *
+ */
 public class MenuBarManager extends JMenuBar{
 	private JMenuItem showAllUsers;
 	private JMenuItem showCustomers;

@@ -48,14 +48,15 @@ public class MealTest {
 		
 		try {
 			menuTest.addItem("fullmeal", "LocalAdvise");
-			menuTest.addItemToMeal("LocalAdvise", "tomato");
+			menuTest.addItemToMeal("LocalAdvise", "tomato"); //The item "tomato" does not exist
+			assertTrue(false); 
 		} catch (WrongItemAdded e) {
-			assertTrue(true);
-			
+			e.getMessage();
 		}
 		catch (ArrayIndexOutOfBoundsException e){
-			assertTrue(true);
+			e.getMessage();
 		} catch (ItemDoesNotExist e) {
+			//The exception expected to be thrown
 			assertTrue(true);
 		}
 	}
@@ -79,7 +80,5 @@ public class MealTest {
 		catch (ArrayIndexOutOfBoundsException e){
 			e.printStackTrace();
 		}
-
 	}
-
 }

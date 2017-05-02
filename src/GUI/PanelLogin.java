@@ -9,7 +9,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-
+/**The class PanelLogin creates the panel used to login, it is visible by everyone. It extends JPanel.
+ * @author jeremyaugot
+ * @author maxspahn
+ *
+ */
 public class PanelLogin extends JPanel{
 	private ImageIcon iconLogin;
 	private JTextField textFieldUserName;

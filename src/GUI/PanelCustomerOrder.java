@@ -16,6 +16,11 @@ import javax.swing.JScrollPane;
 import system.MyFoodora;
 import user_management.Restaurant;
 
+/**The class PanelCustomerOrder creates the panel used to make an order, it is only visible by a customer. It extends JPanel.
+ * @author jeremyaugot
+ * @author maxspahn
+ *
+ */
 public class PanelCustomerOrder extends JPanel{
 	private Restaurant chosenRestaurant;
 	

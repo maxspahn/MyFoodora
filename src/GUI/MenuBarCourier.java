@@ -5,6 +5,11 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
+/**The class MenuBarCourier creates the menu bar displayed on the courier panel. It extends JManuBar.
+ * @author jeremyaugot
+ * @author maxspahn
+ *
+ */
 public class MenuBarCourier extends JMenuBar{
 	private JMenuItem getProfile;
 	private JMenuItem setEmail;

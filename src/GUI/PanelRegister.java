@@ -10,7 +10,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-
+/**The class PanelRegister creates the panel used to register to the myFoodora system, it is visible by everyone. It extends JPanel.
+ * @author jeremyaugot
+ * @author maxspahn
+ *
+ */
 public class PanelRegister extends JPanel{
 	private ImageIcon iconRegistration;
 	private JComboBox<String> userComboBox;

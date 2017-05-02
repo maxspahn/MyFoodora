@@ -6,6 +6,11 @@ import javax.swing.JOptionPane;
 import system.MyFoodora;
 import user_management.*;
 
+/**The MessageMealOfTheWeek class display a question message, with a given restaurant in which the meal of the week has  to be chosen. It extends JFrame.
+ * @author jeremyaugot
+ * @author maxspahn
+ *
+ */
 public class MessageMealOfTheWeek extends JFrame{
 	private String choice;
 	

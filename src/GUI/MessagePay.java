@@ -3,6 +3,11 @@ package GUI;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+/**The MessagePay class display a question message, with a given double which represents the price of the order. It extends JFrame.
+ * @author jeremyaugot
+ * @author maxspahn
+ *
+ */
 public class MessagePay extends JFrame{
 	private int choice; 
 	public MessagePay(double price){

@@ -15,6 +15,11 @@ import restaurant.*;
 import system.MyFoodora;
 import user_management.Restaurant;
 
+/**The class PanelCreateMeal creates the panel used to create a new meal and add it to the restaurant menu, it is only visible by a restaurant. It extends JPanel.
+ * @author jeremyaugot
+ * @author maxspahn
+ *
+ */
 public class PanelCreateMeal extends JPanel{
 	private JLabel textCreateMealPanel;
 	private JComboBox<String> starterComboBox;

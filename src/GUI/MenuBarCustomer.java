@@ -11,6 +11,11 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
+/**The class MenuBarCustomer creates the menu bar displayed on the customer panel. It extends JManuBar.
+ * @author jeremyaugot
+ * @author maxspahn
+ *
+ */
 public class MenuBarCustomer extends JMenuBar{
 	private JMenuItem basicFidelityCardItem;
 	private JMenuItem pointFidelityCardItem;

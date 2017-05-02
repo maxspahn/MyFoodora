@@ -7,8 +7,18 @@ import javax.swing.JOptionPane;
 
 import user_management.Restaurant;
 
+/**The MessageRemoveSomethingFromMenu class display a question message, with a given restaurant in which the menu has to be set, and a string representing the action to do. It extends JFrame.
+ * @author jeremyaugot
+ * @author maxspahn
+ *
+ */
 public class MessageRemoveSomethingFromMenu extends JFrame{
 	private String choice;
+	
+	/**
+	 * @param rest Restaurant 
+	 * @param s String containing the action to perform: "singleitem" to display the single item list, and "meal" to display the meal list.
+	 */
 	public MessageRemoveSomethingFromMenu(Restaurant rest,String s){
 		String[] displayedList;
 		if(s.equalsIgnoreCase("singleitem")){ //If the item to be removed is a single item
