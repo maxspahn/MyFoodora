@@ -5,3 +5,9 @@ report/*.pdf
 *orig
 *bak
 MyFoodoraDatas.txt
+report/*.log
+report/*.gz
+report/*.out
+report/*.toc
+report/*.aux
+report/src/*.log
