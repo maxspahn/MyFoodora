@@ -2,11 +2,21 @@
 \contentsline {section}{\numberline {1}Introduction}{2}{section.1}
 \contentsline {section}{\numberline {2}Design and the \textit {open-closed-principle}}{3}{section.2}
 \contentsline {subsection}{\numberline {2.1}Package Management}{3}{subsection.2.1}
-\contentsline {subsection}{\numberline {2.2}DesignPattern Factory-Pattern}{4}{subsection.2.2}
+\contentsline {subsection}{\numberline {2.2}DesignPattern : Factory-Pattern}{4}{subsection.2.2}
 \contentsline {paragraph}{Creation of Items for the Restaurant}{4}{section*.2}
-\contentsline {paragraph}{Creation of new \textit {Users}}{6}{section*.3}
-\contentsline {section}{\numberline {3}JUnit-Tests}{7}{section.3}
-\contentsline {subsection}{\numberline {3.1}Why use JUnit-Tests?}{7}{subsection.3.1}
-\contentsline {subsection}{\numberline {3.2}Test organisation}{7}{subsection.3.2}
-\contentsline {subsection}{\numberline {3.3}Problems solved}{8}{subsection.3.3}
-\contentsline {subsection}{\numberline {3.4}Use of the plugin \textit {EclEmma}}{9}{subsection.3.4}
+\contentsline {paragraph}{Creation of new \textit {Users}}{5}{section*.3}
+\contentsline {subsection}{\numberline {2.3}DesignPattern : Strategy-Pattern}{5}{subsection.2.3}
+\contentsline {paragraph}{Delivery Policy}{5}{section*.4}
+\contentsline {section}{\numberline {3}Coding problems and their solutions}{6}{section.3}
+\contentsline {subsection}{\numberline {3.1}Allocate a \textsc {Courier} to an order}{6}{subsection.3.1}
+\contentsline {section}{\numberline {4}JUnit-Tests}{7}{section.4}
+\contentsline {subsection}{\numberline {4.1}Why use JUnit-Tests?}{7}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}Test organisation}{7}{subsection.4.2}
+\contentsline {subsection}{\numberline {4.3}Problems solved}{8}{subsection.4.3}
+\contentsline {subsection}{\numberline {4.4}Use of the plugin \textit {EclEmma}}{9}{subsection.4.4}
+\contentsline {section}{\numberline {5}Command-line-user-interface}{11}{section.5}
+\contentsline {subsection}{\numberline {5.1}Structure and Handling arguments}{11}{subsection.5.1}
+\contentsline {subsection}{\numberline {5.2}Use and Testing}{11}{subsection.5.2}
+\contentsline {paragraph}{Explanation of the two test-files}{12}{section*.5}
+\contentsline {section}{\numberline {6}Graphical-User-Interface}{13}{section.6}
+\contentsline {subsection}{\numberline {6.1}Structure}{13}{subsection.6.1}

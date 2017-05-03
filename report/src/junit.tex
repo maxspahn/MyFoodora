@@ -51,14 +51,25 @@ Note that the choice of using exceptions is very useful in JUnit-Tests to check 
 \subsection{Use of the plugin \textit{EclEmma}}
 \label{sub:use_of_the_plugin_EclEmma}
 
-In order to know how much of the program had been tested by the JUnit-Tests, we used a plugin called \textit{EclEmma}. For each test executed, it gives the percentage of the program which has been tested for each package, as illustrated in the figure ....................................................................................................
-.........................................................................................................................................................................
-
-Moreover, after running the JUnit-Tests with this plugin, all the code lines are highlighted in green, yellow or red as illustrated in the figure
+In order to know how much of the program had been tested by the JUnit-Tests, we used a plugin called \textit{EclEmma}. For each test executed, it gives the percentage of the program which has been tested for each package, as illustrated in the next figure. 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\linewidth]{./ima/testcoverage.jpg}
+	\caption{Test coverage}
+	\label{fig:test-coverage}
+\end{figure}
+As illustrated in the figure, the first column of the chart shows the coverage percentage of the code which is tested by the JUnit-Tests. One can notice that:
+\begin{itemize}
+	\item{} The packages \textit{GUI}, \textit{commandLineTool} and \textit{scenario} are not tested (see explication \ref{sub:test_organisation}).
+	\item{} The total coverage is just 26.7\% because the packages \textit{GUI}, \textit{commandLineTool} and \textit{scenario} represent more than half of the code.
+	\item{} All of the packages \textit{user\_management}, \textit{system} and \textit{restaurant} are tested at more than 60\% (even 78\% for \textit{restaurant}). Actually, the plugin takes into account the getters and setters which are not necessarily used during the tests, which means that the core of the classes are tested at more than 60\%.
+	\item{} The packages \textit{testSystem}, \textit{testUser\_management} and \textit{testRestaurant} are not fully tested because the tests contain \textit{catch} blocks which are not executed while running them.
+\end{itemize}
+Moreover, after running the JUnit-Tests with this plugin, all the code lines are highlighted in green, yellow or red as illustrated in the next figure.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1\linewidth]{./ima/testlinecolor.jpg}
 	\caption{Highlighting of the code line after the tests with the plugin}
-	\label{fig:restaurant-factory-pattern}
+	\label{fig:line-test-plugin}
 \end{figure}
-The lines are highlighted in green when the code executes them, and in red if it does not. A line is yellow if some of the conditions have been missed: in the previous figure, 1 of the 2 conditions has been missed. Indeed, \textit{indexCourier} is different from -1 so the false-case has been checked but not the true one. \textbf{This highlighting is very useful because thanks to it, it is possible to know what tests have not been implemented yet.}
+The lines are highlighted in green when the code executes them, and in red if it does not. A line is yellow if some of the conditions have been missed: in the previous figure, 1 of the 2 conditions has been missed. Indeed, \textit{indexCourier} is different from -1 so the false-case has been checked but not the true one. \textbf{This highlighting is very useful because it helps to know what tests have not been implemented yet.}
