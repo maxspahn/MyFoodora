@@ -9,7 +9,7 @@ some other important choices for the implementation of this feature. The \textsc
 is written in the two different implementations of the Delivery interface. Since the system is 
 just used locally by one user at a time, it was not possible to create a interaction of ordering
 by a customer and the accepting of the delivery by a courier. In order to imitate some this 
-behaviour we worked with a accepting-probability for the courier, which can be set in the core of
+behavior we worked with a accepting-probability for the courier, which can be set in the core of
 the \textsc{MyFoodoar} system. 
 
 The fact that a courier can reject the delivery of an order caused a problem when allocating the 
@@ -17,7 +17,20 @@ courier to the order. We solved this problem with a \textit{while-loop} that onl
 a courier is found who is available and accept the order. In order to avoid that one courier who
 has rejected an order does not get the same order once again, he is added to a temporary list of
 couriers. We find this problem while testing the code with the \textit{JUnit-Tests}. The tests 
-also revealed an error in the allocating algorithme. Before we did not check if the choosen 
+also revealed an error in the allocating algorithm. Before we did not check if the chosen 
 courier was \textit{On-Duty}.
 
 \lstinputlisting[firstline=20, lastline=35]{../../src/system/FairDelivery.java} 
+
+\subsection{Exceptions}
+\label{sub:exceptions}
+
+In our first approach we tried to avoid to avoid any kind of \lstinline|Exception| because we were
+not convinced of its utility. We handled the possibility that there might occur wrong inputs at
+several places with simple \lstinline|System.out.println()|. At first this seemed to be a
+sufficient solution. As we continued to implement further parts of the system we realized that it
+was becoming more and more confusing where the \lstinline|System.out.println()| is actually 
+invoked. The solution was obviously the implementation of \lstinline|Exception| and we sacrificed
+some time in their creation. Later in the project-work we realized that this choice was the right
+one since the implementation of the \textsc{Command-Line-User-Interface} and the \textsc{GUI} were
+much easier this way.
