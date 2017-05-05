@@ -1,0 +1,15 @@
+public MyFoodora(String fileName){
+		try{ //Try to find an existing file
+		FileInputStream database = new FileInputStream(fileName);
+		ObjectInputStream in = new ObjectInputStream(database);
+		//Deserialization of the datas:
+		this.listCustomer = (ArrayList<Customer>)in.readObject();
+		...
+		}
+		catch(FileNotFoundException e){ //If there is no existing file
+			//Initialization of the attributes with default values
+			this.listCustomer = new ArrayList<Customer>();
+			...	
+		}
+		...
+	}

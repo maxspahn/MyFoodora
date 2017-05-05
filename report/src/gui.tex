@@ -1,4 +1,30 @@
 \section{Graphical-User-Interface}
-To improve the ease of use of a software, it is necessary to add a Graphical-User-Interface (GUI): it brings beauty and convenience to a program since the user can navigate with the mouse and not only with the keybord. To implement it, several choices have been made and they are explained in this part.
+To improve the ease of use of a software, it is necessary to add a Graphical-User-Interface (GUI): it brings beauty and convenience to a program since the user can navigate with the mouse and not only with the keyboard. To implement it, several choices have been made and they are explained in this part.
 \subsection{Structure}
 \label{sub:structure}
+The main problem of the GUI is that it needs a lot of code lines to be implemented. So, the first question was: how to write the code so that it can be understandable and organized?
+\begin{comment}
+each panel in a single class
+separation creation of panels (and add actionlisteners) and definition of listeners
+panelCreator - frame + each panel/menuBar in attributes
+launch - definition of listeners
+use of menuBar
+\end{comment}
+
+
+\subsection{Choices}
+\label{sub:choices}
+
+\begin{comment}
+same design for each user panel, why ?
+use of menu bars, why ?
+use of inner classes and not "if blocks", why ?
+use of stack for back button
+position/size buttons: use of pixels -> Pb computers
+\end{comment}
+\subsection{Scenarios}
+To test the GUI, it is possible to register as a new user by clicking on the REGISTER button, and then login using the username and password defined previously. Otherwise, it is also possible to login directly by using the following datas:
+\begin{itemize}
+	\item{}Username: \textit{sparrowj}
+\end{itemize}
+\label{sub:scenarios}
