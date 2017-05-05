@@ -30,7 +30,7 @@ public class PanelRegister extends JPanel{
 		setBackground(Color.white);
 		
 		//Display a registration message
-		this.iconRegistration = new ImageIcon("Registration.png");
+		this.iconRegistration = new ImageIcon("./ima/Registration.png");
 		JLabel labelRegistration = new JLabel("",iconRegistration,JLabel.CENTER);
 		labelRegistration.setBounds((int)(550 * coeffWidth),(int)(400 * coeffHeight),(int)(1600 * coeffWidth),(int)(200 * coeffHeight));
 		add(labelRegistration);

@@ -457,6 +457,7 @@ public class PanelCreator{
 		this.createManagerPanel();
 		this.createChooseDatePanel();
 		this.createCourierPanel();
+		this.frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
 	}
 	
 

@@ -36,7 +36,7 @@ public class PanelCreateMeal extends JPanel{
 		setLayout(null);
 		
 		//Display a meal creation message
-		ImageIcon iconRegistration = new ImageIcon("MealCreation.png");
+		ImageIcon iconRegistration = new ImageIcon("./ima/MealCreation.png");
 		JLabel label = new JLabel("",iconRegistration,JLabel.CENTER);
 		label.setBounds((int)(550 * coeffWidth),(int)(200 * coeffHeight),(int)(1600 * coeffWidth),(int)(200 * coeffHeight));
 		

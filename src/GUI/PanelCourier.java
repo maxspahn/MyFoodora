@@ -24,7 +24,7 @@ public class PanelCourier extends JPanel{
 		setLayout(null);
 		
 		//Display "MyFoodora"
-		ImageIcon myFoodoraIcon = new ImageIcon("MyFoodora.png");
+		ImageIcon myFoodoraIcon = new ImageIcon("./ima/MyFoodora.png");
 		JLabel myFoodoraLabel = new JLabel("",myFoodoraIcon,JLabel.CENTER);
 		myFoodoraLabel.setBounds((int)(2100 * coeffWidth),(int)(100 * coeffHeight),(int)(700 * coeffWidth),(int)(300 * coeffHeight));
 		add(myFoodoraLabel);

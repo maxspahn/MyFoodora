@@ -38,7 +38,7 @@ public class PanelCustomer extends JPanel{
 		setLayout(null);
 		
 		//Display "MyFoodora"
-		this.myFoodoraIcon = new ImageIcon("MyFoodora.png");
+		this.myFoodoraIcon = new ImageIcon("./ima/MyFoodora.png");
 		JLabel myFoodoraLabel = new JLabel("",myFoodoraIcon,JLabel.CENTER);
 		myFoodoraLabel.setBounds((int)(2100 * coeffWidth),(int)(100 * coeffHeight),(int)(700 * coeffWidth),(int)(300 * coeffHeight));
 		add(myFoodoraLabel);

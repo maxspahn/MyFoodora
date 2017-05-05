@@ -30,7 +30,7 @@ public class Launch {
 	private ArrayList<String> commands;
 	
 	public Launch(){
-		myFoodora = new MyFoodora("MyFoodoraDatas.txt");
+		myFoodora = new MyFoodora("./serialize/MyFoodoraDatas.txt");
 		myFoodora.load();
 		currentUser = null;
 		myOrders = new ArrayList<Order>();
@@ -89,7 +89,7 @@ public class Launch {
 		
 		try{
 			//Creation of a new file
-			datafile = new FileOutputStream("MyFoodoraDatas.txt");
+			datafile = new FileOutputStream("./serialize/MyFoodoraDatas.txt");
 			//Creation of an ObjectOutputStream to serialize
 			out = new ObjectOutputStream(datafile);
 			//Serialize all the attributes of myFoodora
@@ -109,7 +109,7 @@ public class Launch {
 			out.writeObject(this.myFoodora.getDeliverdSingleItems());
 			out.writeObject(this.myFoodora.getDeliveredFullMeals());
 			out.writeObject(this.myFoodora.getDeliveredHalfMeals());
-			System.out.println("All the databases have been serialized and saved in 'MyFoodoraDatas.txt'.");
+			System.out.println("All the databases have been serialized and saved in './serialize/MyFoodoraDatas.txt'.");
 			out.close();
 			datafile.close();
 			

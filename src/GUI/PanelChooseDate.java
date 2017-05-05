@@ -34,7 +34,7 @@ public class PanelChooseDate extends JPanel{
 		setLayout(null);
 		
 		//Fees message
-		ImageIcon icon = new ImageIcon("Fees.png");
+		ImageIcon icon = new ImageIcon("./ima/Fees.png");
 		JLabel label = new JLabel("",icon,JLabel.CENTER);
 		label.setBounds((int)(550 * coeffWidth),(int)(400 * coeffHeight),(int)(1600 * coeffWidth),(int)(200 * coeffHeight));
 		add(label);

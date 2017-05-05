@@ -30,7 +30,7 @@ public class PanelAddSingleItem extends JPanel{
 		setLayout(null);
 		
 		//Display a item creation message
-		ImageIcon iconRegistration = new ImageIcon("SingleItemCreation.png");
+		ImageIcon iconRegistration = new ImageIcon("./ima/SingleItemCreation.png");
 		JLabel label = new JLabel("",iconRegistration,JLabel.CENTER);
 		label.setBounds((int)(550 * coeffWidth),(int)(400 * coeffHeight),(int)(1600 * coeffWidth),(int)(200 * coeffHeight));
 		add(label);
