@@ -112,7 +112,6 @@ public class Restaurant extends User implements Observable, Serializable{
 			}
 			this.changed = false;
 		}
-		
 	}
 	
 	/**

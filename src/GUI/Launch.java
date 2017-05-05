@@ -31,6 +31,8 @@ public class Launch{
 	private User currentUser;
 	private Order currentOrder;
 	private String orderedItems;
+	private String chosenUsername;
+	private String chosenPassword;
 	
 	/**Constructor which create a new panelCreator, myFoodora and loads everything.
 	 * 
@@ -195,6 +197,8 @@ public class Launch{
 					new Error("Same username Error","This username already exists.");
 				}
 				else{
+				chosenUsername = userName;
+				chosenPassword = password;
 				int userChoice = panelRegister.getUserComboBox().getSelectedIndex();
 				if (userChoice==0){
 					panelRegister.setVisible(false);
@@ -231,8 +235,8 @@ public class Launch{
 			int choice = save.getChoice();
 			if (choice==0){
 				PanelRegisterManager panelRegisterManager = panelCreator.getPanelRegisterManager();
-				String userName = panelRegisterManager.getTextFieldUserName().getText();
-				String passWord = panelRegisterManager.getTextFieldPassword().getText();
+				String userName = chosenUsername;
+				String passWord = chosenPassword;
 				String firstName = panelRegisterManager.getTextFieldFirstName().getText();
 				String lastName = panelRegisterManager.getTextFieldLastName().getText();
 				String email = panelRegisterManager.getTextFieldEmail().getText();
@@ -295,8 +299,8 @@ public class Launch{
 			int choice = save.getChoice();
 			if (choice==0){
 				PanelRegisterCustomer panelRegisterCustomer = panelCreator.getPanelRegisterCustomer();
-				String userName = panelRegisterCustomer.getTextFieldUserName().getText();
-				String passWord = panelRegisterCustomer.getTextFieldPassword().getText();
+				String userName = chosenUsername;
+				String passWord = chosenPassword;
 				String firstName = panelRegisterCustomer.getTextFieldFirstName().getText();
 				String lastName = panelRegisterCustomer.getTextFieldLastName().getText();
 				String email = panelRegisterCustomer.getTextFieldEmail().getText();
@@ -373,8 +377,8 @@ public class Launch{
 			int choice = save.getChoice();
 			if (choice==0){
 				PanelRegisterRestaurant panelRegisterRestaurant = panelCreator.getPanelRegisterRestaurant();
-				String userName = panelRegisterRestaurant.getTextFieldUserName().getText();
-				String passWord = panelRegisterRestaurant.getTextFieldPassword().getText();
+				String userName = chosenUsername;
+				String passWord = chosenPassword;
 				String name = panelRegisterRestaurant.getTextFieldName().getText();
 				String email = panelRegisterRestaurant.getTextFieldEmail().getText();
 				String phone = panelRegisterRestaurant.getTextFieldPhone().getText();
@@ -420,8 +424,8 @@ public class Launch{
 			int choice = save.getChoice();
 			if (choice==0){
 				PanelRegisterCourier panelRegisterCourier = panelCreator.getPanelRegisterCourier();
-				String userName = panelRegisterCourier.getTextFieldUserName().getText();
-				String passWord = panelRegisterCourier.getTextFieldPassword().getText();
+				String userName = chosenUsername;
+				String passWord = chosenPassword;
 				String firstName = panelRegisterCourier.getTextFieldFirstName().getText();
 				String lastName = panelRegisterCourier.getTextFieldLastName().getText();
 				String email = panelRegisterCourier.getTextFieldEmail().getText();
