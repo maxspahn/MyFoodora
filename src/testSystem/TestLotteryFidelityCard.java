@@ -35,7 +35,7 @@ public class TestLotteryFidelityCard {
 		myFoodora.getListCourier().get(0).setAcceptProbability(1); //To be sure that the order is always accepted in the test
 		myFoodora.setCourierToOrder(order);
 		myFoodora.closeOrder(order);
-		assertTrue(order.getPrice()== 0.95*(2.3+6.7+2.5)||order.getPrice()==0);}
+		assertTrue(order.getPrice()== ((double) Math.round(0.95*(2.3+6.7+2.5) * 100))/100 ||order.getPrice()==0);}
 		
 		catch(NoCourierFoundToDeliver e){
 			e.getMessage();

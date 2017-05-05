@@ -49,7 +49,6 @@ public class Launch {
 		commands.add("createMeal \t\t<mealName>");
 		commands.add("addDish2Meal \t\t<dishName> <mealName>");
 		commands.add("showMeal \t\t<mealName>");
-		commands.add("saveMeal \t\t<mealName>");
 		commands.add("setSpecialOffer \t<mealName>");
 		commands.add("removeFromSpecialOffer \t<mealName>");
 		commands.add("createOrder \t\t<restaurantName> <orderName>");
@@ -64,12 +63,13 @@ public class Launch {
 		commands.add("showCouriers \t\t<>");
 		commands.add("showCourierDeliveries \t<>");
 		commands.add("showRestaurantTop \t<>");
-		commands.add("showCouriersTop \t\t<>");
-		commands.add("showCustomers \t<>");
+		commands.add("showCouriersTop \t<>");
+		commands.add("showCustomers \t\t<>");
 		commands.add("showMenuItem \t\t<restaurant-name>");
 		commands.add("showTotalProfit \t<>");
 		commands.add("showTotalProfit \t<startDate> <endDate> : format dd/mm/yyyy");
-		commands.add("runTest \t\t<testScenario-file>");
+		commands.add("runTest \t\t<testScenario-file> : Scenario-files that are available:\n" +
+				"\t\t\t\t my_foodora.ini, showScenario.txt, profitScenario.txt, orderScenario.txt, addItemsScenario.txt " );
 		commands.add("help \t\t\t<>");
 		commands.add("showRestaurants \t<>");
 		commands.add("registerManager \t<name> <userName> <adress> <password>");
@@ -77,6 +77,8 @@ public class Launch {
 		commands.add("setFeesPolicy \t\t<value1> <value2>");
 		commands.add("setTarget \t\t<targetCommands> <targetProfit>");
 		commands.add("showTarget \t\t<>");
+		commands.add("showOrder : \t\t<orderName>");
+		commands.add("showHistoryOfOrders\t<>");
 
 		Collections.sort(commands, String.CASE_INSENSITIVE_ORDER);
 	}
@@ -260,6 +262,12 @@ public class Launch {
 		case "showcourierstop" :
 			this.showCouriersTop(args);
 			break;
+		case "showorder" :
+			this.showOrder(args);
+			break;
+		case "showhistoryoforders" :
+			this.showHistoryOfOrders(args);
+			break;
 		default:
 			System.out.println("This command does not exist, 'help' for information");
 		}
@@ -404,7 +412,6 @@ public class Launch {
 	public void addDish2Meal(String [] args){
 		if(rightNumberofArguments(args, 3) && isRestaurant()){
 			try {
-				System.out.println(((Restaurant) this.getCurrentUser()).getMenu());
 				((Restaurant) this.getCurrentUser()).getMenu().addItemToMeal(args[1], args[2]);
 			} catch (WrongItemAdded | ItemDoesNotExist e) {
 				System.out.println(e.getMessage());
@@ -470,10 +477,28 @@ public class Launch {
 	public void addItem2Order(String [] args){
 		if(rightNumberofArguments(args, 3) && isCustomer()){
 			try {
-				this.getOrder(args[1]).AddItemToOrder(args[2], 1);
-			} catch (ItemDoesNotExist e) {
+				this.getOrder(args[1], this.getCurrentUser()).AddItemToOrder(args[2], 1);
+			} catch (ItemDoesNotExist | OrderDoesNotExist e) {
 				System.out.println(e.getMessage());
 			}
+		}
+	}
+	
+	/** A customer can see the orders he has made.
+	 * @param args orderName
+	 */
+	public void showOrder(String [] args){
+		if(rightNumberofArguments(args, 2) && isCustomer()){
+			Order myOrder;
+			try {
+				myOrder = this.getOrder(args[1], this.getCurrentUser());
+				if(myOrder != null){
+					System.out.println(myOrder);
+				}
+			} catch (OrderDoesNotExist e) {
+				System.out.println(e.getMessage());
+			}
+			
 		}
 	}
 	
@@ -482,17 +507,43 @@ public class Launch {
 	 * @param args
 	 */
 	public void endOrder(String [] args){
-		if(rightNumberofArguments(args, 2) && isCustomer()){
-			this.getOrder(args[1]).getBill();
-			System.out.println(this.getOrder(args[1]));
+		if(rightNumberofArguments(args, 2, 3) && isCustomer()){
+			Order order;
 			try {
-				myFoodora.setCourierToOrder(this.getOrder(args[1]));
-				myFoodora.closeOrder(this.getOrder(args[1]));
-				
-				System.out.println("Your courier is :" + this.getOrder(args[1]).getCourier());
-				myOrders.remove(this.getOrder(args[1]));
-			} catch (NoCourierFoundToDeliver | OrderNotCompletException e) {
-				System.out.println(e.getMessage());
+				order = this.getOrder(args[1], this.getCurrentUser());
+				System.out.println(order.getBill());
+				myFoodora.setCourierToOrder(order);
+				myFoodora.closeOrder(order);
+				if(args.length == 3){
+					int day = Integer.parseInt(args[2].split("/")[0]);
+					int month = Integer.parseInt(args[2].split("/")[1]);
+					int year = Integer.parseInt(args[2].split("/")[2]);
+					order.setCompleteDay(day);
+					order.setCompleteMonth(month);
+					order.setCompleteYear(year);
+				}
+				System.out.println("Your courier is :" + order.getCourier());
+				myOrders.remove(order);
+			} catch (OrderDoesNotExist | NoCourierFoundToDeliver | OrderNotCompletException e1) {
+				// TODO Auto-generated catch block
+				System.out.println(e1.getMessage());
+			}
+			
+		}
+	}
+	
+	
+	
+	/** A customer can see his history of orders.
+	 * @param args empty
+	 */
+	public void showHistoryOfOrders(String [] args){
+		if(rightNumberofArguments(args, 1) && isCustomer()){
+			ArrayList<Order> orders = ((Customer) this.getCurrentUser()).getHistoryOfOrders();
+			for (Order order : orders) {
+				try {
+					System.out.println(order.getName() + ": " +order.getCompleteDay() + "/" + order.getCompleteMonth() + "/" + order.getCompleteYear() + " at " + order.getRestaurant().getName() + " for " + order.getPrice());
+				} catch (OrderNotCompletException e) {}
 			}
 		}
 	}
@@ -522,10 +573,18 @@ public class Launch {
 	 */
 	public void findDeliverer(String [] args){
 		if(rightNumberofArguments(args, 2) && isManager()){
+			
+			Customer fictiveUser = new Customer("fic", "tiv", "123", "", "", this.currentUser.getAdress());
+			Order order = null;
 			try {
-				myFoodora.setCourierToOrder(this.getOrder(args[1]));
-			} catch (NoCourierFoundToDeliver e) {
+				order = this.getOrder(args[1], fictiveUser);
+				myFoodora.setCourierToOrder(order);
+				System.out.println(order.getCourier() + " has been associated to " + order.getName());
+			} catch (NoCourierFoundToDeliver | OrderDoesNotExist e) {
 				System.out.println(e.getMessage());
+			}
+			finally{
+				this.myOrders.remove(order);
 			}
 		}
 	}
@@ -615,7 +674,7 @@ public class Launch {
 	public void showTotalProfit(String [] args){
 		if(rightNumberofArguments(args, 1, 3) && isManager()){
 			if(args.length == 1){
-				System.out.println("Total income : " + ((Manager) this.getCurrentUser()).computeTotalProfit());
+				System.out.println("Total profit : " + ((Manager) this.getCurrentUser()).computeTotalProfit());
 			}
 			else{
 				int day1 = Integer.parseInt(args[1].split("/")[0]);
@@ -628,7 +687,7 @@ public class Launch {
 				try {
 					profit = ((Manager) this.getCurrentUser()).computeTotalIncomeAndProfitOverPeriod(day1, month1, year1, day2, month2, year2)[1];
 				} catch (OrderNotCompletException e) {} // impossible case
-				System.out.println("Total income between " + args[1] + " and " + args[2] + " : " + profit);
+				System.out.println("Total profit between " + args[1] + " and " + args[2] + " : " + profit);
 				
 			}
 		}
@@ -720,14 +779,9 @@ public class Launch {
 	 * @param fileName Name of the file to be executed.
 	 */
 	public void runTest(String[] args){
-		String fileName = "";
-		if(args.length == 1){
-			fileName = "testScenario1.txt";
-		}
-		if(rightNumberofArguments(args, 2, 1)){
-			if(args.length == 2){
-				fileName = args[1];
-			}
+		String fileName = "Scenarios/";
+		if(rightNumberofArguments(args, 2)){
+			fileName += args[1];
 			try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
 			    String line;
 			    while ((line = br.readLine()) != null) {
@@ -743,9 +797,6 @@ public class Launch {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}
-		if(args.length ==1){
-			
 		}
 	}
 	
@@ -826,15 +877,20 @@ public class Launch {
 	/** Searching an order by name in the list of orders.
 	 * @param orderName
 	 * @return Order object corresponding to the order name.
+	 * @throws OrderDoesNotExist 
 	 */
-	public Order getOrder(String orderName){
+	public Order getOrder(String orderName, User user) throws OrderDoesNotExist{
 		for (Order order : myOrders) {
 			if(order.getName().equalsIgnoreCase(orderName)){
-				return order;
+				if(order.getCustomer().equals((Customer) user) || ((Customer) user).getName().equals("fic")){
+					return order;
+				}
+				else{
+					System.out.println("Permission denied, you have no Order with this name.");
+				}
 			}
 		}
-		System.out.println("There is no order with that name");
-		return null;
+		throw new OrderDoesNotExist(orderName);
 	}
 	
 	/** Get the user type to display it in the clui.

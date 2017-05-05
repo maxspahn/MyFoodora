@@ -1,0 +1,21 @@
+login theoin jour5
+
+createOrder typingRoom boufferaid
+
+addItem2Order boufferaid Quiche
+addItem2Order boufferaid chef's
+
+logout
+
+login sparrowj blackPearl
+
+findDeliverer boufferaid
+
+logout
+
+login lala lala1996
+
+onDuty
+
+logout
+

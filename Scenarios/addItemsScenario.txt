@@ -1,0 +1,16 @@
+login vieuxc skiing
+addDishRestaurantMenu pizza_calzone mainDish standard 10
+addDishRestaurantMenu tomate_mozarella starter vegie 2
+addDishRestaurantMenu tarte_au_citron dessert vegie 3
+
+showMenuItem vieuxc
+
+createMeal localSpecial fullmeal
+addDish2Meal localSpecial pizza_calzone
+addDish2Meal localSpecial tomate_mozarella
+addDish2Meal localSpecial tarte_au_citron
+setSpecialOffer localSpecial
+
+showMenuItem vieuxc
+
+logout

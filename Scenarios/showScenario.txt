@@ -1,0 +1,14 @@
+login sparrowj blackPearl
+
+registerRestaurant le_vieux_campeur 12,99 vieuxc skiing
+
+registerCourier laura mendez lala 1,-3 lala1996
+
+registerCustomer max spahn maxspahn3 0,0 wer123ich
+
+showCouriers
+showRestaurants
+showMenuItem fiveFields
+showCustomers
+
+logout

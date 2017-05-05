@@ -39,16 +39,64 @@ following format is not respected, the command does not work like it should.
 
 To launch the tool you have to open the file \textsc{src/commandLineTool/Launch.java} and execute
 it. The main method starts the interaction loop, in which the user can type the commands. To get
-a list of all available commands one has to type \textsc{help}. 
+a list of all available commands one has to type \lstinline|help|. 
 
 Since it is very time intensive to test all the tool, we created test-files that
 contain a list series of commands. To execute those commands one has to run the command 
 \textit{runTest <fileName>}. By adding the fileName as an argument, it is possible to create 
 several test-Scenarios without changing the program. Hence, the user can load multiple 
 preexisting restaurants with the test-file \textit{my\textunderscore foodora.ini}.
-The main scenario is stored in \textit{testScenario1.txt}. If you run the command
-\textit{runTest} without any argument this test-case is automatically used as the default test
-file.
+
+\subsection{Test Scenario}
+\label{sub:test_scenario}
+
+It is crucial to this scenario that it is executed in order because some of the created items and 
+users are used in the following commands. Furthermore whenever you shut down the program do it by
+typing \lstinline|q| in order to serialize the data. This can be done after each step, then the 
+serie of commands can be continued.
+
+\begin{enumerate}[itemsep=0mm]
+	\item start the program and type \lstinline|help| to see the available options.
+	\item load several users by typing \lstinline|runtest my_foodora.ini|. This command loads 
+		some users to system, you can see the serie of commands printed in the console.
+	\item shut down the system by typing \lstinline|q|. This stops the main-method.
+	\item restart the program and execute \lstinline|runtest my_foodora.ini|. The system's 
+		status has been saved thanks to the \textsc{Serialization}. So when the program tries
+		to create the users, it fails because they already exist. The error messages are 
+		printed to the console.
+	\item show the users by typing \lstinline|runtest showScenario.txt|. Three additional users
+		are added. Then the list of couriers is printed to the console. Then that of the 
+		restaurants, followed by the Menu of the restaurant \textsc{fiveFields} and a list of
+		the customers.
+	\item add some items to the menu of a restaurant that was created previously by running the 
+		command \lstinline|runtest addItemsScenario.txt|. After the creation of three new 
+		singleItems the updated menu is printed to the console. Afterwards a meal is created
+		containing the new items. It is set to be the offer of the week for this restaurant.
+		At the end you see once again the menu of the restaurant.
+	\item create an order and finish it by typing \lstinline|runTest orderScenario.txt|. It 
+		creates a new order with the name \textit{testOrder} and adds four different items, 
+		including singleItems and meals. The order is shown and ``paid''. Then the history
+		of complete orders for this customer is printed to the console before the logout.
+	\item test if the wrong user could modify or see the order of another user by typing
+		\lstinline|runtest order2Scenario.txt|. User \textsc{batona} creates an order but 
+		does not finish it. Then the user \textsc{maxspahn3} tries to print it but got his
+		access is denied, the same is valid for the modification of the order. Then the 
+		user \textsc{batona} logs in again to finish his order.
+	\item test the delivery system by typing \lstinline|runtest findDelScenario.txt|. It creates
+		an order in the restaurant \textsc{typingRoom}. Then you login as manager to 
+		associate a courier to this order. The asociated courier is printed to the console 
+		(he is seen to be \textit{off-duty} because he is just delivering the order). 
+		The courier is then set to be \textit{on-duty} once again. The whole process is 
+		usually done by the system, where the order would now be added to the history of 
+		orders. Since it is not the case, the order is removed from the system afterwards.
+	\item check the profits by typing \lstinline|runtest profitScenario.txt|. First the customer
+		batona creates an order and sets the completion date to \textsc{03/02/2015}. You can 
+		see in the history of orders that it has been added. Then you login as a manager to 
+		see different profits of the system, the time period is printed to the console.
+	
+	
+		
+\end{enumerate}
 
 \paragraph{Explanation of the two test-files}
 \label{par:explanation_of_the_two_test_files}

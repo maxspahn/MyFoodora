@@ -336,6 +336,8 @@ public class MyFoodora implements Serializable{
 		double profit = 0;
 		double nbOrders = 0;
 		HashSet<Customer> setCustomers =new HashSet<>();
+		
+		Collections.sort(this.completeOrders);
  		
  		int i = 0;
 		int size = this.completeOrders.size();

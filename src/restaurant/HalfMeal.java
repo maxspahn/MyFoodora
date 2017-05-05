@@ -48,7 +48,9 @@ public class HalfMeal extends Meal implements Serializable{
 		if(this.getStarter() != null) {price += this.getStarter().getPrice();}
 		if(this.getDesert() != null) {price += this.getDesert().getPrice();}
 		if (this.getMainDish() != null){price += this.getMainDish().getPrice();}
-		return price * 0.95;
+		price *= 0.95;
+		price = ((double) Math.round(price * 100))/100;
+		return price;
 	}
 
 	@Override
@@ -68,6 +70,7 @@ public class HalfMeal extends Meal implements Serializable{
 		else{
 			throw new WrongItemRemoved(item.getName());
 		}
+		
 		
 	}
 

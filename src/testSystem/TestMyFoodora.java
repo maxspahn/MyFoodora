@@ -31,8 +31,8 @@ public class TestMyFoodora {
 		MyFoodora myFoodora = new MyFoodora();
 		myFoodora.load();
 		double totalIncome = myFoodora.computeTotalIncome();
-		
-		assertTrue(totalIncome==0.95*(2+11.3)+3.1+0.9*(2.3+6.7+2.5)+3.1+3);
+		double computedIncome = ((double) Math.round(0.95 * 100 * (2+11.3))/100) + 3.1 + ((double) Math.round(0.9 * 100 * (2.3+6.7+2.5))/100) + 3.1 + 3;
+		assertTrue(totalIncome==computedIncome);
 	}
 	
 	/**Test if the average price per order is well computed.
@@ -43,7 +43,8 @@ public class TestMyFoodora {
 		MyFoodora myFoodora = new MyFoodora();
 		myFoodora.load();
 		double averagePrice = myFoodora.getAveragePricePerCommand();
-		assertTrue(averagePrice==(0.95*(2+11.3)+3.1+0.9*(2.3+6.7+2.5)+3.1+3)/2);
+		double computedIncome = ((double) Math.round(0.95 * 100 * (2+11.3))/100) + 3.1 + ((double) Math.round(0.9 * 100 * (2.3+6.7+2.5))/100) + 3.1 + 3;
+		assertTrue(averagePrice==computedIncome/2);
 		
 	}
 	

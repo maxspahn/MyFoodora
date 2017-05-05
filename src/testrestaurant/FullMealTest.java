@@ -106,7 +106,7 @@ public class FullMealTest {
 		fullmealtest.addItem(testmaindish);
 		
 		
-		assertTrue(fullmealtest.getPrice()==0.95*(teststarter.getPrice()+testmaindish.getPrice()+testdesert.getPrice()));
+		assertTrue(fullmealtest.getPrice()==(double) Math.round((0.95*(teststarter.getPrice()+testmaindish.getPrice()+testdesert.getPrice()))*100)/100);
 		
 	}
 	

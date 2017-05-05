@@ -13,7 +13,7 @@ import user_management.*;
  * @author jeremyaugot
  *
  */
-public class Order implements Serializable{
+public class Order implements Serializable, Comparable<Order>{
 	
 	private Customer customer;
 	private Courier courier;
@@ -190,12 +190,20 @@ public class Order implements Serializable{
 	 **/
 	public String toString(){
 		String s = new String();
-		s += "Order " + this.getName() + " from Customer : " + this.getCustomer().getUserName() + " in restaurant : " + this.getRestaurant().getName();
+		s += this.getName() + " from Customer : " + this.getCustomer().getUserName() + " in restaurant : " + this.getRestaurant().getName();
+		for (SingleItem singleItem : this.getSingleItems()) {
+			s += "\n" + singleItem.getName() + " : " + singleItem.getPrice();
+		}
+		for (Meal meal : this.getMeals()) {
+			s += "\n" + meal.getName() + " : " + meal.getPrice();
+		}
 		if(this.isComplete()){
+			s += "\nFinal price paid : " + this.getPrice();
 			s += "\nCompleted on : " + this.completeDay + "/" + this.completeMonth + "/" + this.completeYear + " done by : " + this.getCourier().getUserName();
 		}
 		return s;
 	}
+	
 
 	/** Get the month when the order was completed.
 	 * @return
@@ -386,6 +394,26 @@ public class Order implements Serializable{
 	 */
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	@Override
+	public int compareTo(Order order) {
+		try {
+			if(order.getCompleteYear() > this.getCompleteYear()){return -1;}
+			else if (order.getCompleteYear() < this.getCompleteYear()){return 1;}
+			else{
+				if(order.getCompleteMonth() > this.getCompleteMonth()){return -1;}
+				else if (order.getCompleteMonth() < this.getCompleteMonth()){return 1;}
+				else{
+					if(order.getCompleteDay() >= this.getCompleteDay()){return -1;}
+					else{return 1;}
+				}
+			}
+		} catch (OrderNotCompletException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return 0;
 	}
 
 }

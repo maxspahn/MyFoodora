@@ -1,0 +1,16 @@
+login maxspahn3 wer123ich
+
+createOrder vieuxc testOrder
+
+addItem2Order testOrder Soup
+addItem2Order testOrder Quiche
+addItem2Order testOrder Basic
+addItem2Order testOrder localSpecial
+
+showOrder testOrder
+
+endOrder testOrder
+
+showHistoryOfOrders
+
+logout

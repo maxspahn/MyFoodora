@@ -92,7 +92,7 @@ public class TestPointFidelityCard {
 		order2.getBill();
 		myFoodora.setCourierToOrder(order2);
 		myFoodora.closeOrder(order2);
-		assertTrue((order2.getPrice()==0.9*11.3)&&(card.getPoints()==45));
+		assertTrue((order2.getPrice()== ((double) Math.round(0.9*11.3 * 100))/100) && (card.getPoints()==45));
 
 		}
 		
@@ -150,7 +150,7 @@ public class TestPointFidelityCard {
 		myFoodora.getListCourier().get(0).setAcceptProbability(1); //To be sure that the order is always accepted in the test
 		myFoodora.setCourierToOrder(order);
 		myFoodora.closeOrder(order);
-		assertTrue(order.getPrice()== 0.95*(2.3+6.7+2.5));}
+		assertTrue(order.getPrice()== ((double) Math.round(0.95*(2.3+6.7+2.5) * 100))/100);}
 		
 		catch(NoCourierFoundToDeliver e){
 			e.getMessage();

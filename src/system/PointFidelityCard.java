@@ -35,6 +35,7 @@ public class PointFidelityCard implements FidelityCard, Serializable{
 		else{
 			this.addPoints(price);			
 		}
+		price = ((double) Math.round(price * 100))/100;
 		return price;
 	}
 	

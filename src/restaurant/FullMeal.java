@@ -63,7 +63,9 @@ public class FullMeal extends Meal implements Serializable{
 		price += this.getMainDish().getPrice();}
 		if (this.getDesert()!=null){
 		price += this.getDesert().getPrice();}
-		return price * 0.95;
+		price *= 0.95;
+		price = ((double) Math.round(price * 100))/100;
+		return price;
 	}
 
 	/** Removes one singleItem from the meal, and sets the complete-status to false. Checks if the item that is removed, is in the meal.

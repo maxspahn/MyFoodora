@@ -49,6 +49,7 @@ public class LotteryFidelityCard implements FidelityCard, Serializable{
 				System.out.println(e.getMessage());
 			}
 		}
+		price = ((double) Math.round(price * 100))/100;
 		return price;
 		
 	}

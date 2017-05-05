@@ -1,0 +1,24 @@
+login batona wer123
+
+createOrder fiveFields failOrder
+
+addItem2Order failOrder Soup
+
+logout
+
+login maxspahn3 wer123ich
+
+showOrder failOrder
+addItem2Order failOrder Fruit_Salad
+
+showHistoryOfOrders
+
+logout
+
+login batona wer123
+
+addItem2Order failOrder mousse_au_chocolat
+
+endOrder failOrder
+
+logout

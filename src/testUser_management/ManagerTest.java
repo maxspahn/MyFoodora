@@ -353,7 +353,7 @@ public class ManagerTest {
 		
 		try {
 			// tests the income calculation
-			assertTrue(manager.computeTotalIncomeAndProfitOverPeriod(01, 3, 2017, 31, 5, 2017)[0] == 32.185 + 12.85);
+			assertTrue(manager.computeTotalIncomeAndProfitOverPeriod(01, 3, 2017, 31, 5, 2017)[0] == 45.04);
 		} catch (OrderNotCompletException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

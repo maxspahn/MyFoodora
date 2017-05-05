@@ -35,6 +35,7 @@ public class BasicFidelityCard implements FidelityCard, Serializable{
 			}
 			price += temp;
 		}
+		price = ((double) Math.round(price * 100))/100;
 		return price;
 	}
 	

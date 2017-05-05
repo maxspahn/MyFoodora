@@ -22,7 +22,7 @@ public class TestBasicFidelityCard {
 		myFoodora.load();
 		Order order = myFoodora.getCompleteOrders().get(0);
 		double price = order.getPrice();
-		double computedPrice = 0.95*(2+11.3)+3.1;
+		double computedPrice = (double) Math.round((0.95*(2+11.3)+3.1) * 100)/100;
 		assertTrue(price==computedPrice);
 	}
 	 

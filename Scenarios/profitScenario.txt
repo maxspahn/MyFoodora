@@ -1,0 +1,34 @@
+login batona wer123
+
+createOrder chezmarie oldOrder
+addItem2Order oldOrder entrecote
+endOrder oldOrder 03/02/2015
+
+showHistoryOfOrders
+
+logout
+
+
+
+
+login sparrowj blackPearl
+
+showTotalProfit
+
+showTotalProfit 01/02/2015 15/05/2015
+
+showTotalProfit 01/03/2017 01/05/2017
+showTotalProfit
+
+setProfitPolicy deliveryCost
+
+setFeesPolicy 0.2 1
+setTarget 12 10
+showTarget
+setFeesPolicy 0.5 2
+
+showCouriersTop
+
+logout
+
+
