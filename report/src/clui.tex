@@ -50,8 +50,8 @@ preexisting restaurants with the test-file \textit{my\textunderscore foodora.ini
 \subsection{Test Scenario}
 \label{sub:test_scenario}
 
-It is crucial to this scenario that it is executed in order because some of the created items and 
-users are used in the following commands. Furthermore whenever you shut down the program do it by
+\textbf{It is crucial to this scenario that it is executed in order because some of the created items and 
+users are used in the following commands.} Furthermore whenever you shut down the program do it by
 typing \lstinline|q| in order to serialize the data. This can be done after each step, then the 
 serie of commands can be continued.
 
@@ -97,52 +97,4 @@ serie of commands can be continued.
 	
 		
 \end{enumerate}
-
-\paragraph{Explanation of the two test-files}
-\label{par:explanation_of_the_two_test_files}
-
-\textsc{my\textunderscore foordora.ini}
-\begin{itemize}[itemsep=0mm]
-	\item login as manager
-	\item register two managers
-	\item logout
-	\item register five restaurants, two couriers, seven customers
-	\item login as restaurant ``chezmarie''
-	\item add dish to the menu of ``chezmarie''
-	\item logout
-\end{itemize}
-
-\textsc{testScenario1.txt}
-\begin{itemize}[itemsep=0mm]
-	\item login as manager
-	\item add restaurant with the username le\_vieux\_campeur
-	\item add a new courier laura mendez
-	\item add a new costomer max spahn
-	\item show the list of couriers
-	\item show the list of restaurants
-	\item show memu of a specific restaurant, fiveFields
-	\item show the list of customers 
-	\item logout as manager
-	\item login as the new restaurant vieux
-	\item add a dish to the menu of the restaurant
-	\item show the updated menu of the restaurant
-	\item create a full meal with the created items
-	\item set this meal as local special
-	\item logout as restaurant
-	\item show the updated menu of the restaurant
-	\item login as new customer max spahn
-	\item create order and add items to the order
-	\item finish the order
-	\item logout as customer
-	\item login as manager
-	\item show the total profit of the system 
-	\item show total profit between 1 March and 1 May
-	\item set the profit policy to deliverCost
-	\item set fees according to this police(target is the same profit as last month) 
-	\item show the new fees
-	\item set targets and show targets
-	\item set fees according to the policy and show the new fees
-        \item show the couriers sorted by the number of deliverd orders
-        \item logout as manage
-\end{itemize}
 
