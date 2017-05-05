@@ -17,11 +17,10 @@ Furthermore, all the tests have been distributed so that those which test the sa
 	\item{\textbf{test\_Usermanagement}} Contains all the tests of the \textit{user\_management} package.
 \end{itemize}
 Each package holds classes, and each of them contains the tests of one class. For instance, the class called \textit{TestMyFoodora} in the package \textit{testSystem} holds all the tests of the class \textit{MyFoodora}.  
-Note that there is no test for the packages \textit{commandLineTool}, \textit{GUI} and \textit{scenario}. The reasons are as follows:
+Note that there is no test for the packages \textit{commandLineTool} and \textit{GUI}. The reasons are as follows:
 \begin{itemize}
 	\item{\textit{commandLineTool}} package contains the Command-Line User Interface. It is not possible to test it with JUnit-Tests because running it needs to input command lines in the console. Nevertheless, it can be tested thanks to the command line "runtest" which runs an input file or a default file if no input file is given.
 	\item{\textit{GUI}} package contains the Graphical User Interface. We did not find a way to test it other than doing it by hand by using the mouse.
-	\item{\textit{scenario}} package contains scenarios which test the software.
 \end{itemize}
 
 \subsection{Problems solved}
@@ -60,8 +59,8 @@ In order to know how much of the program had been tested by the JUnit-Tests, we 
 \end{figure}
 As illustrated in the figure, the first column of the chart shows the coverage percentage of the code which is tested by the JUnit-Tests. One can notice that:
 \begin{itemize}
-	\item{} The packages \textit{GUI}, \textit{commandLineTool} and \textit{scenario} are not tested (see explication \ref{sub:test_organisation}).
-	\item{} The total coverage is just 26.7\% because the packages \textit{GUI}, \textit{commandLineTool} and \textit{scenario} represent more than half of the code.
+	\item{} The packages \textit{GUI} and \textit{commandLineTool} are not tested (see explication \ref{sub:test_organisation}).
+	\item{} The total coverage is just 27.4\% because the packages \textit{GUI} and \textit{commandLineTool}  represent more than half of the code.
 	\item{} All of the packages \textit{user\_management}, \textit{system} and \textit{restaurant} are tested at more than 60\% (even 78\% for \textit{restaurant}). Actually, the plugin takes into account the getters and setters which are not necessarily used during the tests, which means that the core of the classes are tested at more than 60\%.
 	\item{} The packages \textit{testSystem}, \textit{testUser\_management} and \textit{testRestaurant} are not fully tested because the tests contain \textit{catch} blocks which are not executed while running them.
 \end{itemize}
