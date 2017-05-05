@@ -1,0 +1,17 @@
+login sparrowj blackPearl
+
+setProfitPolicy deliveryCost
+
+setFeesPolicy 0.2 1
+setTarget 12 10
+showTarget
+setFeesPolicy 0.5 2
+
+
+setProfitPolicy servicefee
+setFeesPolicy 0.4 5
+
+
+logout
+
+

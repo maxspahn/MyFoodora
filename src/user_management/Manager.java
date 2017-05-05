@@ -171,13 +171,13 @@ public class Manager extends PhysicalUser implements Serializable{
 	 */
 	public void setTargetPolicy(String targetPolicy){
 		if(targetPolicy.equalsIgnoreCase("deliveryCost")){
-			this.myFoodora.setTargetPolicy(new TargetProfit_DeliveryCost());
+			this.getMyFoodora().setTargetPolicy(new TargetProfit_DeliveryCost());
 		}
 		else if(targetPolicy.equalsIgnoreCase("markupPercentage")){
-			this.myFoodora.setTargetPolicy(new TargetProfit_Markup());
+			this.getMyFoodora().setTargetPolicy(new TargetProfit_Markup());
 		}
 		else if(targetPolicy.equalsIgnoreCase("serviceFee")){
-			this.myFoodora.setTargetPolicy(new TargetProfit_ServiceFee());
+			this.getMyFoodora().setTargetPolicy(new TargetProfit_ServiceFee());
 		}
 		else{System.out.println("The choosen target-Policy does not exist");}
 	}

@@ -13,6 +13,7 @@ public class TargetProfit_DeliveryCost implements TargetPolicy, Serializable{
 	 */
 	public TargetProfit_DeliveryCost() {
 		super();
+		System.out.println("in TargetProfit_DeliveryCost line 16");
 	}
 	
 	
@@ -47,6 +48,11 @@ public class TargetProfit_DeliveryCost implements TargetPolicy, Serializable{
 			myFoodora.setService_fee(value2);			
 		}
 		
+	}
+	
+	public String toString(){
+		String s = "Delivery Cost";
+		return s;
 	}
 
 

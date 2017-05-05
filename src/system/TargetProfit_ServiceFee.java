@@ -18,6 +18,7 @@ public class TargetProfit_ServiceFee implements TargetPolicy, Serializable{
 	 */
 	@Override
 	public void setTargetPolicy(MyFoodora myFoodora, double value1,	double value2) throws TargetCannotBeFullfilled {
+		System.out.println("in TargetProfit_ServiceFee");
 		double serviceFee = -1;
 		if(myFoodora.getTargetProfit() == 0){
 			myFoodora.setTargetProfit(myFoodora.computeValuesLastMonth()[1]);
@@ -42,6 +43,13 @@ public class TargetProfit_ServiceFee implements TargetPolicy, Serializable{
 			myFoodora.setService_fee(serviceFee);			
 		}
 		
+		
 	}
+	
+	public String toString(){
+		String s = "service fee";
+		return s;
+	}
+	
 
 }

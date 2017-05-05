@@ -45,5 +45,10 @@ public class TargetProfit_Markup implements TargetPolicy, Serializable  {
 		}
 		
 	}
+	
+	public String toString(){
+		String s = "markup Percentage";
+		return s;
+	}
 
 }

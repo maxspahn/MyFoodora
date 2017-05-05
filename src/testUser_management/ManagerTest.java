@@ -280,6 +280,25 @@ public class ManagerTest {
 		
 	}
 	
+	@Test
+	public void TestSetProfitPolicy(){
+		MyFoodora m = new MyFoodora();
+		m.load();
+		
+		Manager manager = null;
+		manager = m.getListManager().get(1);
+		
+		manager.setTargetPolicy("serviceFee");
+		
+		assertTrue(m.getTargetPolicy().toString().equalsIgnoreCase("service fee"));
+		
+
+		manager.setTargetPolicy("markupPercentage");
+		
+		assertTrue(m.getTargetPolicy().toString().equalsIgnoreCase("markup percentage"));
+		
+	}
+	
 	
 	/**Test to set the delivery policy.
 	 * 
