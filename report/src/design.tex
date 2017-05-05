@@ -90,16 +90,14 @@ choice we are not obliged to search in the list if one type already exists when 
 It seemend more practical and it is unlikely that another singleItem is added.
 
 \paragraph{Creation of new \textit{Users}}
-
+So as to handle the creation of the 4 different users, a \textbf{Factory method pattern} has been implemented.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1\linewidth]{./ima/userFactory.jpg}
-	\caption{./ima/UserFactory}
+	\caption{Factory method pattern for the creation of users}
 	\label{fig:./ima/userFactory}
 \end{figure}
-
-TODO
-
+As illustrated in the previous graph diagram, it is composed of 2 abstract classes: the factory \textit{UserFactory} which contains the method \textit{createAccount()} and the class \textit{User}. Each subclass of \textit{UserFactory} has its own definition of the method \textit{createAccount()} so that \textit{CourierFactory} creates a new courier, \textit{ManagerFactory} a new manager... This factory method pattern is totally OPEN-CLOSE.
 \subsection{DesignPattern : Strategy-Pattern}
 \label{sub:designpattern_strategy_pattern}
 
@@ -139,3 +137,18 @@ of an order.
 	\caption{Fidelity Cards}
 	\label{fig:fidelitycards}
 \end{figure}
+
+\subsection{DesignPattern : Observer-Pattern}
+\label{sub:designpattern_observer_pattern}
+One of the requirements of the design brief was to enable the customers to receive notifications when a restaurant changes its meal of the week or its special discount. To do so, an \textbf{Observer pattern} has been implemented.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\linewidth]{./ima/observerV2.jpg}
+	\caption{Observer pattern for the notifications}
+	\label{fig:./ima/observer}
+\end{figure}
+
+The class \textit{Restaurant} is the \textbf{concrete observable}, and the class \textit{Customer} is the \textbf{concrete observer}. One can notice that the concrete observable does not have a list containing all the observers, nor the methods to add or remove an observer. The observers are those who agreed to receive sepcial offers, so we could have created a list containing all of them. Nevertheless, there is already a list containing all the customers as attribute of \textit{MyFoodora}, so rather than creating twice a list of customers, we chose to directly use the existing list of MyFoodora as list of observers. This is in the method \textit{notifyObservers()} that the spam-agreement is checked and the notification is sent only to those who have \textit{spamAgreement = true}.
+
+\lstinputlisting[firstline=105,lastline=115]{./../src/user_management/Restaurant.java}
