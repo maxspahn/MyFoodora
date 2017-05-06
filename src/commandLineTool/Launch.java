@@ -40,45 +40,46 @@ public class Launch {
 	
 	public void fillCommandList(){
 		commands = new ArrayList<String>();
-		commands.add("login \t\t\t<username> <password>");
-		commands.add("logout \t\t\t<>");
-		commands.add("registerRestaurant \t<name> <adress> <username> <password>");
-		commands.add("registerCustomer \t<firstName> <lastName> <username> <adress> <password>");
-		commands.add("registerCourier \t<firstName> <lastName> <username> <position> <password>");
-		commands.add("addDishRestaurantMenu \t<dishName> <dishCategory> <foodCategory> <unitPrice>");
-		commands.add("createMeal \t\t<mealName>");
-		commands.add("addDish2Meal \t\t<dishName> <mealName>");
-		commands.add("showMeal \t\t<mealName>");
-		commands.add("setSpecialOffer \t<mealName>");
-		commands.add("removeFromSpecialOffer \t<mealName>");
-		commands.add("createOrder \t\t<restaurantName> <orderName>");
-		commands.add("addItem2Order \t\t<orderName> <itemName>");
-		commands.add("endOrder \t\t<orderName>");
-		commands.add("onDuty \t\t\t<>");
-		commands.add("offDuty \t\t<>");
-		commands.add("findDeliverer \t\t<orderName>");
-		commands.add("setDeliveryPolicy \t<delPolicyName>");
-		commands.add("setProfitPolicy \t<ProfitPolicyName>");
-		commands.add("associateCard \t\t<userName> <cardType>");
-		commands.add("showCouriers \t\t<>");
-		commands.add("showCourierDeliveries \t<>");
-		commands.add("showRestaurantTop \t<>");
-		commands.add("showCouriersTop \t<>");
-		commands.add("showCustomers \t\t<>");
-		commands.add("showMenuItem \t\t<restaurant-name>");
-		commands.add("showTotalProfit \t<>");
-		commands.add("showTotalProfit \t<startDate> <endDate> : format dd/mm/yyyy");
-		commands.add("runTest \t\t<testScenario-file> : Scenario-files that are available:\n" +
+		commands.add("[A] login \t\t\t<username> <password>");
+		commands.add("[A] logout \t\t\t<>");
+		commands.add("[A] registerRestaurant \t<name> <adress> <username> <password>");
+		commands.add("[A] registerCustomer \t<firstName> <lastName> <username> <adress> <password>");
+		commands.add("[A] registerCourier \t<firstName> <lastName> <username> <position> <password>");
+		commands.add("[R] addDishRestaurantMenu \t<dishName> <dishCategory> <foodCategory> <unitPrice>");
+		commands.add("[R] createMeal \t\t<mealName>");
+		commands.add("[R] addDish2Meal \t\t<dishName> <mealName>");
+		commands.add("[A] showMeal \t\t<mealName>");
+		commands.add("[R] setSpecialOffer \t<mealName>");
+		commands.add("[R] removeFromSpecialOffer \t<mealName>");
+		commands.add("[C] createOrder \t\t<restaurantName> <orderName>");
+		commands.add("[C] addItem2Order \t\t<orderName> <itemName>");
+		commands.add("[C] endOrder \t\t<orderName>");
+		commands.add("[D] onDuty \t\t\t<>");
+		commands.add("[D] offDuty \t\t<>");
+		commands.add("[A] findDeliverer \t\t<orderName>");
+		commands.add("[M] setDeliveryPolicy \t<delPolicyName>");
+		commands.add("[M] setProfitPolicy \t<ProfitPolicyName>");
+		commands.add("[M] associateCard \t\t<userName> <cardType>");
+		commands.add("[M] showCouriers \t\t<>");
+		commands.add("[M] showCourierDeliveries \t<>");
+		commands.add("[M] showRestaurantTop \t<>");
+		commands.add("[M] showCouriersTop \t<>");
+		commands.add("[M] showCustomers \t\t<>");
+		commands.add("[A] showMenuItem \t\t<restaurant-name>");
+		commands.add("[M] showTotalProfit \t<>");
+		commands.add("[M] showTotalProfit \t<startDate> <endDate> : format dd/mm/yyyy");
+		commands.add("[A] runTest \t\t<testScenario-file> : Scenario-files that are available:\n" +
 				"\t\t\t\t my_foodora.ini, showScenario.txt, profitScenario.txt, orderScenario.txt, addItemsScenario.txt " );
-		commands.add("help \t\t\t<>");
-		commands.add("showRestaurants \t<>");
-		commands.add("registerManager \t<name> <userName> <adress> <password>");
-		commands.add("showFees \t\t<>");
-		commands.add("setFeesPolicy \t\t<value1> <value2>");
-		commands.add("setTarget \t\t<targetCommands> <targetProfit>");
-		commands.add("showTarget \t\t<>");
-		commands.add("showOrder : \t\t<orderName>");
-		commands.add("showHistoryOfOrders\t<>");
+		commands.add("[A] help \t\t\t<>");
+		commands.add("[A] showRestaurants \t<>");
+		commands.add("[M] registerManager \t<name> <userName> <adress> <password>");
+		commands.add("[M] showFees \t\t<>");
+		commands.add("[M] setFeesPolicy \t\t<value1> <value2>");
+		commands.add("[M] setTarget \t\t<targetCommands> <targetProfit>");
+		commands.add("[M] showTarget \t\t<>");
+		commands.add("[C] showOrder : \t\t<orderName>");
+		commands.add("[C] showHistoryOfOrders\t<>");
+		commands.add("[C] getNotifications \t<>");
 
 		Collections.sort(commands, String.CASE_INSENSITIVE_ORDER);
 	}
@@ -268,6 +269,9 @@ public class Launch {
 		case "showhistoryoforders" :
 			this.showHistoryOfOrders(args);
 			break;
+		case "getnotifications" :
+			this.getNotifications(args);
+			break;
 		default:
 			System.out.println("This command does not exist, 'help' for information");
 		}
@@ -455,6 +459,16 @@ public class Launch {
 			} catch (ItemDoesNotExist e) {
 				System.out.println(e.getMessage());
 			}
+		}
+	}
+	
+	/** A customer can get the most recent notifications.
+	 * @param args empty
+	 */
+	public void getNotifications(String [] args){
+		if(rightNumberofArguments(args, 1) && isCustomer()){
+			System.out.println(((Customer) this.getCurrentUser()).getNotifications());
+			
 		}
 	}
 	
@@ -771,7 +785,12 @@ public class Launch {
 	 */
 	public void help(String [] args){
 		if(rightNumberofArguments(args, 1)){
-			System.out.println(this.commandsToString());
+			char type = this.getUserType().charAt(0);
+			for (String command : this.commands) {
+				if(command.charAt(1) == type || command.charAt(1) == 'A'){
+					System.out.println(command.substring(4, command.length()));
+				}
+			}
 		}
 	}
 	
@@ -897,11 +916,11 @@ public class Launch {
 	 * @return
 	 */
 	public String getUserType(){
-		if(this.getCurrentUser() instanceof Manager){return "Manager";}
-		else if(this.getCurrentUser() instanceof Restaurant) {return "Restaurant";}
-		else if(this.getCurrentUser() instanceof Courier) {return "Courier";}
-		else if(this.getCurrentUser() instanceof Customer){return "Customer";}
-		else{return "not logged in";}
+		if(this.getCurrentUser() instanceof Manager){return "M";}
+		else if(this.getCurrentUser() instanceof Restaurant) {return "R";}
+		else if(this.getCurrentUser() instanceof Courier) {return "D";}
+		else if(this.getCurrentUser() instanceof Customer){return "C";}
+		else{return "A";}
 	}
 
 	/**

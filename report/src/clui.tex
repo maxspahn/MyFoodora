@@ -9,14 +9,14 @@ interface. The use of this feature is explained in this part of the report.
 
 The different required commands were easy to define since the whole system that had been build 
 previously was about to be used in the interface. In the package \textsc{commandLineTool} we 
-stored all functions in \textsc{Launch}. We decided not to use a pattern separating
+stored all functions in \lstinline|Launch|. We decided not to use a pattern separating
 visual functions from back-end functions, because we are convinced that it was not necessary for a
 project of such a small size and it would not justify the additional work time that it might 
 cost.
 
 One major problem we encountered in the process was the treatment of the input arguments because 
 the number varies depending on the command. When the user does type a command he creates a 
-\textsc{String} that is temporarily stored by the program. The next step is the separation of 
+\lstinline|String| that is temporarily stored by the program. The next step is the separation of 
 the different arguments in a array of Strings. It was required to use quotation marks for the 
 arguments in order to avoid that arguments with white spaces, such as restaurant names,  are cut
 into multiple arguments.
@@ -26,6 +26,13 @@ our implementation does avoid the use of arguments with white spaces, by for exa
 exclusively with the Usenet. This choice is arguably a bit ``dirty'' but allows to better 
 imitate the traditional command line syntax known from \textsc{UNIX} and improves the efficiency 
 while using the tool.
+
+It was also necessary to deal with permission rights in the user interface because there are 
+different type of users who can executed different actions, i.e. the restaurant cannot see
+the number of delivered orders by one specific courier. To fullfill this we created methods for
+every user type that check if the current user is of that type. If it is not the case, the 
+permission to the command is denied and the user is informed about it. Furthermore the 
+command help does not show commands that are not available for the current user.
 
 The input of dates and addresses was also an issue because the format is to be chosen. If the 
 following format is not respected, the command does not work like it should.
@@ -37,7 +44,7 @@ following format is not respected, the command does not work like it should.
 \subsection{Use and Testing}
 \label{sub:use_and_testing}
 
-To launch the tool you have to open the file \textsc{src/commandLineTool/Launch.java} and execute
+To launch the tool you have to open the file \textit{src/commandLineTool/Launch.java} and execute
 it. The main method starts the interaction loop, in which the user can type the commands. To get
 a list of all available commands one has to type \lstinline|help|. 
 
@@ -57,11 +64,15 @@ serie of commands can be continued.
 
 \begin{enumerate}[itemsep=0mm]
 	\item start the program and type \lstinline|help| to see the available options.
+		Note that only those commands are shown for which the current user has the 
+		permission, i.e. you are not allowed to see the profits before the login as 
+		manager.
 	\item load several users by typing \lstinline|runtest my_foodora.ini|. This command loads 
 		some users to system, you can see the serie of commands printed in the console.
 	\item shut down the system by typing \lstinline|q|. This stops the main-method.
 	\item restart the program and execute \lstinline|runtest my_foodora.ini|. The system's 
-		status has been saved thanks to the \textsc{Serialization} \ref{sub:serialization}. So when the program tries
+		status has been saved thanks to the \textsc{Serialization} \ref{sub:serialization}.
+		So when the program tries
 		to create the users, it fails because they already exist. The error messages are 
 		printed to the console.
 	\item show the users by typing \lstinline|runtest showScenario.txt|. Three additional users
