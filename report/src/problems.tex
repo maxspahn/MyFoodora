@@ -47,7 +47,9 @@ to fullfill this requirement.
 
 \subsection{Calculation of the earnings between two dates}
 \label{calculation-between-2-dates}
-Another requirement was to compute different earnings (like total income, profit...) between two dates chosen by the user. 
+Another requirement was to compute different earnings (like total income, profit...) between two dates chosen by the user. To do so, the idea was to sort all the orders according to the date they were made. Then, the difficulty was to find the orders which had been made between the two dates. We implemented this algorithm:
+\lstinputlisting[firstline=1,lastline=34]{./Code/src/Code/algorithmFindProfit.txt}
+The code corresponding to this algorithm can be found in the method \textit{getIncomeForPeriod(...)} of \textit{MyFoodora}.
 
 \subsection{Exceptions}
 \label{sub:exceptions}
