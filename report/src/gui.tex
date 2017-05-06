@@ -24,6 +24,10 @@ Doing so leads to a non-modular code, and difficult to understand (because it is
 \lstinputlisting[firstline=1,lastline=8]{./Code/src/Code/innerClasses.txt}
 Doing so enables having independant listeners, and therefore the code is concerned with \textit{doing} rather than \textit{type checking}.
 
+	\item Almost each panel has a BACK button. \textbf{To implement the action "back", we chose to use a stack} (called \textit{activatedPanels}, attribute of \textit{PanelCreator}). Hence each time a panel is visible, it is added to the stack. When a user clicks on the BACK button, the current panel (which is the last of the stack) is removed from \textit{activatedPanels} and is set non-visible. The previous panel is then removed from the stack and becomes visible.
+	
+	\item To create the panels in an easy way and put the buttons where desired, \textbf{we chose to use no layout and to place and size each component with \textit{setBounds()}}. Nevertheless, at the end of the implementation of the GUI, we noticed that the compoment size depends on the resolution of the screen. As a consequence, while the panels are adapted to one pixel resolution, they can go out the screen of a different computer. To solve this problem, 2 coefficients \textit{coeffHeight} and \textit{coeffWidth} (attributes of \textit{PanelCreator}) were added. They represent the quotient of the number of pixels of the user computer divided by the number of pixels of the screen used to create the GUI.
+	
 	\item Every user panel has the same design:
 \begin{figure}[H]
 	\centering
@@ -33,9 +37,6 @@ Doing so enables having independant listeners, and therefore the code is concern
 \end{figure}
 On the right (in black), there are the main actions the user can do, like make an order for a customer. On the top, there is a \textit{JMenuBar} (in red) containing all secondary actions like get/set the profile, get the notifications... At the center (in green), there is a big \textit{JLabel} to display the results of the actions.
 
-	\item Almost each panel has a BACK button. \textbf{To implement the action "back", we chose to use a stack} (called \textit{activatedPanels}, attribute of \textit{PanelCreator}). Hence each time a panel is visible, it is added to the stack. When a user clicks on the BACK button, the current panel (which is the last of the stack) is removed from \textit{activatedPanels} and is set non-visible. The previous panel is then removed from the stack and becomes visible.
-	
-	\item To create the panels in an easy way and put the buttons where desired, \textbf{we chose to use no layout and to place and size each component with \textit{setBounds()}}. Nevertheless, at the end of the implementation of the GUI, we noticed that the compoment size depends on the resolution of the screen. As a consequence, while the panels are adapted to one pixel resolution, they can go out the screen of a different computer. To solve this problem, 2 coefficients \textit{coeffHeight} and \textit{coeffWidth} (attributes of \textit{PanelCreator}) were added. They represent the quotient of the number of pixels of the user computer divided by the number of pixels of the screen used to create the GUI.
 
 \end{itemize}
 

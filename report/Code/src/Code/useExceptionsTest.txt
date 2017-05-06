@@ -1,0 +1,11 @@
+@Test
+public void testAddItemDoesNotExistToMeal(){
+	Menu menuTest = new Menu("Menu");
+	try {
+		menuTest.addItem("fullmeal", "LocalAdvise");
+		menuTest.addItemToMeal("LocalAdvise", "tomato"); //The item "tomato" does not exist
+		assertTrue(false); 
+	} catch (ItemDoesNotExist e) {
+		//The exception expected to be thrown
+		assertTrue(true);}
+}
