@@ -119,7 +119,14 @@ serie of commands can be continued.
 		target policy is changed ot \textit{serviceFee-based}. When computing the fees, there
 		occures an error, because the target cannot be fullfilled with the given values for 
 		the two other values (markup-Percentage and delivery-Cost).
-		
+	\item notify customers about special offers in restaurants by typing
+		\lstinline|runtest notifyScenario.txt|. First you see the notifications about the 
+		special offer set previously in \textit{addItemsScenario.txt}. Then the restaurant
+		\textsc{typingRoom} sets another specialoffer \textsc{fiveFields} changes its
+		default discount. The user \textsc{batona} will recive two notifications. When he 
+		calls \lstinline|getNotifications| a second time, they have disapperead to 
+		simulate thate they were read.
+			
 	
 		
 \end{enumerate}

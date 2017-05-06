@@ -6,3 +6,4 @@ runtest orderScenario.txt
 runtest order2Scenario.txt
 runtest profitScenario.txt
 runtest targetScenario.txt
+runtest notifyScenario.txt

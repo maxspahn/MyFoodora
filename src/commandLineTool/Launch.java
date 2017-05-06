@@ -80,6 +80,7 @@ public class Launch {
 		commands.add("[C] showOrder : \t\t<orderName>");
 		commands.add("[C] showHistoryOfOrders\t<>");
 		commands.add("[C] getNotifications \t<>");
+		commands.add("[R] setDiscount \t\t<discount>");
 
 		Collections.sort(commands, String.CASE_INSENSITIVE_ORDER);
 	}
@@ -272,6 +273,9 @@ public class Launch {
 		case "getnotifications" :
 			this.getNotifications(args);
 			break;
+		case "setdiscount" :
+			this.setDiscount(args);
+			break;
 		default:
 			System.out.println("This command does not exist, 'help' for information");
 		}
@@ -420,6 +424,15 @@ public class Launch {
 			} catch (WrongItemAdded | ItemDoesNotExist e) {
 				System.out.println(e.getMessage());
 			}
+		}
+	}
+	
+	/** A restaurant can set the default discount.
+	 * @param args discount.
+	 */
+	public void setDiscount(String [] args){
+		if(rightNumberofArguments(args, 2) && isRestaurant()){
+			((Restaurant) this.getCurrentUser()).setDiscount(Double.parseDouble(args[1]));
 		}
 	}
 	

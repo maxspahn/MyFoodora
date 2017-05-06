@@ -36,8 +36,11 @@ one is the \textit{item-name} and the other is a \textit{count}, an integer stor
 of sold items.
 This class implements the interface \lstinline|Comparable <SortPolicy>| and comes with 
 an imlementation of the method \lstinline|compareTo(SortPolicy sort)| to compare two
-objects according to their count. There exist three subclasses, \lstinline|FullMealSort|,
-\lstinline|HalfMealSort| and \lstinline|SingleItemSort|. Within each 
+objects according to their count.
+
+\lstinputlisting[firstline=27, lastline=32]{../../src/system/SortPolicy.java}
+
+For every item-type there is a subclass of it. Within each 
 \lstinline|restaurant| there are three \lstinline|TreeSet<SortPolicy>|, one for each 
 item-type. The advantage of this structure is that it is sorted immediatly when adding a new 
 item. When an order is completed all its items are added to the correspending TreeSet.
