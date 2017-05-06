@@ -23,6 +23,7 @@ This means that every button has the same action listener, which leads to write 
 Doing so leads to a non-modular code, and difficult to understand (because it is messy). \textbf{To avoid this problem, we decided to user inner classes in the class \textit{Launch}}: each inner class implements \textit{ActionListener}.
 \lstinputlisting[firstline=1,lastline=8]{./Code/src/Code/innerClasses.txt}
 Doing so enables having independant listeners, and therefore the code is concerned with \textit{doing} rather than \textit{type checking}.
+This idea came from the book \textit{Thinking In Java, 2nd edition} (see reference \ref{references}).
 
 	\item Almost each panel has a BACK button. \textbf{To implement the action "back", we chose to use a stack} (called \textit{activatedPanels}, attribute of \textit{PanelCreator}). Hence each time a panel is visible, it is added to the stack. When a user clicks on the BACK button, the current panel (which is the last of the stack) is removed from \textit{activatedPanels} and is set non-visible. The previous panel is then removed from the stack and becomes visible.
 	
