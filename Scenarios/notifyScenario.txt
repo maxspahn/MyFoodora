@@ -1,10 +1,24 @@
+login batona wer123
+
+getNotifications
+
+logout
+
 login typingRoom je-9ii
 
 setSpecialOffer Classic
 
 logout
 
+login fiveFields 5fs
+
+setDiscount 0.2
+
+logout
+
 login batona wer123
+
+getNotifications
 
 getNotifications
 

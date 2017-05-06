@@ -647,7 +647,7 @@ public class Launch{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			Customer cust = (Customer) currentUser;
-			String[] notifications = cust.getNotifications().split("\r\n");
+			String[] notifications = cust.readNotifications().split("\r\n");
 			String display = "<html>";
 			for (String s : notifications){
 				display += s + "<br>";

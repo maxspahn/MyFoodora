@@ -13,9 +13,10 @@ public class Main_application {
 		MyFoodora myFoodora = new MyFoodora();
 		myFoodora.load();
 		Restaurant rest = myFoodora.getListRestaurant().get(1);
-		Menu menu = new Menu("Menu");
-		System.out.println(rest.getDeliverdSingleItems());
-		rest.getMenu().getItemFactoryProducer().getFactory("meal");
+		rest.setMealOfTheWeek("classic");
+		Customer cust = myFoodora.getListCustomer().get(0);
+		System.out.println(cust.readNotifications());
+		System.out.println(cust.getNotifications());
 	}
 	
 }

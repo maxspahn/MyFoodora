@@ -467,8 +467,7 @@ public class Launch {
 	 */
 	public void getNotifications(String [] args){
 		if(rightNumberofArguments(args, 1) && isCustomer()){
-			System.out.println(((Customer) this.getCurrentUser()).getNotifications());
-			
+			System.out.println(((Customer) this.getCurrentUser()).readNotifications());
 		}
 	}
 	

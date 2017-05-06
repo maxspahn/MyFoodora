@@ -37,15 +37,16 @@ public class Customer extends PhysicalUser implements PeopleToNotify, Serializab
 	/**
 	 * @return A string containing all the received notifications.
 	 */
-	public String getNotifications(){
+	public String readNotifications(){
 		String notificationString = "Received by "+this.contactForOffers+":"+"\r\n"+this.notifications.get(0)+"\r\n";
 		if (this.notificationNumber>0){
 		for (int i = 1; i < this.notifications.size(); i++) {
-			String newNotification = this.notifications.get(i)+"\r\n";
+			String notif = this.notifications.get(i);
+			String newNotification = notif+"\r\n";
 			notificationString +=newNotification;
 			
 			//Remove the notifications while reading them
-			this.notifications.remove(newNotification);
+			this.notifications.remove(notif);
 		}
 		
 		//Reset the number of notifications
@@ -219,9 +220,12 @@ public class Customer extends PhysicalUser implements PeopleToNotify, Serializab
 	public void setSpamAgreement(boolean spamAgreement) {
 		this.spamAgreement = spamAgreement;
 	}
-	
-	
-	
-	
-	
+
+	/**
+	 * @return the notifications
+	 */
+	public ArrayList<String> getNotifications() {
+		return notifications;
+	}
+		
 }
