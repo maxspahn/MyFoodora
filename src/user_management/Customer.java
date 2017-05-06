@@ -40,16 +40,16 @@ public class Customer extends PhysicalUser implements PeopleToNotify, Serializab
 	public String readNotifications(){
 		String notificationString = "Received by "+this.contactForOffers+":"+"\r\n"+this.notifications.get(0)+"\r\n";
 		if (this.notificationNumber>0){
+			ArrayList<String> notif = new ArrayList<String>();
 		for (int i = 1; i < this.notifications.size(); i++) {
-			String notif = this.notifications.get(i);
-			String newNotification = notif+"\r\n";
+			notif.add(this.notifications.get(i));
+			String newNotification = this.notifications.get(i)+"\r\n";
 			notificationString +=newNotification;
-			
-			//Remove the notifications while reading them
-			this.notifications.remove(notif);
 		}
-		
-		//Reset the number of notifications
+		//Remove the notifications while reading them
+		for (int i = 0; i < notif.size(); i++) {
+			this.notifications.remove(notif.get(i));
+		}
 		}
 		this.notificationNumber = 0;
 		this.notifications.set(0, "You have 0 notification");
