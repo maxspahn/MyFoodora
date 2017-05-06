@@ -1,0 +1,6 @@
+public PanelCreator extends JFrame implements ActionListener{
+	...
+	this.panelFirstPage.getLogin().addActionListener(this);
+	this.panelFirstPage.getRegister().addActionListener(this);
+	...
+}

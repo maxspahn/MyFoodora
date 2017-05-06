@@ -1,0 +1,8 @@
+public class Launch{
+	public class LoginListener implements ActionListener{
+		@Override
+		public void actionPerformed(ActionEvent arg0) {...}}
+	public class RegisterListener implements ActionListener{
+		...}
+	...
+}
