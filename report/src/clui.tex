@@ -29,7 +29,7 @@ while using the tool.
 
 It was also necessary to deal with permission rights in the user interface because there are 
 different type of users who can executed different actions, i.e. the restaurant cannot see
-the number of delivered orders by one specific courier. To fullfill this we created methods for
+the number of delivered orders by one specific courier. To fulfill this we created methods for
 every user type that check if the current user is of that type. If it is not the case, the 
 permission to the command is denied and the user is informed about it. Furthermore the 
 command help does not show commands that are not available for the current user.
@@ -53,7 +53,7 @@ contain a list series of commands. To execute those commands one has to run the 
 \textit{runTest <fileName>}. By adding the fileName as an argument, it is possible to create 
 several test-Scenarios without changing the program. Hence, the user can load multiple 
 preexisting restaurants with the test-file \textit{my\textunderscore foodora.ini}.
-Otherwise, it is possible to navigate the software by directly login, using the following datas:
+Otherwise, it is possible to navigate the software by directly log-in, using the following data:
 \begin{itemize}
 	\item{}Username: \textit{sparrowj}, Password: \textit{blackPearl} to login as a manager (the CEO).
 	\item{}Username: \textit{batona}, Password: \textit{wer123} to login as a customer.
@@ -67,7 +67,7 @@ Otherwise, it is possible to navigate the software by directly login, using the 
 \textbf{It is crucial to this scenario that it is executed in order because some of the created items and 
 users are used in the following commands.} Furthermore whenever you shut down the program do it by
 typing \lstinline|q| in order to serialize the data. This can be done after each step, then the 
-serie of commands can be continued.
+series of commands can be continued.
 
 \begin{enumerate}[itemsep=0mm]
 	\item \lstinline|help| \\
@@ -77,7 +77,7 @@ serie of commands can be continued.
 		manager.
 	\item \lstinline|runtest my_foodora.ini| \\
 		Load several users. This command loads 
-		some users to system, you can see the serie of commands printed in the console.
+		some users to system, you can see the series of commands printed in the console.
 	\item shut down the system by typing \lstinline|q|. This stops the main-method.
 	\item \lstinline|runtest my_foodora.ini| \\
 		restart the program and execute \lstinline|runtest my_foodora.ini|. The system's 
@@ -92,14 +92,14 @@ serie of commands can be continued.
 		the customers.
 	\item \lstinline|runtest addItemsScenario.txt| \\
 		Add some items to the menu of a restaurant that was created previously. After the creation of three new 
-		singleItems the updated menu is printed to the console. Afterwards a meal is created
+		single-Items the updated menu is printed to the console. Afterwards a meal is created
 		containing the new items. It is set to be the offer of the week for this restaurant.
 		At the end you see once again the menu of the restaurant.
 	\item \lstinline|runtest orderScenario.txt| \\
 		Create an order and finish it. It 
 		creates a new order with the name \textit{testOrder} and adds four different items, 
-		including singleItems and meals. The order is shown and ``paid''. Then the history
-		of complete orders for this customer is printed to the console before the logout.
+		including single-Items and meals. The order is shown and ``paid''. Then the history
+		of complete orders for this customer is printed to the console before the log-out.
 	\item \lstinline|runtest order2Scenario.txt| \\
 		Test if the wrong user could modify or see the order of another user.
 		User \textsc{batona} creates an order but 
@@ -108,8 +108,8 @@ serie of commands can be continued.
 		user \textsc{batona} logs in again to finish his order.
 	\item \lstinline|runtest findDelScenario.txt| \\
 		Test the delivery system. It creates
-		an order in the restaurant \textsc{typingRoom}. Then you login as manager to 
-		associate a courier to this order. The asociated courier is printed to the console 
+		an order in the restaurant \textsc{typingRoom}. Then you log-in as manager to 
+		associate a courier to this order. The associated courier is printed to the console 
 		(he is seen to be \textit{off-duty} because he is just delivering the order). 
 		The courier is then set to be \textit{on-duty} once again. The whole process is 
 		usually done by the system, where the order would now be added to the history of 
@@ -117,23 +117,23 @@ serie of commands can be continued.
 	\item \lstinline|runtest profitScenario.txt| \\ 
 		Check the profits. First the customer batona creates an order and sets the completion
 		date to \textsc{03/02/2015}. You can see in the history of orders that it has been added.
-		Then you login as a manager to see different profits of the system,
+		Then you log-in as a manager to see different profits of the system,
 		the time period is printed to the console.
 	\item \lstinline|runtest targetScenario.txt| \\
-		Set the fees according to the different targetpolicies. It first sets the target policy to
+		Set the fees according to the different target-policies. It first sets the target policy to
 		\textit{deliveryCost-based} and computes the fees according to this policy. As 
 		target the profit of the previous month is used. Then the target is set manually and
 		the fees are once again computed and printed to the console. Afterwards the 
-		target policy is changed ot \textit{serviceFee-based}. When computing the fees, there
-		occures an error, because the target cannot be fullfilled with the given values for 
+		target policy is changed to \textit{serviceFee-based}. When computing the fees, there
+		occurs an error, because the target cannot be fulfilled with the given values for 
 		the two other values (markup-Percentage and delivery-Cost).
 	\item \lstinline|runtest notifyScenario.txt| \\
 		Notify customers about special offers. First you see the notifications about the 
 		special offer set previously in \textit{addItemsScenario.txt}. Then the restaurant
-		\textsc{typingRoom} sets another specialoffer \textsc{fiveFields} changes its
-		default discount. The user \textsc{batona} will recive two notifications. When he 
-		calls \lstinline|getNotifications| a second time, they have disapperead to 
-		simulate thate they were read.
+		\textsc{typingRoom} sets another special-offer \textsc{fiveFields} changes its
+		default discount. The user \textsc{batona} will receive two notifications. When he 
+		calls \lstinline|getNotifications| a second time, they have disappeared to 
+		simulate that they were read.
 	\item \lstinline|runtest all| \\
 		Run all the previously described scenarios in the order in which they were 
 		described. We do not advise not to run all scenarios this way because you will

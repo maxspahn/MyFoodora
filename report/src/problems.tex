@@ -8,14 +8,14 @@ Beside the use of the Strategy-pattern to choose between the different delivery 
 some other important choices for the implementation of this feature. The \textsc{allocate} method 
 is written in the two different implementations of the Delivery interface. Since the system is 
 just used locally by one user at a time, it was not possible to create a interaction of ordering
-by a customer and the accepting of the delivery by a courier. In order to imitate some this 
+by a customer and the accepting of the delivery by a courier. In order to imitate somehow this 
 behavior we worked with a accepting-probability for the courier, which can be set in the core of
-the \textsc{MyFoodoar} system. 
+the \textsc{MyFoodora} system. 
 
 The fact that a courier can reject the delivery of an order caused a problem when allocating the 
 courier to the order. We solved this problem with a \textit{while-loop} that only ends when
 a courier is found who is available and accept the order. In order to avoid that one courier who
-has rejected an order does not get the same order once again, he is added to a temporary list of
+has rejected an order get the same order once again, he is added to a temporary list of
 couriers. We find this problem while testing the code with the \textit{JUnit-Tests}. The tests 
 also revealed an error in the allocating algorithm. Before we did not check if the chosen 
 courier was \textit{On-Duty}.
@@ -25,7 +25,7 @@ courier was \textit{On-Duty}.
 \subsection{Shipped order sorting policy}
 \label{sub:shipped_order_sorting_policy}
 
-One requirement of the system was to sort the shipped meals and singleitems according the 
+One requirement of the system was to sort the shipped meals and single-items according the 
 number sold. Our first approach to simply store the number as an attribute to each item
 was fast proven being limited, because the program was not able to make the distinction
 between which restaurant had sold the concerned item how many times. We wanted to 
@@ -35,18 +35,18 @@ structure, that includes the abstract class \lstinline|SortPolicy| with two attr
 one is the \textit{item-name} and the other is a \textit{count}, an integer storing the number
 of sold items.
 This class implements the interface \lstinline|Comparable <SortPolicy>| and comes with 
-an imlementation of the method \lstinline|compareTo(SortPolicy sort)| to compare two
+an implementation of the method \lstinline|compareTo(SortPolicy sort)| to compare two
 objects according to their count.
 
 \lstinputlisting[firstline=27, lastline=32]{../../src/system/SortPolicy.java}
 
 For every item-type there is a subclass of it. Within each 
 \lstinline|restaurant| there are three \lstinline|TreeSet<SortPolicy>|, one for each 
-item-type. The advantage of this structure is that it is sorted immediatly when adding a new 
-item. When an order is completed all its items are added to the correspending TreeSet.
+item-type. The advantage of this structure is that it is sorted immediately when adding a new 
+item. When an order is completed all its items are added to the corresponding TreeSet.
 If the item is already in the TreeSet its counter is increased by the number in the 
 order. It was a difficult to fully understand how this data-type works but it allowed us
-to fullfill this requirement.
+to fulfill this requirement.
 
 \subsection{Calculation of the earnings between two dates}
 \label{calculation-between-2-dates}
@@ -69,10 +69,10 @@ much easier this way.
 
 \subsection{Serialization}
 \label{sub:serialization}
-After having finished most of our program, we were a bit frustrated because we felt like our code was not a "real software". Indeed, after the execution of the CLUI and the closure of our program, all the datas created by the user vanished, which means that at the restart of the CLUI, everything created before did not exist anymore. To avoid this problem and to make our software more realistic, we decided to serialize all the attributes of MyFoodora at the shut down of the program (done by the command \textit{"q"}) in a file \textit{MyFoodoraDatas.txt}.
+After having finished most of our program, we were a bit frustrated because we felt like our code was not a "real software". Indeed, after the execution of the CLUI and the closure of our program, all the data created by the user vanished, which means that at the restart of the CLUI, everything created before did not exist anymore. To avoid this problem and to make our software more realistic, we decided to serialize all the attributes of MyFoodora at the shut down of the program (done by the command \textit{"q"}) in a file \textit{MyFoodoraDatas.txt}.
 Hence at the launch of the software, 2	cases are taken into account in the constructor of MyFoodora:
 \begin{itemize}
-	\item{} This is the first launch and therefore there is no file containing serialized datas, and the constructor initializes all the attributes of MyFoodora with default values.
+	\item{} This is the first launch and therefore there is no file containing serialized data, and the constructor initializes all the attributes of MyFoodora with default values.
 	\item{} The file \textit{MyFoodoraDatas.txt} has already been created and the constructor initializes the attributes of MyFoodora by deserializing it. So all the attributes of MyFoodora are the same that there were before the last shut down. 	
 \end{itemize}
 \lstinputlisting[firstline=1,lastline=15]{./Code/src/Code/constructorMyFoodora.txt}

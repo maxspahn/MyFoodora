@@ -4,12 +4,12 @@ This part is at least as important as the code itself. Indeed, it is impossible 
 \subsection{Why use JUnit-Tests?}
 \label{sub:why_use_JUnih-Tests}
 
-Using JUnit is much more convenient than writing tests in a main method, for several reasons: JUnit-tests allow to check \textit{independently} whether each unit of code works or does not. Moreover, while tests made in main methods are non-reproductible and hard to understand, JUnit-Tests can be \textit{documented} and therefore explained, and they can be executed whenever required (totally \textit{reproductible}). This means that every change in the existing code can be checked by simply running the tests which already exist.
+Using JUnit is much more convenient than writing tests in a main method, for several reasons: JUnit-tests allow to check \textit{independently} whether each unit of code works or does not. Moreover, while tests made in main methods are non-reproducible and hard to understand, JUnit-Tests can be \textit{documented} and therefore explained, and they can be executed whenever required (totally \textit{reproducible}). This means that every change in the existing code can be checked by simply running the tests which already exist.
 
-\subsection{Test organisation}
+\subsection{Test organization}
 \label{sub:test_organisation}
 
-In order to have efficient tests, we chose to separate the writing of the code and the tests: one of us wrote some parts of the program and the other one tested it. Doing so enables findind much more errors because the tester does not know how the code works but is only aware of the desired results. Thus, some tests the code writer would have never thought to do can be implemented.
+In order to have efficient tests, we chose to separate the writing of the code and the tests: one of us wrote some parts of the program and the other one tested it. Doing so enables finding much more errors because the tester does not know how the code works but is only aware of the desired results. Thus, some tests the code writer would have never thought to do can be implemented.
 Furthermore, all the tests have been distributed so that those which test the same package are put together:
 \begin{itemize}
 	\item{\textbf{testrestaurant}} Contains all the tests of the \textit{restaurant} package.
@@ -37,7 +37,7 @@ round problem: how was it solved ? Don't remember, maybe problems in computation
 Several errors have been solved thanks to JUnit-Tests, as follows:
 
 \begin{itemize}
-	\item{\textit{testAddItemToMealDoesNotExist}} in the class \textit{MealTest} showed that there was no exception handled when a user tried to add an item to a meal which does not exist. That is why a throw of the excpetion \textit{WrongItemAdded} has been added to the method \textit{Menu.addItem}, which is caught later in the program and therefore allows to display a message without stopping the program.
+	\item{\textit{testAddItemToMealDoesNotExist}} in the class \textit{MealTest} showed that there was no exception handled when a user tried to add an item to a meal which does not exist. That is why a throw of the exception \textit{WrongItemAdded} has been added to the method \textit{Menu.addItem}, which is caught later in the program and therefore allows to display a message without stopping the program.
 	\item{\textit{testDifferentID}} showed that every meal or single item had the same IDs. A static counter has been added to the attributes of \textit{Meal} and \textit{SingleItem}, which is incremented each time a new instance is created.
 	\item{\textit{tests of the fidelity card setting}} in the class \textit{TestCustomer} showed that it was possible to set a new fidelity card only if the old one was a point fidelity card. Indeed, in the method \textit{Customer.setFidelityCard}, there was:
 \lstinputlisting[firstline=5,lastline=17]{./Code/src/Code/FidelityCardCode.java}
@@ -57,7 +57,7 @@ Note that the choice of using exceptions is very useful in JUnit-Tests to check 
 
 The computation of all kinds of double values, such as prices or fees, may result in long 
 values with a large amount or even an infinity of decimal digits. This causes a problem in 
-terms of testing because the funcion \lstinline|assertEquals()| may not work. Furthermore 
+terms of testing because the function \lstinline|assertEquals()| may not work. Furthermore 
 it is simply not possible to have such amount of money. We therefore decided to round the 
 all values with a simple java command:
 
