@@ -604,7 +604,6 @@ public class Launch {
 	public void setProfitPolicy(String [] args){
 		if(rightNumberofArguments(args, 2) && isManager()){
 			((Manager) this.getCurrentUser()).setTargetPolicy(args[1]);
-			System.out.println(this.getMyFoodora().getTargetPolicy());
 		}
 	}
 	

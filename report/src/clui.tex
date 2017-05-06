@@ -93,7 +93,15 @@ serie of commands can be continued.
 		batona creates an order and sets the completion date to \textsc{03/02/2015}. You can 
 		see in the history of orders that it has been added. Then you login as a manager to 
 		see different profits of the system, the time period is printed to the console.
-	
+	\item set the fees according to the different targetpolicies by typing 
+		\lstinline|runtest targetScenario.txt|. It first sets the target policy to
+		\textit{deliveryCost-based} and computes the fees according to this policy. As 
+		target the profit of the previous month is used. Then the target is set manually and
+		the fees are once again computed and printed to the console. Afterwards the 
+		target policy is changed ot \textit{serviceFee-based}. When computing the fees, there
+		occures an error, because the target cannot be fullfilled with the given values for 
+		the two other values (markup-Percentage and delivery-Cost).
+		
 	
 		
 \end{enumerate}

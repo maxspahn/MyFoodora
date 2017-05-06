@@ -13,7 +13,6 @@ logout
 
 login sparrowj blackPearl
 
-showTotalProfit
 
 showTotalProfit 01/02/2015 15/05/2015
 

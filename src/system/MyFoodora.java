@@ -168,6 +168,7 @@ public class MyFoodora implements Serializable{
 	 */
 	public double computeProfit(double price){
 		double profit = price * this.getMarkup_percentage() + this.getService_fee()- this.getDelivery_cost();
+		profit = ((double) Math.round(profit * 100))/100;
 		return profit;
 	}
 	

@@ -1,0 +1,8 @@
+runtest my_foodora.ini
+runtest showScenario.txt
+runtest addItemsScenario.txt
+runtest findDelScenario.txt
+runtest orderScenario.txt
+runtest order2Scenario.txt
+runtest profitScenario.txt
+runtest targetScenario.txt

@@ -13,7 +13,6 @@ public class TargetProfit_DeliveryCost implements TargetPolicy, Serializable{
 	 */
 	public TargetProfit_DeliveryCost() {
 		super();
-		System.out.println("in TargetProfit_DeliveryCost line 16");
 	}
 	
 	
