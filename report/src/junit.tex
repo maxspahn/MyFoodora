@@ -42,6 +42,11 @@ Several errors have been solved thanks to JUnit-Tests, as follows:
 	\item{\textit{tests of the fidelity card setting}} in the class \textit{TestCustomer} showed that it was possible to set a new fidelity card only if the old one was a point fidelity card. Indeed, in the method \textit{Customer.setFidelityCard}, there was:
 \lstinputlisting[firstline=5,lastline=17]{./Code/src/Code/FidelityCardCode.java}
 As showed in the previous code, there was a \textit{if condition} to display the message \textit{"You will lose all your points."}, but inadvertently all the conditions \textit{name.equalsIgnoreCase(...)} were put inside the first \textit{if}, not outside.
+	\item{\textit{testComputationsIncome}} in \textit{ManagerTest} showed a problem in the 
+		computation for all kind of financial values.
+	\item{\textit{setFeesTargetPolicy\_MarkUp}} in \textit{ManagerTest} revealed the need to put
+		a target for the number of commands on top of a targetProfit. Only a targetProfit 
+		would not be sufficient to define a target.	
 	\item{} copy-paste errors have been corrected thanks to JUnit-Tests as well.
 \end{itemize}
 Note that the choice of using exceptions is very useful in JUnit-Tests to check when a case is expected to fail. Indeed, instead of having tests which voluntarily fail, the tests can succeed if the exception is caught. For instance:
