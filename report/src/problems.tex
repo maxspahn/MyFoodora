@@ -22,6 +22,30 @@ courier was \textit{On-Duty}.
 
 \lstinputlisting[firstline=20, lastline=35]{./../src/system/FairDelivery.java} 
 
+\subsection{Shipped oredr sorting policy}
+\label{sub:shipped_order_sorting_policy}
+
+One requirement of the system was to sort the shipped meals and singleitems according the 
+number sold. Our first approach to simply store the number as an attribute to each item
+was fast proven being limited, because the program was not able to make the distinction
+between which restaurant had sold the concerned item how many times. We wanted to 
+make the sorting algorithm accessible to every restaurant manager so that he can see  the 
+sorted list of the items sold in his restaurant. So we created a more sophisticated 
+structure, that includes the abstract class \lstinline|SortPolicy| with two attributes,
+one is the \textit{item-name} and the other is a \textit{count}, an integer storing the number
+of sold items.
+This class implements the interface \lstinline|Comparable <SortPolicy>| and comes with 
+an imlementation of the method \lstinline|compareTo(SortPolicy sort)| to compare two
+objects according to their count. There exist three subclasses, \lstinline|FullMealSort|,
+\lstinline|HalfMealSort| and \lstinline|SingleItemSort|. Within each 
+\lstinline|restaurant| there are three \lstinline|TreeSet<SortPolicy>|, one for each 
+item-type. The advantage of this structure is that it is sorted immediatly when adding a new 
+item. When an order is completed all its items are added to the correspending TreeSet.
+If the item is already in the TreeSet its counter is increased by the number in the 
+order. It was a difficult to fully understand how this data-type works but it allowed us
+to fullfill this requirement.
+
+
 \subsection{Exceptions}
 \label{sub:exceptions}
 
