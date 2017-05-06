@@ -65,4 +65,25 @@ public class TestObserverPattern {
 		
 		assertTrue(cust.getNotifications().size()==1);
 	}
+	
+	/**Test if the two notifications disappear once they are read.
+	 * 
+	 */
+	@Test
+	public void readTwoNotificationtest() {
+		MyFoodora m = new MyFoodora();
+		m.load();
+		try {
+			m.getListRestaurant().get(0).setMealOfTheWeek("Classic");
+			m.getListRestaurant().get(1).setDiscount(0.2);
+		} catch (ItemDoesNotExist e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Customer cust = m.getListCustomer().get(0);
+		
+		cust.readNotifications();
+		
+		assertTrue(cust.getNotifications().size()==1);
+	}
 }

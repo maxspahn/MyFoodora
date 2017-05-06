@@ -22,7 +22,7 @@ courier was \textit{On-Duty}.
 
 \lstinputlisting[firstline=20, lastline=35]{./../src/system/FairDelivery.java} 
 
-\subsection{Shipped oredr sorting policy}
+\subsection{Shipped order sorting policy}
 \label{sub:shipped_order_sorting_policy}
 
 One requirement of the system was to sort the shipped meals and singleitems according the 
@@ -45,6 +45,9 @@ If the item is already in the TreeSet its counter is increased by the number in 
 order. It was a difficult to fully understand how this data-type works but it allowed us
 to fullfill this requirement.
 
+\subsection{Calculation of the earnings between two dates}
+\label{calculation-between-2-dates}
+Another requirement was to compute different earnings (like total income, profit...) between two dates chosen by the user. 
 
 \subsection{Exceptions}
 \label{sub:exceptions}
