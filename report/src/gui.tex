@@ -22,11 +22,12 @@ This means that every button has the same action listener, which leads to write 
 \lstinputlisting[firstline=1,lastline=3]{./Code/src/Code/ifBlocks.txt}
 Doing so leads to a non-modular code, and difficult to understand (because it is messy). \textbf{To avoid this problem, we decided to user inner classes in the class \textit{Launch}}: each inner class implements \textit{ActionListener}.
 \lstinputlisting[firstline=1,lastline=8]{./Code/src/Code/innerClasses.txt}
-Doing so enables having independent listeners, and therefore the code is concerned with \textit{doing} rather than \textit{type checking}.
+Doing so enables having independant listeners, and therefore the code is concerned with \textit{doing} rather than \textit{type checking}.
+This idea came from the book \textit{Thinking In Java, 2nd edition} (see reference \ref{references}).
 
 	\item Almost each panel has a BACK button. \textbf{To implement the action "back", we chose to use a stack} (called \textit{activatedPanels}, attribute of \textit{PanelCreator}). Hence each time a panel is visible, it is added to the stack. When a user clicks on the BACK button, the current panel (which is the last of the stack) is removed from \textit{activatedPanels} and is set non-visible. The previous panel is then removed from the stack and becomes visible.
 	
-	\item To create the panels in an easy way and put the buttons where desired, \textbf{we chose to use no layout and to place and size each component with \textit{setBounds()}}. Nevertheless, at the end of the implementation of the GUI, we noticed that the component size depends on the resolution of the screen. As a consequence, while the panels are adapted to one pixel resolution, they can go out the screen of a different computer. To solve this problem, 2 coefficients \textit{coeffHeight} and \textit{coeffWidth} (attributes of \textit{PanelCreator}) were added. They represent the quotient of the number of pixels of the user computer divided by the number of pixels of the screen used to create the GUI.
+	\item To create the panels in an easy way and put the buttons where desired, \textbf{we chose to use no layout and to place and size each component with \textit{setBounds()}}. Nevertheless, at the end of the implementation of the GUI, we noticed that the compoment size depends on the resolution of the screen. As a consequence, while the panels are adapted to one pixel resolution, they can go out the screen of a different computer. To solve this problem, 2 coefficients \textit{coeffHeight} and \textit{coeffWidth} (attributes of \textit{PanelCreator}) were added. They represent the quotient of the number of pixels of the user computer divided by the number of pixels of the screen used to create the GUI.
 	
 	\item Every user panel has the same design:
 \begin{figure}[H]
@@ -48,5 +49,5 @@ use of stack for back button
 position/size buttons: use of pixels -> Pb computers
 \end{comment}
 \subsection{Scenarios}
-To test the GUI, \textbf{the user has to run the main method which is in the class Launch.} Then, it is possible to register as a new user by clicking on the REGISTER button, and then log-in using the username and password defined previously. Otherwise, it is also possible to log-in directly by using the following data defined at the end of the section \ref{sub:use_and_testing}.
+To test the GUI, \textbf{the user has to run the main method which is in the class Launch.} Then, it is possible to register as a new user by clicking on the REGISTER button, and then login using the username and password defined previously. Otherwise, it is also possible to login directly by using the following datas defined at the end of the section \ref{sub:use_and_testing}.
 \label{sub:scenarios}
