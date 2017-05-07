@@ -812,7 +812,7 @@ public class Launch {
 	 * @param args Filename of the file to be executed.
 	 */
 	public void runTest(String[] args){
-		String fileName = "Scenarios/";
+		String fileName = "eval/";
 		if(rightNumberofArguments(args, 2)){
 			fileName += args[1];
 			try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
