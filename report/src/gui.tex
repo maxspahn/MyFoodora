@@ -7,7 +7,7 @@ To answer this, the program is split into:
 \begin{itemize}
 	\item{\textbf{PanelCreator}} extends \textit{JFrame}. It contains all the panels and menu-bars as attributes. For each panel, there is a method \textit{createNamePanel()} and \textit{addNamePanel()}. The first one creates a new instance of the panel (and also the menu-bar if there is one associated with the panel), and adds a listener to each button. The second one sets the panel visible (and the associated menu-bar if needed) and adds it to the stack \textit{activatedPanels} (see \ref{sub:choices}).
 	\item{\textbf{Launch}} contains the implementation of all the listeners which are associated to each buttons. This is only in this class that the actions of clicking on every button are define. \textbf{The main method is in this class.}
-	\item Each panel corresponds to a single class which extends \textit{JPanel}. All the buttons which has to perform an action by clicking on it is put as attribute of the panel, and can be accessed in the class \textit{Launch} thanks to a getter.
+	\item Each panel corresponds to a single class which extends \textit{JPanel}. All the buttons which has to perform an action by clicking on it are put as attribute of the panel, and can be accessed in the class \textit{Launch} thanks to getters.
 	\item The classes \textbf{Error} and \textbf{Message...} represent messages which appear on the screen while clicking on a button (error message or save message for instance). So, they extends \textit{JFrame}.
 \end{itemize}
 Note that the creation of the panels/menu-bars, and the definition of the listeners are divided into 2 different classes.
@@ -49,5 +49,5 @@ use of stack for back button
 position/size buttons: use of pixels -> Pb computers
 \end{comment}
 \subsection{Scenarios}
-To test the GUI, \textbf{the user has to run the main method which is in the class Launch.} Then, it is possible to register as a new user by clicking on the REGISTER button, and then login using the username and password defined previously. Otherwise, it is also possible to login directly by using the following datas defined at the end of the section \ref{sub:use_and_testing}.
+To test the GUI, \textbf{the user has to run the main method which is in the class Launch.} Then, it is possible to register as a new user by clicking on the REGISTER button, and then login using the username and password defined previously. Otherwise, it is also possible to login directly by using the datas defined at the end of the section \ref{sub:use_and_testing}.
 \label{sub:scenarios}
