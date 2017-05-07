@@ -17,7 +17,8 @@ import restaurant.WrongItemAdded;
 import system.*;
 import user_management.*;
 
-/**
+/** Command-line-user-interface. The class contains all the functions that are used for the CLUI. 
+ * The help-String is stored in this class as well.
  * @author maxspahn
  * @author jeremyaugot
  *
@@ -808,7 +809,7 @@ public class Launch {
 	}
 	
 	/** Running a test with a certain number of commands that are executed from the given file.
-	 * @param fileName Name of the file to be executed.
+	 * @param args Filename of the file to be executed.
 	 */
 	public void runTest(String[] args){
 		String fileName = "Scenarios/";
@@ -863,7 +864,7 @@ public class Launch {
 	}
 	
 	/** Checks if the current user is a manager.
-	 * @return
+	 * @return boolean true if manager.
 	 */
 	public boolean isManager(){
 		if(this.getCurrentUser() instanceof Manager){
@@ -874,7 +875,7 @@ public class Launch {
 	}
 	
 	/** Checks if the current user is a restaurant.
-	 * @return
+	 * @return boolean true if restaurant.
 	 */
 	public boolean isRestaurant(){
 		if(this.getCurrentUser() instanceof Restaurant){
@@ -885,7 +886,7 @@ public class Launch {
 	}
 	
 	/** Checks if the current user is a customer.
-	 * @return
+	 * @return boolean true if customer.
 	 */
 	public boolean isCustomer(){
 		if(this.getCurrentUser() instanceof Customer){
@@ -896,7 +897,7 @@ public class Launch {
 	}
 	
 	/** Checks if the current user is a courier.
-	 * @return
+	 * @return true if courier.
 	 */
 	public boolean isCourier(){
 		if(this.getCurrentUser() instanceof Courier){
@@ -926,7 +927,7 @@ public class Launch {
 	}
 	
 	/** Get the user type to display it in the clui.
-	 * @return
+	 * @return String type M:manager R:restaurant D:courier C:customer.
 	 */
 	public String getUserType(){
 		if(this.getCurrentUser() instanceof Manager){return "M";}

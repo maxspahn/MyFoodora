@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
 public class MessagePay extends JFrame{
 	private int choice; 
 	public MessagePay(double price){
-		String message = "<html>Total price: "+price+"€<br>";
+		String message = "<html>Total price: "+price+"â‚¬<br>";
 		message+="Do you want to pay?"+"<html>";
 		this.choice = JOptionPane.showOptionDialog(this, message, "Pay",
 				JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE,

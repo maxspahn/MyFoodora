@@ -206,7 +206,7 @@ public class Order implements Serializable, Comparable<Order>{
 	
 
 	/** Get the month when the order was completed.
-	 * @return
+	 * @return int completeMonth
 	 * @throws OrderNotCompletException
 	 */
 	public int getCompleteMonth() throws OrderNotCompletException {
@@ -220,7 +220,7 @@ public class Order implements Serializable, Comparable<Order>{
 
 
 	/** Get the year when the order was completed.
-	 * @return
+	 * @return completeYear
 	 * @throws OrderNotCompletException
 	 */
 	public int getCompleteYear() throws OrderNotCompletException {
@@ -233,7 +233,7 @@ public class Order implements Serializable, Comparable<Order>{
 	}
 
 	/** Get the day when the order was completed.
-	 * @return
+	 * @return completeDay
 	 * @throws OrderNotCompletException
 	 */
 	public int getCompleteDay() throws OrderNotCompletException {

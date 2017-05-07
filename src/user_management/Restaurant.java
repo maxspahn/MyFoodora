@@ -170,7 +170,7 @@ public class Restaurant extends User implements Observable, Serializable{
 
 
 	/**
-	 * @return
+	 * @return double totalSelling
 	 */
 	public double getTotalSelling() {
 		return totalSelling;

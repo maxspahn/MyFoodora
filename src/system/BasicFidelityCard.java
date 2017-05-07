@@ -17,7 +17,7 @@ public class BasicFidelityCard implements FidelityCard, Serializable{
 
 	/** BasicFidelityCard provides a simple computation of the price + specialidscount for the meal of the week.
 	 * 
-	 * @param oder Price is calculated for the given order.
+	 * @param order Order for which the price is calculated.
 	 * @return returns the price, 0 if no item in order.
 	 */
 	@Override

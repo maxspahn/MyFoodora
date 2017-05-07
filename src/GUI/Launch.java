@@ -1826,7 +1826,7 @@ public class Launch{
 			if(panelCreator.getPanelChooseDate().getAction().equalsIgnoreCase("totalIncome")){
 				try {
 					double[] result = ((Manager)currentUser).computeTotalIncomeAndProfitOverPeriod(day1, month1, year1, day2, month2, year2);
-					panelCreator.getPanelManager().getText().setText("The total income between the dates "+day1+"/"+month1+"/"+year1+" and "+day2+"/"+month2+"/"+year2+" is: "+result[0]+"€.");
+					panelCreator.getPanelManager().getText().setText("The total income between the dates "+day1+"/"+month1+"/"+year1+" and "+day2+"/"+month2+"/"+year2+" is: "+result[0]+"â‚¬.");
 				} catch (OrderNotCompletException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -1834,7 +1834,7 @@ public class Launch{
 			}else if (panelCreator.getPanelChooseDate().getAction().equalsIgnoreCase("totalIncomePerCustomer")){
 				try {
 					double result = ((Manager)currentUser).computeIncomePerCustomerOverPeriod(day1, month1, year1, day2, month2, year2);
-					panelCreator.getPanelManager().getText().setText("The total income per customer between the dates "+day1+"/"+month1+"/"+year1+" and "+day2+"/"+month2+"/"+year2+" is: "+result+"€.");
+					panelCreator.getPanelManager().getText().setText("The total income per customer between the dates "+day1+"/"+month1+"/"+year1+" and "+day2+"/"+month2+"/"+year2+" is: "+result+"â‚¬.");
 				} catch (OrderNotCompletException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -1842,7 +1842,7 @@ public class Launch{
 			}else if(panelCreator.getPanelChooseDate().getAction().equalsIgnoreCase("profit")){
 				try {
 					double[] result = ((Manager)currentUser).computeTotalIncomeAndProfitOverPeriod(day1, month1, year1, day2, month2, year2);
-					panelCreator.getPanelManager().getText().setText("The profit between the dates "+day1+"/"+month1+"/"+year1+" and "+day2+"/"+month2+"/"+year2+" is: "+result[1]+"€.");
+					panelCreator.getPanelManager().getText().setText("The profit between the dates "+day1+"/"+month1+"/"+year1+" and "+day2+"/"+month2+"/"+year2+" is: "+result[1]+"â‚¬.");
 				} catch (OrderNotCompletException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

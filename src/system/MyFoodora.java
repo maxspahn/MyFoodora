@@ -592,7 +592,7 @@ public class MyFoodora implements Serializable{
 	}
 	
 	/** Put the list of Courier in a proper display format.
-	 * @return
+	 * @return String s that contains the list.
 	 */
 	public String listCourierToString(User user){
 		String s = "";
@@ -607,7 +607,7 @@ public class MyFoodora implements Serializable{
 	}
 
 	/** Put the list of Customers in a proper display format.
-	 * @return
+	 * @return String s that contains the list of customers.
 	 */
 	public String listCustomerToString(){
 		String s = "";

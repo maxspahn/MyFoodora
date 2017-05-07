@@ -33,7 +33,7 @@ public abstract class SingleItem implements Serializable{
 	 */
 	public String toString(){
 		String s = new String();
-		s = this.getName() + " - " + this.getPrice()+"€";
+		s = this.getName() + " - " + this.getPrice() + "â‚¬";
 		return s;
 	}
 

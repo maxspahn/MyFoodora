@@ -84,7 +84,7 @@ public abstract class Meal implements Serializable{
 		if(this.getStarter() != null) { s += "Starter : " + this.getStarter().getName() + " ";}
 		if(this.getMainDish() != null) {s += "MainDish : " + this.getMainDish().getName() + " ";}
 		if(this.getDesert() != null) {s += "Dessert : " + this.getDesert().getName() + " ";}
-		s+=")"+" - "+this.getPrice()+"€";
+		s+=")"+" - "+this.getPrice()+"â‚¬";
 		return s;
 		
 	}
