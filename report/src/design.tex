@@ -1,9 +1,9 @@
 \section{Design and the \textit{open-closed-principle}}
 One main purpose of the use of java and object-oriented programming is that the code is easily
-extended so new features and functions can easily be added to an already working system.
+extended, so new features and functions can easily be added to an already working system.
 Nevertheless, one has to respect some rules of programming in order to benefit from this
 advantage, i.e. the use of design patterns.
-In our \textit{MyFoodora} we used several of these patters which are explained in this section.
+In our \textit{MyFoodora} we used several of these patterns which are explained in this section.
 
 \subsection{Package Management}
 \label{sub:package_management}
@@ -20,7 +20,7 @@ of the group. The following main packages exist in the project:
 		pricing.
 	\item{\textbf{commandLineTool}} Adds a command line user interface to the system.
 	\item{\textbf{GUI}} Adds a graphical user interface to the system.
-	\item{\textbf{several Test packages}} According their name they provide test for the
+	\item{\textbf{several Test packages}} According to their name they provide test for the
 		previous packages.
 \end{itemize}
 
@@ -42,7 +42,7 @@ other package, because there is only one interaction between the two. In a third
 implemented \textsc{system}, because it was the most sophisticated one and requires large parts of
 the two other packages. \lstinline|Order| is the most connected class besides
 \lstinline|MyFoodora|.
-One might consider to place it in a of the other packages. We decided to store it in the system
+One might consider to place it in another package. We decided to store it in the system
 because we wanted functions like the computation of an order's price to be part of the system. In
 this manner we were able to put all the core functions together. 
 
@@ -66,13 +66,12 @@ decided to use a \textbf{Factory-Pattern} with an \textit{abstract factory} and 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1\linewidth]{./ima/restaurant_factory_pattern.jpg}
-	\caption{Factory-Pattern in package \textsc{restaurant}}
+	\caption{Abstract Factory Pattern in package \textsc{restaurant}}
 	\label{fig:restaurant-factory-pattern}
 \end{figure}
 
 The \lstinline|Menu| is the center class of \textsc{restaurant} which has an instance of 
-\lstinline|ItemFactoryProducer| to produce new items and store them in an Array-List. Following you
-see the code to add a new item:
+\lstinline|ItemFactoryProducer| to produce new items and store them in an Array-List.
 
 
 This method only takes two Strings as arguments, where one is the item-type and the other its
@@ -104,8 +103,8 @@ As illustrated in the previous figure \ref{fig:user-factory-pattern}, it is comp
 
 \textsc{MyFoodora} does have several options where the user (in many cases a manager) can change
 different behaviors of the program concerning choosing the \textsc{Courier}. In these
-cases we decided to apply the Strategy-Pattern to respect the the \textit{open-closed-principle}.
-There are three parts of the program in which we used the this Design-Pattern:
+cases we decided to apply the Strategy-Pattern to respect the \textit{open-closed-principle}.
+There are three parts of the program in which we used this Design-Pattern:
 \begin{itemize}
 	\item Delivery Policy, allocate a \textsc{Courier} to an order
 	\item Fidelity Card, what kind of discount is applied with regard to the
@@ -115,8 +114,7 @@ There are three parts of the program in which we used the this Design-Pattern:
 
 \paragraph{Delivery Policy}
 \label{par:delivery_policy}
-A new delivery policy could be easily added, by creating a new implementation
-\textsc{DeliveryPolicy}.
+A new delivery policy could be easily added, by creating a new implementation of \textsc{DeliveryPolicy}.
 
 \begin{figure}[H]
 	\centering

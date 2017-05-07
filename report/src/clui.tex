@@ -32,7 +32,7 @@ different type of users who can executed different actions, i.e. the restaurant 
 the number of delivered orders by one specific courier. To fulfill this we created methods for
 every user type that check if the current user is of that type. If it is not the case, the 
 permission to the command is denied and the user is informed about it. Furthermore the 
-command help does not show commands that are not available for the current user.
+command \lstinline|help| does not show commands that are not available for the current user.
 
 The input of dates and addresses was also an issue because the format is to be chosen. If the 
 following format is not respected, the command does not work like it should.
@@ -44,8 +44,8 @@ following format is not respected, the command does not work like it should.
 \subsection{Use and Testing}
 \label{sub:use_and_testing}
 
-To launch the tool you have to open the file \textit{src/commandLineTool/Launch.java} and execute
-it. The main method starts the interaction loop, in which the user can type the commands. To get
+\textbf{To launch the tool you have to open the file \textit{src/commandLineTool/Launch.java} and execute
+it}. The main method starts the interaction loop, in which the user can type the commands. To get
 a list of all available commands one has to type \lstinline|help|. 
 
 Since it is very time intensive to test all the tool, we created test-files that
@@ -87,7 +87,7 @@ series of commands can be continued.
 		printed to the console.
 	\item \lstinline|runtest showScenario.txt| \\
 		Show the users. Three additional users
-		are added. Then the list of couriers is printed to the console. Then that of the 
+		are added. Then the list of couriers is printed in the console. Then the one of the 
 		restaurants, followed by the Menu of the restaurant \textsc{fiveFields} and a list of
 		the customers.
 	\item \lstinline|runtest addItemsScenario.txt| \\
@@ -122,7 +122,7 @@ series of commands can be continued.
 	\item \lstinline|runtest targetScenario.txt| \\
 		Set the fees according to the different target-policies. It first sets the target policy to
 		\textit{deliveryCost-based} and computes the fees according to this policy. As 
-		target the profit of the previous month is used. Then the target is set manually and
+		target, the profit of the previous month is used. Then the target is set manually and
 		the fees are once again computed and printed to the console. Afterwards the 
 		target policy is changed to \textit{serviceFee-based}. When computing the fees, there
 		occurs an error, because the target cannot be fulfilled with the given values for 
@@ -130,9 +130,9 @@ series of commands can be continued.
 	\item \lstinline|runtest notifyScenario.txt| \\
 		Notify customers about special offers. First you see the notifications about the 
 		special offer set previously in \textit{addItemsScenario.txt}. Then the restaurant
-		\textsc{typingRoom} sets another special-offer \textsc{fiveFields} changes its
-		default discount. The user \textsc{batona} will receive two notifications. When he 
-		calls \lstinline|getNotifications| a second time, they have disappeared to 
+		\textsc{typingRoom} sets another special-offer, and \textsc{fiveFields} changes its
+		special discount. The user \textsc{batona} will receive two notifications. When he 
+		calls \lstinline|readNotifications| a second time, they have disappeared to 
 		simulate that they were read.
 	\item \lstinline|runtest all| \\
 		Run all the previously described scenarios in the order in which they were 
