@@ -9,13 +9,13 @@ In our \textit{MyFoodora} we used several of these patters which are explained i
 \label{sub:package_management}
 
 Having read the project requirements for the first time we figured out that there were several
-different parts which can be treated separately. This logic separation of different parts of the
+different parts which can be treated separately. This logical separation of different parts of the
 system was used to organize our packages as well as the division of the work for the two members
 of the group. The following main packages exist in the project:
 \begin{itemize}
 	\item{\textbf{system}} Contains the main functionality of \textit{MyFoodora}.
-	\item{\textbf{user-management}} Manages users of the systems and assesses functions
-		to groups of users.
+	\item{\textbf{user-management}} Manages users of the systems and implements functions
+		to user-types.
 	\item{\textbf{restaurant}} Manages the creation of meals and single-Items and do the
 		pricing.
 	\item{\textbf{commandLineTool}} Adds a command line user interface to the system.
@@ -34,14 +34,15 @@ testings do obviously interact with all the other ones).
 	\label{fig:packages}
 \end{figure}
 
-The graphic \ref{fig:packages} shows the three main packages that form the core of our system. All
+Graphic \ref{fig:packages} shows the three main packages that form the core of our system. All
 interaction between the packages are displayed except from those with the class
-\textit{MyFoodora}. The separation chosen allowed us to separately work on the
+\lstinline|MyFoodora|. The separation chosen allowed us to separately work on the
 \textsc{user-management} and \textsc{restaurant} without depending on parts of the code of the
 other package, because there is only one interaction between the two. In a third step we
 implemented \textsc{system}, because it was the most sophisticated one and requires large parts of
-the two other packages. \textit{Order} is the most connected class besides \textit{MyFoodora}. One
-might consider to place it in a of the other packages. We decided to store it in the system
+the two other packages. \lstinline|Order| is the most connected class besides
+\lstinline|MyFoodora|.
+One might consider to place it in a of the other packages. We decided to store it in the system
 because we wanted functions like the computation of an order's price to be part of the system. In
 this manner we were able to put all the core functions together. 
 
@@ -69,15 +70,15 @@ decided to use a \textbf{Factory-Pattern} with an \textit{abstract factory} and 
 	\label{fig:restaurant-factory-pattern}
 \end{figure}
 
-The \textsc{Menu} is the center class of \textsc{restaurant} which has an instance of 
-\textsc{ItemFactoryProducer} to produce new items and store them in an Array-List. Following you
+The \lstinline|Menu| is the center class of \textsc{restaurant} which has an instance of 
+\lstinline|ItemFactoryProducer| to produce new items and store them in an Array-List. Following you
 see the code to add a new item:
 
 
 This method only takes two Strings as arguments, where one is the item-type and the other its
 name. Depending on the type, different \textit{if-clauses} are triggered to create the new item.
 This design allows the user to add another item-type, i.e. drinks, with no need to modify the
-existing code. Another advantage of this design that the programmer do not even has to add a new
+existing code. Another advantage of this design is that the programmer do not even has to add a new
 factory to the core class \textsc{Menu} since they are stored in \textsc{ItemFactoryProducer}. In
 this manner modification that might cause errors to the already existing system are avoided and
 the code is only extended by adding \textit{else-if-clauses} and the new classes. 
@@ -85,7 +86,7 @@ the code is only extended by adding \textit{else-if-clauses} and the new classes
 Another decision that was made concerning the restaurant design can be observed in the
 class-diagram \ref{fig:restaurant-factory-pattern}. In order to guarantee that a meal does not
 contain two single-Items of the same type(Starter, Main-Dish, Dessert) we decided to give a meal an
-argument for each type instead of an \textit{ArrayList} with all single-Items. Because of that
+attribute for each type instead of an \textit{ArrayList} with all single-Items. Because of that
 choice we are not obliged to search in the list if one type already exists when adding a new item.
 It seemed more practical and it is unlikely that another single-Item is added.
 
@@ -95,9 +96,9 @@ So as to handle the creation of the 4 different users, a \textbf{Factory method 
 	\centering
 	\includegraphics[width=1\linewidth]{./ima/userFactory.jpg}
 	\caption{Factory method pattern for the creation of users}
-	\label{fig:./ima/userFactory}
+	\label{fig:user-factory-pattern}
 \end{figure}
-As illustrated in the previous graph diagram, it is composed of 2 abstract classes: the factory \textit{UserFactory} which contains the method \textit{createAccount()} and the class \textit{User}. Each subclass of \textit{UserFactory} has its own definition of the method \textit{createAccount()} so that \textit{CourierFactory} creates a new courier, \textit{ManagerFactory} a new manager... This factory method pattern is totally OPEN-CLOSE.
+As illustrated in the previous figure \ref{fig:user-factory-pattern}, it is composed of 2 abstract classes: the factory \lstinline|UserFactory| which contains the method \lstinline|createAccount()| and the class \lstinline|User|. Each subclass of \lstinline|UserFactory| has its own definition of the method \lstinline|createAccount()| so that \lstinline|CourierFactory| creates a new courier, \lstinline|ManagerFactory| a new manager... This factory method pattern is totally OPEN-CLOSE.
 \subsection{DesignPattern : Strategy-Pattern}
 \label{sub:designpattern_strategy_pattern}
 
@@ -105,12 +106,12 @@ As illustrated in the previous graph diagram, it is composed of 2 abstract class
 different behaviors of the program concerning choosing the \textsc{Courier}. In these
 cases we decided to apply the Strategy-Pattern to respect the the \textit{open-closed-principle}.
 There are three parts of the program in which we used the this Design-Pattern:
-\begin{enumerate}
+\begin{itemize}
 	\item Delivery Policy, allocate a \textsc{Courier} to an order
 	\item Fidelity Card, what kind of discount is applied with regard to the
 		\textsc{Customer}
 	\item Target Policy, compute the fees for the system 
-\end{enumerate}
+\end{itemize}
 
 \paragraph{Delivery Policy}
 \label{par:delivery_policy}
@@ -124,7 +125,7 @@ A new delivery policy could be easily added, by creating a new implementation
 	\label{fig:deliveryPolicy}
 \end{figure}
 
-\paragraph{Fidelity}
+\paragraph{Fidelity Card}
 \label{par:fideltycard}
 
 There a several different fidelity cards and one can easily imagine that further cards might be 

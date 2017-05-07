@@ -14,7 +14,7 @@ visual functions from back-end functions, because we are convinced that it was n
 project of such a small size and it would not justify the additional work time that it might 
 cost.
 
-One major problem we encountered in the process was the treatment of the input arguments because 
+One major issue we encountered in the process was the treatment of the input arguments because 
 the number varies depending on the command. When the user does type a command he creates a 
 \lstinline|String| that is temporarily stored by the program. The next step is the separation of 
 the different arguments in a array of Strings. It was required to use quotation marks for the 
@@ -23,7 +23,7 @@ into multiple arguments.
 We considered this processing not convincing because the user is consequently forced to put 
 quotation marks around every argument, although it is only useful in very few cases. Hence, 
 our implementation does avoid the use of arguments with white spaces, by for example working 
-exclusively with the Usenet. This choice is arguably a bit ``dirty'' but allows to better 
+exclusively with the Username. This choice is arguably a bit ``dirty'' but allows to better 
 imitate the traditional command line syntax known from \textsc{UNIX} and improves the efficiency 
 while using the tool.
 
@@ -49,7 +49,7 @@ it. The main method starts the interaction loop, in which the user can type the 
 a list of all available commands one has to type \lstinline|help|. 
 
 Since it is very time intensive to test all the tool, we created test-files that
-contain a list series of commands. To execute those commands one has to run the command 
+contain a series of commands. To execute those commands one has to run the command 
 \textit{runTest <fileName>}. By adding the fileName as an argument, it is possible to create 
 several test-Scenarios without changing the program. Hence, the user can load multiple 
 preexisting restaurants with the test-file \textit{my\textunderscore foodora.ini}.
@@ -104,7 +104,7 @@ series of commands can be continued.
 		Test if the wrong user could modify or see the order of another user.
 		User \textsc{batona} creates an order but 
 		does not finish it. Then the user \textsc{maxspahn3} tries to print it but got his
-		access is denied, the same is valid for the modification of the order. Then the 
+		access denied, the same is valid for the modification of the order. Then the 
 		user \textsc{batona} logs in again to finish his order.
 	\item \lstinline|runtest findDelScenario.txt| \\
 		Test the delivery system. It creates

@@ -65,18 +65,18 @@ was becoming more and more confusing where the \lstinline|System.out.println()| 
 invoked. The solution was obviously the implementation of \lstinline|Exception| and we sacrificed
 some time in their creation. Later in the project-work we realized that this choice was the right
 one since the implementation of the \textsc{Command-Line-User-Interface} and the \textsc{GUI} were
-much easier this way.
+much easier this way. In total there exist 13 different \lstinline|Exceptions|.
 
 \subsection{Serialization}
 \label{sub:serialization}
-After having finished most of our program, we were a bit frustrated because we felt like our code was not a "real software". Indeed, after the execution of the CLUI and the closure of our program, all the data created by the user vanished, which means that at the restart of the CLUI, everything created before did not exist anymore. To avoid this problem and to make our software more realistic, we decided to serialize all the attributes of MyFoodora at the shut down of the program (done by the command \textit{"q"}) in a file \textit{MyFoodoraDatas.txt}.
+After having finished most of our program, we were a bit frustrated because we felt like our code was not a ``real software''. Indeed, after the execution of the CLUI and the closure of our program, all the data created by the user vanished, which means that at the restart of the CLUI, everything created before did not exist anymore. To avoid this problem and to make our software more realistic, we decided to serialize all the attributes of MyFoodora at the shut down of the program (done by the command \textit{"q"}) in a file \textit{MyFoodoraDatas.txt}.
 Hence at the launch of the software, 2	cases are taken into account in the constructor of MyFoodora:
 \begin{itemize}
 	\item{} This is the first launch and therefore there is no file containing serialized data, and the constructor initializes all the attributes of MyFoodora with default values.
 	\item{} The file \textit{MyFoodoraDatas.txt} has already been created and the constructor initializes the attributes of MyFoodora by deserializing it. So all the attributes of MyFoodora are the same that there were before the last shut down. 	
 \end{itemize}
 \lstinputlisting[firstline=1,lastline=15]{./Code/src/Code/constructorMyFoodora.txt}
-However, we had trouble to implement this serialization. At the beginning we thought that only the class \textit{MyFoodora} and those which are instantiated as attributes of it needed to implement the interface \textit{Serializable}. Nevertheless, it took time to understand that all the classes are "connected" with each other, and that all of them need to implement \textit{Serializable}.
+However, we had trouble to implement this serialization. At the beginning we thought that only the class \textit{MyFoodora} and those which are instantiated as attributes of it needed to implement the interface \textit{Serializable}. Nevertheless, it took time to understand that all the classes are ``connected'' with each other, and that all of them need to implement \textit{Serializable}.
 
 \subsection{Use of GIT}
 \label{sub:use_of_git}
@@ -87,4 +87,4 @@ avoid this type of problem we decided to use git as a program to share the progr
 Furthermore it allowed us to keep track of the history of our changing and even note what
 kind of problems we encountered when working with the program. Several times \textsc{GIT}
 helped us to solve conflicts between different versions of the implementation.
-\url{https://github.com/maxspahn/MyFoodora}
+\centerline{\url{https://github.com/maxspahn/MyFoodora}}

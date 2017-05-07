@@ -69,7 +69,8 @@ public class Launch {
 		commands.add("[M] showTotalProfit \t<>");
 		commands.add("[M] showTotalProfit \t<startDate> <endDate> : format dd/mm/yyyy");
 		commands.add("[A] runTest \t\t<testScenario-file> : Scenario-files that are available:\n" +
-				"\t\t\t\t my_foodora.ini, showScenario.txt, profitScenario.txt, orderScenario.txt, addItemsScenario.txt " );
+				"\t\t\t\t my_foodora.ini, showScenario.txt, profitScenario.txt, orderScenario.txt, addItemsScenario.txt,\n" + 
+				"\t\t\t\t order2Scenario.txt, notifyScenario.txt, profitScenario.txt, targetScenario.txt, all");
 		commands.add("[A] help \t\t\t<>");
 		commands.add("[A] showRestaurants \t<>");
 		commands.add("[M] registerManager \t<name> <userName> <adress> <password>");
